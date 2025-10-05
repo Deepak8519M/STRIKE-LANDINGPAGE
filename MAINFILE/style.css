@@ -194,8 +194,8 @@ nav img {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
-  height: 40vh; /* make it cover entire viewport height */
+  width: 100%;
+  height: 100vh; /* make it cover entire viewport height */
 
   background: radial-gradient(
     circle at top center,
@@ -225,7 +225,7 @@ main {
   padding: 20px 0;
 }
 .section1 .top h2 {
-  font-size: 6vh;
+  font-size: 8vh;
 }
 .section1 .top h2 span {
   background: #f8c900;
@@ -235,14 +235,23 @@ main {
 }
 .section1 .top .strike {
   /* background: blue; */
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
 
   /* align-items: center; */
-  align-items: end;
+  /* align-items: end; */
 }
+.section1 .top .strike h1 {
+  font-size: 60vh;
+  line-height: 53vh;
+  -webkit-text-stroke: 6px #5b21b6;
+  letter-spacing: 14px;
+  /* background: red; */
+  text-align: center;
+}
+
 .section1 .top .strike .right {
   width: 100%;
   /* height: 50vh; */
@@ -260,15 +269,8 @@ main {
 }
 .section1 .top .strike .right h2 span {
   background: #e02424;
-  margin-right: 10px;
+  margin-right: 2px;
 }
 .section1 .top .strike .right img {
   width: 300px;
-}
-.section1 .top .strike h1 {
-  font-size: 50vh;
-  line-height: 50vh;
-  -webkit-text-stroke: 9px #5b21b6;
-  letter-spacing: 14px;
-  /* background: red; */
 }
