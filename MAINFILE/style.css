@@ -208,3 +208,67 @@ nav img {
   z-index: -1; /* behind all content */
   filter: blur(100px); /* soften the glow */
 }
+main {
+  width: 100%;
+
+  background: white;
+}
+.section1 {
+  width: 100%;
+  height: 86vh;
+  background: #101010;
+}
+.section1 .top {
+  max-width: 1300px;
+  /* background: red; */
+  margin: 0px auto;
+  padding: 20px 0;
+}
+.section1 .top h2 {
+  font-size: 6vh;
+}
+.section1 .top h2 span {
+  background: #f8c900;
+  border-radius: 40px;
+  padding: 5px 30px;
+  margin-bottom: 20px;
+}
+.section1 .top .strike {
+  /* background: blue; */
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+
+  /* align-items: center; */
+  align-items: end;
+}
+.section1 .top .strike .right {
+  width: 100%;
+  /* height: 50vh; */
+
+  /* background: greenyellow; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: end;
+  /* padding-bottom: 20px; */
+  margin-top: -20px;
+}
+.section1 .top .strike .right h2 {
+  font-size: 40px;
+}
+.section1 .top .strike .right h2 span {
+  background: #e02424;
+  margin-right: 10px;
+}
+.section1 .top .strike .right img {
+  width: 300px;
+}
+.section1 .top .strike h1 {
+  font-size: 50vh;
+  line-height: 50vh;
+  -webkit-text-stroke: 9px #5b21b6;
+  letter-spacing: 14px;
+  /* background: red; */
+}
