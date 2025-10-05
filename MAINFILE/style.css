@@ -189,26 +189,22 @@ nav img {
   background: red;
   margin: 10px auto;
 }
+.glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 40vh; /* make it cover entire viewport height */
 
-.home-top .strike {
-  display: flex;
-  background: blue;
-  width: 60%;
-  justify-content: flex-start;
-  align-items: center;
-  height: 80%;
-}
-.home-top .strike h1 {
-  font-size: 50vh;
-  line-height: 47vh;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  background: radial-gradient(
+    circle at top center,
+    #8b5cf6 0%,
+    #5b21b6 40%,
+    #080818 100%
+  );
 
-  margin-left: -10vw;
-
-  /* letter-spacing: 3vh; */
-}
-.home-top h2 {
-  font-size: 10vh;
+  pointer-events: none; /* allow clicks through */
+  z-index: -1; /* behind all content */
+  filter: blur(100px); /* soften the glow */
 }
