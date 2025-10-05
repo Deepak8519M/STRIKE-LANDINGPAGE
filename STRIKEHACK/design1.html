@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STRIKE: Perfect Learning Experience</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Lilita+One&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Base Colors & Fonts */
+      :root {
+        --dark-bg: #1f1f1f; /* Near-black background */
+        --primary-yellow: #f8c900;
+        --primary-blue: #57b3ff;
+        --primary-red: #e02424;
+        --card-yellow: #ffe64d;
+        --card-purple: #9d81ff;
+        --card-pink: #ff8181;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: var(--dark-bg);
+        color: #ffffff;
+        overflow-x: hidden;
+        background-image: radial-gradient(
+          circle at 50% 10%,
+          rgba(255, 255, 255, 0.05),
+          transparent 30%
+        );
+      }
+
+      /* Custom Font Class for Large Headings (Mimicking the image) */
+      .header-font {
+        font-family: "Lilita One", cursive; /* Use Lilita One for the blocky, impactful look */
+        line-height: 1.1;
+        text-transform: uppercase;
+      }
+
+      /* Custom Text Glow/Outline Effect (for maximum visual impact) */
+      .text-glow-yellow {
+        color: white;
+        text-shadow: -1px -1px 0 var(--primary-yellow),
+          1px -1px 0 var(--primary-yellow), -1px 1px 0 var(--primary-yellow),
+          1px 1px 0 var(--primary-yellow), 0 0 10px rgba(255, 255, 0, 0.5);
+      }
+      .text-glow-blue {
+        color: white;
+        text-shadow: -1px -1px 0 var(--primary-blue),
+          1px -1px 0 var(--primary-blue), -1px 1px 0 var(--primary-blue),
+          1px 1px 0 var(--primary-blue), 0 0 10px rgba(87, 179, 255, 0.5);
+      }
+      .text-glow-pink {
+        color: white;
+        text-shadow: -1px -1px 0 var(--primary-red),
+          1px -1px 0 var(--primary-red), -1px 1px 0 var(--primary-red),
+          1px 1px 0 var(--primary-red), 0 0 10px rgba(224, 36, 36, 0.5);
+      }
+
+      /* Custom Pill Backgrounds */
+      .pill-yellow {
+        background-color: var(--primary-yellow);
+        color: #333;
+        font-weight: bold;
+        padding: 2px 10px;
+        border-radius: 9999px;
+      }
+      .pill-blue {
+        background-color: var(--primary-blue);
+        color: white;
+        font-weight: bold;
+        padding: 2px 10px;
+        border-radius: 9999px;
+      }
+      .pill-pink {
+        background-color: var(--primary-red);
+        color: white;
+        font-weight: bold;
+        padding: 2px 10px;
+        border-radius: 9999px;
+      }
+
+      /* Card Styles */
+      .styled-card {
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      }
+      .styled-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Floating Icon Animation */
+      @keyframes float {
+        0% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(10px, -10px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+      .floating-icon-1 {
+        animation: float 6s ease-in-out infinite;
+      }
+      .floating-icon-2 {
+        animation: float 8s ease-in-out infinite;
+      }
+      .floating-icon-3 {
+        animation: float 5s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header & Navigation -->
+    <header
+      class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center z-50 relative"
+    >
+      <div class="text-xl font-black text-white">CODE ARMY</div>
+      <nav class="hidden sm:flex space-x-8 text-sm font-semibold">
+        <a href="#hero" class="hover:text-yellow-400 transition">STRIKE</a>
+        <a href="#programs" class="hover:text-yellow-400 transition"
+          >Programs</a
+        >
+        <a href="#features" class="hover:text-yellow-400 transition"
+          >AI Assistant</a
+        >
+        <a
+          href="#"
+          class="px-5 py-2 bg-white text-gray-900 rounded-full font-bold shadow-lg hover:bg-gray-200 transition"
+          >Contact Us</a
+        >
+      </nav>
+      <!-- Mobile Menu Icon (Placeholder for functionality) -->
+      <button
+        class="sm:hidden p-2 text-white rounded-lg hover:bg-gray-800 transition"
+        aria-label="Toggle Menu"
+      >
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </header>
+
+    <!-- 1. HERO SECTION: CREATE NEW EXPERIENCE -->
+    <section
+      id="hero"
+      class="relative max-w-6xl mx-auto px-6 pt-16 pb-24 text-center overflow-hidden"
+    >
+      <!-- Floating Icons (Art Style) -->
+      <div class="absolute inset-0 z-0 opacity-70">
+        <!-- Pencil/Rocket/Globe/Book/Pencil -->
+        <i
+          data-lucide="pencil"
+          class="floating-icon-1 absolute top-10 left-10 w-12 h-12 text-yellow-400"
+          style="filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.7))"
+        ></i>
+        <i
+          data-lucide="rocket"
+          class="floating-icon-2 absolute top-1/4 right-5 w-16 h-16 text-red-500"
+          style="filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.7))"
+        ></i>
+        <i
+          data-lucide="globe"
+          class="floating-icon-3 absolute bottom-1/4 left-1/4 w-12 h-12 text-blue-400"
+          style="filter: drop-shadow(0 0 10px rgba(0, 0, 255, 0.7))"
+        ></i>
+        <i
+          data-lucide="book-open"
+          class="floating-icon-1 absolute bottom-10 right-1/4 w-14 h-14 text-purple-400"
+          style="filter: drop-shadow(0 0 10px rgba(128, 0, 128, 0.7))"
+        ></i>
+      </div>
+
+      <h1
+        class="header-font relative z-10 text-5xl sm:text-7xl lg:text-8xl mb-6"
+      >
+        CREATE NEW <span class="text-glow-yellow">EXPERIENCE</span> WITH
+        <span class="block mt-4 text-glow-blue">WAYS OF</span>
+        <span class="block mt-4 text-glow-pink">PERFECT LEARNING</span>
+      </h1>
+
+      <p class="relative z-10 text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+        STRIKE offers distraction-free, live DSA & JNA cohorts, complete with
+        certifications, quizzes, and the revolutionary **Gemini-powered AI
+        Assistant** for instant doubt clearing.
+      </p>
+
+      <a
+        href="#programs"
+        class="relative z-10 inline-block px-10 py-4 text-xl font-bold rounded-full bg-red-600 text-white shadow-2xl hover:bg-red-700 transition transform hover:scale-105"
+      >
+        START YOUR STRIKE JOURNEY
+      </a>
+    </section>
+
+    <!-- 2. SPECIAL PROGRAMS (Course Cards) -->
+    <section id="programs" class="bg-[#1f1f1f] py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center mb-12"
+        >
+          <h2
+            class="header-font text-3xl sm:text-5xl text-gray-50 mb-4 md:mb-0"
+          >
+            OUR SPECIAL <span class="pill-yellow">PROGRAMS</span> FOR YOUR
+            <span class="pill-blue">EDUCATION</span>
+          </h2>
+          <p class="text-sm text-gray-400 max-w-sm">
+            We provide special services like progress tracking, AI tutoring, and
+            verifiable certifications for your coding journey.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Card 1: Live DSA Cohorts (Yellow Theme) -->
+          <div
+            class="styled-card"
+            style="background-color: var(--card-yellow); color: #333"
+          >
+            <i
+              data-lucide="terminal"
+              class="w-10 h-10 text-yellow-800 mb-4"
+            ></i>
+            <h3 class="text-2xl font-bold mb-2">DSA Mastery</h3>
+            <p class="text-gray-700">
+              Live, intensive DSA sessions focused on placement-ready
+              problem-solving and competitive coding.
+            </p>
+          </div>
+
+          <!-- Card 2: JNA / System Design (Purple Theme) -->
+          <div
+            class="styled-card"
+            style="background-color: var(--card-purple); color: white"
+          >
+            <i
+              data-lucide="layout-grid"
+              class="w-10 h-10 text-purple-900 mb-4"
+            ></i>
+            <h3 class="text-2xl font-bold mb-2">JNA & System Design</h3>
+            <p class="text-purple-100">
+              Architect scalable systems using modern Java and microservice
+              patterns in our project-based cohorts.
+            </p>
+          </div>
+
+          <!-- Card 3: Free Web Dev (Pink/Red Theme) -->
+          <div
+            class="styled-card"
+            style="background-color: var(--card-pink); color: white"
+          >
+            <i data-lucide="code" class="w-10 h-10 text-red-900 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">HTML/CSS Hackathon</h3>
+            <p class="text-red-100">
+              Apply your skills in the ongoing Hackathon challenge and win
+              prizes! **Deadline: Saturday Night.**
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. INTERACTIVE FEATURE SPOTLIGHT (Bento Grid / Phone Mockup) -->
+    <section id="features" class="bg-[#2a2a2a] py-20 mt-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col justify-center items-center mb-12">
+          <h2 class="header-font text-3xl sm:text-5xl text-gray-50 text-center">
+            OUR PLATFORM IS <span class="pill-yellow">EASY</span> TO USE
+            <span class="block"
+              >AND <span class="pill-blue">USEFUL</span> FOR THE
+              <span class="pill-pink">FUTURE</span></span
+            >
+          </h2>
+        </div>
+
+        <div
+          class="relative bg-white rounded-3xl p-6 shadow-2xl overflow-hidden max-w-4xl mx-auto"
+        >
+          <!-- Inner Layout replicating the tabs and content -->
+          <div class="flex space-x-4 mb-6">
+            <button
+              class="bg-gray-200 text-gray-800 font-bold px-4 py-2 rounded-full shadow-md"
+            >
+              Distraction-Free
+            </button>
+            <button
+              class="bg-blue-500 text-white font-bold px-4 py-2 rounded-full shadow-md"
+            >
+              AI Assistant
+            </button>
+            <button
+              class="bg-gray-200 text-gray-800 font-bold px-4 py-2 rounded-full shadow-md"
+            >
+              Certifications
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <!-- Left Text Content -->
+            <div>
+              <h3 class="text-3xl font-bold text-gray-800 mb-3">
+                AI Doubt Solver
+              </h3>
+              <p class="text-gray-600 mb-4">
+                The integrated **Gemini AI chatbot** provides precise,
+                lecture-contextual answers. Just configure your free API key
+                once and start learning faster.
+              </p>
+              <span
+                class="inline-block bg-green-500 text-white font-bold px-4 py-2 rounded-lg rotate-1 transition transform hover:rotate-3"
+              >
+                INSTANT ANSWERS
+              </span>
+            </div>
+
+            <!-- Right Mockup/Tiled Content -->
+            <div class="bg-gray-100 p-4 rounded-xl shadow-inner">
+              <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white p-3 rounded-xl text-center shadow-lg">
+                  <i
+                    data-lucide="layout-dashboard"
+                    class="w-6 h-6 text-blue-500 mx-auto mb-1"
+                  ></i>
+                  <p class="text-xs text-gray-700">Progress Tracker</p>
+                </div>
+                <div class="bg-white p-3 rounded-xl text-center shadow-lg">
+                  <i
+                    data-lucide="award"
+                    class="w-6 h-6 text-yellow-500 mx-auto mb-1"
+                  ></i>
+                  <p class="text-xs text-gray-700">Cert Generator</p>
+                </div>
+                <div class="bg-white p-3 rounded-xl text-center shadow-lg">
+                  <i
+                    data-lucide="message-square"
+                    class="w-6 h-6 text-green-500 mx-auto mb-1"
+                  ></i>
+                  <p class="text-xs text-gray-700">Video Discussion</p>
+                </div>
+                <div class="bg-white p-3 rounded-xl text-center shadow-lg">
+                  <i
+                    data-lucide="zap"
+                    class="w-6 h-6 text-red-500 mx-auto mb-1"
+                  ></i>
+                  <p class="text-xs text-gray-700">Quizzes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Icons (Art Style) -->
+        <i
+          data-lucide="book-open"
+          class="floating-icon-2 absolute top-0 left-10 w-16 h-16 text-yellow-400 opacity-50"
+        ></i>
+        <i
+          data-lucide="graduation-cap"
+          class="floating-icon-3 absolute bottom-0 right-10 w-20 h-20 text-blue-400 opacity-50"
+        ></i>
+      </div>
+    </section>
+
+    <!-- 4. FINAL CTA: UNLOCK POTENTIAL -->
+    <section class="relative bg-white py-20 mt-16">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <!-- Floating Icons (Art Style) -->
+        <div class="absolute inset-0 z-0 opacity-70">
+          <i
+            data-lucide="rocket"
+            class="floating-icon-1 absolute top-10 left-10 w-16 h-16 text-red-500"
+            style="filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.7))"
+          ></i>
+          <i
+            data-lucide="pencil"
+            class="floating-icon-3 absolute bottom-10 right-10 w-12 h-12 text-yellow-400"
+            style="filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.7))"
+          ></i>
+        </div>
+
+        <h2
+          class="header-font text-5xl sm:text-7xl lg:text-8xl mb-10 relative z-10"
+        >
+          LET'S UNLOCK <span class="text-glow-pink">YOUR POTENTIAL</span>
+          <span class="block mt-4 text-glow-blue">WITH CODE ARMY</span>
+        </h2>
+
+        <a
+          href="#"
+          class="relative z-10 inline-block px-12 py-5 text-xl font-extrabold rounded-full bg-blue-600 text-white shadow-2xl hover:bg-blue-700 transition transform hover:scale-105"
+        >
+          ENROLL FOR FREE & START LEARNING
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-4">
+      <div
+        class="max-w-7xl mx-auto px-6 flex justify-between items-center text-sm text-gray-500"
+      >
+        <p>Copyright © Code Army. All Rights Reserved.</p>
+        <div class="flex space-x-4">
+          <i
+            data-lucide="facebook"
+            class="w-5 h-5 hover:text-white transition cursor-pointer"
+          ></i>
+          <i
+            data-lucide="twitter"
+            class="w-5 h-5 hover:text-white transition cursor-pointer"
+          ></i>
+          <i
+            data-lucide="linkedin"
+            class="w-5 h-5 hover:text-white transition cursor-pointer"
+          ></i>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

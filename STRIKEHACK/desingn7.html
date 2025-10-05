@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STRIKE: Become a Master Coder</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Using a clean, modern sans-serif like Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Base Colors & Fonts */
+      :root {
+        --light-bg: #ffffff;
+        --dark-bg: #1a1a1a; /* Deep Black for Contrast */
+        --accent-green: #dcfc21; /* Exact Lime Green/Yellow Accent */
+        --text-dark: #333333;
+        --text-light: #ffffff;
+        --gray-text: #666666;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--light-bg);
+        color: var(--text-dark);
+        overflow-x: hidden;
+      }
+
+      /* Custom Font Class for Large Headings */
+      .header-font {
+        font-family: "Inter", sans-serif;
+        font-weight: 900;
+        line-height: 1.1;
+        text-transform: uppercase;
+      }
+
+      /* Custom Pill Button Style */
+      .pill-btn {
+        background-color: var(--accent-green);
+        color: var(--text-dark);
+        font-weight: 700;
+        padding: 10px 24px;
+        border-radius: 9999px;
+        transition: all 0.2s;
+        border: 2px solid var(--accent-green);
+      }
+      .pill-btn:hover {
+        background-color: #c9e61c;
+      }
+
+      /* Large Accent Background Shape (used for Hero and Final CTA) */
+      .accent-blob {
+        background-color: var(--accent-green);
+        border-radius: 40% 60% 70% 30% / 30% 30% 70% 70%;
+        height: 400px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+      }
+
+      /* Step Card Styling */
+      .step-card {
+        background-color: var(--light-bg);
+        border-radius: 1rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+      .step-card:hover {
+        transform: translateY(-5px);
+      }
+
+      /* --- CURVED SECTION STYLES for Design Accuracy --- */
+      /* Curve 1: Separates Hero (White) from Features (Dark) */
+      .curve-top-dark {
+        position: relative;
+        z-index: 10;
+      }
+      .curve-top-dark::before {
+        content: "";
+        position: absolute;
+        top: -100px; /* Adjust height of the curve */
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-color: var(--dark-bg);
+        /* Creates a slightly upward wave cut-out on the bottom of the section above it */
+        border-radius: 0 0 50% 50% / 0 0 100% 100%;
+        transform: scaleX(
+          1.5
+        ); /* Stretches the curve width for a shallower look */
+      }
+
+      /* Curve 2: Separates Step Section (White) from Dark CTA */
+      .curve-bottom-dark {
+        position: relative;
+      }
+      .curve-bottom-dark::after {
+        content: "";
+        position: absolute;
+        bottom: -100px; /* Adjust height of the curve */
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-color: var(--dark-bg);
+        /* Creates a slightly downward wave cut-out on the top of the section below it */
+        border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        transform: scaleX(1.5);
+        z-index: 0;
+      }
+
+      /* Marquee Animation */
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      .marquee {
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+        animation: marquee 25s linear infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header & Navigation (White Background) -->
+    <header class="sticky top-0 bg-white shadow-md z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="text-xl font-black text-dark">CODE ARMY</div>
+        <nav
+          class="hidden md:flex items-center space-x-6 text-sm font-semibold"
+        >
+          <a href="#about" class="text-dark hover:text-accent-green transition"
+            >About Us</a
+          >
+          <a
+            href="#courses"
+            class="text-dark hover:text-accent-green transition"
+            >DSA & JNA</a
+          >
+          <a href="#steps" class="text-dark hover:text-accent-green transition"
+            >How It Works</a
+          >
+          <a href="#cta" class="pill-btn ml-4">Start Free Course</a>
+        </nav>
+        <button
+          class="md:hidden p-2 text-dark rounded-lg hover:bg-gray-100 transition"
+          aria-label="Toggle Menu"
+        >
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- 1. HERO SECTION: COME TECH WITH US -->
+    <section
+      id="hero"
+      class="relative pt-20 pb-40 overflow-hidden bg-white curve-bottom-dark"
+    >
+      <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+        <h1 class="header-font text-5xl md:text-7xl lg:text-8xl mb-4 text-dark">
+          COME TECH WITH US
+        </h1>
+        <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-12">
+          Become a master coder and uncap new opportunities. Including your own.
+        </p>
+
+        <!-- Accent Blob for the Image/CTA area -->
+        <div
+          class="accent-blob mx-auto mt-16"
+          style="
+            max-width: 1000px;
+            height: 450px;
+            margin-top: 50px;
+            border-radius: 40px;
+            position: relative;
+            transform: rotate(-2deg);
+          "
+        >
+          <div
+            class="absolute inset-0 bg-accent-green p-10 rounded-[40px] flex flex-col justify-center items-center text-dark text-left"
+            style="transform: rotate(2deg); margin: 0 20px"
+          >
+            <div class="flex items-center space-x-8 max-w-4xl w-full">
+              <!-- Left Quote -->
+              <div class="w-1/2 hidden md:block text-left">
+                <i data-lucide="quote" class="w-8 h-8 text-dark mb-4"></i>
+                <p class="font-semibold text-lg mb-2">
+                  "The best one-stop solution for coders. Ad-free videos and the
+                  AI assistant make learning seamless."
+                </p>
+                <div class="flex items-center space-x-2 text-sm mt-3">
+                  <img
+                    src="https://placehold.co/40x40/3B82F6/ffffff?text=R"
+                    alt="Reviewer"
+                    class="rounded-full"
+                  />
+                  <div>
+                    <p class="font-bold">Rohit Sharma</p>
+                    <p class="text-xs text-gray-700">DSA Cohort 2</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Image & CTA -->
+              <div class="w-full md:w-1/2 text-center relative">
+                <!-- Placeholder Image for a focused coder -->
+                <img
+                  src="https://placehold.co/250x250/1A1A1A/ffffff?text=FOCUSED+CODER"
+                  alt="Focused Coder"
+                  class="mx-auto rounded-xl shadow-2xl mb-6"
+                />
+                <h2 class="text-2xl font-black mb-4">Start Your Live Cohort</h2>
+                <a
+                  href="#courses"
+                  class="pill-btn px-8 py-3 bg-dark text-accent-green border-dark hover:bg-gray-800"
+                >
+                  Get Started Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. MARQUEE SECTION (Angled Marquee - New Section) -->
+    <section class="bg-dark-bg py-10 overflow-hidden relative">
+      <div
+        class="absolute inset-0 flex items-center justify-center pointer-events-none"
+        style="transform: rotate(-3deg)"
+      >
+        <div class="w-[150%] py-4 border-y-4 border-gray-700/50">
+          <div
+            class="marquee font-black text-6xl text-gray-800 tracking-widest uppercase"
+          >
+            DSA • JNA • AI ASSISTANT • CERTIFICATION • DISTRACTION-FREE • LIVE
+            SESSIONS •
+          </div>
+        </div>
+      </div>
+      <div class="h-20"></div>
+    </section>
+
+    <!-- 3. WHY START / CORE FEATURES SECTION (Dark Background) -->
+    <section id="features" class="bg-dark-bg py-24 relative curve-top-dark">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-xl font-bold text-accent-green mb-3">
+          BEST MENTORSHIP PLATFORM
+        </h2>
+        <h3 class="header-font text-4xl text-white mb-16">
+          SO MANY REASONS TO START
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
+          <!-- Feature 1: Teach Your Way (DSA/JNA Content) -->
+          <div class="p-6">
+            <i
+              data-lucide="terminal"
+              class="w-8 h-8 text-accent-green mb-3"
+            ></i>
+            <h4 class="text-xl font-bold text-white mb-2">Master DSA & JNA</h4>
+            <p class="text-gray-400 text-sm">
+              Our courses provide the deep, live instruction needed to secure
+              top tech roles. Learn practical system design.
+            </p>
+          </div>
+
+          <!-- Feature 2: Inspire Learners (AI Assistant) -->
+          <div class="p-6">
+            <i data-lucide="brain" class="w-8 h-8 text-accent-green mb-3"></i>
+            <h4 class="text-xl font-bold text-white mb-2">
+              AI Doubt Clarifier
+            </h4>
+            <p class="text-gray-400 text-sm">
+              Instantly clarify doubts related to the lecture content using our
+              integrated Gemini-powered AI chatbot.
+            </p>
+          </div>
+
+          <!-- Feature 3: Earn Rewards (Progress & Certs) -->
+          <div class="p-6">
+            <i data-lucide="award" class="w-8 h-8 text-accent-green mb-3"></i>
+            <h4 class="text-xl font-bold text-white mb-2">
+              Progress & Certification
+            </h4>
+            <p class="text-gray-400 text-sm">
+              Track your progress seamlessly and earn verifiable certificates
+              upon successful course completion.
+            </p>
+          </div>
+
+          <!-- Feature 4: Ad-Free Experience -->
+          <div class="p-6">
+            <i data-lucide="zap" class="w-8 h-8 text-accent-green mb-3"></i>
+            <h4 class="text-xl font-bold text-white mb-2">Ad-Free Learning</h4>
+            <p class="text-gray-400 text-sm">
+              Focus on the code. Lectures have minimal ads, ensuring a
+              distraction-free environment unlike general video platforms.
+            </p>
+          </div>
+        </div>
+
+        <!-- Simple Stats Line -->
+        <div class="flex justify-center space-x-12 mt-16 text-white font-bold">
+          <p>
+            8K+ <span class="block font-normal text-gray-400">Students</span>
+          </p>
+          <p>
+            50+ <span class="block font-normal text-gray-400">Live Hours</span>
+          </p>
+          <p>
+            98%
+            <span class="block font-normal text-gray-400">Success Rate</span>
+          </p>
+          <p>
+            12+ <span class="block font-normal text-gray-400">Courses</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. MARQUEE SECTION (Flat Marquee - New Section) -->
+    <section class="bg-dark-bg pb-20 pt-10 overflow-hidden">
+      <div class="w-full py-2 border-y-4 border-gray-700/50">
+        <div
+          class="marquee font-bold text-3xl text-white tracking-wider uppercase"
+        >
+          &nbsp;&nbsp;&nbsp;NEXT COHORT STARTING SOON • ENROLL NOW • LIMITED
+          SEATS • &nbsp;&nbsp;&nbsp;NEXT COHORT STARTING SOON • ENROLL NOW •
+          LIMITED SEATS •
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. HOW IT WORKS / STEPS SECTION (White Background, Numbered List) -->
+    <section id="steps" class="py-24 relative curve-top-dark">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <!-- Left: CTA and Image -->
+          <div class="relative">
+            <h2 class="text-lg font-bold text-red-600 mb-2">LET'S BEGIN</h2>
+            <h3 class="header-font text-4xl text-dark mb-6">
+              How To Master Coding on STRIKE
+            </h3>
+            <p class="text-gray-700 mb-8">
+              Follow these steps to get started with your high-value DSA/JNA
+              cohorts and unlock the power of the AI Assistant.
+            </p>
+            <a href="#cta" class="pill-btn">GET STARTED WITH DSA</a>
+
+            <!-- Decorative image -->
+            <div
+              class="mt-12 p-8 rounded-xl"
+              style="background-color: var(--accent-green)"
+            >
+              <img
+                src="https://placehold.co/400x300/1A1A1A/ffffff?text=ILLUSTRATION"
+                alt="Workflow Illustration"
+                class="rounded-lg shadow-xl"
+              />
+            </div>
+          </div>
+
+          <!-- Right: Numbered Steps -->
+          <div class="space-y-8">
+            <!-- Step 1 -->
+            <div class="flex space-x-4 step-card p-6">
+              <div class="text-5xl font-black text-accent-green mr-4">1</div>
+              <div>
+                <h4 class="text-xl font-bold mb-2">Sign-Up & Enroll</h4>
+                <p class="text-gray-600 text-sm">
+                  Register for a free account and choose your first high-value
+                  course, like our live DSA or JNA cohorts.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex space-x-4 step-card p-6">
+              <div class="text-5xl font-black text-accent-green mr-4">2</div>
+              <div>
+                <h4 class="text-xl font-bold mb-2">Configure AI Assistant</h4>
+                <p class="text-gray-600 text-sm">
+                  Obtain your free Gemini API key and configure it on the STRIKE
+                  website to unlock instant, contextual doubt resolution.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flex space-x-4 step-card p-6">
+              <div class="text-5xl font-black text-accent-green mr-4">3</div>
+              <div>
+                <h4 class="text-xl font-bold mb-2">
+                  Dive into Distraction-Free Lectures
+                </h4>
+                <p class="text-gray-600 text-sm">
+                  Engage with ad-minimized video content, take quizzes, and
+                  track your progress in real-time until completion.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 4 (Added for completeness) -->
+            <div class="flex space-x-4 step-card p-6">
+              <div class="text-5xl font-black text-accent-green mr-4">4</div>
+              <div>
+                <h4 class="text-xl font-bold mb-2">Earn Your Certification</h4>
+                <p class="text-gray-600 text-sm">
+                  Successfully complete the course material and generate your
+                  verifiable, professional completion certificate.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PULL QUOTE / TESTIMONIAL SECTION (White Background, Image and Text) -->
+    <section id="testimonial" class="py-24">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="header-font text-4xl text-center mb-16">WHAT CODERS SAY</h2>
+
+        <div
+          class="flex flex-col md:flex-row items-center bg-gray-50 p-12 rounded-2xl shadow-lg"
+        >
+          <!-- Left: Image -->
+          <div class="w-full md:w-1/3 flex justify-center mb-8 md:mb-0">
+            <img
+              src="https://placehold.co/200x200/4c1b8c/ffffff?text=CODER"
+              alt="Student Testimonial Image"
+              class="rounded-full shadow-xl object-cover w-48 h-48"
+            />
+          </div>
+
+          <!-- Right: Quote -->
+          <div class="w-full md:w-2/3 text-left">
+            <i data-lucide="quote" class="w-10 h-10 text-accent-green mb-4"></i>
+            <p
+              class="text-2xl italic font-medium text-gray-800 mb-6 leading-relaxed"
+            >
+              "I'm proud to wake up knowing my work is helping people learn
+              complex topics quickly. The ad-free experience is everything.
+              We're being a full-time instructor is hard work, it lets me focus
+              completely on delivery, not doubt clearing."
+            </p>
+            <p class="font-bold text-lg text-dark">Pulkit Bhardwaj</p>
+            <p class="text-sm text-gray-600">
+              HTML Hackathon Winner & STRIKE Student
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FINAL CALL TO ACTION (CTA) / MENTOR SECTION (Dark Background, with top curve) -->
+    <section id="cta" class="py-24 bg-dark-bg relative curve-top-dark">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="flex flex-col md:flex-row items-center justify-center space-y-12 md:space-y-0 md:space-x-12"
+        >
+          <!-- Left: Decorative Element -->
+          <div class="w-full md:w-1/3 relative text-center">
+            <div
+              class="p-8 rounded-xl inline-block"
+              style="background-color: var(--accent-green)"
+            >
+              <img
+                src="https://placehold.co/300x200/1A1A1A/ffffff?text=ILLUSTRATION"
+                alt="Drawing of Mentors"
+                class="rounded-lg shadow-xl"
+              />
+            </div>
+          </div>
+
+          <!-- Right: CTA Text -->
+          <div class="w-full md:w-2/3 text-left text-white">
+            <h2 class="header-font text-4xl mb-4">
+              You Won't Have To Code Alone
+            </h2>
+            <p class="text-gray-400 text-lg mb-8">
+              The STRIKE platform is backed by Code Army's best instructors. Get
+              live support, project reviews, and mentorship to ensure you
+              succeed in your DSA and JNA studies.
+            </p>
+            <a
+              href="#mentors"
+              class="pill-btn px-8 py-3 bg-white text-dark border-white hover:bg-gray-200"
+            >
+              Meet Our Mentors
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FINAL HUGE PILL CTA (with bottom curve) -->
+    <section class="py-24 relative curve-bottom-dark">
+      <div class="relative max-w-7xl mx-auto px-6 text-center">
+        <!-- Large Pill Shape -->
+        <div
+          class="accent-blob mx-auto"
+          style="
+            max-width: 1000px;
+            height: 350px;
+            margin-top: 0;
+            border-radius: 9999px;
+            position: relative;
+            transform: rotate(-1deg);
+            background-color: var(--accent-green);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+          "
+        >
+          <div
+            class="absolute inset-0 flex flex-col items-center justify-center text-dark p-8"
+            style="transform: rotate(1deg)"
+          >
+            <img
+              src="https://placehold.co/100x100/1A1A1A/ffffff?text=Coder"
+              alt="Coder"
+              class="rounded-full shadow-xl mb-4"
+            />
+            <h2 class="header-font text-3xl md:text-5xl mb-4">
+              READY TO BECOME A MASTER CODER?
+            </h2>
+            <p class="text-lg mb-6 max-w-xl">
+              Join the world's best, distraction-free learning marketplace.
+            </p>
+            <a
+              href="#hero"
+              class="pill-btn px-8 py-3 bg-dark text-accent-green border-dark hover:bg-gray-800"
+            >
+              Start Your First Course Today
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. MASSIVE TYPOGRAPHY SECTION (Replicating the oversized footer logo) -->
+
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <p
+        class="text-white opacity-10 text-8xl md:text-[180px] font-black header-font leading-none tracking-tight"
+      >
+        STRIKEEE
+      </p>
+    </div>
+
+    <!-- Footer (Deep Black Background, Clean Columns) -->
+    <footer class="bg-dark-bg py-16 text-gray-400">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="grid grid-cols-2 md:grid-cols-5 gap-8 border-t border-gray-700 pt-8 mb-8"
+        >
+          <!-- Column 1: For Candidates -->
+          <div>
+            <h4 class="font-bold text-white mb-4">FOR CODERS</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="#courses" class="hover:text-accent-green transition"
+                  >DSA Live Cohorts</a
+                >
+              </li>
+              <li>
+                <a href="#steps" class="hover:text-accent-green transition"
+                  >AI Assistant Features</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-accent-green transition"
+                  >Free Web Dev Course</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-accent-green transition"
+                  >Certifications</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Column 2: For Companies (Mock Content) -->
+          <div>
+            <h4 class="font-bold text-white mb-4">FOR RECRUITERS</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="#" class="hover:text-accent-green transition"
+                  >Hire Our Alumni</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-accent-green transition"
+                  >Corporate Training</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-accent-green transition"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Column 3: Courses -->
+          <div>
+            <h4 class="font-bold text-white mb-4">COURSES</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="#" class="hover:text-accent-green transition"
+                  >System Design (JNA)</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-accent-green transition"
+                  >Advanced DSA</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-accent-green transition"
+                  >Full Stack Mastery</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-accent-green transition"
+                  >Placement Prep</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Column 4: Social Media -->
+          <div>
+            <h4 class="font-bold text-white mb-4">SOCIAL MEDIA</h4>
+            <div class="flex space-x-4">
+              <i
+                data-lucide="facebook"
+                class="w-6 h-6 hover:text-accent-green transition cursor-pointer"
+              ></i>
+              <i
+                data-lucide="twitter"
+                class="w-6 h-6 hover:text-accent-green transition cursor-pointer"
+              ></i>
+              <i
+                data-lucide="linkedin"
+                class="w-6 h-6 hover:text-accent-green transition cursor-pointer"
+              ></i>
+              <i
+                data-lucide="youtube"
+                class="w-6 h-6 hover:text-accent-green transition cursor-pointer"
+              ></i>
+            </div>
+          </div>
+          <!-- Column 5: Empty Column to space out Social Media (for 5-column look) -->
+          <div class="hidden md:block"></div>
+        </div>
+
+        <div
+          class="flex flex-col sm:flex-row justify-between items-center text-xs"
+        >
+          <p>Copyright &copy; Code Army. All Rights Reserved.</p>
+          <div class="flex space-x-4 mt-4 sm:mt-0">
+            <a href="#" class="hover:text-accent-green transition"
+              >Terms Of Use</a
+            >
+            <a href="#" class="hover:text-accent-green transition"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-accent-green transition">Sitemap</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
