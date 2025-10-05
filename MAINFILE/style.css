@@ -263,5 +263,6 @@ main {
   margin-right: 2px;
 }
 .section1 .top .strike .right img {
-  width: 300px;
+  width: 200px;
+  margin-top: 10px;
 }
