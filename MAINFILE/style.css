@@ -10,6 +10,7 @@ body {
   font-family: "Fira Sans", sans-serif;
   background: #000;
   color: #fff;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 /* NAVBAR */
@@ -20,12 +21,22 @@ nav {
   align-items: center;
   background: #080818;
   padding: 0 40px;
-  position: sticky;
+  /* position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 1000; */
   height: 14vh;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
-  background: #1b1e1a;
+  cursor: pointer;
+  background: rgba(8, 8, 24, 0.5); /* semi-transparent */
+
+  /* Frosted glass blur */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(40px);
+
+  /* Optional border for better separation */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }
 
 nav img {
@@ -166,4 +177,38 @@ nav img {
   #menu-toggle:checked + .hamburger span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
   }
+}
+.home {
+  /* background: #111; */
+  background: #101010;
+  width: 100%;
+  height: 86vh;
+}
+.home-top {
+  width: 1300px;
+  background: red;
+  margin: 10px auto;
+}
+
+.home-top .strike {
+  display: flex;
+  background: blue;
+  width: 60%;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80%;
+}
+.home-top .strike h1 {
+  font-size: 50vh;
+  line-height: 47vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-left: -10vw;
+
+  /* letter-spacing: 3vh; */
+}
+.home-top h2 {
+  font-size: 10vh;
 }
