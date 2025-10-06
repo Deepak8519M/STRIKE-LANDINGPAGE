@@ -205,6 +205,7 @@ main {
 .section1 {
   width: 100%;
   height: 140vh;
+  height: fit-content;
   /* background: #101010; */
 }
 .section1 .top {
@@ -243,9 +244,26 @@ main {
   background-clip: text;
   color: transparent;
 }
-
-.section1 .top .strike .right {
-  width: 100%;
+.section1 .top .strike .strike-btm {
+  /* background: red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+.strike-btm .left {
+  width: 40%;
+  /* background: blanchedalmond; */
+  font-size: 1.5vw;
+}
+.strike-btm .btns {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+.strike-btm .btns button {
+  font-size: 2vw;
+}
+.section1 .top .strike .strike-btm .right {
   /* height: 50vh; */
 
   /* background: greenyellow; */
@@ -256,20 +274,152 @@ main {
   /* padding-bottom: 20px; */
   margin-top: -20px;
 }
-.section1 .top .strike .right h2 {
+.section1 .top .strike .strike-btm .right h2 {
   font-size: 40px;
 }
-.section1 .top .strike .right h2 span {
+.section1 .top .strike .strike-btm .right h2 span {
   background: #e02424;
   margin-right: 2px;
 }
-.section1 .top .strike .right img {
+.section1 .top .strike .strike-btm .right img {
   width: 200px;
   margin-top: 10px;
+}
+.section1 .bottom {
+  /* background: green; */
+  padding: 15px;
 }
 .section2 {
   width: 100%;
   height: 100vh;
   background: red;
   border-radius: 0 0 100px 100px;
+}
+
+.section1 .bottom .features {
+  display: flex;
+  width: 1310px;
+  margin: 0 auto;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.section1 .bottom .features .feature {
+  background: black;
+  border: 5px solid #5b21b6;
+  padding: 10px 20px;
+  font-family: "Bebas Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  border-radius: 15px;
+}
+
+.section1 .bottom .features .feature h2 {
+  font-size: 2.4vw;
+  color: #8b5cf6;
+}
+
+.section1 .bottom .features .feature p {
+  color: white;
+}
+.section1 .bottom .btm-left {
+  /* background: red; */
+  display: flex;
+  justify-content: space-between;
+
+  width: 1300px;
+  margin: 0 auto;
+  margin-bottom: 4vw;
+}
+.section1 .bottom .btm-left .left {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 40%;
+}
+.section1 .bottom .btm-left .left .btns {
+  display: flex;
+  gap: 20px;
+}
+.section1 .bottom .btm-left .left .btns button {
+  border-radius: 50%;
+  font-size: 1.8vw;
+  margin-top: 10px;
+  padding: 10px 14px;
+}
+.section1 .bottom .btm-left .left h2 {
+  font-size: 3vw;
+}
+.section1 .bottom .btm-left .left h2 span {
+  /* background: #f8c900; */
+  background: #57b3ff;
+  border-radius: 40px;
+  padding: 5px 30px;
+  margin-top: 30px;
+}
+
+.section1 .bottom .right {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section1 .bottom .right .card {
+  width: 100%;
+  height: fit-content;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 05px;
+  color: black;
+}
+
+.section1 .bottom .right .card-img {
+  width: 94%;
+  height: 200px;
+  margin: 5px auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.section1 .bottom .right .card-img video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section1 .bottom .right h3 {
+  margin-left: 8px;
+}
+
+.section1 .bottom .right .arrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 0px;
+}
+
+.section1 .bottom .right .arrow div {
+  width: 30px;
+  height: 30px;
+  background: #39ff14;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+
+.section1 .bottom .right .arrow div i {
+  font-size: 1.3vw;
+}
+
+.section1 .bottom .right p {
+  margin-left: 6px;
 }
