@@ -695,8 +695,8 @@ main {
   }
 
   .section1 .top .strike h1 {
-    font-size: 24vh;
-    line-height: 27vh;
+    font-size: 34vw;
+    line-height: 34vw;
     -webkit-text-stroke: 3px #ffffff;
     letter-spacing: 8px;
     margin-top: 10px;
@@ -820,13 +820,14 @@ main {
 
 @media (max-width: 500px) {
   nav {
-    height: 10vh;
+    height: 13vh;
     margin-bottom: 4vh;
+    padding: 10px 0;
   }
 
   nav img {
-    width: 240px;
-    margin-left: -4vh;
+    width: 210px;
+    margin-left: -8vw;
   }
 
   .nav-links li a {
@@ -838,8 +839,8 @@ main {
   }
 
   .section1 .top .strike h1 {
-    font-size: 11vh;
-    line-height: 12vh;
+    font-size: 38vw;
+    line-height: 44vw;
     -webkit-text-stroke: 2px #ffffff;
     letter-spacing: 5px;
   }
@@ -851,9 +852,11 @@ main {
   .strike-btm .btns button {
     font-size: 5vw;
   }
-
+  .section1 .top .strike .strike-btm .right h3 {
+    font-size: 2vw;
+  }
   .section1 .top .strike .strike-btm .right h2 {
-    font-size: 7vw;
+    font-size: 3vw;
   }
 
   .section1 .top .strike .strike-btm .right img {
