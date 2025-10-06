@@ -338,9 +338,13 @@ main {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  width: 40%;
+  width: 30%;
+  /* background: red; */
+  justify-content: space-between;
 }
-.section1 .bottom .btm-left .left .btns {
+
+.section1 .bottom .btm-left .left .top .btns {
+  margin-top: 20px;
   display: flex;
   gap: 20px;
 }
@@ -372,17 +376,19 @@ main {
 .section1 .bottom .right .card {
   width: 100%;
   height: fit-content;
+
   background: white;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 05px;
   color: black;
+  /* background: red; */
 }
 
 .section1 .bottom .right .card-img {
-  width: 94%;
-  height: 200px;
+  width: 97%;
+  height: 300px;
   margin: 5px auto;
   border-radius: 10px;
   overflow: hidden;
@@ -408,7 +414,7 @@ main {
 .section1 .bottom .right .arrow div {
   width: 30px;
   height: 30px;
-  background: #39ff14;
+  background: #8b5cf6;
   display: flex;
   justify-content: center;
   align-items: center;
