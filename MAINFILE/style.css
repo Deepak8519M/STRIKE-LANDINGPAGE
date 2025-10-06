@@ -512,7 +512,7 @@ main {
 
   .section1 .bottom .right {
     width: 100%;
-    background: red;
+    /* background: red; */
     margin-top: 3vh;
   }
 
@@ -544,7 +544,7 @@ main {
 @media (max-width: 500px) {
   nav {
     height: 10vh;
-    background: red;
+    /* background: red; */
     margin-bottom: 4vh;
   }
 
