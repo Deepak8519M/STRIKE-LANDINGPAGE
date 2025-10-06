@@ -269,12 +269,14 @@ main {
 .section1 .bottom {
   padding: 10px;
 }
+
 .section21 {
   width: 100%;
   height: fit-content;
   background-color: #e5e5e5;
   border-radius: 0 0 100px 100px;
 }
+
 .section2 {
   width: 100%;
   height: fit-content;
@@ -291,12 +293,14 @@ main {
   overflow: hidden;
   mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
 }
+
 .section2 .slider .list {
   display: flex;
   width: 100%;
   min-width: calc(var(--width) * var(--quantity));
   position: relative;
 }
+
 .section2 .slider .list .item {
   width: var(--width);
   height: var(--height);
@@ -308,9 +312,11 @@ main {
     (10s / var(--quantity)) * (var(--position) - 1) - 10s
   ) !important;
 }
+
 .section2 .slider .list .item img {
   width: 100%;
 }
+
 @keyframes autoRun {
   from {
     left: 100%;
@@ -319,16 +325,20 @@ main {
     left: calc(var(--width) * -1);
   }
 }
+
 .section2 .slider:hover .item {
   animation-play-state: paused !important;
   filter: grayscale(1);
 }
+
 .section2 .slider .item:hover {
   filter: grayscale(0);
 }
+
 .section2 .slider[reverse="true"] .item {
   animation: reversePlay 10s linear infinite;
 }
+
 @keyframes reversePlay {
   from {
     left: calc(var(--width) * -1);
@@ -476,6 +486,138 @@ main {
   margin-left: 6px;
 }
 
+.section21 h2 {
+  font-size: 3vw;
+  color: black;
+  max-width: 1300px;
+  min-width: 98vw;
+  margin: 30px auto;
+}
+
+.section21 h2 span {
+  background: #f8c900;
+  border-radius: 40px;
+  padding: 5px 30px;
+  margin-bottom: 20px;
+}
+
+.section21 .banner {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.section21 .banner .sliders {
+  position: absolute;
+  width: 150px;
+  height: 200px;
+  top: 10%;
+  left: calc(50% - 70px);
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  animation: autoRuns 20s linear infinite;
+  z-index: 2;
+}
+
+.section21 .banner .sliders .items {
+  position: absolute;
+  inset: 0 0 0 0;
+  transform: rotateY(
+      calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+    )
+    translateZ(550px);
+}
+
+.section21 .banner .sliders .items img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section21 .banner .content h2 {
+  font-size: 3em;
+}
+
+.section21 .banner .content .model {
+  background-image: url(images/strike.png);
+  width: 100%;
+  height: 75vh;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-size: auto 130%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  z-index: 1;
+}
+
+/* SECTION 4 */
+.section4 {
+  width: 100%;
+  height: fit-content;
+  background: #080818;
+  padding: 80px 0;
+  border-top: 8px solid #8b5cf6;
+}
+
+.section4 h2 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  letter-spacing: 2px;
+}
+
+.section4 h2 span {
+  background: #8b5cf6;
+  border-radius: 20px;
+  padding: 5px 15px;
+  color: #fff;
+}
+
+.section4 .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section4 .skill-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 4px solid #5b21b6;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.section4 .skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px #8a5cf6a9;
+}
+
+.section4 .skill-card i {
+  font-size: 3rem;
+  color: #8b5cf6;
+  margin-bottom: 1rem;
+}
+
+.section4 .skill-card h3 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.section4 .skill-card p {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #d1d5db;
+}
+
 /* RESPONSIVE */
 @media (max-width: 1000px) {
   nav {
@@ -493,7 +635,7 @@ main {
   .nav-links {
     position: fixed;
     top: 0;
-    right: -110%; /* Adjusted to ensure full hide-off-screen */
+    right: -110%;
     width: 100%;
     height: 100vh;
     background: rgba(17, 17, 17, 0.95);
@@ -505,7 +647,7 @@ main {
     transition: right 0.3s ease-in-out;
     z-index: 1000;
     overflow-x: hidden;
-    box-shadow: -10px 0 15px rgba(0, 0, 0, 0.5); /* Added shadow to hide edge */
+    box-shadow: -10px 0 15px rgba(0, 0, 0, 0.5);
     display: none;
   }
 
@@ -577,11 +719,6 @@ main {
     flex-wrap: wrap;
   }
 
-  .strike-btm .btns button {
-    font-size: 4vw;
-    padding: 8px 16px;
-  }
-
   .section1 .top .strike .strike-btm .right {
     align-items: center;
     margin-top: 0;
@@ -649,6 +786,35 @@ main {
 
   .section2 {
     border-radius: 0 0 50px 50px;
+  }
+
+  .section21 h2 {
+    font-size: 5vw;
+  }
+
+  .section4 h2 {
+    font-size: 2.5rem;
+  }
+
+  .section4 .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .section4 .skill-card {
+    padding: 1.5rem;
+  }
+
+  .section4 .skill-card i {
+    font-size: 2.5rem;
+  }
+
+  .section4 .skill-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .section4 .skill-card p {
+    font-size: 0.85rem;
   }
 }
 
@@ -719,72 +885,24 @@ main {
     width: 32px;
     height: 32px;
   }
+
+  .section4 h2 {
+    font-size: 2rem;
+  }
+
+  .section4 .skill-card i {
+    font-size: 2rem;
+  }
+
+  .section4 .skill-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .section4 .skill-card p {
+    font-size: 0.8rem;
+  }
 }
 
-.section21 h2 {
-  font-size: 3vw;
-  color: black;
-  max-width: 1300px;
-  min-width: 98vw;
-  /* background: red; */
-  margin: 30px auto;
-}
-.section21 h2 span {
-  background: #f8c900;
-  border-radius: 40px;
-  padding: 5px 30px;
-  margin-bottom: 20px;
-}
-
-.section21 .banner {
-  width: 100%;
-  height: 100vh;
-  text-align: center;
-  overflow: hidden;
-  position: relative;
-}
-.section21 .banner .sliders {
-  position: absolute;
-  width: 150px;
-  height: 200px;
-  top: 10%;
-  left: calc(50% - 70px);
-  transform-style: preserve-3d;
-  transform: perspective(1000px);
-  animation: autoRuns 20s linear infinite;
-  z-index: 2;
-}
-
-.section21 .banner .sliders .items {
-  position: absolute;
-  inset: 0 0 0 0;
-  transform: rotateY(
-      calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
-    )
-    translateZ(550px);
-}
-.section21 .banner .sliders .items img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.section21 .banner .content h2 {
-  font-size: 3em;
-}
-.section21 .banner .content .model {
-  background-image: url(images/strike.png);
-  width: 100%;
-  height: 75vh;
-  /* background: red; */
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-size: auto 130%;
-  background-repeat: no-repeat;
-  background-position: top center;
-  z-index: 1;
-}
 @media screen and (max-width: 1023px) {
   .section21 .banner .sliders {
     width: 160px;
@@ -814,6 +932,7 @@ main {
     padding: 0 30px;
   }
 }
+
 @media screen and (max-width: 767px) {
   .section21 .banner .sliders {
     width: 100px;
@@ -838,4 +957,160 @@ main {
   to {
     transform: perspective(1000px) rotateX(-10deg) rotateY(360deg);
   }
+}
+
+/* SECTION 5 */
+.section5 {
+  width: 100%;
+  height: fit-content;
+  background: #080818;
+  padding: 80px 0;
+  border-top: 8px solid #8b5cf6;
+}
+
+.section5 .max-w-7xl {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section5 .steps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.section5 .steps-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.section5 .steps-right {
+  /* background: red; */
+  height: 100%;
+  justify-content: flex-end;
+}
+.section5 .steps-preheader {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.5rem;
+  color: #f8c900;
+  letter-spacing: 2px;
+}
+
+.section5 .steps-preheader span {
+  background: #e02424;
+  border-radius: 10px;
+  padding: 0 10px;
+  color: #fff;
+}
+
+.section5 .steps-header {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 3rem;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.section5 .steps-header span {
+  background: #8b5cf6;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+.section5 .steps-description {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: #d1d5db;
+  margin-bottom: 1.5rem;
+}
+
+.section5 .steps-description span {
+  background: #57b3ff;
+  border-radius: 8px;
+  padding: 0 8px;
+  color: #080818;
+}
+
+.section5 .cta-btn {
+  font-size: 1.2rem;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background: transparent;
+  border: 4px solid #8b5cf6;
+  color: #fff;
+  font-family: "Bebas Neue", sans-serif;
+  cursor: pointer;
+}
+
+.section5 .cta-btn:hover {
+  background: #8b5cf6;
+  color: #fff;
+}
+
+.section5 .steps-image-container {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  height: 600px;
+  width: 100%;
+}
+
+.section5 .steps-image {
+  width: 100%;
+  object-fit: cover;
+  height: 550px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.section5 .steps-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section5 .step-card {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 4px solid #8b5cf6;
+  border-radius: 15px;
+  padding: 1.5rem;
+  backdrop-filter: blur(5px);
+}
+
+.section5 .step-number {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 3.5rem;
+  color: #e02424;
+  margin-right: 1rem;
+}
+
+.section5 .step-content h4 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.section5 .step-content h4 span {
+  background: #f8c900;
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
+.section5 .step-content p {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  color: #d1d5db;
+}
+
+.section5 .step-content p span {
+  background: #57b3ff;
+  border-radius: 8px;
+  padding: 0 6px;
+  color: #080818;
 }
