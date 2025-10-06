@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Flip Course Card</title>
+    <style>
+      /* Define color variables for easy styling */
+      :root {
+        --card-bg-dark: #1e2029; /* Main card background (very dark gray) */
+        --card-bg-medium: #2d303a; /* Tag/Button background */
+        --primary-purple: #8b5cf6; /* 'BEGINNER' color */
+        --text-light: #e2e8f0;
+        --text-muted: #94a3b8;
+        --border-color: rgba(255, 255, 255, 0.08);
+        --card-width: 350px;
+        --card-height: 550px;
+        --card-padding: 2rem;
+        --card-radius: 1rem;
+      }
+
+      /* Global Reset and Layout */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #0d0e14; /* Dark background for contrast */
+        font-family: "Inter", sans-serif;
+        color: var(--text-light);
+        padding: 20px;
+      }
+
+      /* --- 3D Card Container Setup --- */
+      .flip-card-container {
+        width: var(--card-width);
+        height: var(--card-height);
+        perspective: 1000px; /* Essential for 3D effect */
+        border-radius: var(--card-radius);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Inner container that performs the flip */
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.8s;
+        transform-style: preserve-3d; /* Key to making children render in 3D */
+        border-radius: var(--card-radius);
+      }
+
+      /* Flip transition triggered on container hover */
+      .flip-card-container:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      /* Card Faces (Front and Back) Styling */
+      .card-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Hide the back of the face when flipped */
+        backface-visibility: hidden;
+        border-radius: var(--card-radius);
+        background-color: var(--card-bg-dark);
+        overflow: hidden;
+      }
+
+      .card-face-back {
+        transform: rotateY(180deg);
+        padding: 2.5rem var(--card-padding);
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* --- Front Face Content (Course1.png) --- */
+
+      .thumbnail-placeholder {
+        width: 100%;
+        height: 180px;
+        background-color: #0a0a0d; /* Simulating the dark image background */
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .thumbnail-text {
+        line-height: 1.2;
+        text-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #d1d5db;
+        text-align: center;
+      }
+      .thumbnail-text span {
+        display: block;
+        font-size: 3.5rem;
+        color: white;
+      }
+
+      .tags-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: -1.5rem; /* Pull tags up over the thumbnail */
+        position: relative;
+        z-index: 5;
+        padding: 0 var(--card-padding);
+      }
+
+      .tag-beginner {
+        background-color: var(--primary-purple);
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 9999px; /* Pill shape */
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .tag-lectures {
+        background-color: var(--card-bg-medium);
+        color: var(--text-light);
+        padding: 0.3rem 0.8rem;
+        border-radius: 9999px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .card-content-front {
+        padding: 1.5rem var(--card-padding) 2rem var(--card-padding);
+        text-align: left;
+      }
+
+      .course-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin: 0;
+        margin-top: 1.5rem;
+      }
+
+      .course-author {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+      }
+
+      .course-description {
+        font-size: 1rem;
+        color: var(--text-light);
+        margin-top: 1.5rem;
+        line-height: 1.4;
+      }
+
+      .tech-tags {
+        margin-top: 2rem;
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      .tech-tag {
+        background-color: var(--card-bg-medium);
+        color: var(--text-muted);
+        padding: 0.4rem 0.9rem;
+        border-radius: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+
+      /* --- Back Face Content (Course2.png) --- */
+
+      .back-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .back-icon {
+        /* Using inline SVG and styling it to match the purple code icon */
+        color: var(--primary-purple);
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+        width: 20px;
+        height: 20px;
+      }
+
+      .back-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      .back-description {
+        font-size: 1rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+        margin-bottom: 2rem;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex-grow: 1; /* Pushes the button to the bottom */
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        font-size: 1.1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .feature-item:last-child {
+        border-bottom: none;
+      }
+
+      .feature-icon-svg {
+        margin-right: 1rem;
+        width: 20px;
+        height: 20px;
+        color: var(--text-muted);
+        flex-shrink: 0;
+      }
+
+      .feature-text {
+        font-weight: 500;
+      }
+
+      .start-building-button {
+        /* Positioned relative to the back face padding */
+        background-color: var(--card-bg-medium);
+        color: var(--text-light);
+        padding: 1rem 1.5rem;
+        border-radius: 0.75rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 3rem; /* Spacing from list */
+      }
+
+      .start-building-button:hover {
+        background-color: #4c4e5a; /* Slightly lighter on hover */
+      }
+
+      .arrow-svg {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s ease;
+      }
+
+      .start-building-button:hover .arrow-svg {
+        transform: translateX(5px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 3D Flip Card Component -->
+    <div class="flip-card-container">
+      <div class="flip-card-inner">
+        <!-- Front Face (Replicates Course1.png) -->
+        <div class="card-face card-face-front">
+          <!-- Thumbnail Placeholder (for the image/video area) -->
+          <div class="thumbnail-placeholder">
+            <div class="thumbnail-text">
+              INTRODUCTION TO
+              <span style="font-size: 3.5rem">WEB DEVELOPMENT</span>
+            </div>
+          </div>
+
+          <!-- Tags Row -->
+          <div class="tags-row">
+            <span class="tag-beginner">BEGINNER</span>
+            <span class="tag-lectures">23 lectures</span>
+          </div>
+
+          <!-- Main Content -->
+          <div class="card-content-front">
+            <h2 class="course-title">Web Development Full Course</h2>
+            <p class="course-author">by Rohit Negi</p>
+            <p class="course-description">
+              Build Anything: The All-in-One Web Development Bootcamp.
+            </p>
+
+            <!-- Tech Tags -->
+            <div class="tech-tags">
+              <span class="tech-tag">WEB DEVELOPMENT</span>
+              <span class="tech-tag">MERN STACK</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back Face (Replicates Course2.png) -->
+        <div class="card-face card-face-back">
+          <!-- Back Header/Title -->
+          <div class="back-header">
+            <!-- Icon for Code/Course -->
+            <svg
+              class="back-icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+              ></path>
+            </svg>
+            <div>
+              <h2 class="back-title">Web Development Full Course</h2>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="back-description">
+            Build Anything: The All-in-One Web Development Bootcamp.
+          </p>
+
+          <!-- Feature List -->
+          <ul class="feature-list">
+            <!-- Overview Icon (File/Document) -->
+            <li class="feature-item">
+              <svg
+                class="feature-icon-svg"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
+              </svg>
+              <span class="feature-text">Overview</span>
+            </li>
+            <!-- Modules Icon (Code Brackets) -->
+            <li class="feature-item">
+              <svg
+                class="feature-icon-svg"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                ></path>
+              </svg>
+              <span class="feature-text">Modules</span>
+            </li>
+            <!-- Projects Icon (Rocket/Launch) -->
+            <li class="feature-item">
+              <svg
+                class="feature-icon-svg"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13.5 10.5h-11a2 2 0 00-2 2v8a2 2 0 002 2h11a2 2 0 002-2v-8a2 2 0 00-2-2zM15 15h2l-2 2m0 0v-2m-3-11h-2a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-2"
+                ></path>
+              </svg>
+              <span class="feature-text">Projects</span>
+            </li>
+            <!-- Certificate Icon (Lightning/Flash) -->
+            <li class="feature-item">
+              <svg
+                class="feature-icon-svg"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              <span class="feature-text">Certificate</span>
+            </li>
+          </ul>
+
+          <!-- Start Building Button -->
+          <div class="start-building-button">
+            <span>Start Building</span>
+            <!-- Arrow Icon -->
+            <svg
+              class="arrow-svg"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

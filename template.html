@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PromptPal - AI Prompt Companion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Import a suitable font */
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+      /* Custom Tailwind Configuration */
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      'dark-base': '#120c24', /* Very dark purple/navy background */
+                      'card-bg': '#1a1030',   /* Slightly lighter card background */
+                      'primary-purple': '#8b5cf6', /* Light purple accent */
+                      'accent-orange': '#ff7c47', /* Orange highlight */
+                      'text-muted': '#a7a3b3',
+                  },
+                  fontFamily: {
+                      sans: ['Inter', 'sans-serif'],
+                  },
+                  boxShadow: {
+                      'card-glow': '0 0 15px rgba(139, 92, 246, 0.2)',
+                  }
+              }
+          }
+      }
+
+      /* Base Styles */
+      body {
+          background-color: #120c24;
+          font-family: 'Inter', sans-serif;
+          color: #e2e8f0;
+          padding: 2rem;
+      }
+
+      /* Bento Card Styles */
+      .bento-card {
+          background-color: #1a1030;
+          border-radius: 1.5rem;
+          padding: 1.75rem;
+          position: relative;
+          overflow: hidden;
+          border: 1px solid rgba(139, 92, 246, 0.1);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .bento-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 92, 246, 0.4);
+      }
+
+      /* The main grid layout (12 columns implicitly for flexibility) */
+      .bento-grid {
+          display: grid;
+          grid-template-columns: repeat(12, 1fr);
+          grid-auto-rows: minmax(180px, auto); /* Set a minimum row height */
+          gap: 1.25rem;
+          max-width: 1200px;
+          margin: 0 auto;
+      }
+
+      /* Specific Grid Placements (Desktop) */
+      /* 1. Effortless Prompt Perfection (Span 3 columns, 2 rows) */
+      .tile-1 { grid-area: 1 / 1 / 3 / 4; }
+      /* 2. Your AI Prompt Companion (Span 6 columns, 4 rows) */
+      .tile-2 { grid-area: 1 / 4 / 5 / 10; padding: 0 !important; }
+      /* 3. Small Top Right (Span 3 columns, 1 row) */
+      .tile-3 { grid-area: 1 / 10 / 2 / 13; }
+      /* 4. 25M Created Prompts (Span 3 columns, 1 row) */
+      .tile-4 { grid-area: 2 / 10 / 3 / 13; }
+      /* 5. 12K Happy Users (Span 3 columns, 2 rows) */
+      .tile-5 { grid-area: 3 / 1 / 5 / 4; }
+      /* 6. Prompt Templates (Span 3 columns, 2 rows) */
+      .tile-6 { grid-area: 3 / 10 / 5 / 13; }
+      /* 7. Generate Button (Span 3 columns, 1 row) */
+      .tile-7 { grid-area: 5 / 1 / 6 / 4; }
+      /* 8. Branching Paths (Span 3 columns, 1 row) */
+      .tile-8 { grid-area: 5 / 4 / 6 / 7; }
+      /* 9. Keyword Enhancer (Span 3 columns, 1 row) */
+      .tile-9 { grid-area: 5 / 7 / 6 / 10; }
+
+      /* Mobile Responsiveness (Stack vertically) */
+      @media (max-width: 768px) {
+          .bento-grid {
+              grid-template-columns: 1fr;
+              grid-auto-rows: minmax(150px, auto);
+              gap: 1rem;
+          }
+          .bento-grid > div {
+              grid-area: auto !important; /* Reset grid area for mobile */
+          }
+          /* Adjust the large tile for mobile viewing */
+          .tile-2 {
+              height: 400px; /* Give it a fixed height on mobile */
+              padding: 1rem !important;
+          }
+      }
+
+      /* --- Central Orb & Code Effect (Tile 2) --- */
+      .orb-container {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, rgba(30, 16, 50, 0.95), rgba(42, 21, 64, 0.95));
+          overflow: hidden;
+          border-radius: 1.5rem;
+          padding-top: 5rem;
+      }
+
+      .orb-graphic {
+          width: 250px;
+          height: 250px;
+          margin-top: 2rem;
+          background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><filter id="f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="5"/></filter></defs><circle cx="50" cy="50" r="40" fill="url(%23g)"/><g filter="url(%23f)"><circle cx="50" cy="50" r="30" fill="url(%23g)"/></g><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" style="stop-color:%238b5cf6"/><stop offset="100%" style="stop-color:%23ff7c47"/></linearGradient></svg>') center / cover no-repeat;
+          border-radius: 50%;
+          position: relative;
+          box-shadow: 0 0 50px rgba(139, 92, 246, 0.8), 0 0 80px rgba(255, 124, 71, 0.5);
+      }
+
+      .code-stream {
+          position: absolute;
+          width: 100%;
+          font-size: 0.75rem;
+          font-family: monospace;
+          white-space: nowrap;
+          overflow: hidden;
+          color: rgba(255, 124, 71, 0.3);
+          text-shadow: 0 0 5px rgba(255, 124, 71, 0.5);
+          line-height: 1;
+      }
+
+      .code-top { top: 1rem; transform: rotateY(180deg); }
+      .code-bottom { bottom: 0.5rem; }
+
+      /* Icon Styling */
+      .icon-p {
+          color: #8b5cf6;
+          width: 28px;
+          height: 28px;
+      }
+      .icon-small-orange {
+          width: 32px;
+          height: 32px;
+          background-color: #ff7c47;
+          border-radius: 0.75rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 10px rgba(255, 124, 71, 0.5);
+      }
+
+      /* User Avatar Group (Tile 5) */
+      .avatar-group {
+          display: flex;
+          margin-top: 1rem;
+      }
+      .avatar {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background-color: #5c3599; /* Placeholder color */
+          border: 2px solid #1a1030;
+          margin-left: -0.5rem;
+      }
+      .avatar:first-child { margin-left: 0; }
+
+      /* Utility Icons (Tile 6) - Using placeholders */
+      .utility-icon {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background-color: #3b2c5e;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: #8b5cf6;
+          margin-right: 0.5rem;
+          margin-top: 1rem;
+      }
+
+      /* Vertical Label (Tile 6) */
+      .vertical-label {
+          position: absolute;
+          right: -10px;
+          top: 50%;
+          transform: translateY(-50%) rotate(90deg);
+          white-space: nowrap;
+          font-size: 0.8rem;
+          color: #5c3599;
+          font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bento-grid">
+      <!-- TILE 1: Effortless Prompt Perfection (Span 3x2) -->
+      <div class="bento-card tile-1 flex flex-col justify-between">
+        <div>
+          <svg
+            class="icon-p mb-4"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"
+            />
+          </svg>
+          <h2 class="text-4xl font-extrabold leading-tight">
+            Effortless Prompt Perfection
+          </h2>
+        </div>
+        <div>
+          <p class="text-lg font-semibold mt-4">14 days trial</p>
+          <p class="text-text-muted mt-1">after - $5/month</p>
+        </div>
+      </div>
+
+      <!-- TILE 2: Your AI Prompt Companion (Central, Span 6x4) -->
+      <div class="bento-card tile-2">
+        <div class="orb-container">
+          <!-- Code Stream Top -->
+          <div class="code-stream code-top">
+            10101 100011 100101010 010 001 1001010101 1001010101...
+          </div>
+
+          <div class="text-center px-4">
+            <p
+              class="text-sm font-semibold text-text-muted flex items-center justify-center mb-2"
+            >
+              <svg
+                class="w-4 h-4 mr-1 text-primary-purple"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.73 9.27c-.44-.44-1.15-.44-1.6 0l-7.7 7.7-3.7-3.7c-.44-.44-1.15-.44-1.6 0-.44.44-.44 1.15 0 1.6l4.5 4.5c.44.44 1.15.44 1.6 0l8.5-8.5c.44-.45.44-1.16 0-1.6z"
+                />
+              </svg>
+              PromptPal
+            </p>
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-snug">
+              Your AI Prompt Companion
+            </h1>
+          </div>
+
+          <!-- Swirling Orb Graphic (Simulated with CSS) -->
+          <div class="orb-graphic"></div>
+
+          <!-- Code Stream Bottom -->
+          <div class="code-stream code-bottom">
+            010101 11010111 10001 1001010101 1001010101 11010111...
+          </div>
+        </div>
+      </div>
+
+      <!-- TILE 3: Small Top Right (Icon placeholder) (Span 3x1) -->
+      <div class="bento-card tile-3 flex items-center justify-center">
+        <div class="icon-small-orange">
+          <svg
+            class="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- TILE 4: 25M Created Prompts (Span 3x1) -->
+      <div class="bento-card tile-4 flex flex-col justify-center relative">
+        <h2 class="text-6xl font-extrabold text-white">25M</h2>
+        <div class="flex items-center mt-2 text-text-muted">
+          <span class="w-2 h-2 rounded-full bg-primary-purple mr-2"></span>
+          <p class="text-lg">created prompts</p>
+        </div>
+        <div class="w-full h-1 bg-primary-purple/50 rounded-full mt-2">
+          <div class="w-4/5 h-full bg-primary-purple rounded-full"></div>
+        </div>
+      </div>
+
+      <!-- TILE 5: 12K Happy Users (Span 3x2) -->
+      <div class="bento-card tile-5 flex flex-col justify-between">
+        <div>
+          <h2 class="text-5xl font-extrabold text-white">12K</h2>
+          <p class="text-xl text-text-muted mt-2">happy users</p>
+        </div>
+        <div class="avatar-group">
+          <!-- Avatar Placeholders -->
+          <div class="avatar" style="background-color: #ff7c47"></div>
+          <div class="avatar" style="background-color: #8b5cf6"></div>
+          <div class="avatar" style="background-color: #5c3599"></div>
+          <div
+            class="avatar bg-gray-600 text-white flex items-center justify-center text-sm"
+          >
+            +8K
+          </div>
+        </div>
+      </div>
+
+      <!-- TILE 6: Prompt Templates (Span 3x2) -->
+      <div class="bento-card tile-6 flex flex-col justify-between relative">
+        <div>
+          <h3 class="text-2xl font-bold">Prompt templates</h3>
+          <p class="text-text-muted mt-2">
+            Use pre-made templates to jumpstart creativity.
+          </p>
+        </div>
+
+        <div class="mt-4">
+          <div class="flex items-center text-sm text-text-muted mb-2">
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-primary-purple mr-2"
+            ></span>
+            <p>Rewrite</p>
+          </div>
+          <div class="flex items-center text-sm text-text-muted">
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-primary-purple mr-2"
+            ></span>
+            <p>Generate</p>
+          </div>
+        </div>
+
+        <!-- Vertical File Type Label -->
+        <div
+          class="absolute right-0 top-0 h-full w-10 bg-black/30 rounded-r-2xl flex items-center justify-center"
+        >
+          <div class="vertical-label transform -rotate-90">
+            <span class="text-white text-xs">● JPG ● PNG ● PDF</span>
+          </div>
+        </div>
+
+        <!-- Trial Badge Placeholder -->
+        <div
+          class="absolute top-4 right-16 px-3 py-1 bg-black/50 text-white text-xs rounded-full border border-primary-purple"
+        >
+          14 days trial
+        </div>
+
+        <!-- Utility Icons -->
+        <div class="flex mt-4">
+          <span class="utility-icon" style="background-color: #5c3599"
+            ><svg
+              class="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 15h2v-6h-2v6zm0-8h2V7h-2v2z"
+              /></svg
+          ></span>
+          <span class="utility-icon" style="background-color: #5c3599"
+            ><svg
+              class="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 15h2v-2h-2v2zm0-4h2v-6h-2v6z"
+              /></svg
+          ></span>
+          <span class="utility-icon" style="background-color: #5c3599"
+            ><svg
+              class="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 15h2v-2h-2v2zm0-4h2v-6h-2v6z"
+              /></svg
+          ></span>
+        </div>
+      </div>
+
+      <!-- TILE 7: Generate Button (Span 3x1) -->
+      <div class="bento-card tile-7 flex items-center justify-center p-4">
+        <button
+          class="w-full py-4 text-xl font-semibold rounded-xl bg-primary-purple shadow-lg shadow-primary-purple/50 transition hover:bg-primary-purple/80"
+        >
+          Generate
+        </button>
+      </div>
+
+      <!-- TILE 8: Branching Paths (Span 3x1) -->
+      <div class="bento-card tile-8 flex flex-col justify-start">
+        <div class="flex items-center mb-2">
+          <svg
+            class="icon-p mr-2"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19 12c0-3.866-3.134-7-7-7S5 8.134 5 12s3.134 7 7 7 7-3.134 7-7zm-7 4l-4-4 4-4v3h4v2h-4v3z"
+            />
+          </svg>
+          <h3 class="text-xl font-bold">Branching paths</h3>
+        </div>
+        <p class="text-text-muted text-sm">
+          Explore multiple prompt directions with branching.
+        </p>
+      </div>
+
+      <!-- TILE 9: Keyword Enhancer (Span 3x1) -->
+      <div class="bento-card tile-9 flex flex-col justify-start">
+        <div class="flex items-center mb-2">
+          <svg
+            class="icon-p mr-2"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm-1-12h2v6h-2v-6zm0 8h2v2h-2v-2z"
+            />
+          </svg>
+          <h3 class="text-xl font-bold">Keyword enhancer</h3>
+        </div>
+        <p class="text-text-muted text-sm">
+          Boost your prompt precision with keywords.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
