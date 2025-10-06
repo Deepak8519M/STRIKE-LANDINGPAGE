@@ -370,21 +370,23 @@ main {
 }
 
 /* RESPONSIVE */
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   nav {
     padding: 0 15px;
     position: relative;
+    z-index: 1200;
+    margin-bottom: 3vh;
   }
 
   nav img {
-    width: 180px;
-    margin-left: 0;
+    width: 280px;
+    margin-left: -5vh;
   }
 
   .nav-links {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -110%; /* Adjusted to ensure full hide-off-screen */
     width: 100%;
     height: 100vh;
     background: rgba(17, 17, 17, 0.95);
@@ -396,7 +398,7 @@ main {
     transition: right 0.3s ease-in-out;
     z-index: 1000;
     overflow-x: hidden;
-    visibility: hidden;
+    box-shadow: -10px 0 15px rgba(0, 0, 0, 0.5); /* Added shadow to hide edge */
     display: none;
   }
 
@@ -419,7 +421,6 @@ main {
 
   #menu-toggle:checked ~ .nav-links {
     right: 0;
-    visibility: visible;
     display: flex;
   }
 
@@ -445,7 +446,7 @@ main {
   }
 
   .section1 .top .strike h1 {
-    font-size: 26vh;
+    font-size: 24vh;
     line-height: 27vh;
     -webkit-text-stroke: 3px #ffffff;
     letter-spacing: 8px;
@@ -511,16 +512,19 @@ main {
 
   .section1 .bottom .right {
     width: 100%;
+    background: red;
+    margin-top: 3vh;
   }
 
   .section1 .bottom .right .card-img {
-    height: 200px;
+    height: 400px;
   }
 
   .section1 .bottom .features {
     flex-direction: column;
     width: 100%;
     padding: 0 10px;
+    /* background: red; */
   }
 
   .section1 .bottom .features .feature {
@@ -540,10 +544,13 @@ main {
 @media (max-width: 500px) {
   nav {
     height: 10vh;
+    background: red;
+    margin-bottom: 4vh;
   }
 
   nav img {
-    width: 140px;
+    width: 240px;
+    margin-left: -4vh;
   }
 
   .nav-links li a {
@@ -587,7 +594,7 @@ main {
   }
 
   .section1 .bottom .right .card-img {
-    height: 150px;
+    height: 250px;
   }
 
   .section1 .bottom .features .feature h2 {
