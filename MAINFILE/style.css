@@ -238,12 +238,13 @@ main {
   line-height: 53vh;
   -webkit-text-stroke: 6px #ffffff;
   letter-spacing: 14px;
-  /* background: red; */
   text-align: center;
-  background: linear-gradient(#5b21b6, #8b5cf6, black);
+  background: linear-gradient(to bottom, #5b21b6, #8b5cf6, black);
   background-clip: text;
+  /* background: red; */
   color: transparent;
 }
+
 .section1 .top .strike .strike-btm {
   /* background: red; */
   display: flex;
@@ -609,7 +610,8 @@ main {
   -webkit-text-stroke: 6px #ffffff;
   letter-spacing: 14px;
   text-align: center;
-  background: linear-gradient(to left, #5b21b6, black);
+  background: linear-gradient(#5b21b6, #8b5cf6, black);
+
   background-clip: text;
   color: transparent;
 }
