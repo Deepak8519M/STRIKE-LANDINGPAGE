@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+
+/* --- Ethereal Mint Color Palette ---
+  - Primary Accent: #00b894 (Medium Aquamarine)
+  - Light Accent/Icon: #e0ffff (Light Cyan)
+  - Dark Base: rgba(0, 10, 8, 0.85) (Dark with a slight mint tint)
+*/
+
+/* --- Global Styles --- */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background: #000000;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  overflow: hidden;
+  perspective: 1500px;
+}
+.flip-card {
+  width: 340px;
+  height: 450px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+  cursor: pointer;
+  z-index: 20;
+}
+.flip-card:hover {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 9px 9px;
+  box-sizing: border-box;
+
+  /* UPDATED: Background based on Ethereal Mint card */
+  background: rgba(0, 10, 8, 0.85);
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2), 0 8px 25px rgba(0, 0, 0, 0.7),
+    0 30px 100px rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+  padding: 0 17px 17px;
+  justify-content: flex-start;
+}
+
+/* --- Content Layout --- */
+.card-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: block;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.inner-content {
+  padding: 0 10px;
+  position: relative;
+  z-index: 3;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.tags-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.footer-tags {
+  margin-top: auto;
+  margin-bottom: 15px;
+}
+
+/* --- TAG STYLES MODIFIED FOR MINT LOOK --- */
+.tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  transition: background-color 0.3s;
+}
+
+.tag.category {
+  /* Primary Mint/Aquamarine color */
+  background-color: rgba(0, 184, 148, 0.5);
+  border: 1px solid rgba(224, 255, 255, 0.8); /* Light Cyan border */
+  color: #fff;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
+}
+.tag.lectures,
+.tag.tech {
+  /* Darker, subtle look */
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+}
+/* --- END TAG STYLES --- */
+
+.card-title,
+.back-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 3px;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+}
+.card-author {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+}
+.card-description {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+.flip-card-back .card-description {
+  margin-bottom: 20px;
+  flex-grow: 0;
+}
+.back-title {
+  font-weight: 700;
+  margin-top: 17px;
+  margin-bottom: 10px;
+}
+
+/* --- Back Card Details List (Animation Setup) --- */
+.details-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+.details-list li {
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.details-list li:last-child {
+  border-bottom: none;
+}
+.details-list li .ri {
+  font-size: 1.3em;
+  /* Highlight icon color */
+  color: #00b894; /* Medium Aquamarine for icons */
+}
+
+/* --- STAGGERED REVEAL ON FLIP HOVER --- */
+.flip-card:hover .details-list li {
+  animation: revealDetail 0.4s forwards;
+  animation-delay: 0.4s;
+}
+
+.flip-card:hover .details-list li:nth-child(1) {
+  animation-delay: 0.4s;
+}
+.flip-card:hover .details-list li:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.flip-card:hover .details-list li:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.flip-card:hover .details-list li:nth-child(4) {
+  animation-delay: 0.7s;
+}
+
+@keyframes revealDetail {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --- ACTION BUTTON MODIFIED FOR MINT LOOK --- */
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: auto;
+  text-decoration: none;
+
+  /* Prominent Mint/Aquamarine background and glow */
+  background: #00b894;
+  border: 1px solid #e0ffff; /* Light Cyan border for contrast */
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 184, 148, 0.8),
+    inset 0 0 10px rgba(255, 255, 255, 0.3);
+
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  z-index: 3;
+  position: relative;
+}
+.action-button:hover {
+  /* Brighter Mint/Aquamarine on hover */
+  background: #33ccb3;
+  border-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 184, 148, 1), 0 0 40px rgba(0, 184, 148, 0.5);
+}
+.action-button::after {
+  content: " →";
+  margin-left: 8px;
+  transition: margin-left 0.2s ease;
+}
+.action-button:hover::after {
+  margin-left: 15px;
+}
+/* --- END ACTION BUTTON MODIFIED --- */
+
+/* --- BACKGROUND LAYERS (Mint Gradient) --- */
+.flip-card-front::before,
+.flip-card-back::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  /* Ambient Mint Glow */
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(0, 150, 50, 0.08),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+.flip-card-front::after,
+.flip-card-back::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  /* Core Mint/Aquamarine Gradient */
+  background: radial-gradient(
+    circle at 18% 12%,
+    #e0ffff 0%,
+    #00b894 35%,
+    rgba(0, 184, 148, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+  animation: moveGradient 30s ease-in-out infinite alternate;
+}
+
+/* --- Particulate Texture Overlay (Reused from previous code) --- */
+.texture-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background-image: radial-gradient(
+      circle at 10% 20%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(
+      circle at 30% 70%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(
+      circle at 70% 40%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(
+      circle at 25% 45%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    );
+  background-size: 15px 15px;
+  filter: brightness(1.5);
+  opacity: 0.25;
+  animation: moveTexture 60s linear infinite;
+}
+
+/* --- Animations for Gradients and Texture (Reused from previous code) --- */
+@keyframes moveGradient {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-5%, 5%);
+  }
+  50% {
+    transform: translate(5%, -10%);
+  }
+  75% {
+    transform: translate(-10%, -5%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes moveTexture {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
