@@ -8,6 +8,7 @@
 
 body {
   font-family: "Fira Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
   background: #000;
   color: #fff;
   font-family: "Bebas Neue", sans-serif;
@@ -731,7 +732,6 @@ main {
 }
 
 .section4 .skill-card p {
-  font-family: "Fira Sans", sans-serif;
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
   color: #d1d5db;
