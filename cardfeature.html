@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Master DSA & Gen AI - Feature Card</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* --- Root Variables for Colors and Border --- */
+      :root {
+        /* Colors extracted/inferred from your image */
+        --dark-bg: #1a1a1a; /* Very dark almost black */
+        --card-base: rgba(
+          26,
+          26,
+          26,
+          0.8
+        ); /* Slightly transparent dark for glassmorphism */
+        --accent-orange: #ff8c00; /* Deep orange */
+        --light-orange: #ffa500; /* Brighter orange/amber */
+        --text-color: #ffffff;
+        --soft-text-color: rgba(255, 255, 255, 0.7);
+        --border-size: 2px; /* Subtle border thickness */
+      }
+
+      /* --- Global & Layout Styles --- */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: var(--dark-bg);
+        font-family: "Inter", sans-serif; /* Adjusted to 'Inter' as it looks similar to image */
+        color: var(--text-color);
+        overflow: hidden;
+      }
+
+      /* 1. CARD WRAPPER: Holds the rotating gradient */
+      .card-wrapper {
+        position: relative;
+        width: 320px; /* Slightly adjusted to match image proportions better */
+        height: 440px; /* Slightly adjusted to match image proportions better */
+        border-radius: 20px;
+        padding: var(--border-size); /* Space for the gradient border */
+        box-sizing: border-box;
+        background: transparent;
+        overflow: hidden;
+        z-index: 10;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7); /* Overall card shadow */
+      }
+
+      /* 2. CONIC GRADIENT PSEUDO-ELEMENT (THE ANIMATED BORDER) */
+      .card-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1; /* Behind the card content */
+
+        /* Conic gradient using the orange palette */
+        background: conic-gradient(
+          from 0deg,
+          var(--accent-orange) 0%,
+          var(--light-orange) 10%,
+          transparent 40%,
+          var(--accent-orange) 60%,
+          var(--light-orange) 70%
+        );
+
+        /* Make it larger than the wrapper to ensure gradient covers the border space */
+        width: calc(
+          100% + 80px
+        ); /* Slightly less oversized than previous examples */
+        height: calc(100% + 80px);
+        top: -40px;
+        left: -40px;
+
+        border-radius: 25px; /* Must be slightly larger than wrapper's radius */
+        animation: borderRotate 3s linear infinite; /* Faster rotation */
+        filter: blur(8px); /* Blur for glow effect */
+        opacity: 0.8; /* Subtle transparency */
+      }
+
+      /* 3. CARD CONTENT: The actual visible card with content */
+      .card-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 18px; /* Slightly smaller than wrapper's padding for border */
+        overflow: hidden;
+        padding: 25px; /* Inner padding as seen in image */
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+
+        /* Glassmorphism background matching your image */
+        background: var(--card-base);
+        backdrop-filter: blur(25px); /* Adjusted blur for subtlety */
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle inner border */
+
+        /* Inner gradient glow as seen in the image's bottom right */
+        background-image: radial-gradient(
+          circle at 90% 90%,
+          rgba(255, 140, 0, 0.2),
+          /* Soft orange glow */ transparent 50%
+        );
+      }
+
+      /* --- Content Elements --- */
+      .icon-container {
+        width: 50px; /* Specific size from image */
+        height: 50px;
+        background: rgba(255, 255, 255, 0.05); /* Subtle background for icon */
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px; /* Space below icon */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1),
+          0 0 15px rgba(0, 0, 0, 0.5);
+      }
+      .icon-container .ri {
+        font-size: 1.8rem; /* Icon size */
+        color: var(--light-orange); /* Orange icon color */
+        text-shadow: 0 0 8px var(--accent-orange); /* Soft glow for icon */
+      }
+
+      .card-heading {
+        font-size: 1.9rem; /* Larger heading */
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 15px; /* Space below heading */
+        color: var(--text-color);
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      }
+      .card-description {
+        font-size: 0.95rem; /* Slightly larger description text */
+        line-height: 1.5;
+        color: var(--soft-text-color);
+        margin-bottom: 25px; /* Space below description */
+        flex-grow: 1; /* Pushes button to bottom */
+      }
+
+      .learn-more {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--accent-orange); /* Learn more text color */
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .learn-more:hover {
+        color: var(--light-orange);
+      }
+      .learn-more .ri {
+        margin-left: 5px; /* Space for the arrow icon */
+        font-size: 1em;
+        transition: margin-left 0.3s ease;
+      }
+      .learn-more:hover .ri {
+        margin-left: 10px; /* Arrow moves on hover */
+      }
+
+      /* --- KEYFRAME for the ROTATING BORDER --- */
+      @keyframes borderRotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-wrapper">
+      <div class="card-content">
+        <div class="icon-container">
+          <i class="ri-flash-light-line ri"></i>
+        </div>
+        <h2 class="card-heading">Master DSA & Gen AI</h2>
+        <p class="card-description">
+          Our courses provide the deep, live instruction needed to secure top
+          tech roles. Learn practical system design.
+        </p>
+        <a href="#" class="learn-more">
+          Learn more <i class="ri-arrow-right-line ri"></i>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

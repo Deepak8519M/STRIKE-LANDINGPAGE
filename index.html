@@ -3,431 +3,230 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D Flip Course Card</title>
+    <title>Master DSA & GenAI - Feature Page</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
     <style>
-      /* Define color variables for easy styling */
+      /* --- Root Variables for Color and Border --- */
       :root {
-        --card-bg-dark: #1e2029; /* Main card background (very dark gray) */
-        --card-bg-medium: #2d303a; /* Tag/Button background */
-        --primary-purple: #8b5cf6; /* 'BEGINNER' color */
-        --text-light: #e2e8f0;
-        --text-muted: #94a3b8;
-        --border-color: rgba(255, 255, 255, 0.08);
-        --card-width: 350px;
-        --card-height: 550px;
-        --card-padding: 2rem;
-        --card-radius: 1rem;
+        /* Colors from your Final Premium Blue Gradient card */
+        --primary-blue: #0000ff;
+        --light-blue: #00bfff;
+        --white-core: #ffffff;
+        --dark-base: rgba(0, 0, 10, 0.85);
+        --border-size: 3px; /* Thickness of the animated border */
       }
 
-      /* Global Reset and Layout */
+      /* --- Global & Layout Styles --- */
       body {
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
         margin: 0;
-        background-color: #0d0e14; /* Dark background for contrast */
-        font-family: "Inter", sans-serif;
-        color: var(--text-light);
-        padding: 20px;
-      }
-
-      /* --- 3D Card Container Setup --- */
-      .flip-card-container {
-        width: var(--card-width);
-        height: var(--card-height);
-        perspective: 1000px; /* Essential for 3D effect */
-        border-radius: var(--card-radius);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      }
-
-      /* Inner container that performs the flip */
-      .flip-card-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        transition: transform 0.8s;
-        transform-style: preserve-3d; /* Key to making children render in 3D */
-        border-radius: var(--card-radius);
-      }
-
-      /* Flip transition triggered on container hover */
-      .flip-card-container:hover .flip-card-inner {
-        transform: rotateY(180deg);
-      }
-
-      /* Card Faces (Front and Back) Styling */
-      .card-face {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden; /* Hide the back of the face when flipped */
-        backface-visibility: hidden;
-        border-radius: var(--card-radius);
-        background-color: var(--card-bg-dark);
+        background: #000000;
+        font-family: "Poppins", sans-serif;
+        color: white;
         overflow: hidden;
       }
-
-      .card-face-back {
-        transform: rotateY(180deg);
-        padding: 2.5rem var(--card-padding);
-        text-align: left;
-        display: flex;
-        flex-direction: column;
+      .card-wrapper {
+        /* 1. WRAPPER: Holds the rotating gradient */
+        position: relative;
+        width: 340px;
+        height: 450px;
+        border-radius: 20px;
+        padding: var(--border-size); /* Creates space for the gradient border */
+        box-sizing: border-box;
+        background: transparent;
+        overflow: hidden;
+        z-index: 10;
+        box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8); /* Wrapper Shadow */
       }
 
-      /* --- Front Face Content (Course1.png) --- */
+      /* 2. CONIC GRADIENT PSEUDO-ELEMENT (THE BORDER EFFECT) */
+      .card-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1; /* Behind the card face */
 
-      .thumbnail-placeholder {
-        width: 100%;
-        height: 180px;
-        background-color: #0a0a0d; /* Simulating the dark image background */
+        /* Conic Gradient for the rotating border */
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-blue) 5%,
+          var(--primary-blue) 15%,
+          var(--dark-base) 40%
+        );
+
+        /* Oversized and centered layer */
+        width: calc(100% + 150px);
+        height: calc(100% + 150px);
+        top: -75px;
+        left: -75px;
+
+        border-radius: 25px;
+        animation: borderRotate 4s linear infinite;
+        filter: blur(5px); /* Smooths the rotation and adds glow */
+      }
+
+      /* 3. CARD FACE (CONTENT AREA): Opaque background hiding the gradient's center */
+      .card-content {
         position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 17px;
+        overflow: hidden;
+        padding: 20px 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+
+        /* Glassmorphism Background from your blue card */
+        background: var(--dark-base);
+        backdrop-filter: blur(35px);
+        -webkit-backdrop-filter: blur(35px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        transition: transform 0.3s;
+      }
+      .card-content:hover {
+        transform: scale(1.02); /* Subtle hover effect on the content area */
+      }
+
+      /* --- Content Styling --- */
+      .card-icon {
+        /* Large Icon at the top to represent a feature/service */
+        font-size: 3.5rem;
+        color: var(--primary-blue);
+        margin-bottom: 10px;
+        text-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
+      }
+      .card-title {
+        font-size: 2rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 5px;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+      }
+      .card-subtitle {
+        font-size: 1rem;
+        color: var(--light-blue);
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+      .card-description {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.4;
+        margin-bottom: 20px;
+        flex-grow: 1;
+      }
+      .features-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 25px;
+        margin-top: auto;
+      }
+      .features-list li {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.9);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 4px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .features-list li:last-child {
+        border-bottom: none;
+      }
+      .features-list li .ri {
+        font-size: 1.1em;
+        color: var(--light-blue); /* Use light blue for icon accent */
+      }
+
+      /* --- Action Button --- */
+      .action-button {
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
-      }
-
-      .thumbnail-text {
-        line-height: 1.2;
-        text-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
-        font-size: 1.8rem;
-        font-weight: 900;
-        color: #d1d5db;
-        text-align: center;
-      }
-      .thumbnail-text span {
-        display: block;
-        font-size: 3.5rem;
-        color: white;
-      }
-
-      .tags-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: -1.5rem; /* Pull tags up over the thumbnail */
-        position: relative;
-        z-index: 5;
-        padding: 0 var(--card-padding);
-      }
-
-      .tag-beginner {
-        background-color: var(--primary-purple);
-        color: white;
-        padding: 0.3rem 0.8rem;
-        border-radius: 9999px; /* Pill shape */
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-      }
-
-      .tag-lectures {
-        background-color: var(--card-bg-medium);
-        color: var(--text-light);
-        padding: 0.3rem 0.8rem;
-        border-radius: 9999px;
-        font-size: 0.8rem;
-        font-weight: 500;
-      }
-
-      .card-content-front {
-        padding: 1.5rem var(--card-padding) 2rem var(--card-padding);
-        text-align: left;
-      }
-
-      .course-title {
-        font-size: 1.8rem;
-        font-weight: 800;
-        line-height: 1.2;
-        margin: 0;
-        margin-top: 1.5rem;
-      }
-
-      .course-author {
-        font-size: 0.9rem;
-        color: var(--text-muted);
-        margin-top: 0.5rem;
-      }
-
-      .course-description {
+        width: 100%;
+        padding: 12px 0;
+        border-radius: 10px;
         font-size: 1rem;
-        color: var(--text-light);
-        margin-top: 1.5rem;
-        line-height: 1.4;
-      }
-
-      .tech-tags {
-        margin-top: 2rem;
-        display: flex;
-        gap: 0.75rem;
-      }
-
-      .tech-tag {
-        background-color: var(--card-bg-medium);
-        color: var(--text-muted);
-        padding: 0.4rem 0.9rem;
-        border-radius: 0.5rem;
-        font-size: 0.75rem;
-        font-weight: 500;
-        text-transform: uppercase;
-      }
-
-      /* --- Back Face Content (Course2.png) --- */
-
-      .back-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 2rem;
-      }
-
-      .back-icon {
-        /* Using inline SVG and styling it to match the purple code icon */
-        color: var(--primary-purple);
-        font-size: 1.5rem;
-        margin-right: 0.5rem;
-        width: 20px;
-        height: 20px;
-      }
-
-      .back-title {
-        font-size: 1.5rem;
         font-weight: 700;
-        line-height: 1.2;
-        margin: 0;
-      }
+        margin-top: auto;
+        text-decoration: none;
 
-      .back-description {
-        font-size: 1rem;
-        color: var(--text-muted);
-        line-height: 1.4;
-        margin-bottom: 2rem;
-      }
+        /* Prominent Blue background */
+        background: var(--primary-blue);
+        border: 1px solid var(--white-core);
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(0, 0, 255, 0.8),
+          inset 0 0 10px rgba(255, 255, 255, 0.3);
 
-      .feature-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        flex-grow: 1; /* Pushes the button to the bottom */
-      }
-
-      .feature-item {
-        display: flex;
-        align-items: center;
-        font-size: 1.1rem;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid var(--border-color);
-      }
-
-      .feature-item:last-child {
-        border-bottom: none;
-      }
-
-      .feature-icon-svg {
-        margin-right: 1rem;
-        width: 20px;
-        height: 20px;
-        color: var(--text-muted);
-        flex-shrink: 0;
-      }
-
-      .feature-text {
-        font-weight: 500;
-      }
-
-      .start-building-button {
-        /* Positioned relative to the back face padding */
-        background-color: var(--card-bg-medium);
-        color: var(--text-light);
-        padding: 1rem 1.5rem;
-        border-radius: 0.75rem;
-        font-size: 1.1rem;
-        font-weight: 600;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         cursor: pointer;
-        transition: background-color 0.3s ease;
-        margin-top: 3rem; /* Spacing from list */
+        z-index: 3;
+      }
+      .action-button:hover {
+        background: #3333ff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 255, 1), 0 0 40px rgba(0, 0, 255, 0.5);
+      }
+      .action-button::after {
+        content: " →";
+        margin-left: 8px;
+        transition: margin-left 0.2s ease;
+      }
+      .action-button:hover::after {
+        margin-left: 15px;
       }
 
-      .start-building-button:hover {
-        background-color: #4c4e5a; /* Slightly lighter on hover */
-      }
-
-      .arrow-svg {
-        width: 24px;
-        height: 24px;
-        transition: transform 0.3s ease;
-      }
-
-      .start-building-button:hover .arrow-svg {
-        transform: translateX(5px);
+      /* --- KEYFRAME for the ROTATING BORDER --- */
+      @keyframes borderRotate {
+        to {
+          transform: rotate(360deg);
+        }
       }
     </style>
   </head>
   <body>
-    <!-- 3D Flip Card Component -->
-    <div class="flip-card-container">
-      <div class="flip-card-inner">
-        <!-- Front Face (Replicates Course1.png) -->
-        <div class="card-face card-face-front">
-          <!-- Thumbnail Placeholder (for the image/video area) -->
-          <div class="thumbnail-placeholder">
-            <div class="thumbnail-text">
-              INTRODUCTION TO
-              <span style="font-size: 3.5rem">WEB DEVELOPMENT</span>
-            </div>
-          </div>
+    <div class="card-wrapper">
+      <div class="card-content">
+        <i class="ri-rocket-line card-icon"></i>
 
-          <!-- Tags Row -->
-          <div class="tags-row">
-            <span class="tag-beginner">BEGINNER</span>
-            <span class="tag-lectures">23 lectures</span>
-          </div>
+        <h2 class="card-title">Master DSA & GenAI</h2>
+        <p class="card-subtitle">Program by Rohit Negi & Aditya Tandon</p>
 
-          <!-- Main Content -->
-          <div class="card-content-front">
-            <h2 class="course-title">Web Development Full Course</h2>
-            <p class="course-author">by Rohit Negi</p>
-            <p class="course-description">
-              Build Anything: The All-in-One Web Development Bootcamp.
-            </p>
+        <p class="card-description">
+          Our **next-generation program** provides the deep, **live
+          instruction** needed to secure top tech roles. Focus on logical
+          mastery, practical system design, and future-ready Generative AI
+          concepts.
+        </p>
 
-            <!-- Tech Tags -->
-            <div class="tech-tags">
-              <span class="tech-tag">WEB DEVELOPMENT</span>
-              <span class="tech-tag">MERN STACK</span>
-            </div>
-          </div>
-        </div>
+        <ul class="features-list">
+          <li>
+            <i class="ri-terminal-box-line ri"></i> DSA Problem Solving Mastery
+          </li>
+          <li><i class="ri-brain-line ri"></i> Generative AI Implementation</li>
+          <li>
+            <i class="ri-global-line ri"></i> Practical System Design (HLD/LLD)
+          </li>
+          <li>
+            <i class="ri-shield-check-line ri"></i> Security for Top Tech Roles
+          </li>
+        </ul>
 
-        <!-- Back Face (Replicates Course2.png) -->
-        <div class="card-face card-face-back">
-          <!-- Back Header/Title -->
-          <div class="back-header">
-            <!-- Icon for Code/Course -->
-            <svg
-              class="back-icon"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-              ></path>
-            </svg>
-            <div>
-              <h2 class="back-title">Web Development Full Course</h2>
-            </div>
-          </div>
-
-          <!-- Description -->
-          <p class="back-description">
-            Build Anything: The All-in-One Web Development Bootcamp.
-          </p>
-
-          <!-- Feature List -->
-          <ul class="feature-list">
-            <!-- Overview Icon (File/Document) -->
-            <li class="feature-item">
-              <svg
-                class="feature-icon-svg"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                ></path>
-              </svg>
-              <span class="feature-text">Overview</span>
-            </li>
-            <!-- Modules Icon (Code Brackets) -->
-            <li class="feature-item">
-              <svg
-                class="feature-icon-svg"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                ></path>
-              </svg>
-              <span class="feature-text">Modules</span>
-            </li>
-            <!-- Projects Icon (Rocket/Launch) -->
-            <li class="feature-item">
-              <svg
-                class="feature-icon-svg"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13.5 10.5h-11a2 2 0 00-2 2v8a2 2 0 002 2h11a2 2 0 002-2v-8a2 2 0 00-2-2zM15 15h2l-2 2m0 0v-2m-3-11h-2a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-2"
-                ></path>
-              </svg>
-              <span class="feature-text">Projects</span>
-            </li>
-            <!-- Certificate Icon (Lightning/Flash) -->
-            <li class="feature-item">
-              <svg
-                class="feature-icon-svg"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              <span class="feature-text">Certificate</span>
-            </li>
-          </ul>
-
-          <!-- Start Building Button -->
-          <div class="start-building-button">
-            <span>Start Building</span>
-            <!-- Arrow Icon -->
-            <svg
-              class="arrow-svg"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              ></path>
-            </svg>
-          </div>
-        </div>
+        <a href="#" class="action-button">View Program Details</a>
       </div>
     </div>
   </body>
