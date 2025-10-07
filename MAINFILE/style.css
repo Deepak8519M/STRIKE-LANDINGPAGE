@@ -1491,3 +1491,15 @@ main {
   top: -10px;
   right: 150px;
 }
+@media (max-width: 1000px) {
+  .section6 .container .icon {
+    display: none;
+  }
+  .section6 {
+    height: fit-content;
+    padding: 20px;
+  }
+  .section6 .container .visit {
+    display: none;
+  }
+}
