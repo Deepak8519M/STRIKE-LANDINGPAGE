@@ -1688,3 +1688,19 @@ main {
 .section1 .bottom .right .arrow div i {
   font-size: 20px;
 }
+
+.section3 h1 {
+  font-size: 6vw;
+  text-align: center;
+}
+.section3 p {
+  margin-top: 20px;
+  font-size: 3vw;
+  max-width: 1200px;
+  /* background: red; */
+  margin: 20px auto;
+}
+.section3 .p2 {
+  text-align: right;
+  margin-top: 6vw;
+}
