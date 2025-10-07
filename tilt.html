@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium 3D Flip Card - Data Structures & Algorithms (DSA)</title>
+
+    <style>
+      /* --- Global Styles --- */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #000000;
+        font-family: "Inter", sans-serif;
+        color: white;
+        overflow: hidden;
+        perspective: 1500px;
+      }
+
+      /* --- Tiling Container for 3D Flip --- */
+      .flip-card {
+        width: 350px;
+        height: 520px; /* Adjusted height to fit content from images */
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.8s ease-in-out;
+        cursor: pointer;
+        z-index: 20;
+      }
+
+      /* --- Flip on Hover --- */
+      .flip-card:hover {
+        transform: rotateY(180deg);
+      }
+
+      /* --- Common Styles for Front and Back Faces (Glass Card Base) --- */
+      .flip-card-front,
+      .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 20px;
+        overflow: hidden;
+        padding: 20px 25px; /* Adjusted padding to match image */
+        box-sizing: border-box; /* Crucial for controlling content width */
+
+        /* --- Base Glassmorphism Styles (from your provided code) --- */
+        background: rgba(0, 0, 10, 0.85);
+        backdrop-filter: blur(35px);
+        -webkit-backdrop-filter: blur(35px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        /* --- Realistic Black Shadow (from your provided code) --- */
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2),
+          0 8px 25px rgba(0, 0, 0, 0.7), 0 30px 100px rgba(0, 0, 0, 0.8);
+      }
+
+      /* --- Specific Styles for the Card Back --- */
+      .flip-card-back {
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* --- Image Styling (Front Card) --- */
+      .card-image {
+        width: 100%;
+        height: 180px; /* Matched height from image */
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 15px; /* Space below image */
+        display: block;
+        position: relative;
+        z-index: 3;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      /* --- Front Card Tags --- */
+      .tags-container {
+        display: flex;
+        gap: 10px; /* Space between tags */
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 3;
+      }
+
+      .tag {
+        font-size: 0.75rem; /* Smaller font size for tags */
+        font-weight: 500;
+        padding: 6px 10px;
+        border-radius: 8px; /* Slightly more rounded */
+        white-space: nowrap; /* Prevent tags from wrapping */
+      }
+
+      .tag.category {
+        /* Purple/Magenta theme for DSA */
+        background-color: rgba(148, 0, 211, 0.2); /* Dark Orchid / Violet */
+        border: 1px solid rgba(148, 0, 211, 0.4);
+        color: #d1b4ee; /* Lighter text for purple */
+      }
+
+      .tag.lectures {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      /* --- Front Card Main Title --- */
+      .card-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+        margin-bottom: 5px; /* Space below title */
+        position: relative;
+        z-index: 3;
+      }
+
+      /* --- Front Card Author --- */
+      .card-author {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.7); /* Lighter author text */
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 3;
+      }
+
+      /* --- Front Card Description --- */
+      .card-description {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.5;
+        position: relative;
+        z-index: 3;
+        margin-bottom: 20px; /* Add space for the bottom elements */
+      }
+
+      /* --- Back Card Title --- */
+      .back-title {
+        font-size: 1.6rem; /* Slightly smaller for back */
+        font-weight: 700;
+        line-height: 1.2;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 3;
+      }
+
+      /* --- Back Card Details List --- */
+      .details-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 0; /* Remove default top margin */
+        flex-grow: 1; /* Allows list to take available space */
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Space between list items */
+        margin-bottom: 25px; /* Space before button */
+      }
+      .details-list li {
+        padding: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Subtle separator */
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.9);
+        display: flex;
+        align-items: center; /* Align icon and text */
+        gap: 10px; /* Space between icon and text */
+      }
+      .details-list li:last-child {
+        border-bottom: none; /* No border for the last item */
+      }
+      .details-list li strong {
+        font-weight: 600;
+        color: #d1b4ee; /* Highlight values in purple */
+      }
+      .details-list li .icon {
+        font-size: 1.2em; /* Icon size */
+        color: #d1b4ee; /* Icon color */
+      }
+
+      /* --- Action Button (Front & Back - Start Building) --- */
+      .action-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 12px 0;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: auto; /* Pushes button to bottom */
+
+        /* --- Button matching card background for premium feel --- */
+        background: rgba(
+          148,
+          0,
+          211,
+          0.25
+        ); /* More pronounced purple translucent */
+        border: 1px solid rgba(148, 0, 211, 0.5); /* Stronger purple border */
+        color: #d1b4ee; /* Lighter purple text for visibility */
+        transition: all 0.3s ease;
+        cursor: pointer;
+        z-index: 3;
+        position: relative;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .action-button:hover {
+        background: rgba(148, 0, 211, 0.4);
+        border-color: rgba(148, 0, 211, 0.8);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+      }
+
+      .action-button::after {
+        content: " →";
+        margin-left: 8px;
+        transition: margin-left 0.2s ease;
+      }
+
+      .action-button:hover::after {
+        margin-left: 15px;
+      }
+
+      /* ------------------------------------------- */
+      /* --- BACKGROUND LAYERS (Your exact original gradient from previous steps) --- */
+      /* ------------------------------------------- */
+
+      /* --- LAYER 1: Ambient Background Glow (Behind the card) --- */
+      .flip-card-front::before,
+      .flip-card-back::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        z-index: -3;
+        background: radial-gradient(
+          circle at 10% 10%,
+          rgba(0, 50, 255, 0.08),
+          transparent 60%
+        );
+        filter: blur(250px);
+        opacity: 1;
+      }
+
+      /* --- LAYER 2: Core Blue Gradient (with Movement) --- */
+      /* Note: This is your exact provided blue gradient, but you might want to adjust
+                 the core colors to match the DSA purple theme more closely if desired.
+                 For now, keeping it as provided. */
+      .flip-card-front::after,
+      .flip-card-back::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
+
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffffff 0%,
+          #0000ff 35%,
+          rgba(0, 0, 255, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+        filter: blur(180px);
+        animation: moveGradient 30s ease-in-out infinite alternate;
+      }
+
+      /* --- LAYER 3: Glowing Particulate Texture (Overlay) --- */
+      .texture-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+
+        background-image: radial-gradient(
+            circle at 10% 20%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 30% 70%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 70% 40%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 90% 10%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 25% 45%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          );
+        background-size: 15px 15px;
+        filter: brightness(1.5);
+        opacity: 0.25;
+        animation: moveTexture 60s linear infinite;
+      }
+
+      /* --- Keyframes for Animations --- */
+      @keyframes moveGradient {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(-5%, 5%);
+        }
+        50% {
+          transform: translate(5%, -10%);
+        }
+        75% {
+          transform: translate(-10%, -5%);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      @keyframes moveTexture {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 100% 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flip-card">
+      <div class="flip-card-front">
+        <div class="texture-overlay"></div>
+
+        <img
+          src="https://picsum.photos/id/600/350/180"
+          alt="Data Structures and Algorithms Course Image"
+          class="card-image"
+        />
+
+        <div class="tags-container">
+          <span class="tag category">BEGINNER TO ADVANCED</span>
+          <span class="tag lectures">200 lectures</span>
+        </div>
+
+        <h2 class="card-title">Data Structures & Algorithms (DSA)</h2>
+        <p class="card-author">by Rohit Negi</p>
+        <p class="card-description">
+          Master DSA concepts and advanced problem solving techniques to crack
+          FAANG interviews with confidence.
+        </p>
+      </div>
+
+      <div class="flip-card-back">
+        <div class="texture-overlay"></div>
+
+        <h2 class="back-title">
+          <i class="icon"></i> Data Structures & Algorithms (DSA)
+        </h2>
+        <p class="card-description">
+          Master DSA concepts and advanced problem solving techniques to
+          crack...
+        </p>
+
+        <ul class="details-list">
+          <li><i class="icon">📄</i> 500+ Handpicked Problems</li>
+          <li><i class="icon">💻</i> Arrays, Trees, Graphs, DP</li>
+          <li><i class="icon">🚀</i> Mock Interview Sessions</li>
+          <li><i class="icon">✨</i> Placement Assistance</li>
+          <li><i class="icon">📖</i> Industry Problem Patterns</li>
+        </ul>
+
+        <a href="#" class="action-button">Start Building</a>
+      </div>
+    </div>
+  </body>
+</html>
