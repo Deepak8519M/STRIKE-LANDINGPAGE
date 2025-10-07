@@ -1255,3 +1255,122 @@ main {
     font-size: 0.8rem;
   }
 }
+.section6 {
+  width: 100%;
+  height: 100vh;
+
+  /* background: red; */
+  padding: 0vw 0;
+  background: #080818;
+}
+.section6 .container {
+  /* background: blue; */
+  width: 96%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.section6 .container .text {
+  width: 84%;
+
+  /* background: greenyellow; */
+  margin: 0 auto;
+  text-align: center;
+}
+.section6 .text h1 {
+  font-size: 9vw;
+  line-height: 9vw;
+}
+.text1 {
+  text-align: center;
+}
+.text2 {
+  text-align: center;
+}
+.section6 .container .text.text4 {
+  /* border: 2px solid green; */
+  background: transparent;
+}
+
+.text1 span {
+  position: relative;
+  display: inline-block; /* Added to create a positioning context */
+  font-weight: bold; /* Makes the text "strong" (bold) */
+}
+.text1 span::before {
+  content: "BRACE";
+  position: absolute;
+  top: 2px; /* Reduced offset to keep it closer */
+  left: 2px; /* Reduced offset to keep it closer */
+
+  color: rgb(255, 0, 0); /* Added to make text visible on red background */
+  color: #8b5cf6;
+}
+.text1 .span2::before {
+  content: "YOURSELF";
+  color: #f8c900;
+}
+
+.text2 .strike {
+  background: #8b5cf6;
+  border-radius: 200px;
+  border-radius: 40px;
+  padding: 2px 20px;
+  font-size: 8vw;
+  line-height: 11vw;
+  display: inline-block;
+}
+
+.text2 .span3 {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+}
+.text3 span {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+}
+.text3 span::before {
+  content: "LAUNCHING";
+  color: #f8c900;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  color: #e02424;
+  color: #57b3ff;
+}
+.text2 .span3::before {
+  content: "EXPERIENCE";
+  color: #f8c900;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  color: #e02424;
+}
+.text4 .span5 {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+}
+.text4 .span5::before {
+  content: "OCTOBER";
+  color: #f8c900;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  color: #e02424;
+}
+.text4 span {
+  border: 1px solid red;
+  background: #f8c900;
+
+  border-radius: 200px;
+  border-radius: 40px;
+  padding: 2px 30px;
+  font-size: 8vw;
+  line-height: 10vw;
+}
