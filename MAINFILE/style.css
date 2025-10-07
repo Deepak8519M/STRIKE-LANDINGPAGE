@@ -1487,3 +1487,7 @@ main {
   top: 10px;
   left: 120px;
 }
+.section6 .container .icon.icon3 {
+  top: -10px;
+  right: 150px;
+}
