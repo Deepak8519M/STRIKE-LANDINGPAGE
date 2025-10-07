@@ -387,14 +387,14 @@ main {
 }
 .section3 .glow {
   position: absolute;
-  bottom: 0;
-  left: 100%;
+  top: 0;
+  right: 0;
   /* transform: translateX(-50%); */
-  width: 200%;
+  width: 100%;
   height: 100vh;
 
   background-image: radial-gradient(
-    circle at bottom right,
+    circle at top right,
 
     #ffffff 0%,
     rgba(255, 255, 255, 0.5) 3%,
