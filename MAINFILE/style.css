@@ -133,6 +133,23 @@ nav img {
     #5b21b6 40%,
     #080818 100%
   );
+  background-image: radial-gradient(
+    circle at top center,
+
+    #ffffff 10%,
+    rgba(255, 255, 255, 0.5) 3%,
+    rgba(139, 92, 246, 0.2) 6%,
+
+    #8b5cf6 15%,
+    rgba(139, 92, 246, 0.6) 20%,
+    #5b21b6 20%,
+
+    #0000ff 35%,
+    rgba(0, 0, 255, 0.5) 60%,
+
+    #000000 65%
+  );
+
   pointer-events: none;
   z-index: -1;
   filter: blur(100px);
@@ -365,8 +382,70 @@ main {
 .section3 {
   width: 100%;
   height: 100vh;
-  background: red;
+  position: relative;
 }
+.section3 .glow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100vh;
+
+  background-image: radial-gradient(
+    circle at bottom center,
+
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.5) 3%,
+    rgba(139, 92, 246, 0.2) 6%,
+
+    #8b5cf6 15%,
+    rgba(139, 92, 246, 0.6) 25%,
+    #5b21b6 40%,
+
+    #0000ff 35%,
+    rgba(0, 0, 255, 0.5) 60%,
+
+    #000000 65%
+  );
+
+  background-image: radial-gradient(
+    circle at bottom center,
+
+    #ffffff -10%,
+
+    #0000ff 35%,
+    rgba(0, 0, 255, 0.5) 60%,
+
+    #000000 65%
+  );
+
+  background-image: radial-gradient(
+    circle at bottom center,
+
+    #ffffff 10%,
+    rgba(255, 255, 255, 0.5) 3%,
+    rgba(139, 92, 246, 0.2) 6%,
+
+    #8b5cf6 15%,
+    rgba(139, 92, 246, 0.6) 20%,
+    #5b21b6 20%,
+
+    #0000ff 35%,
+    rgba(0, 0, 255, 0.5) 60%,
+
+    #000000 65%
+  );
+
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(120px);
+
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(100px);
+}
+
 
 .section1 .bottom .features {
   display: flex;
@@ -1551,35 +1630,30 @@ main {
   background-image: radial-gradient(
     circle at bottom center,
 
-    #ffffff -20%,
-    /* rgba(255, 255, 255, 0.5) 3%,
-    rgba(139, 92, 246, 0.2) 6%, */
-
-    /* #8b5cf6 15%,
-    rgba(139, 92, 246, 0.6) 20%, */
-    /* #5b21b6 40%, */
+    #ffffff -10%,
 
     #0000ff 35%,
     rgba(0, 0, 255, 0.5) 60%,
 
     #000000 65%
   );
-    /* background-image: radial-gradient(
+
+  background-image: radial-gradient(
     circle at bottom center,
 
-    #ffffff 0%,
+    #ffffff 10%,
     rgba(255, 255, 255, 0.5) 3%,
     rgba(139, 92, 246, 0.2) 6%,
 
-    #8b5cf6 7%,
-
+    #8b5cf6 15%,
+    rgba(139, 92, 246, 0.6) 20%,
     #5b21b6 20%,
 
-    #0000ff 25%,
-    rgba(0, 0, 255, 0.5) 50%,
+    #0000ff 35%,
+    rgba(0, 0, 255, 0.5) 60%,
 
-    #000000 75%
-  ); */
+    #000000 65%
+  );
 
   pointer-events: none;
   z-index: -1;
