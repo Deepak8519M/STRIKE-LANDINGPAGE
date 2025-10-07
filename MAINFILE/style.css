@@ -1525,31 +1525,6 @@ main {
 }
 .section7 .glow {
   position: absolute;
-  background: radial-gradient(
-    circle at top center,
-    #8b5cf6 0%,
-    #5b21b6 40%,
-    #080818 100%
-  );
-  background-image: radial-gradient(
-    circle at bottom center,
-
-    #ffffff 0%,
-    rgba(255, 255, 255, 0.5) 2%,
-    rgba(139, 92, 246, 0.2) 5%,
-
-    #8b5cf6 15%,
-    #5b21b6 45%,
-
-    #080818 100%
-  );
-  pointer-events: none;
-  z-index: -1;
-  filter: blur(100px);
-}
-
-.section7 .glow {
-  position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
