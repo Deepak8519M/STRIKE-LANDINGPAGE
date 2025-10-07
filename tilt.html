@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Premium 3D Flip Card - Data Structures & Algorithms (DSA)</title>
 
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
     <style>
-      /* --- Global Styles --- */
+      /* --- Global Styles (Unchanged) --- */
       body {
         display: flex;
         justify-content: center;
@@ -19,24 +24,18 @@
         overflow: hidden;
         perspective: 1500px;
       }
-
-      /* --- Tiling Container for 3D Flip --- */
       .flip-card {
-        width: 350px;
-        height: 520px; /* Adjusted height to fit content from images */
+        width: 340px;
+        height: 450px;
         position: relative;
         transform-style: preserve-3d;
         transition: transform 0.8s ease-in-out;
         cursor: pointer;
         z-index: 20;
       }
-
-      /* --- Flip on Hover --- */
       .flip-card:hover {
         transform: rotateY(180deg);
       }
-
-      /* --- Common Styles for Front and Back Faces (Glass Card Base) --- */
       .flip-card-front,
       .flip-card-back {
         position: absolute;
@@ -46,195 +45,211 @@
         backface-visibility: hidden;
         border-radius: 20px;
         overflow: hidden;
-        padding: 20px 25px; /* Adjusted padding to match image */
-        box-sizing: border-box; /* Crucial for controlling content width */
-
-        /* --- Base Glassmorphism Styles (from your provided code) --- */
+        padding: 9px 9px;
+        box-sizing: border-box;
         background: rgba(0, 0, 10, 0.85);
         backdrop-filter: blur(35px);
         -webkit-backdrop-filter: blur(35px);
         border: 1px solid rgba(255, 255, 255, 0.15);
-
-        /* --- Realistic Black Shadow (from your provided code) --- */
         box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2),
           0 8px 25px rgba(0, 0, 0, 0.7), 0 30px 100px rgba(0, 0, 0, 0.8);
-      }
-
-      /* --- Specific Styles for the Card Back --- */
-      .flip-card-back {
-        transform: rotateY(180deg);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
       }
+      .flip-card-back {
+        transform: rotateY(180deg);
+        padding: 10px 17px;
+      }
 
-      /* --- Image Styling (Front Card) --- */
+      /* --- Content Styling (Adjusted for Fit) --- */
       .card-image {
         width: 100%;
-        height: 180px; /* Matched height from image */
+        height: 160px;
         object-fit: cover;
         border-radius: 10px;
-        margin-bottom: 15px; /* Space below image */
+        margin-bottom: 10px;
         display: block;
         position: relative;
         z-index: 3;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
       }
-
-      /* --- Front Card Tags --- */
-      .tags-container {
-        display: flex;
-        gap: 10px; /* Space between tags */
-        margin-bottom: 15px;
+      .inner-content {
+        padding: 0 10px;
         position: relative;
         z-index: 3;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
       }
-
+      .tags-container {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
       .tag {
-        font-size: 0.75rem; /* Smaller font size for tags */
-        font-weight: 500;
-        padding: 6px 10px;
-        border-radius: 8px; /* Slightly more rounded */
-        white-space: nowrap; /* Prevent tags from wrapping */
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: 6px;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
       }
-
       .tag.category {
-        /* Purple/Magenta theme for DSA */
-        background-color: rgba(148, 0, 211, 0.2); /* Dark Orchid / Violet */
-        border: 1px solid rgba(148, 0, 211, 0.4);
-        color: #d1b4ee; /* Lighter text for purple */
+        background-color: rgba(100, 0, 150, 0.3);
+        border: 1px solid rgba(148, 0, 211, 0.6);
+        color: #f0e6ff;
       }
-
       .tag.lectures {
         background-color: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
         color: rgba(255, 255, 255, 0.8);
       }
-
-      /* --- Front Card Main Title --- */
       .card-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        line-height: 1.2;
+        font-size: 1.5rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 3px;
         text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
-        margin-bottom: 5px; /* Space below title */
-        position: relative;
-        z-index: 3;
       }
-
-      /* --- Front Card Author --- */
       .card-author {
-        font-size: 0.95rem;
-        color: rgba(255, 255, 255, 0.7); /* Lighter author text */
-        margin-bottom: 15px;
-        position: relative;
-        z-index: 3;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 10px;
       }
-
-      /* --- Front Card Description --- */
       .card-description {
-        font-size: 0.95rem;
-        color: rgba(255, 255, 255, 0.9);
-        line-height: 1.5;
-        position: relative;
-        z-index: 3;
-        margin-bottom: 20px; /* Add space for the bottom elements */
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.4;
+        margin-bottom: 15px;
+        flex-grow: 1;
       }
-
-      /* --- Back Card Title --- */
       .back-title {
-        font-size: 1.6rem; /* Slightly smaller for back */
+        font-size: 1.5rem;
         font-weight: 700;
         line-height: 1.2;
         text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
-        margin-bottom: 15px;
-        position: relative;
-        z-index: 3;
+        margin-bottom: 10px;
+        margin-top: 10px;
+      }
+      .card-footer {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 10px;
+        padding-bottom: 10px;
+      }
+      .footer-category {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.4);
+        text-align: center;
+        letter-spacing: 1px;
+        text-transform: uppercase;
       }
 
-      /* --- Back Card Details List --- */
+      /* --- Back Card Details List (Animation Setup) --- */
       .details-list {
         list-style: none;
         padding: 0;
-        margin-top: 0; /* Remove default top margin */
-        flex-grow: 1; /* Allows list to take available space */
+        flex-grow: 1;
         display: flex;
         flex-direction: column;
-        gap: 10px; /* Space between list items */
-        margin-bottom: 25px; /* Space before button */
+        gap: 8px;
+        margin-bottom: 20px;
       }
       .details-list li {
-        padding: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Subtle separator */
-        font-size: 0.95rem;
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.85rem;
         color: rgba(255, 255, 255, 0.9);
         display: flex;
-        align-items: center; /* Align icon and text */
-        gap: 10px; /* Space between icon and text */
+        align-items: center;
+        gap: 12px;
+
+        /* HIDE BY DEFAULT */
+        opacity: 0;
+        transform: translateY(10px);
       }
       .details-list li:last-child {
-        border-bottom: none; /* No border for the last item */
+        border-bottom: none;
       }
       .details-list li strong {
-        font-weight: 600;
-        color: #d1b4ee; /* Highlight values in purple */
+        font-weight: 700;
+        color: #d1b4ee;
       }
-      .details-list li .icon {
-        font-size: 1.2em; /* Icon size */
-        color: #d1b4ee; /* Icon color */
+      .details-list li .ri {
+        font-size: 1.3em;
+        color: #e0b4ff;
       }
 
-      /* --- Action Button (Front & Back - Start Building) --- */
+      /* --- STAGGERED REVEAL ON FLIP HOVER --- */
+      .flip-card:hover .details-list li {
+        animation: revealDetail 0.4s forwards;
+        animation-delay: 0.4s; /* Base delay for all items */
+      }
+
+      /* Sequential delay using nth-child */
+      .flip-card:hover .details-list li:nth-child(1) {
+        animation-delay: 0.4s;
+      }
+      .flip-card:hover .details-list li:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      .flip-card:hover .details-list li:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .flip-card:hover .details-list li:nth-child(4) {
+        animation-delay: 0.7s;
+      }
+      .flip-card:hover .details-list li:nth-child(5) {
+        animation-delay: 0.8s;
+      }
+      /* Add more if the list grows */
+
+      @keyframes revealDetail {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* --- Action Button (Start Building) (Unchanged) --- */
       .action-button {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
-        padding: 12px 0;
-        border-radius: 12px;
-        text-decoration: none;
-        font-size: 1rem;
-        font-weight: 600;
-        margin-top: auto; /* Pushes button to bottom */
-
-        /* --- Button matching card background for premium feel --- */
-        background: rgba(
-          148,
-          0,
-          211,
-          0.25
-        ); /* More pronounced purple translucent */
-        border: 1px solid rgba(148, 0, 211, 0.5); /* Stronger purple border */
-        color: #d1b4ee; /* Lighter purple text for visibility */
+        padding: 10px 0;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-top: 10px;
+        background: rgba(148, 0, 211, 0.35);
+        border: 1px solid rgba(200, 0, 255, 0.6);
+        color: #fff;
         transition: all 0.3s ease;
         cursor: pointer;
         z-index: 3;
         position: relative;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
       }
-
       .action-button:hover {
-        background: rgba(148, 0, 211, 0.4);
-        border-color: rgba(148, 0, 211, 0.8);
+        background: rgba(180, 0, 255, 0.5);
+        border-color: rgba(255, 255, 255, 0.8);
         transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
       }
-
       .action-button::after {
         content: " →";
         margin-left: 8px;
         transition: margin-left 0.2s ease;
       }
-
       .action-button:hover::after {
         margin-left: 15px;
       }
 
-      /* ------------------------------------------- */
-      /* --- BACKGROUND LAYERS (Your exact original gradient from previous steps) --- */
-      /* ------------------------------------------- */
-
-      /* --- LAYER 1: Ambient Background Glow (Behind the card) --- */
+      /* --- BACKGROUND LAYERS and Keyframes (Unchanged) --- */
       .flip-card-front::before,
       .flip-card-back::before {
         content: "";
@@ -252,11 +267,6 @@
         filter: blur(250px);
         opacity: 1;
       }
-
-      /* --- LAYER 2: Core Blue Gradient (with Movement) --- */
-      /* Note: This is your exact provided blue gradient, but you might want to adjust
-                 the core colors to match the DSA purple theme more closely if desired.
-                 For now, keeping it as provided. */
       .flip-card-front::after,
       .flip-card-back::after {
         content: "";
@@ -267,7 +277,6 @@
         height: 150%;
         z-index: -2;
         opacity: 1;
-
         background: radial-gradient(
           circle at 18% 12%,
           #ffffff 0%,
@@ -279,8 +288,6 @@
         filter: blur(180px);
         animation: moveGradient 30s ease-in-out infinite alternate;
       }
-
-      /* --- LAYER 3: Glowing Particulate Texture (Overlay) --- */
       .texture-overlay {
         position: absolute;
         top: 0;
@@ -289,7 +296,6 @@
         height: 100%;
         z-index: 2;
         pointer-events: none;
-
         background-image: radial-gradient(
             circle at 10% 20%,
             rgba(255, 255, 255, 0.15) 0.5px,
@@ -325,8 +331,6 @@
         opacity: 0.25;
         animation: moveTexture 60s linear infinite;
       }
-
-      /* --- Keyframes for Animations --- */
       @keyframes moveGradient {
         0% {
           transform: translate(0, 0);
@@ -344,7 +348,6 @@
           transform: translate(0, 0);
         }
       }
-
       @keyframes moveTexture {
         from {
           background-position: 0 0;
@@ -366,36 +369,47 @@
           class="card-image"
         />
 
-        <div class="tags-container">
-          <span class="tag category">BEGINNER TO ADVANCED</span>
-          <span class="tag lectures">200 lectures</span>
+        <div class="inner-content">
+          <div class="tags-container">
+            <span class="tag category">BEGINNER TO ADVANCED</span>
+            <span class="tag lectures">200 lectures</span>
+          </div>
+
+          <h2 class="card-title">Data Structures & Algorithms (DSA)</h2>
+          <p class="card-author">by Rohit Negi</p>
+          <p class="card-description">
+            Master DSA concepts and advanced problem solving techniques to crack
+            FAANG interviews with confidence.
+          </p>
         </div>
 
-        <h2 class="card-title">Data Structures & Algorithms (DSA)</h2>
-        <p class="card-author">by Rohit Negi</p>
-        <p class="card-description">
-          Master DSA concepts and advanced problem solving techniques to crack
-          FAANG interviews with confidence.
-        </p>
+        <!-- <div class="card-footer">
+          <a href="#" class="action-button">Start Building</a>
+          <span class="footer-category">SYSTEM DESIGN</span>
+        </div> -->
       </div>
 
       <div class="flip-card-back">
         <div class="texture-overlay"></div>
 
-        <h2 class="back-title">
-          <i class="icon"></i> Data Structures & Algorithms (DSA)
-        </h2>
+        <h2 class="back-title">Data Structures & Algorithms (DSA)</h2>
         <p class="card-description">
           Master DSA concepts and advanced problem solving techniques to
           crack...
         </p>
 
         <ul class="details-list">
-          <li><i class="icon">📄</i> 500+ Handpicked Problems</li>
-          <li><i class="icon">💻</i> Arrays, Trees, Graphs, DP</li>
-          <li><i class="icon">🚀</i> Mock Interview Sessions</li>
-          <li><i class="icon">✨</i> Placement Assistance</li>
-          <li><i class="icon">📖</i> Industry Problem Patterns</li>
+          <li>
+            <i class="ri-file-list-2-line ri"></i> 500+ Handpicked Problems
+          </li>
+          <li>
+            <i class="ri-code-s-slash-line ri"></i> Arrays, Trees, Graphs, DP
+          </li>
+          <li><i class="ri-rocket-line ri"></i> Mock Interview Sessions</li>
+          <li><i class="ri-award-line ri"></i> Placement Assistance</li>
+          <li>
+            <i class="ri-book-read-line ri"></i> Industry Problem Patterns
+          </li>
         </ul>
 
         <a href="#" class="action-button">Start Building</a>
