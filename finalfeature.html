@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Master DSA & Gen AI - Seamless Border Flow Final</title>
+    <title>Master DSA & Gen AI - Seamless Border Flow Fix</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
@@ -59,7 +59,7 @@
         bottom: 0;
         z-index: -1;
 
-        /* KEY FIX: Seamless single arc flow: Gradient is mostly invisible (or dark), creating a single moving arc of light */
+        /* KEY FIX: Widened the transition zone and ensured the starting color matches the end color exactly for a perfect loop. */
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -68,10 +68,10 @@
           rgba(0, 0, 0, 0) 35%,
           /* Transition to invisible space */ rgba(0, 0, 0, 0) 95%,
           /* Invisible space covers most of the circle */ var(--white-core) 100%
-            /* End: Matches start point exactly for perfect loop */
+            /* End: Matches start point exactly */
         );
 
-        /* Increased size and blur for seamless wrapping around corners */
+        /* Increased size further and increased blur for seamless wrapping around corners */
         width: calc(100% + 150px);
         height: calc(100% + 150px);
         top: -75px;
@@ -212,7 +212,7 @@
         margin-left: 12px;
       }
 
-      /* --- KEYFRAME for the ROTATING BORDER (SMOOTH FIX) --- */
+      /* --- KEYFRAME for the ROTATING BORDER --- */
       @keyframes borderRotate {
         to {
           transform: rotate(360deg);
