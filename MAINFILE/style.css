@@ -136,6 +136,19 @@ nav img {
   pointer-events: none;
   z-index: -1;
   filter: blur(100px);
+  /* background: radial-gradient(
+    circle at top center,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.5) 3%,
+    rgba(139, 92, 246, 0.2) 6%,
+
+    #8b5cf6 10%,
+
+    #0000ff 20%,
+    rgba(0, 0, 255, 0.5) 60%,
+
+    #000000 65%
+  ); */
 }
 
 /* MAIN */
@@ -180,6 +193,7 @@ main {
   letter-spacing: 14px;
   text-align: center;
   background: linear-gradient(to left, #5b21b6, black);
+  /* background: linear-gradient(to left, #0000ff, black); */
   background-clip: text;
   color: transparent;
   position: relative;
@@ -351,6 +365,7 @@ main {
 .section3 {
   width: 100%;
   height: 100vh;
+  background: red;
 }
 
 .section1 .bottom .features {
@@ -1502,4 +1517,67 @@ main {
   .section6 .container .visit {
     display: none;
   }
+}
+.section7 {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.section7 .glow {
+  position: absolute;
+  background: radial-gradient(
+    circle at top center,
+    #8b5cf6 0%,
+    #5b21b6 40%,
+    #080818 100%
+  );
+  background-image: radial-gradient(
+    circle at bottom center,
+
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.5) 2%,
+    rgba(139, 92, 246, 0.2) 5%,
+
+    #8b5cf6 15%,
+    #5b21b6 45%,
+
+    #080818 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(100px);
+}
+
+.section7 .glow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100vh;
+
+  background-image: radial-gradient(
+    circle at bottom center,
+
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.5) 3%,
+    rgba(139, 92, 246, 0.2) 6%,
+
+    /* Smooth Purple Transition */ #8b5cf6 15%,
+    rgba(139, 92, 246, 0.6) 25%,
+    #5b21b6 40%,
+
+    /* Vibrant Blue Accent spread more gradually */ #0000ff 35%,
+    rgba(0, 0, 255, 0.5) 60%,
+
+    /* Deep Space Edge remains the same */ #000000 65%
+  );
+
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(120px);
+
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(100px);
 }
