@@ -1538,15 +1538,48 @@ main {
     rgba(255, 255, 255, 0.5) 3%,
     rgba(139, 92, 246, 0.2) 6%,
 
-    /* Smooth Purple Transition */ #8b5cf6 15%,
+    #8b5cf6 15%,
     rgba(139, 92, 246, 0.6) 25%,
     #5b21b6 40%,
 
-    /* Vibrant Blue Accent spread more gradually */ #0000ff 35%,
+    #0000ff 35%,
     rgba(0, 0, 255, 0.5) 60%,
 
-    /* Deep Space Edge remains the same */ #000000 65%
+    #000000 65%
   );
+
+  background-image: radial-gradient(
+    circle at bottom center,
+
+    #ffffff -20%,
+    /* rgba(255, 255, 255, 0.5) 3%,
+    rgba(139, 92, 246, 0.2) 6%, */
+
+    /* #8b5cf6 15%,
+    rgba(139, 92, 246, 0.6) 20%, */
+    /* #5b21b6 40%, */
+
+    #0000ff 35%,
+    rgba(0, 0, 255, 0.5) 60%,
+
+    #000000 65%
+  );
+    /* background-image: radial-gradient(
+    circle at bottom center,
+
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.5) 3%,
+    rgba(139, 92, 246, 0.2) 6%,
+
+    #8b5cf6 7%,
+
+    #5b21b6 20%,
+
+    #0000ff 25%,
+    rgba(0, 0, 255, 0.5) 50%,
+
+    #000000 75%
+  ); */
 
   pointer-events: none;
   z-index: -1;
