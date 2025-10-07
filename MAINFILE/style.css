@@ -1363,7 +1363,6 @@ main {
   color: #e02424;
 }
 .text4 span {
-  border: 1px solid red;
   background: #f8c900;
 
   border-radius: 200px;
@@ -1383,8 +1382,18 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #5b21b6;
+
   background: #8b5cf6;
+  animation: spin 3s infinite;
+  border: 1px dotted white;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .section6 .container .visit .visit-arr {
   width: 120px;
