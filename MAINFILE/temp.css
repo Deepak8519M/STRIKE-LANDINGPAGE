@@ -1,0 +1,451 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Premium touch: smooth scroll for potential one-page navigation */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Fira Sans", sans-serif;
+  /* Deeper, more consistent background color */
+  background: #040412;
+  color: #fff;
+  font-family: "Bebas Neue", sans-serif;
+  overflow-x: hidden;
+}
+
+/* --- GLOW Effect Enhancement --- */
+/* A single, unifying gradient for a premium, subtle glow. */
+.glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100vh;
+  /* Subtler, deep-space blue/purple glow */
+  background: radial-gradient(
+    circle at center top,
+    rgba(139, 92, 246, 0.4) 0%,
+    /* Soft Purple */ rgba(0, 0, 50, 0.2) 50%,
+    /* Deep Blue/Black */ #040412 100% /* Matches body background */
+  );
+  pointer-events: none;
+  z-index: -1;
+  /* Slightly less blur for a sharper gradient edge */
+  filter: blur(80px);
+  opacity: 0.8; /* Subtle transparency */
+}
+
+/* Re-use the subtle glow for Section 3 */
+.section3 .glow {
+  top: auto;
+  bottom: 0;
+  height: 80vh;
+  /* Focused glow for the section */
+  background: radial-gradient(
+    circle at center,
+    rgba(139, 92, 246, 0.2) 0%,
+    rgba(0, 0, 50, 0.1) 60%,
+    #040412 100%
+  );
+  filter: blur(100px);
+}
+
+/* Re-use the subtle glow for Section 7 */
+.section7 .glow {
+  top: auto;
+  bottom: 0;
+  height: 100vh;
+  background: radial-gradient(
+    circle at center bottom,
+    rgba(139, 92, 246, 0.4) 0%,
+    rgba(0, 0, 50, 0.2) 50%,
+    #040412 100%
+  );
+  filter: blur(80px);
+}
+
+/* --- NAVBAR --- */
+nav {
+  /* Use a deeper, semi-transparent dark background */
+  background: rgba(4, 4, 18, 0.8);
+  /* Added a subtle shadow for elevation */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  /* Brighter, more defined border line */
+  border-bottom: 1px solid rgba(139, 92, 246, 0.5);
+}
+
+/* LINKS */
+.nav-links li a {
+  /* Use a lighter color for better contrast against dark nav */
+  color: #e6f0ff;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-links li a::after {
+  background: #00f0ff; /* Cyan/Aqua accent for contrast */
+}
+
+.nav-links li a:hover {
+  color: #00f0ff; /* Matching hover color */
+}
+
+/* JOIN BUTTON */
+.join-btn {
+  border: 4px solid #00f0ff; /* Using a vibrant border color */
+  color: #00f0ff;
+  /* Added a subtle text shadow for a glowing effect */
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.join-btn:hover {
+  background: #00f0ff; /* Solid vibrant fill on hover */
+  color: #040412; /* Text becomes dark to contrast */
+  transform: translateY(-3px); /* Subtler lift */
+  /* Intense shadow on hover for a 'power-up' feel */
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.9);
+}
+
+/* --- SECTION 1: HERO --- */
+.section1 .top h2 span {
+  /* Keep the yellow but make it a little richer */
+  background: #ffc400;
+  padding: 5px 35px; /* Slightly more padding for emphasis */
+}
+
+.section1 .top .strike h1 {
+  /* Adjusted for a more dramatic, deep blue outline fill */
+  -webkit-text-stroke: 6px #8b5cf6;
+  /* Use a subtle, deep gradient for the 'color' inside the stroke */
+  background: linear-gradient(to right, #1a1a40, #040412);
+  background-clip: text;
+  color: transparent;
+}
+
+/* Floating Icons - Increased visibility by making the hover more dramatic */
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(var(--x), var(--y));
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(var(--x), calc(var(--y) - 15px)); /* Subtler float */
+    opacity: 1;
+  }
+}
+/* Ensure icon strokes and fills use premium colors */
+.section1 .top .strike .floating-icon path,
+.section1 .top .strike .floating-icon rect {
+  stroke: #8b5cf6;
+}
+.section1 .top .strike .floating-icon circle {
+  /* Use primary accent colors */
+  fill: #00f0ff;
+}
+
+.strike-btm h3 span {
+  /* Updated highlight for S.T.R.I.K.E. to match the primary purple */
+  background: #8b5cf6;
+  padding: 2px 10px;
+  border-radius: 5px;
+}
+
+/* Social Buttons - inheriting join-btn style, but adjusted for round */
+.section1 .bottom .btm-left .left .top .btns button {
+  border: 3px solid #00f0ff;
+  background: transparent;
+  color: #00f0ff;
+  transition: all 0.3s ease;
+}
+
+.section1 .bottom .btm-left .left .top .btns button:hover {
+  background: #00f0ff;
+  color: #040412;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.7);
+  transform: translateY(-3px);
+}
+
+.section1 .bottom .btm-left .left h2 span {
+  /* A lighter blue accent for infographics header */
+  background: #57b3ff;
+}
+
+.section1 .bottom .right .card {
+  /* Dark card background for premium feel */
+  background: #1a1a40;
+  color: #fff;
+  border: 2px solid #8b5cf6;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section1 .bottom .right .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+}
+
+.section1 .bottom .right h3 {
+  color: #fff;
+}
+
+.section1 .bottom .right .arrow div {
+  background: #00f0ff; /* Cyan accent */
+}
+
+/* Features */
+.section1 .bottom .features .feature {
+  background: #1a1a40; /* Dark background */
+  border: 5px solid #00f0ff; /* Cyan border */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.section1 .bottom .features .feature:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+}
+
+.section1 .bottom .features .feature h2 {
+  color: #00f0ff; /* Cyan numbers */
+}
+
+/* --- SECTION 2: SLIDERS/BANNER --- */
+.section21 {
+  /* White section background for a visual break */
+  background-color: #f0f0f5;
+  border-radius: 0 0 100px 100px;
+}
+.section2 {
+  background-color: #f0f0f5;
+  border-radius: 0 0 100px 100px;
+}
+.section21 h2 {
+  color: #040412; /* Dark text on light background */
+}
+
+.section21 h2 span {
+  /* Keeping the yellow accent */
+  background: #ffc400;
+  color: #040412;
+}
+
+/* Banner 3D */
+@keyframes autoRuns {
+  from {
+    transform: perspective(1000px) rotateX(-10deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateX(-10deg) rotateY(360deg);
+  }
+}
+/* Ensure banner images are slightly elevated with a soft shadow */
+.section21 .banner .sliders .items {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+/* --- SECTION 3: WHAT IS STRIKE --- */
+.section3 h1 {
+  font-size: 14vw;
+  text-align: center;
+  margin-top: 10vh;
+}
+.section3 h1 span {
+  /* Primary purple accent */
+  background: #8b5cf6;
+  border-radius: 20px;
+  padding: 5px 30px;
+}
+
+/* --- SECTION 4: SKILLS --- */
+.section4 {
+  background: #040412;
+  border-top: 8px solid #00f0ff; /* Cyan primary border */
+}
+
+.section4 h2 span {
+  background: #00f0ff; /* Cyan highlight */
+  color: #040412;
+  padding: 5px 20px;
+  border-radius: 15px;
+}
+
+.section4 .skill-card {
+  background: #1a1a40; /* Dark background */
+  border: 4px solid #8b5cf6;
+  border-radius: 20px;
+}
+
+.section4 .skill-card:hover {
+  transform: translateY(-8px);
+  /* Brighter glow to match the new accent */
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+}
+
+.section4 .skill-card i {
+  color: #00f0ff; /* Cyan icons */
+}
+
+.section4 .skill-card h3 {
+  color: #fff;
+}
+
+.section4 .skill-card p {
+  font-family: "Fira Sans", sans-serif;
+  color: #a8a8c2; /* Subtler text color */
+}
+
+/* --- SECTION 5: MASTERING STEPS --- */
+.section5 {
+  background: #080818; /* A very deep blue-black */
+  border-top: 8px solid #8b5cf6; /* Primary purple border */
+}
+
+.section5 .steps-preheader {
+  color: #ffc400;
+}
+
+.section5 .steps-preheader span {
+  background: #e02424; /* Red accent kept for contrast */
+  color: #fff;
+}
+
+.section5 .steps-header span {
+  background: #8b5cf6;
+}
+
+.section5 .steps-description span {
+  background: #00f0ff; /* Cyan highlight for key terms */
+  color: #040412;
+}
+
+.section5 .cta-btn {
+  border: 4px solid #00f0ff;
+  color: #00f0ff;
+}
+
+.section5 .cta-btn:hover {
+  background: #00f0ff;
+  color: #040412;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.7);
+}
+
+.section5 .steps-image-container {
+  border: 4px solid #00f0ff; /* Cyan border */
+  background: #1a1a40; /* Dark inner background */
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+.section5 .step-card {
+  background: #1a1a40;
+  border: 4px solid #8b5cf6;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.section5 .step-card:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  transform: translateX(5px);
+}
+
+.section5 .step-number {
+  color: #e02424; /* Red numbers for step emphasis */
+}
+
+.section5 .step-content h4 span {
+  background: #ffc400; /* Yellow highlight */
+  color: #040412;
+}
+
+.section5 .step-content p span {
+  background: #00f0ff;
+  color: #040412;
+}
+
+/* --- SECTION 6: LAUNCH COUNTDOWN --- */
+.section6 {
+  background: #040412;
+}
+
+/* Text Overlays - BRACE YOURSELF */
+.text1 span::before {
+  color: #8b5cf6;
+  text-shadow: 0 0 5px #8b5cf6; /* Added subtle shadow for depth */
+}
+.text1 .span2::before {
+  color: #ffc400;
+  text-shadow: 0 0 5px #ffc400;
+}
+.text2 .strike {
+  background: #8b5cf6;
+}
+.text2 .span3::before {
+  color: #e02424;
+  text-shadow: 0 0 5px #e02424;
+}
+.text3 span::before {
+  color: #57b3ff;
+  text-shadow: 0 0 5px #57b3ff;
+}
+.text4 .span5::before {
+  color: #e02424;
+  text-shadow: 0 0 5px #e02424;
+}
+.text4 span {
+  background: #00f0ff; /* Cyan background for the date */
+  color: #040412;
+  font-weight: 700;
+}
+
+/* VISIT Button */
+.section6 .container .visit {
+  background: #8b5cf6;
+}
+
+.section6 .container .visit::before {
+  /* Dotted line color changed to Cyan for visual pop */
+  background: repeating-conic-gradient(
+    from 0deg,
+    #00f0ff 0deg 10deg,
+    transparent 10deg 20deg
+  );
+}
+
+.section6 .container .visit .visit-arr {
+  background: #ffc400; /* Yellow button color */
+}
+
+.section6 .container .icon {
+  /* Added a subtle glow to the icons */
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.7));
+}
+
+/* Mobile Adjustments for premium feel (keeping original sizes, just cleaning up) */
+@media (max-width: 1000px) {
+  nav img {
+    margin-left: -3vh; /* Adjusting logo position for smaller screens */
+  }
+
+  /* Hamburger transform adjusted for the changed navbar padding */
+  #menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  #menu-toggle:checked + .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
+
+@media (max-width: 600px) {
+  .section5 .steps-image-container {
+    /* Reverting the test background but keeping the premium styling */
+    background: #1a1a40;
+  }
+}

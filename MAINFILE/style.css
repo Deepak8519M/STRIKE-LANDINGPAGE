@@ -1663,3 +1663,19 @@ main {
   z-index: -1;
   filter: blur(100px);
 }
+.section1 .bottom .right .card {
+  /* Dark card background for premium feel */
+  background: #1a1a40;
+  color: #fff;
+  border: 2px solid #8b5cf6;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section1 .bottom .right .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+}
+
+.section1 .bottom .right h3 {
+  color: #fff;
+}
