@@ -3,184 +3,191 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="trial.css" />
+    <title>Ultra-Premium Blue Gradient Card</title>
+
+    <style>
+      /* --- Global Styles for Dark Background --- */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #000000; /* Absolute black background for maximum contrast */
+        font-family: "Inter", sans-serif; /* Using a modern font if available */
+        color: white;
+        overflow: hidden; /* Prevent body scroll if content slightly larger */
+      }
+
+      /* --- Card Container --- */
+      .card {
+        position: relative;
+        width: 350px;
+        height: 450px;
+        padding: 30px;
+        border-radius: 20px;
+        overflow: hidden; /* Crucial for containing internal glows and textures */
+
+        /* --- Glassmorphism Background with subtle blue tint --- */
+        background: rgba(
+          0,
+          0,
+          10,
+          0.75
+        ); /* Very dark, slightly transparent blue-black */
+        backdrop-filter: blur(
+          30px
+        ); /* Increased blur for more liquid glass effect */
+        -webkit-backdrop-filter: blur(30px);
+
+        /* --- Subtle Border --- */
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Thin, translucent white border */
+
+        /* --- Soft, Premium Shadow --- */
+        box-shadow: 0 15px 60px rgba(0, 0, 0, 0.7); /* Deeper, softer shadow */
+      }
+
+      /* --- KEY: Refined Blurred Radial Gradient Glow (::before) --- */
+      .card::before {
+        content: "";
+        position: absolute;
+        top: -20%; /* Pushed further up-left for a larger glow source */
+        left: -20%;
+        width: 140%; /* Larger glow area */
+        height: 140%;
+        z-index: -1;
+        opacity: 1;
+
+        /* --- Customized & Refined Blue Gradient --- */
+        background: radial-gradient(
+          circle at 18% 12%,
+          /* Slight adjustment to glow origin */ #e0f7fa 0%,
+          /* Very bright, almost white at the core */ #00bfff 25%,
+          /* Sky Blue, vibrant and clear */ #0000ff 50%,
+          /* Stronger Royal Blue */ rgba(0, 0, 255, 0.3) 75%,
+          /* Fades to transparent blue */ transparent 95%
+            /* Complete fade to transparent at the edges */
+        );
+        /* --- End Customized Blue Gradient --- */
+
+        filter: blur(
+          160px
+        ); /* Increased blur for maximum smoothness and atmospheric effect */
+      }
+
+      /* --- KEY: Glowing Particulate Texture Overlay (::after) --- */
+      .card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1; /* Above the gradient glow, below the text */
+        pointer-events: none; /* Allows interaction with content underneath */
+
+        /* --- Custom particulate texture using multiple radial gradients --- */
+        background-image: radial-gradient(
+            circle at 10% 20%,
+            rgba(255, 255, 255, 0.08) 1px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle at 30% 70%,
+            rgba(255, 255, 255, 0.08) 1px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle at 70% 40%,
+            rgba(255, 255, 255, 0.08) 1px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle at 90% 10%,
+            rgba(255, 255, 255, 0.08) 1px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(255, 255, 255, 0.08) 1px,
+            transparent 1px
+          );
+        background-size: 20px 20px; /* Controls the density/spacing of particles */
+        filter: brightness(1.2); /* Makes the particles subtly "glow" more */
+        opacity: 0.12; /* Overall visibility of the texture */
+        animation: moveTexture 30s linear infinite; /* Optional: subtle animation */
+      }
+
+      /* Optional: Subtle animation for the texture */
+      @keyframes moveTexture {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 100% 100%;
+        }
+      }
+
+      /* --- Typography and Layout --- */
+      .card h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-top: 280px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Subtle text shadow for depth */
+      }
+
+      .card p {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.88); /* Slightly brighter text */
+        margin: 10px 0 30px;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      /* --- The Button Style --- */
+      .button {
+        display: inline-flex; /* Use flex for easy arrow alignment */
+        align-items: center;
+        padding: 10px 18px;
+        border-radius: 12px; /* Slightly more rounded button */
+        text-decoration: none;
+        font-size: 0.9rem;
+
+        background: rgba(
+          255,
+          255,
+          255,
+          0.08
+        ); /* Slightly brighter button background */
+        border: 1px solid rgba(255, 255, 255, 0.25); /* Stronger, clearer border */
+        color: white;
+        transition: background 0.3s ease, border-color 0.3s ease,
+          transform 0.2s ease;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.4);
+        /* transform: translateY(-2px);  */
+      }
+
+      .button::after {
+        /* Arrow for the button */
+        content: "→";
+        margin-left: 8px;
+        transition: margin-left 0.2s ease;
+      }
+    </style>
   </head>
   <body>
-    <div class="section6">
-      <div class="bento-grid">
-        <!-- TILE 1: Effortless Coding Mastery (Span 3x2) -->
-        <div class="bento-card tile-1 flex flex-col justify-between">
-          <div>
-            <i class="ri-code-line ri-2x mb-4 icon-primary-purple"></i>
-            <h2 class="text-4xl font-extrabold leading-tight">
-              Effortless Coding Mastery
-            </h2>
-          </div>
-          <div>
-            <p class="text-lg font-semibold mt-4">14 days trial</p>
-            <p class="text-text-muted mt-1">after - $5/month</p>
-          </div>
-        </div>
-
-        <!-- TILE 2: Your STRIKE Coding Companion (Central, Span 6x4) -->
-        <div class="bento-card tile-2">
-          <div class="orb-container">
-            <!-- Code Stream Top -->
-            <div class="code-stream code-top">
-              DSA JNA AI Cohort Live 10101 100011 100101010 010 001 1001010101
-              1001010101...
-            </div>
-
-            <div class="text-center px-4">
-              <p
-                class="text-sm font-semibold text-text-muted flex items-center justify-center mb-2"
-              >
-                <i class="ri-lightbulb-line mr-1 icon-primary-purple"></i>
-                STRIKE
-              </p>
-              <h1 class="text-5xl md:text-6xl font-extrabold leading-snug">
-                Your Coding Companion
-              </h1>
-              <p class="text-text-muted mt-2">
-                Powered by Coder Army - Live DSA & JNA Cohorts with Gemini AI
-                Assistance
-              </p>
-            </div>
-
-            <!-- Swirling Orb Graphic (Simulated with CSS) -->
-            <div class="orb-graphic"></div>
-
-            <!-- Code Stream Bottom -->
-            <div class="code-stream code-bottom">
-              010101 11010111 10001 1001010101 1001010101 11010111...
-            </div>
-          </div>
-        </div>
-
-        <!-- TILE 3: Small Top Right (Icon placeholder) (Span 3x1) -->
-        <div class="bento-card tile-3 flex items-center justify-center">
-          <div class="icon-small-accent">
-            <i class="ri-arrow-right-up-line"></i>
-          </div>
-        </div>
-
-        <!-- TILE 4: 25K Students Enrolled (Span 3x1) -->
-        <div class="bento-card tile-4 flex flex-col justify-center relative">
-          <h2 class="text-6xl font-extrabold text-white">25K</h2>
-          <div class="flex items-center mt-2 text-text-muted">
-            <span class="w-2 h-2 rounded-full bg-primary-purple mr-2"></span>
-            <p class="text-lg">students enrolled</p>
-          </div>
-          <div class="w-full h-1 bg-primary-purple/50 rounded-full mt-2">
-            <div class="w-4/5 h-full bg-primary-purple rounded-full"></div>
-          </div>
-        </div>
-
-        <!-- TILE 5: 12K Happy Coders (Span 3x2) -->
-        <div class="bento-card tile-5 flex flex-col justify-between">
-          <div>
-            <h2 class="text-5xl font-extrabold text-white">12K</h2>
-            <p class="text-xl text-text-muted mt-2">happy coders</p>
-          </div>
-          <div class="avatar-group">
-            <!-- Avatar Placeholders -->
-            <div class="avatar" style="background-color: #f8c900"></div>
-            <div class="avatar" style="background-color: #8b5cf6"></div>
-            <div class="avatar" style="background-color: #e02424"></div>
-            <div
-              class="avatar bg-gray-600 text-white flex items-center justify-center text-sm"
-            >
-              +10K
-            </div>
-          </div>
-        </div>
-
-        <!-- TILE 6: DSA Templates (Span 3x2) -->
-        <div class="bento-card tile-6 flex flex-col justify-between relative">
-          <div>
-            <h3 class="text-2xl font-bold">DSA Templates</h3>
-            <p class="text-text-muted mt-2">
-              Use pre-made templates for Arrays, Trees, Graphs & more.
-            </p>
-          </div>
-
-          <div class="mt-4">
-            <div class="flex items-center text-sm text-text-muted mb-2">
-              <span
-                class="w-1.5 h-1.5 rounded-full bg-primary-purple mr-2"
-              ></span>
-              <p>Arrays</p>
-            </div>
-            <div class="flex items-center text-sm text-text-muted">
-              <span
-                class="w-1.5 h-1.5 rounded-full bg-primary-purple mr-2"
-              ></span>
-              <p>Graphs</p>
-            </div>
-          </div>
-
-          <!-- Vertical File Type Label -->
-          <div
-            class="absolute right-0 top-0 h-full w-10 bg-black/30 rounded-r-2xl flex items-center justify-center"
-          >
-            <div class="vertical-label transform -rotate-90">
-              <span class="text-white text-xs">● CPP ● Java ● Python</span>
-            </div>
-          </div>
-
-          <!-- Trial Badge Placeholder -->
-          <div
-            class="absolute top-4 right-16 px-3 py-1 bg-black/50 text-white text-xs rounded-full border border-primary-purple"
-          >
-            Live Cohorts
-          </div>
-
-          <!-- Utility Icons -->
-          <div class="flex mt-4">
-            <span class="utility-icon" style="background-color: #5b21b6">
-              <i class="ri-play-circle-line"></i>
-            </span>
-            <span class="utility-icon" style="background-color: #5b21b6">
-              <i class="ri-quiz-line"></i>
-            </span>
-            <span class="utility-icon" style="background-color: #5b21b6">
-              <i class="ri-award-line"></i>
-            </span>
-          </div>
-        </div>
-
-        <!-- TILE 7: Start Cohort (Span 3x1) -->
-        <div class="bento-card tile-7 flex items-center justify-center p-4">
-          <button
-            class="w-full py-4 text-xl font-semibold rounded-xl bg-primary-purple shadow-lg shadow-primary-purple/50 transition hover:bg-primary-purple/80"
-          >
-            Start Cohort
-          </button>
-        </div>
-
-        <!-- TILE 8: Live Sessions (Span 3x1) -->
-        <div class="bento-card tile-8 flex flex-col justify-start">
-          <div class="flex items-center mb-2">
-            <i class="ri-video-line mr-2 icon-primary-purple"></i>
-            <h3 class="text-xl font-bold">Live Sessions</h3>
-          </div>
-          <p class="text-text-muted text-sm">
-            Join real-time coding sessions with mentors.
-          </p>
-        </div>
-
-        <!-- TILE 9: AI Doubt Solver (Span 3x1) -->
-        <div class="bento-card tile-9 flex flex-col justify-start">
-          <div class="flex items-center mb-2">
-            <i class="ri-robot-line mr-2 icon-primary-purple"></i>
-            <h3 class="text-xl font-bold">AI Doubt Solver</h3>
-          </div>
-          <p class="text-text-muted text-sm">
-            Instant Gemini-powered doubt resolution.
-          </p>
-        </div>
-      </div>
+    <div class="card">
+      <h1>Mastering Gradients</h1>
+      <p>
+        Explore the art of gradients in design. From vibrant color transitions
+        to dynamic background effects.
+      </p>
+      <a href="#" class="button">Learn the basics</a>
     </div>
   </body>
 </html>
