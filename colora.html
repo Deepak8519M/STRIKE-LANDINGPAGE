@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Light Verdant Glass Card</title>
+
+    <style>
+      /* --- Global Styles: Use a light, natural background for contrast --- */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #e8f5e9;
+        background: black;
+        font-family: "Inter", sans-serif;
+        color: #1a1a1a;
+        overflow: hidden;
+      }
+
+      /* --- Card Container: LIGHT Translucency --- */
+      .card {
+        position: relative;
+        width: 350px;
+        height: 450px;
+        padding: 30px;
+        border-radius: 20px;
+        overflow: hidden;
+        z-index: 10;
+
+        /* Light Glassmorphism Background */
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+
+        /* Subtle Border and SOFT Shadow */
+        border: 1px solid rgba(255, 255, 255, 0.7);
+
+        /* Realistic Shadow: Soft, light green ambient glow */
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05),
+          0 5px 20px rgba(0, 0, 0, 0.1), 0 15px 50px rgba(100, 200, 100, 0.15); /* Soft, green ambient glow */
+      }
+
+      /* --- LAYER 1 & 2: Verdant Spring Gradient (Core Color) --- */
+      .card::before {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 0.9;
+
+        /* Verdant Spring Gradient: White -> Light Green -> Medium Green */
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffffff 0%,
+          /* White core */ #c8e6c9 35%,
+          /* Pale Green */ rgba(76, 175, 80, 0.6) 60%,
+          /* Medium Green (semi-transparent) */ transparent 85%
+        );
+        filter: blur(150px);
+      }
+
+      /* --- LAYER 3: The Particulate Texture (Darker for visibility on light BG) --- */
+      .card .texture-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+
+        background-image: radial-gradient(
+            circle at 10% 20%,
+            rgba(0, 0, 0, 0.1) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 30% 70%,
+            rgba(0, 0, 0, 0.1) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 70% 40%,
+            rgba(0, 0, 0, 0.1) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 90% 10%,
+            rgba(0, 0, 0, 0.1) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(0, 0, 0, 0.1) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 25% 45%,
+            rgba(0, 0, 0, 0.1) 0.5px,
+            transparent 0.5px
+          );
+        background-size: 15px 15px;
+        filter: none;
+        opacity: 0.6;
+        animation: moveTexture 60s linear infinite;
+      }
+
+      @keyframes moveTexture {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 100% 100%;
+        }
+      }
+
+      /* --- Typography and Button: Dark Colors for Contrast --- */
+      .card h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-top: 280px;
+        color: #1a1a1a;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+        z-index: 3;
+        position: relative;
+      }
+
+      .card p {
+        font-size: 0.9rem;
+        color: #4a4a4a;
+        margin: 10px 0 30px;
+        z-index: 3;
+        position: relative;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 18px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 0.9rem;
+
+        /* Button appearance changed to match green theme */
+        background: rgba(76, 175, 80, 0.1);
+        border: 1px solid rgba(76, 175, 80, 0.3);
+        color: #4caf50; /* Medium green text */
+        transition: all 0.3s ease;
+        cursor: pointer;
+        z-index: 3;
+        position: relative;
+      }
+
+      .button:hover {
+        background: rgba(76, 175, 80, 0.2);
+        border-color: rgba(76, 175, 80, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .button::after {
+        content: "→";
+        margin-left: 8px;
+        transition: margin-left 0.2s ease;
+      }
+
+      .button:hover::after {
+        margin-left: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="texture-overlay"></div>
+      <h1>Mastering Gradients</h1>
+      <p>
+        Explore the art of gradients in design. From vibrant color transitions
+        to dynamic background effects.
+      </p>
+      <a href="#" class="button">Learn the basics</a>
+    </div>
+  </body>
+</html>

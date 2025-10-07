@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gold Rush Card</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #000000;
+        font-family: "Inter", sans-serif;
+        color: white;
+        overflow: hidden;
+      }
+      .card {
+        position: relative;
+        width: 350px;
+        height: 450px;
+        padding: 30px;
+        border-radius: 20px;
+        overflow: hidden;
+        z-index: 10;
+        background: rgba(
+          10,
+          5,
+          0,
+          0.85
+        ); /* Dark base with a slight gold/brown tint */
+        backdrop-filter: blur(35px);
+        -webkit-backdrop-filter: blur(35px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2),
+          0 8px 25px rgba(0, 0, 0, 0.7), 0 30px 100px rgba(0, 0, 0, 0.8);
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        z-index: -3;
+        background: radial-gradient(
+          circle at 10% 10%,
+          rgba(255, 180, 0, 0.08),
+          transparent 60%
+        );
+        filter: blur(250px);
+        opacity: 1;
+      }
+      .card::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffeecc 0%,
+          /* Pale Gold/Cream */ #ffd700 35%,
+          /* Pure Gold */ rgba(255, 215, 0, 0.5) 60%,
+          /* Semi-transparent Gold */ #000000 65%,
+          transparent 85%
+        );
+        filter: blur(180px);
+      }
+      .card .texture-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+        background-image: radial-gradient(
+            circle at 10% 20%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 30% 70%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 70% 40%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 90% 10%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          ),
+          radial-gradient(
+            circle at 25% 45%,
+            rgba(255, 255, 255, 0.15) 0.5px,
+            transparent 0.5px
+          );
+        background-size: 15px 15px;
+        filter: brightness(1.5);
+        opacity: 0.25;
+        animation: moveTexture 60s linear infinite;
+      }
+      @keyframes moveTexture {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 100% 100%;
+        }
+      }
+      .card h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-top: 280px;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+        z-index: 3;
+        position: relative;
+      }
+      .card p {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.95);
+        margin: 10px 0 30px;
+        z-index: 3;
+        position: relative;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 18px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        z-index: 3;
+        position: relative;
+      }
+      .button:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      }
+      .button::after {
+        content: "→";
+        margin-left: 8px;
+        transition: margin-left 0.2s ease;
+      }
+      .button:hover::after {
+        margin-left: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="texture-overlay"></div>
+      <h1>Mastering Gradients</h1>
+      <p>
+        Explore the art of gradients in design. From vibrant color transitions
+        to dynamic background effects.
+      </p>
+      <a href="#" class="button">Learn the basics</a>
+    </div>
+  </body>
+</html>
