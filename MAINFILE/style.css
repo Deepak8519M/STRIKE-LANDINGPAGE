@@ -209,7 +209,7 @@ main {
   -webkit-text-stroke: 6px #ffffff;
   letter-spacing: 14px;
   text-align: center;
-  background: linear-gradient(to left, #5b21b6, black);
+  /* background: linear-gradient(to left, #5b21b6, black); */
   /* background: linear-gradient(to left, #0000ff, black); */
   background-clip: text;
   color: transparent;
@@ -383,17 +383,18 @@ main {
   width: 100%;
   height: 100vh;
   position: relative;
+  padding: 40px 20px;
 }
 .section3 .glow {
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
+  left: 100%;
+  /* transform: translateX(-50%); */
+  width: 200%;
   height: 100vh;
 
   background-image: radial-gradient(
-    circle at bottom center,
+    circle at bottom right,
 
     #ffffff 0%,
     rgba(255, 255, 255, 0.5) 3%,
@@ -445,7 +446,6 @@ main {
   z-index: -1;
   filter: blur(100px);
 }
-
 
 .section1 .bottom .features {
   display: flex;
