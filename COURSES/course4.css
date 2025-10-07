@@ -1,11 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
-
-/* --- Neon Green Color Palette (Based on First Card) ---
-  - Primary Accent: #39ff14 (Electric Neon Green)
-  - Light Accent/Icon: #ccffcc (Light Mint)
-  - Dark Base: rgba(5, 5, 0, 0.85) (Dark with green tint)
-*/
-
 /* --- Global Styles --- */
 body {
   display: flex;
@@ -42,13 +35,14 @@ body {
   overflow: hidden;
   padding: 9px 9px;
   box-sizing: border-box;
-  /* UPDATED: Dark base with a slight green tint */
-  background: rgba(5, 5, 0, 0.85);
-  backdrop-filter: blur(35px);
-  -webkit-backdrop-filter: blur(35px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2), 0 8px 25px rgba(0, 0, 0, 0.7),
-    0 30px 100px rgba(0, 0, 0, 0.8);
+
+  /* UPDATED: Glassmorphism Background with subtle blue tint */
+  background: rgba(0, 0, 10, 0.75);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.7);
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -59,7 +53,7 @@ body {
   justify-content: flex-start;
 }
 
-/* --- Content Styling --- */
+/* --- Content Layout --- */
 .card-image {
   width: 100%;
   height: 160px;
@@ -84,8 +78,12 @@ body {
   gap: 8px;
   margin-bottom: 8px;
 }
+.footer-tags {
+  margin-top: auto;
+  margin-bottom: 15px;
+}
 
-/* --- TAG STYLES MODIFIED FOR NEON GREEN LOOK --- */
+/* --- TAG STYLES MODIFIED FOR BLUE LOOK --- */
 .tag {
   font-size: 0.7rem;
   font-weight: 600;
@@ -97,30 +95,22 @@ body {
   transition: background-color 0.3s;
 }
 
-.tag.live-indicator {
-  /* Matching the small 'LIVE' circle from the image */
-  background-color: #39ff14; /* Electric Neon Green */
-  border: 1px solid rgba(204, 255, 204, 0.8); /* Light Mint */
-  color: #000; /* Black text for max contrast on neon */
-  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
-  font-weight: 700;
-}
-
 .tag.category {
-  /* UPDATED: Stronger Neon Green */
-  background-color: rgba(57, 255, 20, 0.6);
-  border: 1px solid rgba(204, 255, 204, 0.8); /* Light Mint border */
+  /* Primary blue color */
+  background-color: rgba(0, 128, 255, 0.5);
+  border: 1px solid rgba(179, 230, 255, 0.8); /* Light blue border */
   color: #fff;
   box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
 }
-.tag.lectures {
+.tag.lectures,
+.tag.tech {
   /* Darker, subtle look */
   background-color: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: rgba(255, 255, 255, 0.9);
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
 }
-/* --- END TAG STYLES MODIFIED --- */
+/* --- END TAG STYLES --- */
 
 .card-title,
 .back-title {
@@ -159,8 +149,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 15px;
-  margin-top: -10px;
+  margin-bottom: 25px;
 }
 .details-list li {
   padding: 5px 0;
@@ -177,15 +166,10 @@ body {
 .details-list li:last-child {
   border-bottom: none;
 }
-.details-list li strong {
-  font-weight: 700;
-  /* UPDATED: Highlight color for text/icon */
-  color: #39ff14;
-}
 .details-list li .ri {
   font-size: 1.3em;
-  /* UPDATED: Icon color */
-  color: #ccffcc;
+  /* UPDATED: Highlight icon color */
+  color: #00bfff;
 }
 
 /* --- STAGGERED REVEAL ON FLIP HOVER --- */
@@ -206,9 +190,6 @@ body {
 .flip-card:hover .details-list li:nth-child(4) {
   animation-delay: 0.7s;
 }
-.flip-card:hover .details-list li:nth-child(5) {
-  animation-delay: 0.8s;
-}
 
 @keyframes revealDetail {
   to {
@@ -217,7 +198,7 @@ body {
   }
 }
 
-/* --- ACTION BUTTON MODIFIED FOR NEON GREEN LOOK --- */
+/* --- ACTION BUTTON MODIFIED FOR BLUE LOOK --- */
 .action-button {
   display: flex;
   align-items: center;
@@ -230,11 +211,11 @@ body {
   margin-top: auto;
   text-decoration: none;
 
-  /* UPDATED: Prominent Neon Green background and glow */
-  background: #39ff14;
-  border: 1px solid #ccffcc; /* Light Mint border for contrast */
-  color: #000; /* Black text for max contrast on neon */
-  box-shadow: 0 4px 15px rgba(57, 255, 20, 0.8),
+  /* UPDATED: Prominent Blue background and glow */
+  background: #007bff;
+  border: 1px solid #e0f7fa;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.8),
     inset 0 0 10px rgba(255, 255, 255, 0.3);
 
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -243,11 +224,11 @@ body {
   position: relative;
 }
 .action-button:hover {
-  /* Brighter Neon Green on hover */
-  background: #66ff33;
+  /* Brighter Blue on hover */
+  background: #3399ff;
   border-color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(57, 255, 20, 1), 0 0 40px rgba(57, 255, 20, 0.5);
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 1), 0 0 40px rgba(0, 123, 255, 0.5);
 }
 .action-button::after {
   content: " →";
@@ -259,107 +240,70 @@ body {
 }
 /* --- END ACTION BUTTON MODIFIED --- */
 
-/* --- BACKGROUND LAYERS (Updated Gradients) --- */
+/* --- BACKGROUND LAYERS (Blue Gradient) --- */
 .flip-card-front::before,
 .flip-card-back::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  z-index: -3;
-  /* UPDATED: Neon Green radial gradient blur */
-  background: radial-gradient(
-    circle at 10% 10%,
-    rgba(50, 255, 0, 0.08),
-    transparent 60%
-  );
-  filter: blur(250px);
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  z-index: -1;
   opacity: 1;
-}
-.flip-card-front::after,
-.flip-card-back::after {
-  content: "";
-  position: absolute;
-  top: -25%;
-  left: -25%;
-  width: 150%;
-  height: 150%;
-  z-index: -2;
-  opacity: 1;
-  /* UPDATED: Neon Green radial gradient */
+
+  /* Customized & Refined Blue Gradient */
   background: radial-gradient(
     circle at 18% 12%,
-    #ccffcc 0%,
-    #39ff14 35%,
-    rgba(57, 255, 20, 0.5) 60%,
-    #000000 65%,
-    transparent 85%
+    #e0f7fa 0%,
+    #00bfff 25%,
+    #0000ff 50%,
+    rgba(0, 0, 255, 0.3) 75%,
+    transparent 95%
   );
-  filter: blur(180px);
-  animation: moveGradient 30s ease-in-out infinite alternate;
+  filter: blur(160px);
 }
+
+/* --- Particulate Texture Overlay --- */
 .texture-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
   background-image: radial-gradient(
       circle at 10% 20%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
     ),
     radial-gradient(
       circle at 30% 70%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
     ),
     radial-gradient(
       circle at 70% 40%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
     ),
     radial-gradient(
       circle at 90% 10%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
     ),
     radial-gradient(
       circle at 50% 90%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
-    ),
-    radial-gradient(
-      circle at 25% 45%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
     );
-  background-size: 15px 15px;
-  filter: brightness(1.5);
-  opacity: 0.25;
-  animation: moveTexture 60s linear infinite;
+  background-size: 20px 20px;
+  filter: brightness(1.2);
+  opacity: 0.12;
+  animation: moveTexture 30s linear infinite;
 }
-@keyframes moveGradient {
-  0% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(-5%, 5%);
-  }
-  50% {
-    transform: translate(5%, -10%);
-  }
-  75% {
-    transform: translate(-10%, -5%);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
+
 @keyframes moveTexture {
   from {
     background-position: 0 0;

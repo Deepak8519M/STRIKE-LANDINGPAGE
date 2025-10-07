@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
 
-/* --- Neon Green Color Palette (Based on First Card) ---
-  - Primary Accent: #39ff14 (Electric Neon Green)
-  - Light Accent/Icon: #ccffcc (Light Mint)
-  - Dark Base: rgba(5, 5, 0, 0.85) (Dark with green tint)
+/* --- Final Premium Blue Color Palette ---
+  - Dark Base: rgba(0, 0, 10, 0.85)
+  - Core Blue: #0000ff
+  - Core Highlight: #ffffff
 */
 
 /* --- Global Styles --- */
@@ -42,13 +42,14 @@ body {
   overflow: hidden;
   padding: 9px 9px;
   box-sizing: border-box;
-  /* UPDATED: Dark base with a slight green tint */
-  background: rgba(5, 5, 0, 0.85);
+
+  /* Glassmorphism Background */
+  background: rgba(0, 0, 10, 0.85);
   backdrop-filter: blur(35px);
   -webkit-backdrop-filter: blur(35px);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2), 0 8px 25px rgba(0, 0, 0, 0.7),
-    0 30px 100px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -85,7 +86,7 @@ body {
   margin-bottom: 8px;
 }
 
-/* --- TAG STYLES MODIFIED FOR NEON GREEN LOOK --- */
+/* --- TAG STYLES MODIFIED --- */
 .tag {
   font-size: 0.7rem;
   font-weight: 600;
@@ -97,30 +98,22 @@ body {
   transition: background-color 0.3s;
 }
 
-.tag.live-indicator {
-  /* Matching the small 'LIVE' circle from the image */
-  background-color: #39ff14; /* Electric Neon Green */
-  border: 1px solid rgba(204, 255, 204, 0.8); /* Light Mint */
-  color: #000; /* Black text for max contrast on neon */
-  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
+.tag.launching-soon {
+  /* NEW: Style for "Launching Soon" - Using a subtle blue/white glow */
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(0, 0, 255, 0.7);
+  color: #fff;
   font-weight: 700;
 }
 
 .tag.category {
-  /* UPDATED: Stronger Neon Green */
-  background-color: rgba(57, 255, 20, 0.6);
-  border: 1px solid rgba(204, 255, 204, 0.8); /* Light Mint border */
+  /* Primary blue color */
+  background-color: rgba(0, 0, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   color: #fff;
   box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
 }
-.tag.lectures {
-  /* Darker, subtle look */
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: rgba(255, 255, 255, 0.9);
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
-}
-/* --- END TAG STYLES MODIFIED --- */
+/* The "lectures" tag is removed as requested */
 
 .card-title,
 .back-title {
@@ -159,7 +152,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   margin-top: -10px;
 }
 .details-list li {
@@ -177,15 +170,10 @@ body {
 .details-list li:last-child {
   border-bottom: none;
 }
-.details-list li strong {
-  font-weight: 700;
-  /* UPDATED: Highlight color for text/icon */
-  color: #39ff14;
-}
 .details-list li .ri {
   font-size: 1.3em;
-  /* UPDATED: Icon color */
-  color: #ccffcc;
+  /* Highlight icon color (use white/light blue for premium feel) */
+  color: #ffffff;
 }
 
 /* --- STAGGERED REVEAL ON FLIP HOVER --- */
@@ -217,7 +205,7 @@ body {
   }
 }
 
-/* --- ACTION BUTTON MODIFIED FOR NEON GREEN LOOK --- */
+/* --- ACTION BUTTON MODIFIED FOR BLUE LOOK --- */
 .action-button {
   display: flex;
   align-items: center;
@@ -230,11 +218,11 @@ body {
   margin-top: auto;
   text-decoration: none;
 
-  /* UPDATED: Prominent Neon Green background and glow */
-  background: #39ff14;
-  border: 1px solid #ccffcc; /* Light Mint border for contrast */
-  color: #000; /* Black text for max contrast on neon */
-  box-shadow: 0 4px 15px rgba(57, 255, 20, 0.8),
+  /* Prominent Blue background and glow */
+  background: #0000ff;
+  border: 1px solid #ffffff;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 255, 0.8),
     inset 0 0 10px rgba(255, 255, 255, 0.3);
 
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -243,11 +231,11 @@ body {
   position: relative;
 }
 .action-button:hover {
-  /* Brighter Neon Green on hover */
-  background: #66ff33;
+  /* Brighter Blue on hover */
+  background: #3333ff;
   border-color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(57, 255, 20, 1), 0 0 40px rgba(57, 255, 20, 0.5);
+  box-shadow: 0 8px 25px rgba(0, 0, 255, 1), 0 0 40px rgba(0, 0, 255, 0.5);
 }
 .action-button::after {
   content: " →";
@@ -259,7 +247,7 @@ body {
 }
 /* --- END ACTION BUTTON MODIFIED --- */
 
-/* --- BACKGROUND LAYERS (Updated Gradients) --- */
+/* --- BACKGROUND LAYERS (Blue Gradient) --- */
 .flip-card-front::before,
 .flip-card-back::before {
   content: "";
@@ -269,10 +257,10 @@ body {
   width: 200%;
   height: 200%;
   z-index: -3;
-  /* UPDATED: Neon Green radial gradient blur */
+  /* Ambient Blue Glow */
   background: radial-gradient(
     circle at 10% 10%,
-    rgba(50, 255, 0, 0.08),
+    rgba(0, 50, 255, 0.1),
     transparent 60%
   );
   filter: blur(250px);
@@ -288,61 +276,54 @@ body {
   height: 150%;
   z-index: -2;
   opacity: 1;
-  /* UPDATED: Neon Green radial gradient */
+  /* Core Blue Gradient */
   background: radial-gradient(
     circle at 18% 12%,
-    #ccffcc 0%,
-    #39ff14 35%,
-    rgba(57, 255, 20, 0.5) 60%,
+    #ffffff 0%,
+    #0000ff 35%,
+    rgba(0, 0, 255, 0.5) 60%,
     #000000 65%,
     transparent 85%
   );
   filter: blur(180px);
   animation: moveGradient 30s ease-in-out infinite alternate;
 }
+
+/* --- Particulate Texture Overlay (Adjusted for z-index in the original component) --- */
 .texture-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
   background-image: radial-gradient(
       circle at 10% 20%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
     ),
     radial-gradient(
       circle at 30% 70%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
     ),
     radial-gradient(
       circle at 70% 40%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
     ),
     radial-gradient(
       circle at 90% 10%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
-    ),
-    radial-gradient(
-      circle at 50% 90%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
-    ),
-    radial-gradient(
-      circle at 25% 45%,
-      rgba(255, 255, 255, 0.15) 0.5px,
-      transparent 0.5px
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
     );
-  background-size: 15px 15px;
-  filter: brightness(1.5);
-  opacity: 0.25;
+  background-size: 25px 25px;
+  filter: brightness(1.3);
+  opacity: 0.15;
   animation: moveTexture 60s linear infinite;
 }
+
 @keyframes moveGradient {
   0% {
     transform: translate(0, 0);
