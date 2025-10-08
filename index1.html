@@ -3,64 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Our Premium Courses</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
+    <title>Our Premium Courses Showcase</title>
+    <!-- Load Tailwind CSS for overall layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+      @import url("https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css");
 
-      /* --- Section 10 Styles --- */
-      #section10 {
-        width: 100%;
-        min-height: 100vh;
-        padding: 60px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-sizing: border-box;
+      /* General Styles for the body, using black background as per original CSS */
+      body {
         background: #000000;
-      }
-
-      .section-header h1 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 10px;
-        text-align: center;
-        color: #8B5CF6;
-        text-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
-      }
-
-      .section-header p {
-        font-size: 1.1rem;
-        max-width: 700px;
-        margin-bottom: 60px;
-        color: rgba(255, 255, 255, 0.8);
-        text-align: center;
         font-family: "Poppins", sans-serif;
+        color: white;
+        min-height: 100vh;
+        margin: 0;
       }
 
-      .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
-        max-width: 1400px;
-        width: 100%;
-      }
-
-      /* --- Card Styles (Copied Exactly) --- */
-      /* Card 1: Data Structures & Algorithms (DSA) */
+      /* --- GLOBAL CARD STYLES (Common to all provided CSS blocks) --- */
       .flip-card {
-        width: 340px;
+        width: 340px; /* Exact fixed width requested */
         height: 450px;
         position: relative;
         transform-style: preserve-3d;
         transition: transform 0.8s ease-in-out;
         cursor: pointer;
         z-index: 20;
+        margin: 20px 0; /* Margin is 0 on the sides, relying on container padding/gap */
       }
       .flip-card:hover {
         transform: rotateY(180deg);
@@ -76,12 +44,13 @@
         overflow: hidden;
         padding: 9px 9px;
         box-sizing: border-box;
-        background: rgba(20, 5, 0, 0.85);
+
         backdrop-filter: blur(35px);
         -webkit-backdrop-filter: blur(35px);
         border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2), 0 8px 25px rgba(0, 0, 0, 0.7),
-          0 30px 100px rgba(0, 0, 0, 0.8);
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2),
+          0 8px 25px rgba(0, 0, 0, 0.7), 0 30px 100px rgba(0, 0, 0, 0.8);
+
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -124,24 +93,6 @@
         white-space: nowrap;
         text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
         transition: background-color 0.3s;
-      }
-      .tag.live-indicator {
-        background-color: #ff0000;
-        border: 1px solid #ffebb5;
-        color: #fff;
-        font-weight: 700;
-      }
-      .tag.category {
-        background-color: rgba(255, 123, 0, 0.5);
-        border: 1px solid rgba(255, 235, 181, 0.8);
-        color: #fff;
-        box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
-      }
-      .tag.lectures {
-        background-color: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        color: rgba(255, 255, 255, 0.9);
-        box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
       }
       .card-title,
       .back-title {
@@ -197,7 +148,6 @@
       }
       .details-list li .ri {
         font-size: 1.3em;
-        color: #ffebb5;
       }
       .flip-card:hover .details-list li {
         animation: revealDetail 0.4s forwards;
@@ -218,12 +168,14 @@
       .flip-card:hover .details-list li:nth-child(5) {
         animation-delay: 0.8s;
       }
+
       @keyframes revealDetail {
         to {
           opacity: 1;
           transform: translateX(0);
         }
       }
+
       .action-button {
         display: flex;
         align-items: center;
@@ -235,21 +187,11 @@
         font-weight: 700;
         margin-top: auto;
         text-decoration: none;
-        background: #ff7b00;
-        border: 1px solid #ffebb5;
         color: #fff;
-        box-shadow: 0 4px 15px rgba(255, 123, 0, 0.8),
-          inset 0 0 10px rgba(255, 255, 255, 0.3);
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         cursor: pointer;
         z-index: 3;
         position: relative;
-      }
-      .action-button:hover {
-        background: #ff8c33;
-        border-color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(255, 123, 0, 1), 0 0 40px rgba(255, 123, 0, 0.5);
       }
       .action-button::after {
         content: " →";
@@ -259,26 +201,75 @@
       .action-button:hover::after {
         margin-left: 15px;
       }
-      .flip-card-front::before,
-      .flip-card-back::before {
-        content: "";
+      .texture-overlay {
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        defp
-        height: 200%;
-        z-index: -3;
-        background: radial-gradient(
-          circle at 10% 10%,
-          rgba(255, 80, 0, 0.08),
-          transparent 60%
-        );
-        filter: blur(250px);
-        opacity: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
       }
-      .flip-card-front::after,
-      .flip-card-back::after {
+      /* Gradient Animation Keyframes */
+      @keyframes moveGradient {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(-5%, 5%);
+        }
+        50% {
+          transform: translate(5%, -10%);
+        }
+        75% {
+          transform: translate(-10%, -5%);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      /* --- THEME 1 & 3: SUNSET (DSA & HLD) --- */
+      #card-sunset .flip-card-front,
+      #card-sunset .flip-card-back {
+        background: rgba(
+          20,
+          5,
+          0,
+          0.85
+        ); /* Dark base with a slight orange tint */
+      }
+      #card-sunset .tag.live-indicator {
+        background-color: #ff0000;
+        border: 1px solid #ffebb5;
+      }
+      #card-sunset .tag.category {
+        background-color: rgba(255, 123, 0, 0.5);
+        border: 1px solid rgba(255, 235, 181, 0.8);
+      }
+      #card-sunset .tag.lectures {
+        background-color: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.9);
+      }
+      #card-sunset .details-list li .ri {
+        color: #ffebb5;
+      }
+      #card-sunset .action-button {
+        background: #ff7b00;
+        border: 1px solid #ffebb5;
+        box-shadow: 0 4px 15px rgba(255, 123, 0, 0.8),
+          inset 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+      #card-sunset .action-button:hover {
+        background: #ff8c33;
+        border-color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 123, 0, 1),
+          0 0 40px rgba(255, 123, 0, 0.5);
+      }
+      #card-sunset .flip-card-front::after,
+      #card-sunset .flip-card-back::after {
         content: "";
         position: absolute;
         top: -25%;
@@ -298,70 +289,51 @@
         filter: blur(180px);
         animation: moveGradient 30s ease-in-out infinite alternate;
       }
-      @keyframes moveGradient {
-        0% {
-          transform: translate(0, 0);
-        }
-        25% {
-          transform: translate(-5%, 5%);
-        }
-        50% {
-          transform: translate(5%, -10%);
-        }
-        75% {
-          transform: translate(-10%, -5%);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
-      }
 
-      /* Card 2: Web Dev + Blockchain + System Design + DSA */
-      .flip-card.card2 .flip-card-front,
-      .flip-card.card2 .flip-card-back {
-        background: rgba(20, 0, 10, 0.85);
+      /* --- THEME 2: FUCHSIA (Web Dev) --- */
+      #card-fuchsia .flip-card-front,
+      #card-fuchsia .flip-card-back {
+        background: rgba(20, 0, 10, 0.85); /* Dark base with fuchsia tint */
       }
-      .flip-card.card2 .tag.live-indicator {
-        background-color: #ff007f;
+      #card-fuchsia .tag.live-indicator {
+        background-color: #ff007f; /* Rose Red */
         border: 1px solid rgba(255, 224, 240, 0.8);
-        color: #fff;
-        box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
-        font-weight: 700;
       }
-      .flip-card.card2 .tag.category {
+      #card-fuchsia .tag.category {
         background-color: rgba(255, 0, 127, 0.6);
         border: 1px solid rgba(255, 224, 240, 0.8);
-        color: #fff;
-        box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
       }
-      .flip-card.card2 .details-list li strong {
-        color: #ff007f;
+      #card-fuchsia .tag.lectures {
+        background-color: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.9);
       }
-      .flip-card.card2 .details-list li .ri {
+      #card-fuchsia .details-list li .ri {
         color: #ffe0f0;
       }
-      .flip-card.card2 .action-button {
+      #card-fuchsia .action-button {
         background: #ff007f;
         border: 1px solid #ffe0f0;
-        color: #fff;
         box-shadow: 0 4px 15px rgba(255, 0, 127, 0.8),
           inset 0 0 10px rgba(255, 255, 255, 0.3);
       }
-      .flip-card.card2 .action-button:hover {
+      #card-fuchsia .action-button:hover {
         background: #ff3399;
         border-color: #fff;
-        box-shadow: 0 8px 25px rgba(255, 0, 127, 1), 0 0 40px rgba(255, 0, 127, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 0, 127, 1),
+          0 0 40px rgba(255, 0, 127, 0.5);
       }
-      .flip-card.card2 .flip-card-front::before,
-      .flip-card.card2 .flip-card-back::before {
-        background: radial-gradient(
-          circle at 10% 10%,
-          rgba(255, 0, 150, 0.08),
-          transparent 60%
-        );
-      }
-      .flip-card.card2 .flip-card-front::after,
-      .flip-card.card2 .flip-card-back::after {
+      #card-fuchsia .flip-card-front::after,
+      #card-fuchsia .flip-card-back::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
         background: radial-gradient(
           circle at 18% 12%,
           #ffe0f0 0%,
@@ -370,104 +342,51 @@
           #000000 65%,
           transparent 85%
         );
-      }
-      .flip-card.card2 .texture-overlay {
-        background-image: radial-gradient(
-            circle at 10% 20%,
-            rgba(255, 255, 255, 0.15) 0.5px,
-            transparent 0.5px
-          ),
-          radial-gradient(
-            circle at 30% 70%,
-            rgba(255, 255, 255, 0.15) 0.5px,
-            transparent 0.5px
-          ),
-          radial-gradient(
-            circle at 70% 40%,
-            rgba(255, 255, 255, 0.15) 0.5px,
-            transparent 0.5px
-          ),
-          radial-gradient(
-            circle at 90% 10%,
-            rgba(255, 255, 255, 0.15) 0.5px,
-            transparent 0.5px
-          ),
-          radial-gradient(
-            circle at 50% 90%,
-            rgba(255, 255, 255, 0.15) 0.5px,
-            transparent 0.5px
-          ),
-          radial-gradient(
-            circle at 25% 45%,
-            rgba(255, 255, 255, 0.15) 0.5px,
-            transparent 0.5px
-          );
-        background-size: 15px 15px;
-        filter: brightness(1.5);
-        opacity: 0.25;
+        filter: blur(180px);
+        animation: moveGradient 30s ease-in-out infinite alternate;
       }
 
-      /* Card 3: High Level Design (HLD) Masterclass */
-      .flip-card.card3 .action-button {
-        background: #ff7b00;
-        border: 1px solid #ffebb5;
-        color: #fff;
-        box-shadow: 0 4px 15px rgba(255, 123, 0, 0.8),
-          inset 0 0 10px rgba(255, 255, 255, 0.3);
+      /* --- THEME 4: BLUE (Strike) --- */
+      #card-blue .flip-card-front,
+      #card-blue .flip-card-back {
+        background: rgba(0, 0, 10, 0.85); /* Dark base with blue tint */
+        box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8); /* Adjusted shadow for blue theme */
       }
-      .flip-card.card3 .action-button:hover {
-        background: #ff8c33;
-        border-color: #fff;
-        box-shadow: 0 8px 25px rgba(255, 123, 0, 1), 0 0 40px rgba(255, 123, 0, 0.5);
-      }
-
-      /* Card 4: Strike Course: DSA & Generative AI */
-      .flip-card.card4 {
-        width: 340px;
-        height: 450px;
-      }
-      .flip-card.card4 .flip-card-front,
-      .flip-card.card4 .flip-card-back {
-        background: rgba(0, 0, 10, 0.85);
-        box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
-      }
-      .flip-card.card4 .tag.launching-soon {
+      #card-blue .tag.launching-soon {
         background-color: rgba(255, 255, 255, 0.15);
         border: 1px solid rgba(0, 0, 255, 0.7);
         color: #fff;
         font-weight: 700;
       }
-      .flip-card.card4 .tag.category {
+      #card-blue .tag.category {
         background-color: rgba(0, 0, 255, 0.5);
         border: 1px solid rgba(255, 255, 255, 0.7);
-        color: #fff;
-        box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
       }
-      .flip-card.card4 .details-list li .ri {
+      #card-blue .details-list li .ri {
         color: #ffffff;
       }
-      .flip-card.card4 .action-button {
+      #card-blue .action-button {
         background: #0000ff;
         border: 1px solid #ffffff;
-        color: #fff;
         box-shadow: 0 4px 15px rgba(0, 0, 255, 0.8),
           inset 0 0 10px rgba(255, 255, 255, 0.3);
       }
-      .flip-card.card4 .action-button:hover {
+      #card-blue .action-button:hover {
         background: #3333ff;
         border-color: #fff;
+        transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(0, 0, 255, 1), 0 0 40px rgba(0, 0, 255, 0.5);
       }
-      .flip-card.card4 .flip-card-front::before,
-      .flip-card.card4 .flip-card-back::before {
-        background: radial-gradient(
-          circle at 10% 10%,
-          rgba(0, 50, 255, 0.1),
-          transparent 60%
-        );
-      }
-      .flip-card.card4 .flip-card-front::after,
-      .flip-card.card4 .flip-card-back::after {
+      #card-blue .flip-card-front::after,
+      #card-blue .flip-card-back::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
         background: radial-gradient(
           circle at 18% 12%,
           #ffffff 0%,
@@ -476,42 +395,79 @@
           #000000 65%,
           transparent 85%
         );
-      }
-      .flip-card.card4 .texture-overlay {
-        background-image: radial-gradient(
-            circle at 10% 20%,
-            rgba(255, 255, 255, 0.08) 1px,
-            transparent 1px
-          ),
-          radial-gradient(
-            circle at 30% 70%,
-            rgba(255, 255, 255, 0.08) 1px,
-            transparent 1px
-          ),
-          radial-gradient(
-            circle at 70% 40%,
-            rgba(255, 255, 255, 0.08) 1px,
-            transparent 1px
-          ),
-          radial-gradient(
-            circle at 90% 10%,
-            rgba(255, 255, 255, 0.08) 1px,
-            transparent 1px
-          );
-        background-size: 25px 25px;
-        filter: brightness(1.3);
-        opacity: 0.15;
+        filter: blur(180px);
+        animation: moveGradient 30s ease-in-out infinite alternate;
       }
 
-      /* --- Texture Overlay (Common for Cards 1 and 3) --- */
-      .texture-overlay {
+      /* --- NEW THEME: NEON GREEN (HLD) --- */
+      #card-neon-green .flip-card-front,
+      #card-neon-green .flip-card-back {
+        background: rgba(
+          5,
+          5,
+          0,
+          0.85
+        ); /* Dark base with a slight green tint */
+      }
+      #card-neon-green .tag.live-indicator {
+        background-color: #39ff14; /* Electric Neon Green */
+        border: 1px solid rgba(204, 255, 204, 0.8); /* Light Mint */
+        color: #000;
+      }
+      #card-neon-green .tag.category {
+        background-color: rgba(57, 255, 20, 0.6);
+        border: 1px solid rgba(204, 255, 204, 0.8);
+      }
+      #card-neon-green .tag.lectures {
+        background-color: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.9);
+      }
+      #card-neon-green .details-list li strong {
+        font-weight: 700;
+        color: #39ff14;
+      }
+      #card-neon-green .details-list li .ri {
+        color: #ccffcc;
+      }
+      #card-neon-green .action-button {
+        background: #39ff14;
+        border: 1px solid #ccffcc;
+        color: #000;
+        box-shadow: 0 4px 15px rgba(57, 255, 20, 0.8),
+          inset 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+      #card-neon-green .action-button:hover {
+        background: #66ff33;
+        border-color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(57, 255, 20, 1),
+          0 0 40px rgba(57, 255, 20, 0.5);
+      }
+      #card-neon-green .flip-card-front::after,
+      #card-neon-green .flip-card-back::after {
+        content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        pointer-events: none;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ccffcc 0%,
+          #39ff14 35%,
+          rgba(57, 255, 20, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+        filter: blur(180px);
+        animation: moveGradient 30s ease-in-out infinite alternate;
+      }
+
+      /* Generic overlay texture application (Used by all cards) */
+      .texture-overlay {
         background-image: radial-gradient(
             circle at 10% 20%,
             rgba(255, 255, 255, 0.15) 0.5px,
@@ -545,307 +501,255 @@
         background-size: 15px 15px;
         filter: brightness(1.5);
         opacity: 0.25;
-        animation: moveTexture 60s linear infinite;
-      }
-      @keyframes moveTexture {
-        from {
-          background-position: 0 0;
-        }
-        to {
-          background-position: 100% 100%;
-        }
       }
 
-      /* --- Responsive Design --- */
-      @media (max-width: 1400px) {
-        .cards-container {
-          justify-content: center;
-        }
-        .flip-card {
-          width: 340px;
-        }
-      }
-      @media (max-width: 1024px) {
-        .cards-container {
-          gap: 20px;
-        }
-        .flip-card {
-          width: 340px;
-        }
-      }
-      @media (max-width: 768px) {
-        .cards-container {
-          flex-direction: column;
-          align-items: center;
-          gap: 20px;
-        }
-        .flip-card {
-          width: 340px;
-        }
-        .section-header h1 {
-          font-size: 2rem;
-        }
-        .section-header p {
-          font-size: 0.9rem;
-        }
-      }
-      @media (max-width: 540px) {
-        .cards-container {
-          flex-direction: column;
-          align-items: center;
-        }
-        .flip-card {
-          width: 300px;
-          height: 420px;
-        }
-        .card-image {
-          height: 140px;
-        }
-        .card-title,
-        .back-title {
-          font-size: 1.3rem;
-        }
-        .card-author {
-          font-size: 0.75rem;
-        }
-        .card-description {
-          font-size: 0.8rem;
-        }
-        .details-list li {
-          font-size: 0.8rem;
-        }
-        .action-button {
-          font-size: 0.9rem;
-          padding: 10px 0;
-        }
-        .section-header h1 {
-          font-size: 1.8rem;
-        }
-        .section-header p {
-          font-size: 0.8rem;
-        }
+      /* Tailwind configuration adjustment for Inter font */
+      html {
+        scroll-behavior: smooth;
       }
     </style>
   </head>
-  <body>
-    <section id="section10">
-      <div class="section-header">
-        <h1>Our Premium Courses</h1>
-        <p>
-          Discover our comprehensive learning programs designed by industry
-          experts to advance your career and technical skills.
-        </p>
-      </div>
-      <div class="cards-container">
-        <!-- Card 1: Data Structures & Algorithms (DSA) -->
-        <div class="flip-card card1">
-          <div class="flip-card-front">
-            <div class="texture-overlay"></div>
-            <img
-              src="https://picsum.photos/350/180?random=4"
-              alt="Data Structures and Algorithms Course Image"
-              class="card-image"
-            />
-            <div class="inner-content">
-              <div class="tags-container">
-                <span class="tag live-indicator">LIVE</span>
-                <span class="tag category">BEGINNER TO ADVANCED</span>
-                <span class="tag lectures">200 lectures</span>
+  <body class="p-4 md:p-12 overflow-x-hidden">
+    <!-- Section 10: Our Premium Courses -->
+    <!-- Removed mx-auto from the container to allow content to align to the left. -->
+    <div id="section10" class="max-w-7xl px-4 md:px-12 py-16">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-left mb-4">
+        Our <span style="color: #8b5cf6">Premium Courses</span>
+      </h1>
+      <p class="text-lg text-gray-300 text-left max-w-3xl mb-16">
+        Discover our comprehensive learning programs designed by industry
+        experts to advance your career and technical skills.
+      </p>
+
+      <!-- Cards Container: The justify-start property ensures left alignment of the cards -->
+      <div class="flex flex-wrap justify-start gap-8 lg:gap-10">
+        <!-- Card 1: Web Dev + Blockchain (Fuchsia Theme - Duplicate) -->
+        <div id="card-fuchsia">
+          <div class="flip-card">
+            <div class="flip-card-front">
+              <div class="texture-overlay"></div>
+              <img
+                src="https://placehold.co/350x180/FF007F/ffffff?text=Web+Dev+%2B+Blockchain+V2"
+                alt="Web Development and Blockchain Full Course Image"
+                class="card-image"
+              />
+              <div class="inner-content">
+                <div class="tags-container">
+                  <span class="tag live-indicator">LIVE</span>
+                  <span class="tag category">BEGINNER TO ADVANCED</span>
+                  <span class="tag lectures">120 lectures</span>
+                </div>
+                <h2 class="card-title">
+                  Web Development + Blockchain + System...
+                </h2>
+                <p class="card-author">by Rohit Negi & Aditya Tandon</p>
+                <p class="card-description">
+                  Complete LIVE course covering Web Dev, Blockchain, System
+                  Design, DSA with industry-grade projects.
+                </p>
               </div>
-              <h2 class="card-title">Data Structures & Algorithms (DSA)</h2>
-              <p class="card-author">by Rohit Negi</p>
-              <p class="card-description">
-                Master DSA concepts and advanced problem solving techniques to
-                crack FAANG interviews with confidence.
-              </p>
             </div>
-          </div>
-          <div class="flip-card-back">
-            <div class="texture-overlay"></div>
-            <h2 class="back-title">Data Structures & Algorithms (DSA)</h2>
-            <p class="card-description">
-              Master DSA concepts and advanced problem solving techniques to
-              crack...
-            </p>
-            <ul class="details-list">
-              <li>
-                <i class="ri-file-list-2-line ri"></i> 500+ Handpicked Problems
-              </li>
-              <li>
-                <i class="ri-code-s-slash-line ri"></i> Arrays, Trees, Graphs,
-                DP
-              </li>
-              <li><i class="ri-rocket-line ri"></i> Mock Interview Sessions</li>
-              <li>
-                <i class="ri-flash-light-line ri"></i> Placement Assistance
-              </li>
-              <li>
-                <i class="ri-book-read-line ri"></i> Industry Problem Patterns
-              </li>
-            </ul>
-            <a href="#" class="action-button">Start Building</a>
-          </div>
-        </div>
-        <!-- Card 2: Web Dev + Blockchain + System Design + DSA -->
-        <div class="flip-card card2">
-          <div class="flip-card-front">
-            <div class="texture-overlay"></div>
-            <img
-              src="https://picsum.photos/350/180?random=1"
-              alt="Web Development and Blockchain Full Course Image"
-              class="card-image"
-            />
-            <div class="inner-content">
-              <div class="tags-container">
-                <span class="tag live-indicator">LIVE</span>
-                <span class="tag category">BEGINNER TO ADVANCED</span>
-                <span class="tag lectures">120 lectures</span>
-              </div>
-              <h2 class="card-title">
-                Web Development + Blockchain + System...
+            <div class="flip-card-back">
+              <div class="texture-overlay"></div>
+              <h2 class="back-title">
+                Web Development + Blockchain + System Design + DSA
               </h2>
-              <p class="card-author">by Rohit Negi & Aditya Tandon</p>
               <p class="card-description">
                 Complete LIVE course covering Web Dev, Blockchain, System
-                Design, DSA with industry-grade projects.
+                Design, DSA with...
               </p>
+              <ul class="details-list">
+                <li>
+                  <i class="ri-live-line ri"></i> LIVE Web Development Sessions
+                </li>
+                <li>
+                  <i class="ri-code-s-slash-line ri"></i> Blockchain Development
+                </li>
+                <li>
+                  <i class="ri-rocket-line ri"></i> Pre-recorded DSA Content
+                </li>
+                <li>
+                  <i class="ri-flash-light-line ri"></i> Industry-grade Projects
+                </li>
+                <li>
+                  <i class="ri-book-read-line ri"></i> System Design
+                  Fundamentals
+                </li>
+              </ul>
+              <a href="#" class="action-button">Start Building</a>
             </div>
           </div>
-          <div class="flip-card-back">
-            <div class="texture-overlay"></div>
-            <h2 class="back-title">
-              Web Development + Blockchain + System Design + DSA
-            </h2>
-            <p class="card-description">
-              Complete LIVE course covering Web Dev, Blockchain, System Design,
-              DSA with...
-            </p>
-            <ul class="details-list">
-              <li>
-                <i class="ri-live-line ri"></i> LIVE Web Development Sessions
-              </li>
-              <li>
-                <i class="ri-code-s-slash-line ri"></i> Blockchain Development
-              </li>
-              <li>
-                <i class="ri-rocket-line ri"></i> Pre-recorded DSA Content
-              </li>
-              <li>
-                <i class="ri-flash-light-line ri"></i> Industry-grade Projects
-              </li>
-              <li>
-                <i class="ri-book-read-line ri"></i> System Design Fundamentals
-              </li>
-            </ul>
-            <a href="#" class="action-button">Start Building</a>
-          </div>
         </div>
-        <!-- Card 3: High Level Design (HLD) Masterclass -->
-        <div class="flip-card card3">
-          <div class="flip-card-front">
-            <div class="texture-overlay"></div>
-            <img
-              src="https://picsum.photos/350/180?random=2"
-              alt="High Level Design Masterclass Course Image"
-              class="card-image"
-            />
-            <div class="inner-content">
-              <div class="tags-container">
-                <span class="tag live-indicator">LIVE</span>
-                <span class="tag category">BEGINNER TO ADVANCED</span>
-                <span class="tag lectures">20 lectures</span>
+
+        <!-- Card 2: HLD Masterclass (Neon Green Theme) -->
+        <div id="card-neon-green">
+          <div class="flip-card">
+            <div class="flip-card-front">
+              <div class="texture-overlay"></div>
+              <img
+                src="https://placehold.co/350x180/39FF14/000000?text=HLD+NEON+V2"
+                alt="High Level Design Masterclass Course Image"
+                class="card-image"
+              />
+              <div class="inner-content">
+                <div class="tags-container">
+                  <span class="tag live-indicator">LIVE</span>
+                  <span class="tag category">BEGINNER TO ADVANCED</span>
+                  <span class="tag lectures">20 lectures</span>
+                </div>
+                <h2 class="card-title">High Level Design (HLD) Masterclass</h2>
+                <p class="card-author">by Aditya Tandon</p>
+                <p class="card-description">
+                  Deep dive into scalable systems architecture, real-world
+                  feature design, and comprehensive end-to-end HLD...
+                </p>
               </div>
-              <h2 class="card-title">High Level Design (HLD) Masterclass</h2>
-              <p class="card-author">by Aditya Tandon</p>
+            </div>
+            <div class="flip-card-back">
+              <div class="texture-overlay"></div>
+              <h2 class="back-title">High Level Design (HLD) Masterclass</h2>
               <p class="card-description">
                 Deep dive into scalable systems architecture, real-world feature
-                design, and comprehensive end-to-end HLD...
+                design...
               </p>
+              <ul class="details-list">
+                <li>
+                  <i class="ri-file-list-2-line ri"></i> System Design
+                  Foundations
+                </li>
+                <li>
+                  <i class="ri-code-s-slash-line ri"></i> Scalable Architecture
+                  Patterns
+                </li>
+                <li>
+                  <i class="ri-rocket-line ri"></i> Real-world Feature Design
+                </li>
+                <li>
+                  <i class="ri-flash-light-line ri"></i> End-to-end System
+                  Problems
+                </li>
+                <li>
+                  <i class="ri-building-line ri"></i> Microservices Architecture
+                </li>
+              </ul>
+              <a href="#" class="action-button">Start Building</a>
             </div>
-          </div>
-          <div class="flip-card-back">
-            <div class="texture-overlay"></div>
-            <h2 class="back-title">High Level Design (HLD) Masterclass</h2>
-            <p class="card-description">
-              Deep dive into scalable systems architecture, real-world feature
-              design...
-            </p>
-            <ul class="details-list">
-              <li>
-                <i class="ri-file-list-2-line ri"></i> System Design Foundations
-              </li>
-              <li>
-                <i class="ri-code-s-slash-line ri"></i> Scalable Architecture
-                Patterns
-              </li>
-              <li>
-                <i class="ri-rocket-line ri"></i> Real-world Feature Design
-              </li>
-              <li>
-                <i class="ri-flash-light-line ri"></i> End-to-end System
-                Problems
-              </li>
-              <li>
-                <i class="ri-building-line ri"></i> Microservices Architecture
-              </li>
-            </ul>
-            <a href="#" class="action-button">Start Building</a>
           </div>
         </div>
-        <!-- Card 4: Strike Course: DSA & Generative AI -->
-        <div class="flip-card card4">
-          <div class="flip-card-front">
-            <div class="texture-overlay"></div>
-            <img
-              src="https://picsum.photos/350/180?random=5"
-              alt="Strike Course DSA and Generative AI"
-              class="card-image"
-            />
-            <div class="inner-content">
-              <div class="tags-container">
-                <span class="tag launching-soon">Launching Soon</span>
-                <span class="tag category">NEXT-GEN DEVELOPMENT</span>
+
+        <!-- Card 3: DSA (Sunset Theme - Duplicate) -->
+        <div id="card-sunset">
+          <div class="flip-card">
+            <div class="flip-card-front">
+              <div class="texture-overlay"></div>
+              <img
+                src="https://placehold.co/350x180/8B5CF6/ffffff?text=DSA+Course+V2"
+                alt="Data Structures and Algorithms Course Image"
+                class="card-image"
+              />
+              <div class="inner-content">
+                <div class="tags-container">
+                  <span class="tag live-indicator">LIVE</span>
+                  <span class="tag category">BEGINNER TO ADVANCED</span>
+                  <span class="tag lectures">200 lectures</span>
+                </div>
+                <h2 class="card-title">Data Structures & Algorithms (DSA)</h2>
+                <p class="card-author">by Rohit Negi</p>
+                <p class="card-description">
+                  Master DSA concepts and advanced problem solving techniques to
+                  crack FAANG interviews with confidence.
+                </p>
               </div>
-              <h2 class="card-title">Strike Course: DSA & Generative AI</h2>
-              <p class="card-author">by Rohit Negi & Aditya Tandon</p>
+            </div>
+            <div class="flip-card-back">
+              <div class="texture-overlay"></div>
+              <h2 class="back-title">Data Structures & Algorithms (DSA)</h2>
               <p class="card-description">
-                Next-generation learning program focused on mastering DSA and
-                Generative AI through interactive, hands-on sessions.
+                Master DSA concepts and advanced problem solving techniques to
+                crack...
               </p>
+              <ul class="details-list">
+                <li>
+                  <i class="ri-file-list-2-line ri"></i> 500+ Handpicked
+                  Problems
+                </li>
+                <li>
+                  <i class="ri-code-s-slash-line ri"></i> Arrays, Trees, Graphs,
+                  DP
+                </li>
+                <li>
+                  <i class="ri-rocket-line ri"></i> Mock Interview Sessions
+                </li>
+                <li>
+                  <i class="ri-flash-light-line ri"></i> Placement Assistance
+                </li>
+                <li>
+                  <i class="ri-book-read-line ri"></i> Industry Problem Patterns
+                </li>
+              </ul>
+              <a href="#" class="action-button">Start Building</a>
             </div>
           </div>
-          <div class="flip-card-back">
-            <div class="texture-overlay"></div>
-            <h2 class="back-title">Strike Course: DSA & Generative AI</h2>
-            <p class="card-description">
-              A program crafted to help you think logically, build efficiently,
-              and become an industry-ready developer.
-            </p>
-            <ul class="details-list">
-              <li>
-                <i class="ri-lightbulb-line ri"></i> Master Logical Thinking
-                (DSA)
-              </li>
-              <li>
-                <i class="ri-code-s-slash-line ri"></i> Hands-on Generative AI
-                Sessions
-              </li>
-              <li>
-                <i class="ri-global-line ri"></i> Explore Real-World
-                Applications
-              </li>
-              <li>
-                <i class="ri-award-line ri"></i> Build Efficiently & Confidently
-              </li>
-              <li>
-                <i class="ri-graduation-cap-line ri"></i> Future-Ready Developer
-                Skills
-              </li>
-            </ul>
-            <a href="#" class="action-button">Join Waitlist</a>
+        </div>
+
+        <!-- Card 4: Strike Course (Blue Theme - Duplicate) -->
+        <div id="card-blue">
+          <div class="flip-card">
+            <div class="flip-card-front">
+              <div class="texture-overlay"></div>
+              <img
+                src="https://placehold.co/350x180/0000FF/ffffff?text=Generative+AI+V2"
+                alt="Strike Course DSA and Generative AI"
+                class="card-image"
+              />
+              <div class="inner-content">
+                <div class="tags-container">
+                  <span class="tag launching-soon">Launching Soon</span>
+                  <span class="tag category">NEXT-GEN DEVELOPMENT</span>
+                </div>
+                <h2 class="card-title">Strike Course: DSA & Generative AI</h2>
+                <p class="card-author">by Rohit Negi & Aditya Tandon</p>
+                <p class="card-description">
+                  Next-generation learning program focused on mastering DSA and
+                  Generative AI through interactive, hands-on sessions.
+                </p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="texture-overlay"></div>
+              <h2 class="back-title">Strike Course: DSA & Generative AI</h2>
+              <p class="card-description">
+                A program crafted to help you think logically, build
+                efficiently, and become an industry-ready developer.
+              </p>
+              <ul class="details-list">
+                <li>
+                  <i class="ri-lightbulb-line ri"></i> Master Logical Thinking
+                  (DSA)
+                </li>
+                <li>
+                  <i class="ri-code-s-slash-line ri"></i> Hands-on Generative AI
+                  Sessions
+                </li>
+                <li>
+                  <i class="ri-global-line ri"></i> Explore Real-World
+                  Applications
+                </li>
+                <li>
+                  <i class="ri-award-line ri"></i> Build Efficiently &
+                  Confidently
+                </li>
+                <li>
+                  <i class="ri-graduation-cap-line ri"></i> Future-Ready
+                  Developer Skills
+                </li>
+              </ul>
+              <a href="#" class="action-button">Join Waitlist</a>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+    <!-- END Section 10 -->
   </body>
 </html>
