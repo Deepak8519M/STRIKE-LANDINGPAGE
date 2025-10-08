@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strike Course Code Editor</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Import Monospaced Code Font and Inter for UI */
+      @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Inter:wght@100..900&display=swap");
+
+      :root {
+        /* General Theme */
+        --bg-deep: #070810;
+        --editor-bg-start: #1a1a2e;
+        --editor-bg-end: #0f101f;
+        --live-green: #00ff7f;
+        --total-duration: 35s; /* Total loop duration */
+
+        /* Syntax Highlighting (C++ Style) */
+        --keyword-color: #c792ea; /* Light Purple */
+        --string-color: #ffcb6b; /* Soft Yellow */
+        --type-color: #89ddff; /* Cyan (for types/libraries) */
+        --variable-color: #e6f0ff; /* White */
+        --comment-color: #5c6370; /* Gray */
+        --line-number-color: #404058;
+        --cursor-color: #e6f0ff;
+        --char-width: 0.76em;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-deep);
+      }
+
+      /* --- Editor Container: Sleek, Modern Design --- */
+      .window-container {
+        border-radius: 1rem;
+        overflow: hidden;
+        width: 100%;
+        max-width: 1000px;
+        background: linear-gradient(
+          145deg,
+          var(--editor-bg-start) 0%,
+          var(--editor-bg-end) 100%
+        );
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7),
+          0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+          0 0 20px rgba(0, 255, 127, 0.1);
+
+        /* Loop Control: Prevents the editor from fading out */
+        animation: loop-fade var(--total-duration) infinite step-end;
+      }
+
+      /* --- Header Bar --- */
+      .header {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-weight: 500;
+        backdrop-filter: blur(2px);
+      }
+
+      .live-dot {
+        width: 8px;
+        height: 8px;
+        background-color: var(--live-green);
+        box-shadow: 0 0 8px var(--live-green);
+        animation: pulse-glow 1.5s infinite ease-in-out;
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(1.2);
+        }
+      }
+
+      /* --- Code Block --- */
+      .code-block {
+        font-family: "Fira Code", "Courier New", monospace;
+        font-size: 15px;
+        color: var(--variable-color);
+        line-height: 1.6;
+        padding-bottom: 20px;
+        overflow: hidden;
+      }
+
+      .line-number {
+        color: var(--line-number-color);
+        user-select: none;
+        width: 30px;
+        text-align: right;
+      }
+
+      .keyword {
+        color: var(--keyword-color);
+      }
+      .string {
+        color: var(--string-color);
+      }
+      .type {
+        color: var(--type-color);
+      }
+      .comment {
+        color: var(--comment-color);
+        font-style: italic;
+      }
+
+      /* --- Typing Animation Core --- */
+      .line-wrapper {
+        opacity: 1; /* CRITICAL FIX: Ensure container is always visible */
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        padding-left: 10px;
+
+        /* Removed instant-reset-opacity-wrapper from here */
+      }
+
+      .typewriter {
+        overflow: hidden;
+        white-space: nowrap;
+        width: 0;
+        display: inline-block;
+        transition: width 0.01s;
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 8px;
+        height: 1em;
+        margin-left: 2px;
+        vertical-align: middle;
+        background-color: var(--cursor-color);
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(0);
+        opacity: 0; /* Hidden by default */
+      }
+
+      /* Base keyframes */
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes instant-reset-opacity {
+        to {
+          opacity: 0;
+        }
+      }
+
+      /* New reset keyframe for smooth loop: snap width to 0 right at the end */
+      @keyframes instant-reset-width {
+        from {
+          width: 100%;
+        }
+        to {
+          width: 0;
+        }
+      }
+
+      /* MASTER LOOP FIX: Keep the editor visible (opacity: 1) permanently. */
+      @keyframes loop-fade {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* --- TYPING SEQUENCE DEFINITIONS (Cursor timing now linked to line start time) --- */
+      /* N=Char Count, D=Duration, S=Start Time, O=Cursor Off Time */
+
+      /* LINE 01 (CSS: line-7): N:19, D:0.95s, S:0s, O:1.40s. Reset @ 34.999s */
+      .line-7 {
+        /* Line Wrapper animation removed */
+      }
+      .line-7 .typewriter {
+        animation: typing-19 0.95s steps(19) 0s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-7 .cursor {
+        animation: cursor-move-19 0.95s steps(19) 0s forwards,
+          blink 0.8s infinite steps(2) 0s,
+          instant-reset-opacity 0.001s forwards 1.4s,
+          instant-reset-opacity 0.001s linear 34.999s forwards; /* Reset cursor visibility for loop restart */
+      }
+      @keyframes typing-19 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-19 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(19 * var(--char-width));
+        }
+      }
+
+      /* LINE 02 (CSS: line-8): N:0, D:0.0s, S:1.45s, O:1.90s. Reset @ 34.999s */
+      .line-8 {
+        /* Line Wrapper animation removed */
+      }
+      .line-8 .cursor {
+        animation: blink 0.8s infinite steps(2) 1.45s,
+          instant-reset-opacity 0.001s forwards 1.9s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+
+      /* LINE 03 (CSS: line-9): N:23, D:1.15s, S:1.95s, O:3.55s. Reset @ 34.999s */
+      .line-9 {
+        /* Line Wrapper animation removed */
+      }
+      .line-9 .typewriter {
+        animation: typing-23 1.15s steps(23) 1.95s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-9 .cursor {
+        animation: cursor-move-23 1.15s steps(23) 1.95s forwards,
+          blink 0.8s infinite steps(2) 1.95s,
+          instant-reset-opacity 0.001s forwards 3.55s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-23 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-23 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(23 * var(--char-width));
+        }
+      }
+
+      /* LINE 04 (CSS: line-10): N:0, D:0.0s, S:3.60s, O:4.05s. Reset @ 34.999s */
+      .line-10 {
+        /* Line Wrapper animation removed */
+      }
+      .line-10 .cursor {
+        animation: blink 0.8s infinite steps(2) 3.6s,
+          instant-reset-opacity 0.001s forwards 4.05s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+
+      /* LINE 05 (CSS: line-11): N:18, D:0.9s, S:4.10s, O:5.45s. Reset @ 34.999s */
+      .line-11 {
+        /* Line Wrapper animation removed */
+      }
+      .line-11 .typewriter {
+        animation: typing-18 0.9s steps(18) 4.1s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-11 .cursor {
+        animation: cursor-move-18 0.9s steps(18) 4.1s forwards,
+          blink 0.8s infinite steps(2) 4.1s,
+          instant-reset-opacity 0.001s forwards 5.45s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-18 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-18 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(18 * var(--char-width));
+        }
+      }
+
+      /* LINE 06 (CSS: line-12): N:8, D:0.4s, S:5.50s, O:6.35s. Reset @ 34.999s */
+      .line-12 {
+        /* Line Wrapper animation removed */
+      }
+      .line-12 .typewriter {
+        animation: typing-8 0.4s steps(8) 5.5s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-12 .cursor {
+        animation: cursor-move-8 0.4s steps(8) 5.5s forwards,
+          blink 0.8s infinite steps(2) 5.5s,
+          instant-reset-opacity 0.001s forwards 6.35s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-8 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-8 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(8 * var(--char-width));
+        }
+      }
+
+      /* LINE 07 (CSS: line-13): N:27, D:1.35s, S:6.40s, O:8.20s. Reset @ 34.999s */
+      .line-13 {
+        /* Line Wrapper animation removed */
+      }
+      .line-13 .typewriter {
+        animation: typing-27 1.35s steps(27) 6.4s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-13 .cursor {
+        animation: cursor-move-27 1.35s steps(27) 6.4s forwards,
+          blink 0.8s infinite steps(2) 6.4s,
+          instant-reset-opacity 0.001s forwards 8.2s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-27 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-27 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(27 * var(--char-width));
+        }
+      }
+
+      /* LINE 08 (CSS: line-14): N:32, D:1.6s, S:8.25s, O:10.30s. Reset @ 34.999s */
+      .line-14 {
+        /* Line Wrapper animation removed */
+      }
+      .line-14 .typewriter {
+        animation: typing-32 1.6s steps(32) 8.25s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-14 .cursor {
+        animation: cursor-move-32 1.6s steps(32) 8.25s forwards,
+          blink 0.8s infinite steps(2) 8.25s,
+          instant-reset-opacity 0.001s forwards 10.3s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-32 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-32 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(32 * var(--char-width));
+        }
+      }
+
+      /* LINE 09 (CSS: line-15): N:18, D:0.9s, S:10.35s, O:11.70s. Reset @ 34.999s */
+      .line-15 {
+        /* Line Wrapper animation removed */
+      }
+      .line-15 .typewriter {
+        animation: typing-18-b 0.9s steps(18) 10.35s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-15 .cursor {
+        animation: cursor-move-18-b 0.9s steps(18) 10.35s forwards,
+          blink 0.8s infinite steps(2) 10.35s,
+          instant-reset-opacity 0.001s forwards 11.7s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-18-b {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-18-b {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(18 * var(--char-width));
+        }
+      }
+
+      /* LINE 10 (CSS: line-16): N:51, D:2.55s, S:11.75s, O:14.75s. Reset @ 34.999s */
+      .line-16 {
+        /* Line Wrapper animation removed */
+      }
+      .line-16 .typewriter {
+        animation: typing-51 2.55s steps(51) 11.75s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-16 .cursor {
+        animation: cursor-move-51 2.55s steps(51) 11.75s forwards,
+          blink 0.8s infinite steps(2) 11.75s,
+          instant-reset-opacity 0.001s forwards 14.75s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-51 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-51 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(51 * var(--char-width));
+        }
+      }
+
+      /* LINE 11 (CSS: line-17): N:0, D:0.0s, S:14.80s, O:15.25s. Reset @ 34.999s */
+      .line-17 {
+        /* Line Wrapper animation removed */
+      }
+      .line-17 .cursor {
+        animation: blink 0.8s infinite steps(2) 14.8s,
+          instant-reset-opacity 0.001s forwards 15.25s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+
+      /* LINE 12 (CSS: line-18): N:7, D:0.35s, S:15.30s, O:16.10s. Reset @ 34.999s */
+      .line-18 {
+        /* Line Wrapper animation removed */
+      }
+      .line-18 .typewriter {
+        animation: typing-7 0.35s steps(7) 15.3s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-18 .cursor {
+        animation: cursor-move-7 0.35s steps(7) 15.3s forwards,
+          blink 0.8s infinite steps(2) 15.3s,
+          instant-reset-opacity 0.001s forwards 16.1s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-7 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-7 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(7 * var(--char-width));
+        }
+      }
+
+      /* LINE 13 (CSS: line-19): N:15, D:0.75s, S:16.15s, O:17.35s. Reset @ 34.999s */
+      .line-19 {
+        /* Line Wrapper animation removed */
+      }
+      .line-19 .typewriter {
+        animation: typing-15 0.75s steps(15) 16.15s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-19 .cursor {
+        animation: cursor-move-15 0.75s steps(15) 16.15s forwards,
+          blink 0.8s infinite steps(2) 16.15s,
+          instant-reset-opacity 0.001s forwards 17.35s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-15 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-15 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(15 * var(--char-width));
+        }
+      }
+
+      /* LINE 14 (CSS: line-20): N:31, D:1.55s, S:17.40s, O:19.40s. Reset @ 34.999s */
+      .line-20 {
+        /* Line Wrapper animation removed */
+      }
+      .line-20 .typewriter {
+        animation: typing-31 1.55s steps(31) 17.4s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-20 .cursor {
+        animation: cursor-move-31 1.55s steps(31) 17.4s forwards,
+          blink 0.8s infinite steps(2) 17.4s,
+          instant-reset-opacity 0.001s forwards 19.4s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-31 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-31 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(31 * var(--char-width));
+        }
+      }
+
+      /* LINE 15 (CSS: line-21): N:0, D:0.0s, S:19.45s, O:19.90s. Reset @ 34.999s */
+      .line-21 {
+        /* Line Wrapper animation removed */
+      }
+      .line-21 .cursor {
+        animation: blink 0.8s infinite steps(2) 19.45s,
+          instant-reset-opacity 0.001s forwards 19.9s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+
+      /* LINE 16 (CSS: line-22): N:34, D:1.7s, S:19.95s, O:22.10s. Reset @ 34.999s */
+      .line-22 {
+        /* Line Wrapper animation removed */
+      }
+      .line-22 .typewriter {
+        animation: typing-34 1.7s steps(34) 19.95s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-22 .cursor {
+        animation: cursor-move-34 1.7s steps(34) 19.95s forwards,
+          blink 0.8s infinite steps(2) 19.95s,
+          instant-reset-opacity 0.001s forwards 22.1s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-34 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-34 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(34 * var(--char-width));
+        }
+      }
+
+      /* LINE 17 (CSS: line-23): N:27, D:1.35s, S:22.15s, O:23.95s. Reset @ 34.999s */
+      .line-23 {
+        /* Line Wrapper animation removed */
+      }
+      .line-23 .typewriter {
+        animation: typing-27-b 1.35s steps(27) 22.15s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-23 .cursor {
+        animation: cursor-move-27-b 1.35s steps(27) 22.15s forwards,
+          blink 0.8s infinite steps(2) 22.15s,
+          instant-reset-opacity 0.001s forwards 23.95s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-27-b {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-27-b {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(27 * var(--char-width));
+        }
+      }
+
+      /* LINE 18 (CSS: line-24): N:5, D:0.25s, S:24.00s, O:24.70s. Reset @ 34.999s */
+      .line-24 {
+        /* Line Wrapper animation removed */
+      }
+      .line-24 .typewriter {
+        animation: typing-5 0.25s steps(5) 24s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-24 .cursor {
+        animation: cursor-move-5 0.25s steps(5) 24s forwards,
+          blink 0.8s infinite steps(2) 24s,
+          instant-reset-opacity 0.001s forwards 24.7s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-5 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-5 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(5 * var(--char-width));
+        }
+      }
+
+      /* LINE 19 (CSS: line-25): N:25, D:1.25s, S:24.75s, O:26.45s. Reset @ 34.999s */
+      .line-25 {
+        /* Line Wrapper animation removed */
+      }
+      .line-25 .typewriter {
+        animation: typing-25 1.25s steps(25) 24.75s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-25 .cursor {
+        animation: cursor-move-25 1.25s steps(25) 24.75s forwards,
+          blink 0.8s infinite steps(2) 24.75s,
+          instant-reset-opacity 0.001s forwards 26.45s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-25 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-25 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(25 * var(--char-width));
+        }
+      }
+
+      /* LINE 20 (CSS: line-26): N:2, D:0.1s, S:26.50s, O:27.10s. Reset @ 34.999s */
+      .line-26 {
+        /* Line Wrapper animation removed */
+      }
+      .line-26 .typewriter {
+        animation: typing-2 0.1s steps(2) 26.5s forwards,
+          instant-reset-width 0.001s linear 34.999s forwards;
+      }
+      .line-26 .cursor {
+        animation: cursor-move-2 0.1s steps(2) 26.5s forwards,
+          blink 0.8s infinite steps(2) 26.5s,
+          instant-reset-opacity 0.001s forwards 27.1s,
+          instant-reset-opacity 0.001s linear 34.999s forwards;
+      }
+      @keyframes typing-2 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes cursor-move-2 {
+        from {
+          left: 0;
+        }
+        to {
+          left: calc(2 * var(--char-width));
+        }
+      }
+
+      /* Terminal Styling */
+      .terminal-area {
+        background: #000000;
+        color: #f0f0f0;
+        border-top: 1px solid var(--live-green);
+        box-shadow: 0 -5px 15px rgba(0, 255, 127, 0.1);
+      }
+      .terminal-prompt {
+        color: var(--live-green);
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body class="flex items-center justify-center min-h-screen p-4 sm:p-8">
+    <div id="editor" class="window-container w-full max-w-5xl">
+      <!-- Header Bar -->
+      <div class="header flex items-center p-3 text-sm rounded-t-xl font-mono">
+        <!-- Left: Mac Style Buttons -->
+        <div class="flex space-x-2">
+          <span
+            class="w-3 h-3 rounded-full bg-red-500 hover:scale-110 transition cursor-pointer"
+          ></span>
+          <span
+            class="w-3 h-3 rounded-full bg-yellow-400 hover:scale-110 transition cursor-pointer"
+          ></span>
+          <span
+            class="w-3 h-3 rounded-full bg-green-500 hover:scale-110 transition cursor-pointer"
+          ></span>
+        </div>
+
+        <!-- Center: Filename -->
+        <span class="font-medium text-gray-300 mx-auto"
+          >StrikeCourse_DSA_GenAI.cpp</span
+        >
+
+        <!-- Right: Live Coding Indicator -->
+        <div
+          class="flex items-center space-x-2 text-xs font-semibold"
+          style="color: var(--live-green)"
+        >
+          <span class="live-dot rounded-full"></span>
+          <span>Live Coding</span>
+        </div>
+      </div>
+
+      <!-- Code Block Content (Line numbers updated to 01-20) -->
+      <div id="code-output" class="code-block p-4 sm:p-6">
+        <!-- Line 01 (CSS: line-7) -->
+        <div class="line-wrapper line-7">
+          <span class="line-number pr-4">01</span>
+          <span class="line-content relative flex-1">
+            <span class="typewriter"
+              ><span class="keyword">#include</span> &lt;<span class="type"
+                >chrono</span
+              >&gt;</span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 02 (CSS: line-8) -->
+        <div class="line-wrapper line-8">
+          <span class="line-number pr-4">02</span>
+          <span class="line-content relative flex-1">
+            <span class="typewriter"></span>
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 03 (CSS: line-9) -->
+        <div class="line-wrapper line-9">
+          <span class="line-number pr-4">03</span>
+          <span class="line-content relative flex-1">
+            <span class="typewriter"
+              ><span class="keyword">using</span>
+              <span class="keyword">namespace</span>
+              <span class="type">std</span>;</span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 04 (CSS: line-10) -->
+        <div class="line-wrapper line-10">
+          <span class="line-number pr-4">04</span>
+          <span class="line-content relative flex-1">
+            <span class="typewriter"></span>
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 05 (CSS: line-11) -->
+        <div class="line-wrapper line-11">
+          <span class="line-number pr-4">05</span>
+          <span class="line-content relative flex-1">
+            <span class="typewriter"
+              ><span class="keyword">class</span>
+              <span class="variable">CoderArmy</span> {</span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 06 (CSS: line-12) -->
+        <div class="line-wrapper line-12">
+          <span class="line-number pr-4">06</span>
+          <span class="line-content relative flex-1 pl-4">
+            <span class="typewriter"
+              ><span class="keyword">private</span>:</span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 07 (CSS: line-13) -->
+        <div class="line-wrapper line-13">
+          <span class="line-number pr-4">07</span>
+          <span class="line-content relative flex-1 pl-8">
+            <span class="typewriter">
+              <span class="type">vector</span>&lt;<span class="type"
+                >string</span
+              >&gt; <span class="variable">courseModules</span>;</span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 08 (CSS: line-14) -->
+        <div class="line-wrapper line-14">
+          <span class="line-number pr-4">08</span>
+          <span class="line-content relative flex-1 pl-8">
+            <span class="typewriter">
+              <span class="type">unique_ptr</span>&lt;<span class="type"
+                >int</span
+              >&gt; <span class="variable">dsaProgress</span>;</span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 09 (CSS: line-15) -->
+        <div class="line-wrapper line-15">
+          <span class="line-number pr-4">09</span>
+          <span class="line-content relative flex-1 pl-8">
+            <span class="typewriter">
+              <span class="keyword">bool</span>
+              <span class="variable">isGenAiReady</span>;</span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 10 (CSS: line-16) -->
+        <div class="line-wrapper line-16">
+          <span class="line-number pr-4">10</span>
+          <span class="line-content relative flex-1 pl-8">
+            <span class="typewriter">
+              <span class="keyword">const</span>
+              <span class="type">string</span>
+              <span class="variable">launchDate</span> =
+              <span class="string">"October 18th"</span>;</span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 11 (CSS: line-17) -->
+        <div class="line-wrapper line-17">
+          <span class="line-number pr-4">11</span>
+          <span class="line-content relative flex-1">
+            <span class="typewriter"></span>
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 12 (CSS: line-18) -->
+        <div class="line-wrapper line-18">
+          <span class="line-number pr-4">12</span>
+          <span class="line-content relative flex-1 pl-4">
+            <span class="typewriter"><span class="keyword">public</span>:</span>
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 13 (CSS: line-19) -->
+        <div class="line-wrapper line-19">
+          <span class="line-number pr-4">13</span>
+          <span class="line-content relative flex-1 pl-8">
+            <span class="typewriter"
+              ><span class="variable">CoderArmy</span>()</span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 14 (CSS: line-20) -->
+        <div class="line-wrapper line-20">
+          <span class="line-number pr-4">14</span>
+          <span class="line-content relative flex-1 pl-8">
+            <span class="typewriter">
+              : <span class="variable">isGenAiReady</span>(<span class="keyword"
+                >true</span
+              >) {}</span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 15 (CSS: line-21) -->
+        <div class="line-wrapper line-21">
+          <span class="line-number pr-4">15</span>
+          <span class="line-content relative flex-1">
+            <span class="typewriter"></span>
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 16 (CSS: line-22) -->
+        <div class="line-wrapper line-22">
+          <span class="line-number pr-4">16</span>
+          <span class="line-content relative flex-1 pl-8">
+            <span class="typewriter">
+              <span class="keyword">void</span>
+              <span class="variable">initCourse</span>(<span class="type"
+                >string</span
+              >
+              <span class="variable">courseName</span>) {</span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 17 (CSS: line-23) -->
+        <div class="line-wrapper line-23">
+          <span class="line-number pr-4">17</span>
+          <span class="line-content relative flex-1 pl-12">
+            <span class="typewriter">
+              <span class="comment"
+                >// The Strike Course combines DSA and GenAI</span
+              ></span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 18 (CSS: line-24) -->
+        <div class="line-wrapper line-24">
+          <span class="line-number pr-4">18</span>
+          <span class="line-content relative flex-1 pl-12">
+            <span class="typewriter"> }</span>
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 19 (CSS: line-25) -->
+        <div class="line-wrapper line-25">
+          <span class="line-number pr-4">19</span>
+          <span class="line-content relative flex-1 pl-4">
+            <span class="typewriter"
+              ><span class="comment">// End of Strike Course class</span></span
+            >
+            <span class="cursor"></span>
+          </span>
+        </div>
+
+        <!-- Line 20 (CSS: line-26) -->
+        <div class="line-wrapper line-26">
+          <span class="line-number pr-4">20</span>
+          <span class="line-content relative flex-1">
+            <span class="typewriter">};</span>
+            <span class="cursor"></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Terminal/Output Area -->
+      <div
+        class="terminal-area text-sm font-mono p-4 border-t h-28 overflow-y-auto"
+      >
+        <span class="terminal-prompt">></span>
+        <span class="text-white">./StrikeCourse_DSA_GenAI</span>
+        <div class="text-yellow-400 text-xs mt-1">
+          <span class="font-bold">[BUILD]</span> Compiling
+          <span class="text-white">DSA/GenAI</span> modules...
+          <span class="text-green-400">SUCCESS</span>.
+        </div>
+        <div class="text-gray-400 text-xs">
+          Course Title: <span class="text-white">Strike Course</span>
+        </div>
+        <div class="text-gray-400 text-xs">
+          Focus:
+          <span class="text-white">Data Structures & Algorithms (DSA)</span> +
+          <span class="text-white">Generative AI</span>
+        </div>
+        <div class="text-gray-400 text-xs">
+          Launch:
+          <span class="text-red-400 font-bold">Target Date October 18th</span>
+        </div>
+      </div>
+
+      <!-- Status Bar -->
+      <div
+        id="status-bar"
+        class="bg-gray-800 text-gray-400 text-xs p-1 text-right border-t border-gray-700 font-mono rounded-b-xl opacity-80"
+      >
+        C++ / 20 Lines /
+        <span style="color: var(--live-green)">GenAI/DSA Strike Course</span>
+      </div>
+    </div>
+  </body>
+</html>
