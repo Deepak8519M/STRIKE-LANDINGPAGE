@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instructor Profile - Rohit Negi</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        /* Light Theme Colors */
+        --primary-purple: #7641ea;
+        --background-white: #ffffff;
+        --text-dark: #1a1a1a;
+        --text-medium: #4a4a4a;
+        --text-light: #6e6e6e;
+        --badge-bg-light: #e8e2f9; /* Lighter purple for secondary badges */
+        --light-border: #d0d0d0;
+        --pill-bg-color: #f9f9fb; /* Light background for the pill container */
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 40px 20px;
+        background-color: var(--background-white);
+        color: var(--text-dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        box-sizing: border-box;
+      }
+
+      .main-pill-container {
+        max-width: 1200px;
+        width: 100%;
+        background-color: var(--pill-bg-color);
+        border-radius: 40px;
+        padding: 60px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        box-sizing: border-box;
+      }
+
+      .instructor-card {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .instructor-info {
+        flex: 1;
+        min-width: 350px;
+      }
+
+      .instructor-info h3 {
+        font-size: 2.5em;
+        color: var(--text-dark);
+        margin-top: 0;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+      }
+
+      .instructor-info h3 .trophy-icon {
+        margin-left: 15px;
+        font-size: 0.8em;
+        color: var(--primary-purple);
+      }
+
+      .instructor-info .badges {
+        display: flex;
+        flex-direction: column; /* Stack badge lines */
+        gap: 10px; /* Gap between lines of badges */
+        margin-top: 20px;
+        margin-bottom: 25px;
+      }
+
+      .badge-line {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* Gap between badges on the same line */
+      }
+
+      .instructor-info .badge {
+        padding: 8px 18px;
+        border-radius: 25px;
+        font-size: 0.9em;
+        font-weight: 500;
+        white-space: nowrap;
+        border: 1px solid transparent; /* Default transparent border */
+      }
+
+      /* Styling for the first line of badges */
+      .badge.primary-style {
+        background-color: var(--primary-purple);
+        color: var(--background-white);
+      }
+
+      /* Styling for the second line of badges */
+      .badge.secondary-style {
+        background-color: var(--badge-bg-light);
+        color: var(--primary-purple);
+        border-color: var(--primary-purple); /* Border to match text */
+      }
+
+      .instructor-info p {
+        font-size: 1.05em;
+        line-height: 1.6;
+        color: var(--text-medium);
+        margin-bottom: 30px;
+        max-width: 550px;
+        font-weight: 500;
+      }
+
+      .instructor-actions {
+        display: flex;
+        gap: 20px;
+      }
+
+      .instructor-actions button {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.05em;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-weight: 600;
+      }
+
+      .instructor-actions .primary-button {
+        background-color: var(--primary-purple);
+        color: var(--background-white);
+      }
+
+      .instructor-actions .primary-button:hover {
+        background-color: #612ebf;
+      }
+
+      .instructor-actions .secondary-button {
+        background-color: transparent;
+        color: var(--primary-purple);
+        border: 2px solid var(--primary-purple);
+      }
+
+      .instructor-actions .secondary-button:hover {
+        background-color: var(--primary-purple);
+        color: var(--background-white);
+      }
+
+      .navigation-arrows {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .arrow-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid var(--light-border);
+        background-color: var(--background-white);
+        color: var(--text-dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 1.2em;
+      }
+
+      .arrow-button:hover {
+        border-color: var(--primary-purple);
+        color: var(--primary-purple);
+      }
+
+      /* *** IMPROVED IMAGE STYLING FOR ORGANIC BLOB SHAPE *** */
+      .instructor-image {
+        width: 380px;
+        height: 380px;
+        position: relative;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* Ensure blob doesn't spill */
+      }
+
+      .blob-shape {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: var(--primary-purple);
+        z-index: 1;
+        /* More refined blob shape points */
+        clip-path: polygon(
+          30% 0%,
+          70% 0%,
+          100% 30%,
+          100% 70%,
+          70% 100%,
+          30% 100%,
+          0% 70%,
+          0% 30%
+        );
+        /* This creates a softer, squarish blob with rounded corners */
+        transform: rotate(-10deg); /* Slight rotation */
+      }
+
+      .instructor-image img {
+        position: relative;
+        z-index: 2;
+        width: 95%; /* Make image slightly larger to fill more of the blob */
+        height: 95%;
+        object-fit: cover;
+        border-radius: 50%; /* Image itself remains round */
+        /* margin: 2.5%; /* Center the image more precisely */
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for the image */
+      }
+      /* ************************************************* */
+
+      /* Responsive adjustments */
+      @media (max-width: 992px) {
+        .main-pill-container {
+          padding: 40px;
+        }
+        .instructor-card {
+          flex-direction: column;
+          align-items: center;
+          gap: 30px;
+        }
+
+        .instructor-info {
+          order: 2;
+          text-align: center;
+        }
+
+        .instructor-info h3 {
+          justify-content: center;
+        }
+
+        .instructor-info .badges {
+          align-items: center; /* Center badge lines when stacked */
+        }
+        .badge-line {
+          justify-content: center;
+        }
+
+        .instructor-actions {
+          justify-content: center;
+        }
+
+        .navigation-arrows {
+          justify-content: center;
+        }
+
+        .instructor-image {
+          order: 1;
+          width: 300px;
+          height: 300px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .main-pill-container {
+          padding: 25px;
+          border-radius: 30px;
+        }
+        .instructor-info h3 {
+          font-size: 2em;
+        }
+        .instructor-actions {
+          flex-direction: column;
+          gap: 15px;
+        }
+        .instructor-actions button {
+          width: 100%;
+        }
+        .instructor-image {
+          width: 250px;
+          height: 250px;
+        }
+        .instructor-image img {
+          width: 90%;
+          height: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-pill-container">
+      <div class="instructor-card">
+        <div class="instructor-info">
+          <h3>Rohit Negi <span class="trophy-icon">🏆</span></h3>
+
+          <div class="badges">
+            <div class="badge-line">
+              <span class="badge primary-style">Founder & Lead Instructor</span>
+              <span class="badge primary-style">Ex-@Uber</span>
+            </div>
+            <div class="badge-line">
+              <span class="badge secondary-style">IIT Graduate</span>
+              <span class="badge secondary-style">2 Cr+ Package</span>
+              <span class="badge secondary-style">Industry Expert</span>
+            </div>
+          </div>
+
+          <p>
+            Heartfelt Problem Solver, Instructor, and Visionary Leader. Got
+            Highest Placement in India of 2 Cr +. Post Graduate from IIT G,
+            GATE-CSE'20 AIR – 202
+          </p>
+
+          <div class="instructor-actions">
+            <button class="primary-button">Start Learning</button>
+            <button class="secondary-button">Know More</button>
+          </div>
+
+          <div class="navigation-arrows">
+            <div class="arrow-button">&larr;</div>
+            <div class="arrow-button">&rarr;</div>
+          </div>
+        </div>
+
+        <div class="instructor-image">
+          <div class="blob-shape"></div>
+          <img src="./MAINFILE/assets/negi1.png" alt="Rohit Negi" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
