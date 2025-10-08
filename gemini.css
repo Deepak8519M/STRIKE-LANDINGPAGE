@@ -1,0 +1,859 @@
+/* --- Root Variables for All Themes --- */
+:root {
+  /* Blue Theme */
+  --primary-blue: #0000ff;
+  --light-blue: #00bfff;
+  --white-core: #ffffff;
+  --dark-base-blue: rgba(0, 0, 10, 0.85);
+  --icon-light-blue: #e0f7fa;
+  --icon-dark-blue: #002244;
+  /* Crimson Theme */
+  --primary-crimson: #dc143c;
+  --light-crimson: #ff6347;
+  --dark-base-crimson: rgba(15, 0, 0, 0.85);
+  --icon-light-crimson: #ffdada;
+  --icon-dark-crimson: #660000;
+  /* Mint Theme */
+  --primary-mint: #00b894;
+  --light-cyan: #e0ffff;
+  --dark-base-mint: rgba(0, 10, 8, 0.85);
+  --icon-light-mint: #f0ffff;
+  --icon-dark-mint: #004d40;
+  /* Gold Theme */
+  --primary-gold: #ffd700;
+  --light-amber: #ffebb5;
+  --dark-base-gold: rgba(10, 5, 0, 0.85);
+  --icon-light-gold: #fff8e1;
+  --icon-dark-gold: #663e00;
+  /* Deep Mentorship Theme */
+  --primary-deep: #4a00e0;
+  --light-accent: #a77dff;
+  --dark-base-deep: rgba(10, 0, 30, 0.85);
+  --icon-light-deep: #e0e0ff;
+  --icon-dark-deep: #220066;
+  /* Sunset Theme */
+  --primary-orange: #ff7b00;
+  --light-peach: #ffebb5;
+  --dark-base-sunset: rgba(20, 5, 0, 0.85);
+  --icon-light-sunset: #fffae8;
+  --icon-dark-sunset: #602500;
+  /* Common Variables */
+  --border-size: 3px;
+  --TILT-DEGREE: 8deg;
+  --LIFT-Z: 25px;
+}
+
+/* --- Global Styles --- */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #000000;
+  color: white;
+  perspective: 1000px; /* Added for 3D effect */
+}
+
+/* --- Feature Section --- */
+#feature-section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  background: #000000;
+}
+
+.section-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  text-align: center;
+  background: linear-gradient(45deg, #00bfff, #4a00e0, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin-bottom: 60px;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+/* --- Cards Container --- */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1400px;
+  width: 100%;
+}
+
+/* --- Card Wrapper --- */
+.card-wrapper {
+  position: relative;
+  width: calc(25% - 20px);
+  min-width: 240px;
+  height: 280px;
+  border-radius: 20px;
+  padding: var(--border-size);
+  box-sizing: border-box;
+  background: transparent;
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease-out;
+}
+
+.card-wrapper:hover {
+  transform: translateZ(var(--LIFT-Z)) rotateX(var(--TILT-DEGREE))
+    rotateY(var(--TILT-DEGREE));
+  cursor: pointer;
+}
+
+/* --- Card Content --- */
+.card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 17px;
+  overflow: hidden;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s;
+}
+
+/* --- Logo/Icon Styles --- */
+.card-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px; /* Added padding for breathing room */
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  align-self: flex-start;
+  background: linear-gradient(145deg, #281505, #100800);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7),
+    inset 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.card-logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  background: radial-gradient(
+    circle at 20% 20%,
+    rgba(255, 255, 255, 0.2),
+    transparent 50%
+  );
+}
+
+.card-logo .ri {
+  font-size: 1.8rem;
+}
+
+/* --- Typography and Button --- */
+.card-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+  text-align: left;
+}
+
+.card-description {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+  margin-bottom: 16px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  padding: 8px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 0.7rem;
+  font-weight: 600;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-top: auto;
+  border: 1px solid var(--white-core);
+}
+
+.button::after {
+  content: "→";
+  margin-left: 8px;
+  transition: margin-left 0.2s ease;
+}
+
+.button:hover::after {
+  margin-left: 12px;
+}
+
+/* --- Keyframe for Rotating Border --- */
+@keyframes borderRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Blue Theme (Master DSA & Gen AI) --- */
+.card-blue::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    var(--white-core) 0%,
+    var(--light-blue) 4%,
+    var(--primary-blue) 12%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0) 95%,
+    var(--white-core) 100%
+  );
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  top: -60px;
+  left: -60px;
+  border-radius: 25px;
+  animation: borderRotate 4s linear infinite;
+  filter: blur(8px);
+  opacity: 0.9;
+}
+
+.card-blue .card-content {
+  background: var(--dark-base-blue);
+}
+
+.card-blue .card-content::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(0, 50, 255, 0.1),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+
+.card-blue .card-content::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #ffffff 0%,
+    #0000ff 35%,
+    rgba(0, 0, 255, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+}
+
+.card-blue .card-logo .ri {
+  background: linear-gradient(
+    135deg,
+    var(--icon-light-blue),
+    var(--primary-blue)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(0, 0, 255, 0.8);
+}
+
+.card-blue .button {
+  background: var(--light-blue);
+  color: var(--dark-base-blue);
+  box-shadow: 0 4px 15px rgba(0, 191, 255, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.card-blue .button:hover {
+  background: #99ffff;
+  color: #000;
+  box-shadow: 0 8px 20px rgba(0, 191, 255, 0.8);
+}
+
+/* --- Crimson Theme (AI Doubt Clarifier) --- */
+.card-crimson::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    var(--white-core) 0%,
+    var(--light-crimson) 4%,
+    var(--primary-crimson) 12%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0) 95%,
+    var(--white-core) 100%
+  );
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  top: -60px;
+  left: -60px;
+  border-radius: 25px;
+  animation: borderRotate 4s linear infinite;
+  filter: blur(8px);
+  opacity: 0.9;
+}
+
+.card-crimson .card-content {
+  background: var(--dark-base-crimson);
+}
+
+.card-crimson .card-content::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(255, 0, 0, 0.1),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+
+.card-crimson .card-content::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #ffcccc 0%,
+    #dc143c 35%,
+    rgba(220, 20, 60, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+}
+
+.card-crimson .card-logo .ri {
+  background: linear-gradient(
+    135deg,
+    var(--icon-light-crimson),
+    var(--primary-crimson)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(220, 20, 60, 0.8);
+}
+
+.card-crimson .button {
+  background: var(--light-crimson);
+  color: var(--dark-base-crimson);
+  box-shadow: 0 4px 15px rgba(220, 20, 60, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.card-crimson .button:hover {
+  background: #ffaaaa;
+  color: #000;
+  box-shadow: 0 8px 20px rgba(220, 20, 60, 0.8);
+}
+
+/* --- Mint Theme (Progress & Certification) --- */
+.card-mint::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    var(--white-core) 0%,
+    var(--light-cyan) 4%,
+    var(--primary-mint) 12%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0) 95%,
+    var(--white-core) 100%
+  );
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  top: -60px;
+  left: -60px;
+  border-radius: 25px;
+  animation: borderRotate 4s linear infinite;
+  filter: blur(8px);
+  opacity: 0.9;
+}
+
+.card-mint .card-content {
+  background: var(--dark-base-mint);
+}
+
+.card-mint .card-content::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(0, 150, 50, 0.1),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+
+.card-mint .card-content::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #e0ffff 0%,
+    #00b894 35%,
+    rgba(0, 184, 148, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+}
+
+.card-mint .card-logo .ri {
+  background: linear-gradient(
+    135deg,
+    var(--icon-light-mint),
+    var(--primary-mint)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(0, 184, 148, 0.8);
+}
+
+.card-mint .button {
+  background: var(--primary-mint);
+  color: var(--icon-dark-mint);
+  box-shadow: 0 4px 15px rgba(0, 184, 148, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.card-mint .button:hover {
+  background: #33ccb3;
+  color: #000;
+  box-shadow: 0 8px 20px rgba(0, 184, 148, 0.8);
+}
+
+/* --- Gold Theme (Ad-Free Learning) --- */
+.card-gold::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    var(--white-core) 0%,
+    var(--light-amber) 4%,
+    var(--primary-gold) 12%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0) 95%,
+    var(--white-core) 100%
+  );
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  top: -60px;
+  left: -60px;
+  border-radius: 25px;
+  animation: borderRotate 4s linear infinite;
+  filter: blur(8px);
+  opacity: 0.9;
+}
+
+.card-gold .card-content {
+  background: var(--dark-base-gold);
+}
+
+.card-gold .card-content::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(255, 180, 0, 0.1),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+
+.card-gold .card-content::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #ffeecc 0%,
+    #ffd700 35%,
+    rgba(255, 215, 0, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+}
+
+.card-gold .card-logo .ri {
+  background: linear-gradient(
+    135deg,
+    var(--icon-light-gold),
+    var(--primary-gold)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.card-gold .button {
+  background: var(--primary-gold);
+  color: var(--icon-dark-gold);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.card-gold .button:hover {
+  background: #ffec64;
+  color: #000;
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.8);
+}
+
+/* --- Deep Theme (Personalized Mentorship) --- */
+.card-deep::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    var(--white-core) 0%,
+    var(--light-accent) 4%,
+    var(--primary-deep) 12%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0) 95%,
+    var(--white-core) 100%
+  );
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  top: -60px;
+  left: -60px;
+  border-radius: 25px;
+  animation: borderRotate 4s linear infinite;
+  filter: blur(8px);
+  opacity: 0.9;
+}
+
+.card-deep .card-content {
+  background: var(--dark-base-deep);
+}
+
+.card-deep .card-content::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(74, 0, 224, 0.1),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+
+.card-deep .card-content::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #e0e0ff 0%,
+    #4a00e0 35%,
+    rgba(74, 0, 224, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+}
+
+.card-deep .card-logo .ri {
+  background: linear-gradient(
+    135deg,
+    var(--icon-light-deep),
+    var(--primary-deep)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(74, 0, 224, 0.8);
+}
+
+.card-deep .button {
+  background: var(--primary-deep);
+  color: var(--icon-dark-deep);
+  box-shadow: 0 4px 15px rgba(74, 0, 224, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.card-deep .button:hover {
+  background: #6a2ee0;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(74, 0, 224, 0.8);
+}
+
+/* --- Sunset Theme (Global Alumni Network) --- */
+.card-sunset::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    var(--white-core) 0%,
+    var(--light-peach) 4%,
+    var(--primary-orange) 12%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0) 95%,
+    var(--white-core) 100%
+  );
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  top: -60px;
+  left: -60px;
+  border-radius: 25px;
+  animation: borderRotate 4s linear infinite;
+  filter: blur(8px);
+  opacity: 0.9;
+}
+
+.card-sunset .card-content {
+  background: var(--dark-base-sunset);
+}
+
+.card-sunset .card-content::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(255, 80, 0, 0.1),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+
+.card-sunset .card-content::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #ffebb5 0%,
+    #ff7b00 35%,
+    rgba(255, 123, 0, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+}
+
+.card-sunset .card-logo .ri {
+  background: linear-gradient(
+    135deg,
+    var(--icon-light-sunset),
+    var(--primary-orange)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(255, 123, 0, 0.8);
+}
+
+.card-sunset .button {
+  background: var(--primary-orange);
+  color: var(--icon-dark-sunset);
+  box-shadow: 0 4px 15px rgba(255, 123, 0, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.card-sunset .button:hover {
+  background: #ffaa60;
+  color: #000;
+  box-shadow: 0 8px 20px rgba(255, 123, 0, 0.8);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+  .card-wrapper {
+    width: calc(33.333% - 20px);
+  }
+  .section-header h1 {
+    font-size: 2.2rem;
+  }
+  .section-header p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-wrapper {
+    width: calc(50% - 20px);
+    max-width: 320px;
+  }
+  .section-header h1 {
+    font-size: 2rem;
+  }
+  .section-header p {
+    font-size: 0.9rem;
+  }
+  .card-heading {
+    font-size: 1.2rem;
+  }
+  .card-description {
+    font-size: 0.65rem;
+  }
+  .button {
+    padding: 7px 18px;
+    font-size: 0.65rem;
+  }
+  .card-logo {
+    width: 44px;
+    height: 44px;
+    padding: 6px; /* Adjusted padding for smaller screens */
+    margin-bottom: 14px;
+  }
+  .card-logo .ri {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .card-wrapper {
+    width: 100%;
+    width: 90%;
+    /* background: red; */
+  }
+  .section-header h1 {
+    font-size: 1.8rem;
+  }
+  .section-header p {
+    font-size: 0.8rem;
+  }
+  .card-heading {
+    font-size: 1.1rem;
+  }
+  .card-description {
+    font-size: 0.6rem;
+  }
+  .button {
+    padding: 6px 16px;
+    font-size: 0.6rem;
+  }
+  .card-logo {
+    width: 40px;
+    height: 40px;
+    padding: 5px; /* Adjusted padding for very small screens */
+    margin-bottom: 12px;
+  }
+  .card-logo .ri {
+    font-size: 1.4rem;
+  }
+}
