@@ -1,15 +1,78 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
 
-/* General Styles for the body, using black background as per original CSS */
+/* Global Reset and Layout Styles (Replaces Tailwind Body/Container Classes) */
 body {
+  /* Replaces body classes: p-4 md:p-12 overflow-x-hidden */
+  padding: 1rem;
+  overflow-x: hidden;
+  /* Original styles */
   background: #000000;
   font-family: "Poppins", sans-serif;
   color: white;
   min-height: 100vh;
   margin: 0;
+  line-height: 1.5; /* Default line height */
 }
+
+/* Media query for medium screens and up (md:p-12) */
+@media (min-width: 768px) {
+  body {
+    padding: 3rem; /* 12 * 0.25rem = 3rem */
+  }
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+/* Section Header Styles (Replaces Tailwind H1/P Classes) */
+#section10 {
+  /* Replaces max-w-7xl px-4 md:px-12 py-16 */
+  max-width: 1280px; /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4rem 1rem; /* py-16 (16*0.25=4rem), px-4 */
+}
+@media (min-width: 768px) {
+  #section10 {
+    padding-left: 3rem; /* md:px-12 */
+    padding-right: 3rem; /* md:px-12 */
+  }
+}
+
+.section-title {
+  /* Replaces text-4xl md:text-5xl font-extrabold text-left mb-4 */
+  font-size: 2.25rem; /* text-4xl */
+  font-weight: 800; /* font-extrabold */
+  text-align: left;
+  margin-bottom: 1rem; /* mb-4 */
+}
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 3rem; /* md:text-5xl */
+  }
+}
+
+.section-description {
+  /* Replaces text-lg text-gray-300 text-left max-w-3xl mb-16 */
+  font-size: 1.125rem; /* text-lg */
+  color: #d1d5db; /* text-gray-300 */
+  text-align: left;
+  max-width: 48rem; /* max-w-3xl */
+  margin-bottom: 4rem; /* mb-16 */
+}
+
+.cards-container {
+  /* Replaces flex flex-wrap justify-start gap-8 lg:gap-10 */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2rem; /* gap-8 */
+}
+@media (min-width: 1024px) {
+  .cards-container {
+    gap: 2.5rem; /* lg:gap-10 */
+  }
 }
 
 /* --- GLOBAL CARD STYLES (Common to all provided CSS blocks) --- */
@@ -21,7 +84,7 @@ html {
   transition: transform 0.8s ease-in-out;
   cursor: pointer;
   z-index: 20;
-  margin: 20px 0; /* Margin is 0 on the sides, relying on container padding/gap */
+  margin: 20px 0;
 }
 .flip-card:hover {
   transform: rotateY(180deg);
