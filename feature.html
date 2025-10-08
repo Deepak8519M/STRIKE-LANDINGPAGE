@@ -50,7 +50,7 @@
         --icon-dark-sunset: #602500;
         /* Common Variables */
         --border-size: 3px;
-        --TILT-DEGREE: 20deg;
+        --TILT-DEGREE: 4deg;
         --LIFT-Z: 25px;
       }
 
@@ -60,6 +60,7 @@
         font-family: "Inter", sans-serif;
         background: #000000;
         color: white;
+        perspective: 1000px; /* Added for 3D effect */
       }
 
       /* --- Feature Section --- */
@@ -101,15 +102,14 @@
         gap: 30px;
         max-width: 1400px;
         width: 100%;
-        /* background: red; */
       }
 
       /* --- Card Wrapper --- */
       .card-wrapper {
         position: relative;
-        width: calc(33.333% - 20px);
-        min-width: 300px;
-        height: 350px;
+        width: calc(25% - 20px);
+        min-width: 240px;
+        height: 280px;
         border-radius: 20px;
         padding: var(--border-size);
         box-sizing: border-box;
@@ -134,7 +134,7 @@
         height: 100%;
         border-radius: 17px;
         overflow: hidden;
-        padding: 25px;
+        padding: 20px;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -142,17 +142,19 @@
         backdrop-filter: blur(35px);
         -webkit-backdrop-filter: blur(35px);
         border: 1px solid rgba(255, 255, 255, 0.15);
+        transition: transform 0.3s;
       }
 
       /* --- Logo/Icon Styles --- */
       .card-logo {
-        width: 60px;
-        height: 60px;
+        width: 48px;
+        height: 48px;
         border-radius: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 20px;
+        padding: 8px; /* Added padding for breathing room */
+        margin-bottom: 16px;
         position: relative;
         overflow: hidden;
         align-self: flex-start;
@@ -175,24 +177,24 @@
       }
 
       .card-logo .ri {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
       }
 
       /* --- Typography and Button --- */
       .card-heading {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         font-weight: 700;
         line-height: 1.2;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
         text-align: left;
       }
 
       .card-description {
-        font-size: 0.9rem;
+        font-size: 0.7rem;
         color: rgba(255, 255, 255, 0.9);
         line-height: 1.4;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
         text-align: left;
         flex-grow: 1;
       }
@@ -202,10 +204,10 @@
         align-items: center;
         justify-content: center;
         width: auto;
-        padding: 10px 25px;
+        padding: 8px 20px;
         border-radius: 12px;
         text-decoration: none;
-        font-size: 0.9rem;
+        font-size: 0.7rem;
         font-weight: 600;
         align-self: flex-start;
         transition: all 0.3s ease;
@@ -249,10 +251,10 @@
           rgba(0, 0, 0, 0) 95%,
           var(--white-core) 100%
         );
-        width: calc(100% + 150px);
-        height: calc(100% + 150px);
-        top: -75px;
-        left: -75px;
+        width: calc(100% + 120px);
+        height: calc(100% + 120px);
+        top: -60px;
+        left: -60px;
         border-radius: 25px;
         animation: borderRotate 4s linear infinite;
         filter: blur(8px);
@@ -342,10 +344,10 @@
           rgba(0, 0, 0, 0) 95%,
           var(--white-core) 100%
         );
-        width: calc(100% + 150px);
-        height: calc(100% + 150px);
-        top: -75px;
-        left: -75px;
+        width: calc(100% + 120px);
+        height: calc(100% + 120px);
+        top: -60px;
+        left: -60px;
         border-radius: 25px;
         animation: borderRotate 4s linear infinite;
         filter: blur(8px);
@@ -435,10 +437,10 @@
           rgba(0, 0, 0, 0) 95%,
           var(--white-core) 100%
         );
-        width: calc(100% + 150px);
-        height: calc(100% + 150px);
-        top: -75px;
-        left: -75px;
+        width: calc(100% + 120px);
+        height: calc(100% + 120px);
+        top: -60px;
+        left: -60px;
         border-radius: 25px;
         animation: borderRotate 4s linear infinite;
         filter: blur(8px);
@@ -528,10 +530,10 @@
           rgba(0, 0, 0, 0) 95%,
           var(--white-core) 100%
         );
-        width: calc(100% + 150px);
-        height: calc(100% + 150px);
-        top: -75px;
-        left: -75px;
+        width: calc(100% + 120px);
+        height: calc(100% + 120px);
+        top: -60px;
+        left: -60px;
         border-radius: 25px;
         animation: borderRotate 4s linear infinite;
         filter: blur(8px);
@@ -621,10 +623,10 @@
           rgba(0, 0, 0, 0) 95%,
           var(--white-core) 100%
         );
-        width: calc(100% + 150px);
-        height: calc(100% + 150px);
-        top: -75px;
-        left: -75px;
+        width: calc(100% + 120px);
+        height: calc(100% + 120px);
+        top: -60px;
+        left: -60px;
         border-radius: 25px;
         animation: borderRotate 4s linear infinite;
         filter: blur(8px);
@@ -714,10 +716,10 @@
           rgba(0, 0, 0, 0) 95%,
           var(--white-core) 100%
         );
-        width: calc(100% + 150px);
-        height: calc(100% + 150px);
-        top: -75px;
-        left: -75px;
+        width: calc(100% + 120px);
+        height: calc(100% + 120px);
+        top: -60px;
+        left: -60px;
         border-radius: 25px;
         animation: borderRotate 4s linear infinite;
         filter: blur(8px);
@@ -792,7 +794,7 @@
       /* --- Responsive Design --- */
       @media (max-width: 1024px) {
         .card-wrapper {
-          width: calc(50% - 20px);
+          width: calc(33.333% - 20px);
         }
         .section-header h1 {
           font-size: 2.2rem;
@@ -804,8 +806,8 @@
 
       @media (max-width: 768px) {
         .card-wrapper {
-          width: 90%;
-          max-width: 400px;
+          width: calc(50% - 20px);
+          max-width: 320px;
         }
         .section-header h1 {
           font-size: 2rem;
@@ -814,22 +816,32 @@
           font-size: 0.9rem;
         }
         .card-heading {
-          font-size: 1.6rem;
+          font-size: 1.2rem;
         }
         .card-description {
-          font-size: 0.85rem;
+          font-size: 0.65rem;
         }
         .button {
-          padding: 8px 20px;
-          font-size: 0.85rem;
+          padding: 7px 18px;
+          font-size: 0.65rem;
+        }
+        .card-logo {
+          width: 44px;
+          height: 44px;
+          padding: 6px; /* Adjusted padding for smaller screens */
+          margin-bottom: 14px;
+        }
+        .card-logo .ri {
+          font-size: 1.6rem;
         }
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: 540px) {
         .card-wrapper {
           width: 100%;
-          max-width: 300px;
-          height: 300px;
+ 
+          width: 90%;
+          /* background: red; */
         }
         .section-header h1 {
           font-size: 1.8rem;
@@ -838,14 +850,23 @@
           font-size: 0.8rem;
         }
         .card-heading {
-          font-size: 1.4rem;
+          font-size: 1.1rem;
         }
         .card-description {
-          font-size: 0.8rem;
+          font-size: 0.6rem;
         }
         .button {
-          padding: 7px 18px;
-          font-size: 0.8rem;
+          padding: 6px 16px;
+          font-size: 0.6rem;
+        }
+        .card-logo {
+          width: 40px;
+          height: 40px;
+          padding: 5px; /* Adjusted padding for very small screens */
+          margin-bottom: 12px;
+        }
+        .card-logo .ri {
+          font-size: 1.4rem;
         }
       }
     </style>
@@ -918,7 +939,7 @@
             <div class="card-logo">
               <i class="ri-lightbulb-line ri"></i>
             </div>
-            <h1 class="card-heading">Personalized Mentorship</h1>
+            <h1 class="card-heading">Mentorship</h1>
             <p class="card-description">
               Receive one-on-one guidance from industry experts. Tailor your
               learning and career path with personalized feedback and strategic
