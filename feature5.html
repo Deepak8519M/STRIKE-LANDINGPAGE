@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Progress & Certification - Neon Animated</title>
+    <title>Ad-Free Learning - Gold Rush Animated</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
@@ -11,21 +11,23 @@
     />
 
     <style>
-      /* --- Root Variables for Color and Border (NEON GREEN THEME) --- */
+      /* --- Root Variables for Color and Border (GOLD RUSH THEME) --- */
       :root {
-        /* Colors based on your provided Neon Green card */
-        --primary-neon: #39ff14; /* Electric Neon Green */
-        --light-mint: #ccffcc; /* Light Mint/Pale Green */
+        /* Colors based on your provided Gold Rush card */
+        --primary-gold: #ffd700; /* Pure Gold */
+        --light-amber: #ffebb5; /* Pale Gold/Cream */
         --white-core: #ffffff;
         --dark-base: rgba(
-          5,
+          10,
           5,
           0,
           0.85
-        ); /* Dark base with a slight green tint */
+        ); /* Dark base with a subtle gold/brown tint */
         --border-size: 3px;
-        --icon-light: #e6ffe6; /* Extra pale green for icon highlight */
-        --icon-dark: #0f3000; /* Dark green for icon depth */
+        --icon-light: #fff8e1; /* Extra light gold for icon highlight */
+        --icon-dark: #663e00; /* Dark brown/gold for icon depth */
+        --TILT-DEGREE: 5deg;
+        --LIFT-Z: 15px;
       }
 
       /* --- Global Styles --- */
@@ -39,9 +41,10 @@
         font-family: "Inter", sans-serif;
         color: white;
         overflow: hidden;
+        perspective: 1000px; /* CRUCIAL for 3D effect */
       }
 
-      /* 1. CARD WRAPPER: Holds the rotating gradient */
+      /* 1. CARD WRAPPER: Handles the 3D Tilt and holds the rotating gradient */
       .card-wrapper {
         position: relative;
         width: 400px;
@@ -53,9 +56,21 @@
         overflow: hidden;
         z-index: 10;
         box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
+
+        /* KEY CSS for Tilt */
+        transform-style: preserve-3d;
+        transition: transform 0.4s ease-out;
       }
 
-      /* 2. CONIC GRADIENT PSEUDO-ELEMENT (SEAMLESS ANIMATED BORDER - NEON) */
+      /* APPLY TILT ON HOVER TO THE WRAPPER */
+      .card-wrapper:hover {
+        /* More visible 3D rotation and a lift off the screen plane */
+        transform: translateZ(var(--LIFT-Z)) rotateX(var(--TILT-DEGREE))
+          rotateY(var(--TILT-DEGREE));
+        cursor: pointer;
+      }
+
+      /* 2. CONIC GRADIENT PSEUDO-ELEMENT (SEAMLESS ANIMATED BORDER - GOLD) */
       .card-wrapper::before {
         content: "";
         position: absolute;
@@ -65,12 +80,12 @@
         bottom: 0;
         z-index: -1;
 
-        /* Conic gradient for the rotating border with neon colors */
+        /* Seamless single arc flow for GOLD */
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
-          var(--light-mint) 4%,
-          var(--primary-neon) 12%,
+          var(--light-amber) 4%,
+          var(--primary-gold) 12%,
           rgba(0, 0, 0, 0) 35%,
           rgba(0, 0, 0, 0) 95%,
           var(--white-core) 100%
@@ -101,19 +116,14 @@
         flex-direction: column;
         justify-content: space-between;
 
-        /* Glassmorphism Background: Neon green tinted base */
+        /* Glassmorphism Background: Gold tinted base */
         background: var(--dark-base);
         backdrop-filter: blur(35px);
         -webkit-backdrop-filter: blur(35px);
         border: 1px solid rgba(255, 255, 255, 0.15);
-
-        transition: transform 0.3s;
-      }
-      .card-content:hover {
-        transform: scale(1.01);
       }
 
-      /* --- LOGO/ICON STYLES (3D CHIP EFFECT - NEON) --- */
+      /* --- LOGO/ICON STYLES (3D CHIP EFFECT - GOLD) --- */
       .card-logo {
         width: 60px;
         height: 60px;
@@ -126,13 +136,12 @@
         overflow: hidden;
         align-self: flex-start;
 
-        /* 3D Base - Darker for contrast */
-        background: linear-gradient(145deg, #202000, #101000);
+        /* 3D Base */
+        background: linear-gradient(145deg, #281505, #100800);
         border: 1px solid rgba(255, 255, 255, 0.2);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7),
           inset 0 0 15px rgba(255, 255, 255, 0.05);
       }
-      /* Inner Light Source for 3D effect */
       .card-logo::before {
         content: "";
         position: absolute;
@@ -144,18 +153,16 @@
           transparent 50%
         );
       }
-
-      /* Icon coloring (Neon/White gradient on icon) */
       .card-logo .ri {
         font-size: 2.2rem;
         background: linear-gradient(
           135deg,
           var(--icon-light),
-          var(--primary-neon)
+          var(--primary-gold)
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 10px rgba(57, 255, 20, 0.8); /* Neon glow */
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.8); /* Gold glow */
       }
 
       /* --- Typography and Button --- */
@@ -190,10 +197,10 @@
 
         align-self: flex-start;
 
-        background: var(--primary-neon); /* Neon button background */
+        background: var(--primary-gold);
         border: 1px solid var(--white-core);
-        color: var(--icon-dark); /* Dark green text on neon button */
-        box-shadow: 0 4px 15px rgba(57, 255, 20, 0.5),
+        color: var(--icon-dark); /* Dark brown/gold text on gold button */
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5),
           inset 0 0 5px rgba(255, 255, 255, 0.5);
 
         transition: all 0.3s ease;
@@ -203,10 +210,9 @@
 
       /* Button Hover Effects */
       .button:hover {
-        background: #66ff33; /* Brighter neon on hover */
+        background: #ffec64; /* Lighter gold on hover */
         color: #000;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(57, 255, 20, 0.8);
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.8);
       }
       .button::after {
         content: "→";
@@ -224,7 +230,7 @@
         }
       }
 
-      /* --- RETAINED ORIGINAL BACKGROUND LAYERS (for internal card glow - NEON) --- */
+      /* --- RETAINED ORIGINAL BACKGROUND LAYERS (for internal card glow) --- */
       .card-content::before {
         content: "";
         position: absolute;
@@ -235,8 +241,8 @@
         z-index: -3;
         background: radial-gradient(
           circle at 10% 10%,
-          rgba(50, 255, 0, 0.1),
-          /* Subtle green ambient glow */ transparent 60%
+          rgba(255, 180, 0, 0.1),
+          /* Subtle Amber ambient glow */ transparent 60%
         );
         filter: blur(250px);
         opacity: 1;
@@ -252,9 +258,9 @@
         opacity: 1;
         background: radial-gradient(
           circle at 18% 12%,
-          #ccffcc 0%,
-          #39ff14 35%,
-          rgba(57, 255, 20, 0.5) 60%,
+          #ffeecc 0%,
+          #ffd700 35%,
+          rgba(255, 215, 0, 0.5) 60%,
           #000000 65%,
           transparent 85%
         );
@@ -266,17 +272,17 @@
     <div class="card-wrapper">
       <div class="card-content">
         <div class="card-logo">
-          <i class="ri-award-line ri"></i>
+          <i class="ri-eye-off-line ri"></i>
         </div>
 
-        <h1 class="card-heading">Progress & Certification</h1>
+        <h1 class="card-heading">Ad-Free Learning</h1>
 
         <p class="card-description">
-          Track your progress seamlessly and earn verifiable certificates upon
-          successful course completion.
+          Focus on the code. Lectures have minimal ads, ensuring a
+          distraction-free environment unlike general video platforms.
         </p>
 
-        <a href="#" class="button">View Dashboard</a>
+        <a href="#" class="button">Start Watching</a>
       </div>
     </div>
   </body>
