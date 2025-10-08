@@ -9,49 +9,166 @@
       rel="stylesheet"
     />
     <style>
+      /* --- Root Variables for Theme --- */
       :root {
-        /* Light Theme Colors */
+        /* Feature Card Colors (from second code) */
+        --primary-blue: #0000ff;
+        --light-blue: #00bfff;
+        --white-core: #ffffff;
+        --dark-base: rgba(0, 0, 10, 0.85);
+        --border-size: 3px;
+
+        /* Retained Instructor Profile Colors for buttons/badges */
         --primary-purple: #7641ea;
         --background-white: #ffffff;
         --text-dark: #1a1a1a;
         --text-medium: #4a4a4a;
-        --text-light: #6e6e6e;
-        --badge-bg-light: #e8e2f9; /* Lighter purple for secondary badges */
+        --badge-bg-light: #e8e2f9;
         --light-border: #d0d0d0;
-        --pill-bg-color: #f9f9fb; /* Light background for the pill container */
+
+        /* 3D Dynamic Effect Variables (retained from original) */
+        --TILT-DEGREE: 2deg;
+        --LIFT-Z: 15px;
       }
 
+      /* --- Keyframe for Rotating Border (from feature card) --- */
+      @keyframes borderRotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* --- Global Styles --- */
       body {
         font-family: "Poppins", sans-serif;
         margin: 0;
         padding: 40px 20px;
-        background-color: var(--background-white);
+        background: #000000; /* From feature card */
         color: var(--text-dark);
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
         box-sizing: border-box;
+        perspective: 1000px; /* Retained for 3D tilt */
+        overflow: hidden;
       }
 
+      /* --- Pill Container with Rotating Border Effect (from feature card) --- */
       .main-pill-container {
+        position: relative;
         max-width: 1200px;
         width: 100%;
-        background-color: var(--pill-bg-color);
-        border-radius: 40px;
-        padding: 60px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border-radius: 20px; /* From feature card */
+        padding: var(--border-size); /* From feature card */
         box-sizing: border-box;
+        background: transparent; /* From feature card */
+        overflow: hidden;
+        z-index: 10;
+        box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8); /* From feature card */
+        transform-style: preserve-3d; /* Retained for 3D tilt */
+        transition: transform 0.4s ease-out; /* Retained for 3D tilt */
       }
 
+      .main-pill-container:hover {
+        transform: translateZ(var(--LIFT-Z)) rotateX(var(--TILT-DEGREE))
+          rotateY(calc(var(--TILT-DEGREE) * -1)); /* Retained for 3D tilt */
+        cursor: pointer;
+      }
+
+      /* Rotating Border Effect (exact from feature card) */
+      .main-pill-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-blue) 4%,
+          var(--primary-blue) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        ); /* Exact gradient from feature card */
+        width: calc(100% + 150px); /* From feature card */
+        height: calc(100% + 150px); /* From feature card */
+        top: -75px; /* From feature card */
+        left: -75px; /* From feature card */
+        border-radius: 25px; /* From feature card */
+        animation: borderRotate 4s linear infinite; /* From feature card */
+        filter: blur(8px); /* From feature card */
+        opacity: 0.9; /* From feature card */
+      }
+
+      /* Card Content with Glassmorphic Background (from feature card) */
       .instructor-card {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 17px; /* From feature card */
+        overflow: hidden;
+        padding: 60px; /* Retained from original */
+        box-sizing: border-box;
         display: flex;
         align-items: center;
         gap: 60px;
         flex-wrap: wrap;
         justify-content: space-between;
+        background: var(--dark-base); /* From feature card */
+        backdrop-filter: blur(35px); /* From feature card */
+        -webkit-backdrop-filter: blur(35px); /* From feature card */
+        border: 1px solid rgba(255, 255, 255, 0.15); /* From feature card */
+        transition: transform 0.3s; /* From feature card */
+        z-index: 1;
       }
 
+      .instructor-card:hover {
+        transform: scale(1.01); /* From feature card */
+      }
+
+      /* Radial Gradient Background Layers (from feature card) */
+      .instructor-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        z-index: -3;
+        background: radial-gradient(
+          circle at 10% 10%,
+          rgba(0, 50, 255, 0.1),
+          transparent 60%
+        ); /* From feature card */
+        filter: blur(250px); /* From feature card */
+        opacity: 1; /* From feature card */
+      }
+
+      .instructor-card::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffffff 0%,
+          #0000ff 35%,
+          rgba(0, 0, 255, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        ); /* From feature card */
+        filter: blur(180px); /* From feature card */
+      }
+
+      /* --- Original Instructor Profile Styles --- */
       .instructor-info {
         flex: 1;
         min-width: 350px;
@@ -59,7 +176,7 @@
 
       .instructor-info h3 {
         font-size: 2.5em;
-        color: var(--text-dark);
+        color: var(--background-white); /* Adjusted for dark background */
         margin-top: 0;
         margin-bottom: 5px;
         display: flex;
@@ -75,8 +192,8 @@
 
       .instructor-info .badges {
         display: flex;
-        flex-direction: column; /* Stack badge lines */
-        gap: 10px; /* Gap between lines of badges */
+        flex-direction: column;
+        gap: 10px;
         margin-top: 20px;
         margin-bottom: 25px;
       }
@@ -84,7 +201,7 @@
       .badge-line {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px; /* Gap between badges on the same line */
+        gap: 10px;
       }
 
       .instructor-info .badge {
@@ -93,26 +210,24 @@
         font-size: 0.9em;
         font-weight: 500;
         white-space: nowrap;
-        border: 1px solid transparent; /* Default transparent border */
+        border: 1px solid transparent;
       }
 
-      /* Styling for the first line of badges */
       .badge.primary-style {
         background-color: var(--primary-purple);
         color: var(--background-white);
       }
 
-      /* Styling for the second line of badges */
       .badge.secondary-style {
         background-color: var(--badge-bg-light);
         color: var(--primary-purple);
-        border-color: var(--primary-purple); /* Border to match text */
+        border-color: var(--primary-purple);
       }
 
       .instructor-info p {
         font-size: 1.05em;
         line-height: 1.6;
-        color: var(--text-medium);
+        color: rgba(255, 255, 255, 0.9); /* Adjusted for dark background */
         margin-bottom: 30px;
         max-width: 550px;
         font-weight: 500;
@@ -179,7 +294,6 @@
         color: var(--primary-purple);
       }
 
-      /* *** IMPROVED IMAGE STYLING FOR ORGANIC BLOB SHAPE *** */
       .instructor-image {
         width: 380px;
         height: 380px;
@@ -188,7 +302,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden; /* Ensure blob doesn't spill */
+        overflow: hidden;
       }
 
       .blob-shape {
@@ -197,7 +311,6 @@
         height: 100%;
         background-color: var(--primary-purple);
         z-index: 1;
-        /* More refined blob shape points */
         clip-path: polygon(
           30% 0%,
           70% 0%,
@@ -208,57 +321,46 @@
           0% 70%,
           0% 30%
         );
-        /* This creates a softer, squarish blob with rounded corners */
-        transform: rotate(-10deg); /* Slight rotation */
+        transform: rotate(-10deg);
       }
 
       .instructor-image img {
         position: relative;
         z-index: 2;
-        width: 95%; /* Make image slightly larger to fill more of the blob */
+        width: 95%;
         height: 95%;
         object-fit: cover;
-        border-radius: 50%; /* Image itself remains round */
-        /* margin: 2.5%; /* Center the image more precisely */
-        box-shadow: 0 0 25px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for the image */
+        border-radius: 50%;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
       }
-      /* ************************************************* */
 
       /* Responsive adjustments */
       @media (max-width: 992px) {
-        .main-pill-container {
-          padding: 40px;
-        }
         .instructor-card {
+          padding: 40px; /* Reduced padding when stacked */
           flex-direction: column;
           align-items: center;
           gap: 30px;
         }
-
         .instructor-info {
           order: 2;
           text-align: center;
         }
-
         .instructor-info h3 {
           justify-content: center;
         }
-
         .instructor-info .badges {
-          align-items: center; /* Center badge lines when stacked */
+          align-items: center;
         }
         .badge-line {
           justify-content: center;
         }
-
         .instructor-actions {
           justify-content: center;
         }
-
         .navigation-arrows {
           justify-content: center;
         }
-
         .instructor-image {
           order: 1;
           width: 300px;
@@ -268,8 +370,11 @@
 
       @media (max-width: 576px) {
         .main-pill-container {
+          padding: 2px; /* Adjusted for mobile */
+        }
+        .instructor-card {
           padding: 25px;
-          border-radius: 30px;
+          border-radius: 17px; /* From feature card */
         }
         .instructor-info h3 {
           font-size: 2em;
@@ -294,44 +399,6 @@
   </head>
   <body>
     <div class="main-pill-container">
-      <div class="instructor-card">
-        <div class="instructor-info">
-          <h3>Rohit Negi <span class="trophy-icon">🏆</span></h3>
-
-          <div class="badges">
-            <div class="badge-line">
-              <span class="badge primary-style">Founder & Lead Instructor</span>
-              <span class="badge primary-style">Ex-@Uber</span>
-            </div>
-            <div class="badge-line">
-              <span class="badge secondary-style">IIT Graduate</span>
-              <span class="badge secondary-style">2 Cr+ Package</span>
-              <span class="badge secondary-style">Industry Expert</span>
-            </div>
-          </div>
-
-          <p>
-            Heartfelt Problem Solver, Instructor, and Visionary Leader. Got
-            Highest Placement in India of 2 Cr +. Post Graduate from IIT G,
-            GATE-CSE'20 AIR – 202
-          </p>
-
-          <div class="instructor-actions">
-            <button class="primary-button">Start Learning</button>
-            <button class="secondary-button">Know More</button>
-          </div>
-
-          <div class="navigation-arrows">
-            <div class="arrow-button">&larr;</div>
-            <div class="arrow-button">&rarr;</div>
-          </div>
-        </div>
-
-        <div class="instructor-image">
-          <div class="blob-shape"></div>
-          <img src="./MAINFILE/assets/negi1.png" alt="Rohit Negi" />
-        </div>
-      </div>
       <div class="instructor-card">
         <div class="instructor-info">
           <h3>Rohit Negi <span class="trophy-icon">🏆</span></h3>
