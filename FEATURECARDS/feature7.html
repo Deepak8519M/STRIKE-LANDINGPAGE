@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Alumni Network - Animated Card</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- Root Variables for Color and Border (BLAZING SUNSET THEME) --- */
+      :root {
+        /* Colors based on your provided Blazing Sunset card */
+        --primary-orange: #ff7b00; /* Bright Orange */
+        --light-peach: #ffebb5; /* Light Peach/Cream */
+        --white-core: #ffffff;
+        --dark-base: rgba(
+          20,
+          5,
+          0,
+          0.85
+        ); /* Dark base with a subtle red/brown tint */
+        --border-size: 3px;
+        --icon-light: #fffae8; /* Extra light for icon highlight */
+        --icon-dark: #602500; /* Dark brown/red for icon depth */
+        --TILT-DEGREE: 5deg;
+        --LIFT-Z: 15px;
+      }
+
+      /* --- Global Styles (Inherited from Gold Rush Card) --- */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #000000;
+        font-family: "Inter", sans-serif;
+        color: white;
+        overflow: hidden;
+        perspective: 1000px; /* CRUCIAL for 3D effect */
+      }
+
+      /* 1. CARD WRAPPER: Handles the 3D Tilt and holds the rotating gradient */
+      .card-wrapper {
+        position: relative;
+        width: 400px;
+        height: 350px;
+        border-radius: 20px;
+        padding: var(--border-size);
+        box-sizing: border-box;
+        background: transparent;
+        overflow: hidden;
+        z-index: 10;
+        box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
+
+        /* KEY CSS for Tilt */
+        transform-style: preserve-3d;
+        transition: transform 0.4s ease-out;
+      }
+
+      /* APPLY TILT ON HOVER TO THE WRAPPER */
+      .card-wrapper:hover {
+        /* More visible 3D rotation and a lift off the screen plane */
+        transform: translateZ(var(--LIFT-Z)) rotateX(var(--TILT-DEGREE))
+          rotateY(var(--TILT-DEGREE));
+        cursor: pointer;
+      }
+
+      /* 2. CONIC GRADIENT PSEUDO-ELEMENT (SEAMLESS ANIMATED BORDER - SUNSET) */
+      .card-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+
+        /* Seamless single arc flow for SUNSET */
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-peach) 4%,
+          var(--primary-orange) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+
+        /* Increased size and blur for seamless wrapping around corners */
+        width: calc(100% + 150px);
+        height: calc(100% + 150px);
+        top: -75px;
+        left: -75px;
+
+        border-radius: 25px;
+        animation: borderRotate 4s linear infinite;
+        filter: blur(8px);
+        opacity: 0.9;
+      }
+
+      /* 3. CARD CONTENT: The actual visible card with content */
+      .card-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 17px;
+        overflow: hidden;
+        padding: 25px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        /* Glassmorphism Background: Red/Orange tinted base */
+        background: var(--dark-base);
+        backdrop-filter: blur(35px);
+        -webkit-backdrop-filter: blur(35px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      /* --- LOGO/ICON STYLES (3D CHIP EFFECT - SUNSET) --- */
+      .card-logo {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+        align-self: flex-start;
+
+        /* 3D Base */
+        background: linear-gradient(145deg, #281505, #100800);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7),
+          inset 0 0 15px rgba(255, 255, 255, 0.05);
+      }
+      .card-logo::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 15px;
+        background: radial-gradient(
+          circle at 20% 20%,
+          rgba(255, 255, 255, 0.2),
+          transparent 50%
+        );
+      }
+      .card-logo .ri {
+        font-size: 2.2rem;
+        /* Using the orange/peach color variables for the icon gradient */
+        background: linear-gradient(
+          135deg,
+          var(--icon-light),
+          var(--primary-orange)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 10px rgba(255, 123, 0, 0.8); /* Orange glow */
+      }
+
+      /* --- Typography and Button --- */
+      .card-heading {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 10px;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+        text-align: left;
+      }
+
+      .card-description {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.4;
+        margin-bottom: 20px;
+        text-align: left;
+        flex-grow: 1;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        padding: 10px 25px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+
+        align-self: flex-start;
+
+        /* Using the new sunset/orange colors */
+        background: var(--primary-orange);
+        border: 1px solid var(--white-core);
+        color: var(--icon-dark); /* Dark brown/red text on orange button */
+        box-shadow: 0 4px 15px rgba(255, 123, 0, 0.5),
+          inset 0 0 5px rgba(255, 255, 255, 0.5);
+
+        transition: all 0.3s ease;
+        cursor: pointer;
+        margin-top: auto;
+      }
+
+      /* Button Hover Effects */
+      .button:hover {
+        background: #ffaa60; /* Lighter orange on hover */
+        color: #000;
+        box-shadow: 0 8px 20px rgba(255, 123, 0, 0.8);
+      }
+      .button::after {
+        content: "→";
+        margin-left: 8px;
+        transition: margin-left 0.2s ease;
+      }
+      .button:hover::after {
+        margin-left: 12px;
+      }
+
+      /* --- KEYFRAME for the ROTATING BORDER --- */
+      @keyframes borderRotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* --- RETAINED ORIGINAL BACKGROUND LAYERS (for internal card glow) --- */
+      /* Updated glow colors to match sunset theme */
+      .card-content::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        z-index: -3;
+        background: radial-gradient(
+          circle at 10% 10%,
+          rgba(255, 80, 0, 0.1),
+          /* Subtle Orange ambient glow */ transparent 60%
+        );
+        filter: blur(250px);
+        opacity: 1;
+      }
+      .card-content::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffebb5 0%,
+          #ff7b00 35%,
+          rgba(255, 123, 0, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+        filter: blur(180px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-wrapper">
+      <div class="card-content">
+        <div class="card-logo">
+          <i class="ri-group-line ri"></i>
+        </div>
+
+        <h1 class="card-heading">Global Alumni Network</h1>
+
+        <p class="card-description">
+          Connect with a strong global alumni network. Collaborate, share
+          knowledge, and unlock exclusive career opportunities worldwide.
+        </p>
+
+        <a href="#" class="button">Connect Now</a>
+      </div>
+    </div>
+  </body>
+</html>

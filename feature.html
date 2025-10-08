@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strike Course Features - Launching October 18th</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* ---------------------------------------------------------------------- */
+      /* --- 1. GLOBAL & ROOT STYLES --- */
+      /* ---------------------------------------------------------------------- */
+
+      :root {
+        /* Shared Variables */
+        --white-core: #ffffff;
+        --border-size: 3px;
+        --TILT-DEGREE: 5deg;
+        --LIFT-Z: 15px;
+      }
+
+      body {
+        /* The main section will handle layout, so the body just sets the stage */
+        background: #000000;
+        font-family: "Inter", sans-serif;
+        color: white;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        min-height: 100vh;
+        perspective: 1000px; /* CRUCIAL for 3D effect */
+      }
+
+      /* Main Feature Section Container */
+      #section100 {
+        padding: 40px 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .page-heading {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 800;
+        margin-bottom: 10px;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        background: linear-gradient(90deg, #99ffff, #fff, #ffebb5, #fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .page-paragraph {
+        max-width: 700px;
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 50px;
+        line-height: 1.5;
+      }
+
+      /* Cards Container - Responsive Grid Layout */
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(
+          1,
+          1fr
+        ); /* Default 1 card per row (mobile) */
+        gap: 30px;
+        padding: 20px 0;
+        width: 100%;
+        max-width: 1300px;
+      }
+
+      /* Tablet/Desktop Layout: 2 cards per row */
+      @media (min-width: 768px) {
+        .cards-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* Large Desktop Layout: 4 cards per row */
+      @media (min-width: 1200px) {
+        .cards-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      /* ---------------------------------------------------------------------- */
+      /* --- 2. COMMON CARD STRUCTURE STYLES --- */
+      /* ---------------------------------------------------------------------- */
+
+      .card-wrapper {
+        position: relative;
+        width: 100%; /* Take full grid column width */
+        height: 350px;
+        border-radius: 20px;
+        padding: var(--border-size);
+        box-sizing: border-box;
+        background: transparent;
+        overflow: hidden;
+        z-index: 10;
+        box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
+
+        /* KEY CSS for 3D Tilt */
+        transform-style: preserve-3d;
+        transition: transform 0.4s ease-out;
+      }
+
+      /* Apply 3D Tilt on Hover to the Wrapper */
+      .card-wrapper:hover {
+        transform: translateZ(var(--LIFT-Z)) rotateX(var(--TILT-DEGREE))
+          rotateY(var(--TILT-DEGREE));
+        cursor: pointer;
+      }
+
+      /* Animated Border Pseudo-element (Color defined by modifier classes) */
+      .card-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        width: calc(100% + 150px);
+        height: calc(100% + 150px);
+        top: -75px;
+        left: -75px;
+        border-radius: 25px;
+        animation: borderRotate 4s linear infinite;
+        filter: blur(8px);
+        opacity: 0.9;
+        /* BACKGROUND SET BY MODIFIER CLASS */
+      }
+
+      .card-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 17px;
+        overflow: hidden;
+        padding: 25px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        /* Glassmorphism base dark color is defined by modifier class */
+        backdrop-filter: blur(35px);
+        -webkit-backdrop-filter: blur(35px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      /* Logo/Icon Chip Structure (Base 3D dark style) */
+      .card-logo {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+        align-self: flex-start;
+        background: linear-gradient(145deg, #1c1c1c, #0a0a0a);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7),
+          inset 0 0 15px rgba(255, 255, 255, 0.05);
+      }
+      .card-logo::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 15px;
+        background: radial-gradient(
+          circle at 20% 20%,
+          rgba(255, 255, 255, 0.2),
+          transparent 50%
+        );
+      }
+      .card-logo .ri {
+        font-size: 2.2rem;
+        /* COLOR DEFINED BY MODIFIER CLASS */
+      }
+
+      /* Typography */
+      .card-heading {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 10px;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+        text-align: left;
+      }
+      .card-description {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.4;
+        margin-bottom: 20px;
+        text-align: left;
+        flex-grow: 1;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        padding: 10px 25px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        align-self: flex-start;
+        border: 1px solid var(--white-core);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        margin-top: auto;
+        /* COLORS DEFINED BY MODIFIER CLASS */
+      }
+      .button::after {
+        content: "→";
+        margin-left: 8px;
+        transition: margin-left 0.2s ease;
+      }
+      .button:hover::after {
+        margin-left: 12px;
+      }
+
+      /* Keyframe */
+      @keyframes borderRotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ---------------------------------------------------------------------- */
+      /* --- 3. MODIFIER STYLES (COLOR INJECTION) --- */
+      /* ---------------------------------------------------------------------- */
+
+      /* --- GOLD / AD-FREE LEARNING --- */
+      .card-gold {
+        --primary-color: #ffd700; /* Pure Gold */
+        --light-color: #ffebb5; /* Pale Gold/Cream */
+        --dark-base: rgba(10, 5, 0, 0.85);
+        --icon-light: #fff8e1;
+        --icon-dark: #663e00;
+
+        /* Border */
+        --conic-gradient: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-color) 4%,
+          var(--primary-color) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        --glow-color: rgba(255, 215, 0, 0.8);
+        --button-hover: #ffec64;
+      }
+      /* Card Content Background Glows */
+      .card-gold .card-content {
+        background: var(--dark-base);
+      }
+      .card-gold .card-wrapper::before {
+        background: var(--conic-gradient);
+      }
+      .card-gold .card-logo .ri {
+        background: linear-gradient(
+          135deg,
+          var(--icon-light),
+          var(--primary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 10px var(--glow-color);
+      }
+      .card-gold .button {
+        background: var(--primary-color);
+        color: var(--icon-dark);
+        box-shadow: 0 4px 15px var(--glow-color),
+          inset 0 0 5px rgba(255, 255, 255, 0.5);
+      }
+      .card-gold .button:hover {
+        background: var(--button-hover);
+        color: #000;
+        box-shadow: 0 8px 20px var(--glow-color);
+      }
+
+      /* --- BLUE / DSA & GEN AI --- */
+      .card-blue {
+        --primary-color: #0000ff;
+        --light-color: #00bfff;
+        --dark-base: rgba(0, 0, 10, 0.85);
+        --icon-light: #e0f7fa;
+        --icon-dark: #002244;
+
+        /* Border */
+        --conic-gradient: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-color) 4%,
+          var(--primary-color) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        --glow-color: rgba(0, 0, 255, 0.8);
+        --button-hover: #99ffff;
+      }
+      /* Card Content Background Glows */
+      .card-blue .card-content {
+        background: var(--dark-base);
+      }
+      .card-blue .card-wrapper::before {
+        background: var(--conic-gradient);
+      }
+      .card-blue .card-logo .ri {
+        background: linear-gradient(
+          135deg,
+          var(--icon-light),
+          var(--primary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 10px var(--glow-color);
+      }
+      .card-blue .button {
+        background: var(--light-color);
+        color: var(--dark-base);
+        box-shadow: 0 4px 15px rgba(0, 191, 255, 0.5),
+          inset 0 0 5px rgba(255, 255, 255, 0.5);
+      }
+      .card-blue .button:hover {
+        background: var(--button-hover);
+        color: #000;
+        box-shadow: 0 8px 20px rgba(0, 191, 255, 0.8);
+      }
+
+      /* --- CRIMSON / AI DOUBT CLARIFIER --- */
+      .card-crimson {
+        --primary-color: #dc143c; /* Crimson Red */
+        --light-color: #ff6347; /* Tomato Red, slightly lighter */
+        --dark-base: rgba(15, 0, 0, 0.85);
+        --icon-light: #ffdada;
+        --icon-dark: #660000;
+
+        /* Border */
+        --conic-gradient: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-color) 4%,
+          var(--primary-color) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        --glow-color: rgba(220, 20, 60, 0.8);
+        --button-hover: #ffaaaa;
+      }
+      /* Card Content Background Glows */
+      .card-crimson .card-content {
+        background: var(--dark-base);
+      }
+      .card-crimson .card-wrapper::before {
+        background: var(--conic-gradient);
+      }
+      .card-crimson .card-logo .ri {
+        background: linear-gradient(
+          135deg,
+          var(--icon-light),
+          var(--primary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 10px var(--glow-color);
+      }
+      .card-crimson .button {
+        background: var(--light-color);
+        color: var(--dark-base);
+        box-shadow: 0 4px 15px var(--glow-color),
+          inset 0 0 5px rgba(255, 255, 255, 0.5);
+      }
+      .card-crimson .button:hover {
+        background: var(--button-hover);
+        color: #000;
+        box-shadow: 0 8px 20px var(--glow-color);
+      }
+
+      /* --- MINT / PROGRESS & CERTIFICATION --- */
+      .card-mint {
+        --primary-color: #00b894; /* Medium Aquamarine */
+        --light-color: #e0ffff; /* Light Cyan */
+        --dark-base: rgba(0, 10, 8, 0.85);
+        --icon-light: #f0ffff;
+        --icon-dark: #004d40;
+
+        /* Border */
+        --conic-gradient: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-color) 4%,
+          var(--primary-color) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        --glow-color: rgba(0, 184, 148, 0.8);
+        --button-hover: #33ccb3;
+      }
+      /* Card Content Background Glows */
+      .card-mint .card-content {
+        background: var(--dark-base);
+      }
+      .card-mint .card-wrapper::before {
+        background: var(--conic-gradient);
+      }
+      .card-mint .card-logo .ri {
+        background: linear-gradient(
+          135deg,
+          var(--icon-light),
+          var(--primary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 10px var(--glow-color);
+      }
+      .card-mint .button {
+        background: var(--primary-color);
+        color: var(--icon-dark);
+        box-shadow: 0 4px 15px var(--glow-color),
+          inset 0 0 5px rgba(255, 255, 255, 0.5);
+      }
+      .card-mint .button:hover {
+        background: var(--button-hover);
+        color: #000;
+        box-shadow: 0 8px 20px var(--glow-color);
+      }
+
+      /* --- RETAINED ORIGINAL BACKGROUND LAYERS (Internal Glows) --- */
+      /* Note: For simplicity and consistency, I'll use a subtle white-blue glow for all, 
+               as the main color glow is handled by the :after gradient defined by the color classes. */
+
+      .card-content::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        z-index: -3;
+        background: radial-gradient(
+          circle at 10% 10%,
+          rgba(0, 50, 255, 0.05),
+          transparent 60%
+        );
+        filter: blur(250px);
+        opacity: 1;
+      }
+      .card-content::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
+        /* Using a generic light pulse, the colored glow comes from the main border */
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffffff 0%,
+          rgba(255, 255, 255, 0.3) 35%,
+          rgba(0, 0, 0, 0) 65%,
+          transparent 85%
+        );
+        filter: blur(180px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SECTION 100: STRIKE COURSE FEATURES -->
+    <section id="section100">
+      <h2 class="page-heading">
+        Explore the Features of Strike: Launching October 18th
+      </h2>
+      <p class="page-paragraph">
+        Strike is engineered for serious developers. Every feature, from the AI
+        Clarifier to the integrated System Design curriculum, is designed to
+        maximize retention, eliminate friction, and accelerate your career.
+      </p>
+
+      <div class="cards-grid">
+        <!-- CARD 1: Ad-Free Learning (Gold Theme) -->
+        <div class="card-wrapper card-gold">
+          <div class="card-content">
+            <div class="card-logo">
+              <i class="ri-eye-off-line ri"></i>
+            </div>
+
+            <h1 class="card-heading">Ad-Free Learning</h1>
+
+            <p class="card-description">
+              Focus on the code. Lectures have minimal ads, ensuring a
+              distraction-free environment unlike general video platforms, so
+              you can stay in the flow.
+            </p>
+
+            <a href="#" class="button">Start Watching</a>
+          </div>
+        </div>
+
+        <!-- CARD 2: Master DSA & Gen AI (Blue Theme) -->
+        <div class="card-wrapper card-blue">
+          <div class="card-content">
+            <div class="card-logo">
+              <i class="ri-brain-line ri"></i>
+            </div>
+
+            <h1 class="card-heading">Master DSA & Gen AI</h1>
+
+            <p class="card-description">
+              Our courses provide the deep, live instruction needed to secure
+              top tech roles. Learn practical DSA, Gen AI, and essential system
+              design skills.
+            </p>
+
+            <a href="#" class="button">Explore Program</a>
+          </div>
+        </div>
+
+        <!-- CARD 3: AI Doubt Clarifier (Crimson Theme) -->
+        <div class="card-wrapper card-crimson">
+          <div class="card-content">
+            <div class="card-logo">
+              <i class="ri-robot-2-line ri"></i>
+            </div>
+
+            <h1 class="card-heading">AI Doubt Clarifier</h1>
+
+            <p class="card-description">
+              Instantly clarify doubts related to the lecture content using our
+              integrated, in-house Gemini-powered AI chatbot, trained
+              exclusively on course material.
+            </p>
+
+            <a href="#" class="button">Ask Gemini</a>
+          </div>
+        </div>
+
+        <!-- CARD 4: Progress & Certification (Mint Theme) -->
+        <div class="card-wrapper card-mint">
+          <div class="card-content">
+            <div class="card-logo">
+              <i class="ri-award-line ri"></i>
+            </div>
+
+            <h1 class="card-heading">Progress & Certification</h1>
+
+            <p class="card-description">
+              Track your progress seamlessly with integrated milestones and earn
+              verifiable, shareable certificates upon successful course
+              completion.
+            </p>
+
+            <a href="#" class="button">View Dashboard</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
