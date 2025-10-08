@@ -1847,6 +1847,7 @@ main {
   margin-bottom: 10px;
   text-align: center;
   background: linear-gradient(45deg, #00bfff, #4a00e0, #ffd700);
+  background: linear-gradient(45deg, #8b5cf6, #e02424, #ffd700);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
@@ -1858,6 +1859,7 @@ main {
   margin-bottom: 60px;
   color: rgba(255, 255, 255, 0.8);
   text-align: center;
+  font-family: "Poppins";
 }
 
 /* --- Cards Container --- */
@@ -1963,6 +1965,7 @@ main {
   margin-bottom: 16px;
   text-align: left;
   flex-grow: 1;
+  font-family: "Poppins";
 }
 
 .button {
@@ -1980,6 +1983,7 @@ main {
   cursor: pointer;
   margin-top: auto;
   border: 1px solid var(--white-core);
+  font-family: "Poppins";
 }
 
 .button::after {
