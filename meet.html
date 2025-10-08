@@ -31,7 +31,7 @@
         --LIFT-Z: 15px;
       }
 
-      /* --- Keyframe for Rotating Border (from feature card) --- */
+      /* --- Keyframe for Rotating Border --- */
       @keyframes borderRotate {
         to {
           transform: rotate(360deg);
@@ -54,7 +54,7 @@
         overflow: hidden;
       }
 
-      /* --- Pill Container with Rotating Border Effect (from feature card) --- */
+      /* --- Pill Container with Rotating Border Effect --- */
       .main-pill-container {
         position: relative;
         max-width: 1200px;
@@ -76,7 +76,7 @@
         cursor: pointer;
       }
 
-      /* Rotating Border Effect (exact from feature card) */
+      /* Rotating Border Effect for Main Card */
       .main-pill-container::before {
         content: "";
         position: absolute;
@@ -93,7 +93,7 @@
           rgba(0, 0, 0, 0) 35%,
           rgba(0, 0, 0, 0) 95%,
           var(--white-core) 100%
-        ); /* Exact gradient from feature card */
+        ); /* From feature card */
         width: calc(100% + 150px); /* From feature card */
         height: calc(100% + 150px); /* From feature card */
         top: -75px; /* From feature card */
@@ -104,7 +104,7 @@
         opacity: 0.9; /* From feature card */
       }
 
-      /* Card Content with Glassmorphic Background (from feature card) */
+      /* Card Content with Glassmorphic Background */
       .instructor-card {
         position: relative;
         width: 100%;
@@ -130,7 +130,7 @@
         transform: scale(1.01); /* From feature card */
       }
 
-      /* Radial Gradient Background Layers (from feature card) */
+      /* Radial Gradient Background Layers */
       .instructor-card::before {
         content: "";
         position: absolute;
@@ -168,7 +168,7 @@
         filter: blur(180px); /* From feature card */
       }
 
-      /* --- Original Instructor Profile Styles --- */
+      /* --- Instructor Info Styles --- */
       .instructor-info {
         flex: 1;
         min-width: 350px;
@@ -294,40 +294,69 @@
         color: var(--primary-purple);
       }
 
+      /* --- Image Wrapper with Rotating Border --- */
       .instructor-image {
-        width: 380px;
-        height: 380px;
+        width: 400px; /* Slightly larger to accommodate border */
+        height: 400px;
         position: relative;
         flex-shrink: 0;
         display: flex;
         justify-content: center;
         align-items: center;
         overflow: hidden;
+        border-radius: 50%; /* Circular shape */
+        padding: var(--border-size); /* Space for rotating border */
+        background: transparent;
+        box-sizing: border-box;
       }
 
-      .blob-shape {
-        position: absolute;
+      .image-wrapper {
+        position: relative;
         width: 100%;
         height: 100%;
-        background-color: var(--primary-purple);
+        border-radius: 50%;
+        background: var(--dark-base); /* Glassmorphic background */
+        backdrop-filter: blur(35px); /* Matches main card */
+        -webkit-backdrop-filter: blur(35px);
+        border: 1px solid rgba(255, 255, 255, 0.15); /* Matches main card */
         z-index: 1;
-        clip-path: polygon(
-          30% 0%,
-          70% 0%,
-          100% 30%,
-          100% 70%,
-          70% 100%,
-          30% 100%,
-          0% 70%,
-          0% 30%
-        );
-        transform: rotate(-10deg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Rotating Border for Image */
+      .image-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-blue) 4%,
+          var(--primary-blue) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        ); /* Matches main card */
+        width: calc(100% + 150px); /* Matches main card */
+        height: calc(100% + 150px); /* Matches main card */
+        top: -75px; /* Matches main card */
+        left: -75px; /* Matches main card */
+        border-radius: 50%; /* Circular to match wrapper */
+        animation: borderRotate 4s linear infinite; /* Matches main card */
+        filter: blur(8px); /* Matches main card */
+        opacity: 0.9; /* Matches main card */
       }
 
       .instructor-image img {
         position: relative;
         z-index: 2;
-        width: 95%;
+        width: 95%; /* Slightly smaller to fit within wrapper */
         height: 95%;
         object-fit: cover;
         border-radius: 50%;
@@ -433,8 +462,9 @@
         </div>
 
         <div class="instructor-image">
-          <div class="blob-shape"></div>
-          <img src="./MAINFILE/assets/negi1.png" alt="Rohit Negi" />
+          <div class="image-wrapper">
+            <img src="./MAINFILE/assets/negi1.png" alt="Rohit Negi" />
+          </div>
         </div>
       </div>
     </div>
