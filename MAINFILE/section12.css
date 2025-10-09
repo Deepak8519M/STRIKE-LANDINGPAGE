@@ -1,0 +1,546 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+
+/* --- GLOBAL AND SECTION STYLES (SCOPED TO #section12) --- */
+/* Note: Body styles usually remain unscoped, but everything inside #section12 is scoped. */
+body {
+  display: flex;
+  min-height: 100vh;
+  margin: 0;
+  background: #000000;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  overflow-x: hidden;
+  perspective: 1500px;
+  padding: 50px 20px;
+  justify-content: flex-start;
+}
+#section12 {
+  width: 100%;
+  max-width: 1200px;
+  text-align: left;
+  padding: 40px 0;
+  margin: 0 auto;
+}
+#section12 .section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+#section12 .section-paragraph {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 40px;
+  max-width: 900px;
+}
+#section12 .premium-color {
+  color: #8b5cf6;
+}
+#section12 .course-grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* --- CARD COMMON STYLES (SCOPED TO #section12) --- */
+#section12 .flip-card {
+  width: 340px;
+  height: 450px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+  cursor: pointer;
+  z-index: 20;
+}
+#section12 .flip-card:hover {
+  transform: rotateY(180deg);
+}
+#section12 .flip-card-front,
+#section12 .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 9px 9px;
+  box-sizing: border-box;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#section12 .flip-card-back {
+  transform: rotateY(180deg);
+  padding: 0 17px 17px;
+  justify-content: flex-start;
+}
+#section12 .card-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: block;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+#section12 .inner-content {
+  padding: 0 10px;
+  position: relative;
+  z-index: 3;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+#section12 .tags-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+#section12 .footer-tags {
+  margin-top: auto;
+  margin-bottom: 15px;
+}
+#section12 .tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  transition: background-color 0.3s;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+}
+#section12 .card-title,
+#section12 .back-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 3px;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+}
+#section12 .card-author {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+}
+#section12 .card-description {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+#section12 .flip-card-back .card-description {
+  margin-bottom: 20px;
+  flex-grow: 0;
+}
+#section12 .back-title {
+  font-weight: 700;
+  margin-top: 17px;
+  margin-bottom: 10px;
+}
+#section12 .details-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+#section12 .details-list li {
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+#section12 .details-list li:last-child {
+  border-bottom: none;
+}
+#section12 .details-list li .ri {
+  font-size: 1.3em;
+}
+
+/* --- ANIMATIONS (SCOPED TO #section12) --- */
+#section12 .flip-card:hover .details-list li {
+  animation: revealDetail 0.4s forwards;
+  animation-delay: 0.4s;
+}
+#section12 .flip-card:hover .details-list li:nth-child(1) {
+  animation-delay: 0.4s;
+}
+#section12 .flip-card:hover .details-list li:nth-child(2) {
+  animation-delay: 0.5s;
+}
+#section12 .flip-card:hover .details-list li:nth-child(3) {
+  animation-delay: 0.6s;
+}
+#section12 .flip-card:hover .details-list li:nth-child(4) {
+  animation-delay: 0.7s;
+}
+@keyframes revealDetail {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+#section12 .action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: auto;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  z-index: 3;
+  position: relative;
+}
+#section12 .action-button:hover {
+  transform: translateY(-2px);
+}
+#section12 .action-button::after {
+  content: " →";
+  margin-left: 8px;
+  transition: margin-left 0.2s ease;
+}
+#section12 .action-button:hover::after {
+  margin-left: 15px;
+}
+#section12 .texture-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background-image: radial-gradient(
+      circle at 10% 20%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(
+      circle at 30% 70%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(
+      circle at 70% 40%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(
+      circle at 25% 45%,
+      rgba(255, 255, 255, 0.15) 0.5px,
+      transparent 0.5px
+    );
+  background-size: 15px 15px;
+  filter: brightness(1.5);
+  opacity: 0.25;
+  animation: moveTexture 60s linear infinite;
+}
+@keyframes moveTexture {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+@keyframes moveGradient {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-5%, 5%);
+  }
+  50% {
+    transform: translate(5%, -10%);
+  }
+  75% {
+    transform: translate(-10%, -5%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* ================================== */
+/* --- CARD 1 (Web Dev) - BLUE Theme (.card-blue) --- */
+/* ================================== */
+#section12 .card-blue .flip-card-front,
+#section12 .card-blue .flip-card-back {
+  background: rgba(0, 0, 10, 0.75);
+  backdrop-filter: blur(30px);
+}
+#section12 .card-blue .tag.category {
+  background-color: rgba(0, 128, 255, 0.5);
+  border: 1px solid rgba(179, 230, 255, 0.8);
+  color: #fff;
+}
+#section12 .card-blue .details-list li .ri {
+  color: #00bfff;
+}
+#section12 .card-blue .action-button {
+  background: #007bff;
+  border: 1px solid #e0f7fa;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.8),
+    inset 0 0 10px rgba(255, 255, 255, 0.3);
+}
+#section12 .card-blue .action-button:hover {
+  background: #3399ff;
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 1), 0 0 40px rgba(0, 123, 255, 0.5);
+}
+#section12 .card-blue .flip-card-front::before,
+#section12 .card-blue .flip-card-back::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  z-index: -1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #e0f7fa 0%,
+    #00bfff 25%,
+    #0000ff 50%,
+    rgba(0, 0, 255, 0.3) 75%,
+    transparent 95%
+  );
+  filter: blur(160px);
+}
+
+/* ================================== */
+/* --- CARD 2 (GenAI) - GOLD Theme (.card-gold) --- */
+/* ================================== */
+#section12 .card-gold .flip-card-front,
+#section12 .card-gold .flip-card-back {
+  background: rgba(10, 5, 0, 0.85);
+  backdrop-filter: blur(35px);
+}
+#section12 .card-gold .tag.category {
+  background-color: rgba(255, 215, 0, 0.5);
+  border: 1px solid rgba(255, 238, 204, 0.8);
+  color: #fff;
+}
+#section12 .card-gold .details-list li .ri {
+  color: #ffd700;
+}
+#section12 .card-gold .action-button {
+  background: #ffd700;
+  border: 1px solid #ffeecc;
+  color: #000;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.8),
+    inset 0 0 10px rgba(255, 255, 255, 0.3);
+}
+#section12 .card-gold .action-button:hover {
+  background: #ffeb3b;
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 215, 0, 0.5);
+}
+#section12 .card-gold .action-button::after {
+  color: #000;
+}
+/* Gold Background Layers - Using :before and :after for the two layers */
+#section12 .card-gold .flip-card-front::before,
+#section12 .card-gold .flip-card-back::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(255, 180, 0, 0.08),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+#section12 .card-gold .flip-card-front::after,
+#section12 .card-gold .flip-card-back::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #ffeecc 0%,
+    #ffd700 35%,
+    rgba(255, 215, 0, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+  animation: moveGradient 30s ease-in-out infinite alternate;
+}
+
+/* ==================================== */
+/* --- CARD 3 (System Design) - MINT Theme (.card-mint) --- */
+/* ==================================== */
+#section12 .card-mint .flip-card-front,
+#section12 .card-mint .flip-card-back {
+  background: rgba(0, 10, 8, 0.85);
+  backdrop-filter: blur(35px);
+}
+#section12 .card-mint .tag.category {
+  background-color: rgba(0, 184, 148, 0.5);
+  border: 1px solid rgba(224, 255, 255, 0.8);
+  color: #fff;
+}
+#section12 .card-mint .details-list li .ri {
+  color: #00b894;
+}
+#section12 .card-mint .action-button {
+  background: #00b894;
+  border: 1px solid #e0ffff;
+  box-shadow: 0 4px 15px rgba(0, 184, 148, 0.8),
+    inset 0 0 10px rgba(255, 255, 255, 0.3);
+}
+#section12 .card-mint .action-button:hover {
+  background: #33ccb3;
+  box-shadow: 0 8px 25px rgba(0, 184, 148, 1), 0 0 40px rgba(0, 184, 148, 0.5);
+}
+/* Mint Background Layers - Using :before and :after for the two layers */
+#section12 .card-mint .flip-card-front::before,
+#section12 .card-mint .flip-card-back::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(0, 150, 50, 0.08),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+#section12 .card-mint .flip-card-front::after,
+#section12 .card-mint .flip-card-back::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #e0ffff 0%,
+    #00b894 35%,
+    rgba(0, 184, 148, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+  animation: moveGradient 30s ease-in-out infinite alternate;
+}
+
+/* ==================================== */
+/* --- CARD 4 (DSA C++) - CRIMSON Theme (.card-crimson) --- */
+/* ==================================== */
+#section12 .card-crimson .flip-card-front,
+#section12 .card-crimson .flip-card-back {
+  background: rgba(15, 0, 0, 0.85);
+  backdrop-filter: blur(35px);
+}
+#section12 .card-crimson .tag.category {
+  background-color: rgba(220, 20, 60, 0.5);
+  border: 1px solid rgba(255, 204, 204, 0.8);
+  color: #fff;
+}
+#section12 .card-crimson .details-list li .ri {
+  color: #ffcccc;
+}
+#section12 .card-crimson .action-button {
+  background: #dc143c;
+  border: 1px solid #ffcccc;
+  box-shadow: 0 4px 15px rgba(220, 20, 60, 0.8),
+    inset 0 0 10px rgba(255, 255, 255, 0.3);
+}
+#section12 .card-crimson .action-button:hover {
+  background: #ff4d6b;
+  box-shadow: 0 8px 25px rgba(220, 20, 60, 1), 0 0 40px rgba(220, 20, 60, 0.5);
+}
+/* Crimson Background Layers - Using :before and :after for the two layers */
+#section12 .card-crimson .flip-card-front::before,
+#section12 .card-crimson .flip-card-back::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(255, 0, 0, 0.08),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+#section12 .card-crimson .flip-card-front::after,
+#section12 .card-crimson .flip-card-back::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #ffcccc 0%,
+    #dc143c 35%,
+    rgba(220, 20, 60, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+  animation: moveGradient 30s ease-in-out infinite alternate;
+}
