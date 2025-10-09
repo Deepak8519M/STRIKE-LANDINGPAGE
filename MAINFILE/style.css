@@ -3184,14 +3184,42 @@ html {
   background: #080818;
   /* background: red; */
 }
+
 @media (max-width: 380px) {
   .section15 {
     height: fit-content;
-    margin-top: 120px;
+    /* margin-top: 120px; */
     height: 100vh;
     /* background: blue; */
-
     margin: 0 auto;
+    /* padding: 0px 10px; */
+  }
+  .section15 .contact-title {
+    width: 92%;
+    margin: 0 auto;
+  }
+  .section15 .contact-description {
+    width: 92%;
+    margin: 30px auto;
+  }
+  .section15 .form-column {
+    background: blueviolet;
+    width: 94%;
+    margin: 0 auto;
+  }
+  .section15 .input-field {
+    /* background: darkblue; */
+    width: 100%;
+  }
+  .section15 .textarea-field {
+    width: 100%;
+  }
+  .section15 .submit-button-wrapper {
+    width: 100%;
+  }
+  .section15 .illustration-box {
+    /* background: red; */
+    width: 92%;
   }
 }
 
