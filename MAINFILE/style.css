@@ -4188,7 +4188,12 @@ html {
 @media (max-width: 1000px) {
   .section15 {
     /* background: orangered; */
-    height: 160vh;
-    padding-top: 200px;
+    height: 14vh;
+    padding-top: 100px;
+    background: #080818;
+    /* background: red; */
+  }
+  .contact-container {
+    background: #080818;
   }
 }
