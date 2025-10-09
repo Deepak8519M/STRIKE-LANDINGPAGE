@@ -1684,12 +1684,17 @@ main {
     display: none;
   }
 }
+@media (max-width: 900px) {
+  .section6 {
+    padding: 70px 0px 280px 0;
+  }
+}
 @media (max-width: 500px) {
   .section6 {
-    padding: 100px 10px;
+    padding: 100px 0px;
     height: fit-content;
-    /* background: red; */
-    padding-bottom: 80px;
+    background: red;
+    padding-bottom: 180px;
   }
 }
 @media (max-width: 390px) {
@@ -3176,7 +3181,7 @@ html {
 .section15 {
   width: 100%;
   height: 120vh;
-  height: fit-content;
+
   background: #080818;
   /* background: red; */
 }
@@ -3483,4 +3488,49 @@ html {
 .badge-icon {
   width: 1rem;
   height: 1rem;
+}
+
+/*
+  The following code block only shows the necessary changes.
+  Assume the rest of the original CSS remains untouched.
+*/
+
+/* Add/Modify the existing small screen query */
+@media (max-width: 450px) {
+  .contact-container {
+    /* Reduce padding further for very small screens */
+    padding: 0.5rem; /* This was already set in the previous revision */
+  }
+
+  .illustration-box {
+    /* Reduce height for small screens */
+    height: 14rem;
+    padding: 0.75rem; /* This was already set in the previous revision */
+  }
+
+  /* NEW FIX: The main content grid items (especially the illustration) 
+    should not bleed out on tiny screens. Enforce max-width. 
+  */
+  .illustration-column {
+    /* Ensures the illustration column respects the container width */
+    max-width: 100%;
+    /* Remove any implicit horizontal spacing causing overflow */
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/*
+  Since the inner content is wrapped by the .contact-container, we need to ensure
+  the inner illustration box doesn't try to stretch beyond 100% of its parent's width 
+  when the parent has padding. 
+*/
+.illustration-box {
+  width: 100%;
+}
+@media (max-width: 400px) {
+  .section15 {
+    /* background: blue; */
+    height: 127vh;
+  }
 }
