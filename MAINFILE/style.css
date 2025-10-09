@@ -1836,6 +1836,7 @@ main {
   align-items: center;
   box-sizing: border-box;
   background: #000000;
+  background: #080818;
 }
 
 .section-header h1 {
@@ -2653,6 +2654,7 @@ main {
   margin: 0 auto;
   padding: 3rem 1rem;
   /* background: red; */
+  background: #080818;
 }
 
 .section-title {
