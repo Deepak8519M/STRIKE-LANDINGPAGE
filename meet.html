@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Instructor Profile - Rohit Negi (Fully Responsive)</title>
+    <title>Instructor Profile with Dual Cards</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Bebas+Neue&display=swap"
       rel="stylesheet"
@@ -11,22 +11,28 @@
     <style>
       /* --- Root Variables for Theme --- */
       :root {
-        /* Feature Card Colors */
+        /* Feature Card Colors (First Card - Blue) */
         --primary-blue: #0000ff;
         --light-blue: #00bfff;
         --white-core: #ffffff;
         --dark-base: rgba(0, 0, 10, 0.85);
         --border-size: 3px;
-        --button-purple: #8b5cf6; /* New purple for buttons */
-        --button-shadow: #8a5cf6a9; /* Shadow color for hover */
+        --button-purple: #8b5cf6;
+        --button-shadow: #8a5cf6a9;
 
-        /* Updated Instructor Profile Colors for better contrast */
+        /* Updated Instructor Profile Colors */
         --primary-purple: #7e57c2;
         --background-white: #ffffff;
         --text-dark: #1a1a1a;
         --text-medium: #4a4a4a;
         --badge-bg-light: #ede7f6;
         --light-border: #d0d0d0;
+
+        /* Second Card Colors (Crimson) */
+        --crimson-red: #dc143c;
+        --pale-rose: #ffcccc;
+        --crimson-semi: rgba(220, 20, 60, 0.5);
+        --dark-red-base: rgba(15, 0, 0, 0.85);
 
         /* 3D Dynamic Effect Variables */
         --TILT-DEGREE: 2deg;
@@ -51,6 +57,7 @@
         background: #000000;
         color: var(--text-dark);
         display: flex;
+        flex-direction: column; /* Stack cards vertically */
         justify-content: center;
         align-items: center;
         min-height: 100vh;
@@ -58,9 +65,10 @@
         perspective: 1000px;
         overflow-y: auto;
         overflow-x: hidden;
+        gap: 40px; /* Space between cards */
       }
 
-      /* --- Pill Container with Rotating Border Effect --- */
+      /* --- Pill Container for Both Cards --- */
       .main-pill-container {
         position: relative;
         max-width: 850px;
@@ -84,8 +92,8 @@
         cursor: pointer;
       }
 
-      /* Rotating Border Effect for Main Card */
-      .main-pill-container::before {
+      /* Rotating Border Effect for First Card (Blue) */
+      .main-pill-container.blue-theme::before {
         content: "";
         position: absolute;
         top: 0;
@@ -96,26 +104,61 @@
         background: conic-gradient(
           from 0deg,
           transparent 0%,
-          var(--light-blue) 10%,
-          var(--primary-blue) 20%,
-          var(--white-core) 25%,
-          var(--primary-blue) 30%,
-          var(--light-blue) 35%,
-          transparent 45%,
+          var(--light-blue) 8%,
+          var(--primary-blue) 16%,
+          var(--button-purple) 24%,
+          var(--white-core) 30%,
+          var(--button-purple) 36%,
+          var(--primary-blue) 42%,
+          var(--light-blue) 48%,
+          transparent 60%,
           transparent 100%
         );
-        width: calc(100% + 80px);
-        height: calc(100% + 80px);
-        top: -40px;
-        left: -40px;
+        width: calc(100% + 100px);
+        height: calc(100% + 100px);
+        top: -50px;
+        left: -50px;
         border-radius: 25px;
-        animation: borderRotate 2.5s linear infinite;
-        filter: blur(5px);
-        opacity: 0.9;
+        animation: borderRotate 2s linear infinite;
+        filter: blur(6px);
+        opacity: 1;
         will-change: transform;
       }
 
-      /* Card Content with Glassmorphic Background */
+      /* Rotating Border Effect for Second Card (Crimson) */
+      .main-pill-container.crimson-theme::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: conic-gradient(
+          from 0deg,
+          transparent 0%,
+          var(--pale-rose) 8%,
+          var(--crimson-red) 16%,
+          var(--crimson-semi) 24%,
+          var(--white-core) 30%,
+          var(--crimson-semi) 36%,
+          var(--crimson-red) 42%,
+          var(--pale-rose) 48%,
+          transparent 60%,
+          transparent 100%
+        );
+        width: calc(100% + 100px);
+        height: calc(100% + 100px);
+        top: -50px;
+        left: -50px;
+        border-radius: 25px;
+        animation: borderRotate 2s linear infinite;
+        filter: blur(6px);
+        opacity: 1;
+        will-change: transform;
+      }
+
+      /* Card Content for Both Cards */
       .instructor-card {
         position: relative;
         width: 100%;
@@ -129,7 +172,6 @@
         gap: 40px;
         flex-wrap: wrap;
         justify-content: space-between;
-        background: var(--dark-base);
         backdrop-filter: blur(30px);
         -webkit-backdrop-filter: blur(30px);
         border: 1px solid rgba(255, 255, 255, 0.15);
@@ -142,8 +184,12 @@
         transform: scale(1.01);
       }
 
-      /* Radial Gradient Background Layers */
-      .instructor-card::before {
+      /* Background for First Card (Blue) */
+      .instructor-card.blue-theme {
+        background: var(--dark-base);
+      }
+
+      .instructor-card.blue-theme::before {
         content: "";
         position: absolute;
         top: -50%;
@@ -160,7 +206,7 @@
         opacity: 1;
       }
 
-      .instructor-card::after {
+      .instructor-card.blue-theme::after {
         content: "";
         position: absolute;
         top: -25%;
@@ -180,7 +226,49 @@
         filter: blur(180px);
       }
 
-      /* --- Instructor Info Styles --- */
+      /* Background for Second Card (Crimson) */
+      .instructor-card.crimson-theme {
+        background: var(--dark-red-base);
+      }
+
+      .instructor-card.crimson-theme::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        z-index: -3;
+        background: radial-gradient(
+          circle at 10% 10%,
+          rgba(255, 0, 0, 0.08),
+          transparent 60%
+        );
+        filter: blur(250px);
+        opacity: 1;
+      }
+
+      .instructor-card.crimson-theme::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
+        background: radial-gradient(
+          circle at 18% 12%,
+          var(--pale-rose) 0%,
+          var(--crimson-red) 35%,
+          var(--crimson-semi) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+        filter: blur(180px);
+      }
+
+      /* Instructor Info Styles */
       .instructor-info {
         flex: 1;
         min-width: 300px;
@@ -258,14 +346,14 @@
         border: 4px solid var(--button-purple);
         background: transparent;
         color: var(--white-core);
-        font-size: 0.95em; /* Adjusted for consistency, avoiding vw for responsiveness */
+        font-size: 0.95em;
         cursor: pointer;
         padding: 10px 20px;
         border-radius: 10px;
         font-family: "Bebas Neue", sans-serif;
         transition: all 0.3s ease;
-        font-weight: 400; /* Bebas Neue is bold by default */
-        text-transform: uppercase; /* Matches Bebas Neue style */
+        font-weight: 400;
+        text-transform: uppercase;
         position: relative;
         overflow: hidden;
       }
@@ -283,7 +371,7 @@
         box-shadow: 0 0 20px var(--button-shadow);
       }
 
-      /* --- Image Wrapper with Rotating Border --- */
+      /* Image Styles */
       .instructor-image {
         width: 280px;
         height: 280px;
@@ -321,7 +409,10 @@
         align-items: center;
       }
 
-      /* Subtle Rotating Border for Image - Barely Noticeable */
+      .instructor-image.crimson-theme .image-wrapper {
+        background: var(--dark-red-base);
+      }
+
       .image-wrapper::before {
         content: "";
         position: absolute;
@@ -522,9 +613,48 @@
     </style>
   </head>
   <body>
-    <div class="main-pill-container">
-      <div class="instructor-card">
+    <!-- First Instructor Profile Card (Blue Theme) -->
+    <div class="main-pill-container blue-theme">
+      <div class="instructor-card blue-theme">
         <div class="instructor-image">
+          <div class="image-wrapper">
+            <img src="./MAINFILE/assets/negi1.png" alt="Rohit Negi" />
+          </div>
+        </div>
+
+        <div class="instructor-info">
+          <h3>Rohit Negi <span class="trophy-icon">🏆</span></h3>
+
+          <div class="badges">
+            <div class="badge-line">
+              <span class="badge primary-style">Founder & Lead Instructor</span>
+              <span class="badge primary-style">Ex-@Uber</span>
+            </div>
+            <div class="badge-line">
+              <span class="badge secondary-style">IIT Graduate</span>
+              <span class="badge secondary-style">2 Cr+ Package</span>
+              <span class="badge secondary-style">Industry Expert</span>
+            </div>
+          </div>
+
+          <p>
+            Heartfelt Problem Solver, Instructor, and Visionary Leader. Got
+            Highest Placement in India of 2 Cr+. Post Graduate from IIT G,
+            GATE-CSE'20 AIR – 202
+          </p>
+
+          <div class="instructor-actions">
+            <button class="primary-button">Start Learning</button>
+            <button class="secondary-button">Know More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Instructor Profile Card (Crimson Theme) -->
+    <div class="main-pill-container crimson-theme">
+      <div class="instructor-card crimson-theme">
+        <div class="instructor-image crimson-theme">
           <div class="image-wrapper">
             <img src="./MAINFILE/assets/negi1.png" alt="Rohit Negi" />
           </div>
