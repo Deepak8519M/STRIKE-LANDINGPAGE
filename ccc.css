@@ -1,32 +1,5 @@
 /* --- Root Variables for Theme --- */
-:root {
-  /* Feature Card Colors (First Card - Blue) */
-  --primary-blue: #0000ff;
-  --light-blue: #00bfff;
-  --white-core: #ffffff;
-  --dark-base: rgba(0, 0, 10, 0.85);
-  --border-size: 3px;
-  --button-purple: #8b5cf6;
-  --button-shadow: #8a5cf6a9;
-
-  /* Updated Instructor Profile Colors */
-  --primary-purple: #7e57c2;
-  --background-white: #ffffff;
-  --text-dark: #1a1a1a;
-  --text-medium: #4a4a4a;
-  --badge-bg-light: #ede7f6;
-  --light-border: #d0d0d0;
-
-  /* Second Card Colors (Crimson) */
-  --crimson-red: #dc143c;
-  --pale-rose: #ffcccc;
-  --crimson-semi: rgba(220, 20, 60, 0.5);
-  --dark-red-base: rgba(15, 0, 0, 0.85);
-
-  /* 3D Dynamic Effect Variables */
-  --TILT-DEGREE: 2deg;
-  --LIFT-Z: 15px;
-}
+/* Variables were removed as requested */
 
 /* --- Keyframe for Rotating Border --- */
 @keyframes borderRotate {
@@ -44,7 +17,7 @@ body {
   margin: auto;
   padding: 40px 20px;
   background: #000000;
-  color: var(--text-dark);
+  color: #1a1a1a; /* --text-dark */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,16 +43,16 @@ body {
 }
 
 .section-heading .white-text {
-  color: var(--white-core);
+  color: #ffffff; /* --white-core */
 }
 
 .section-heading .purple-text {
-  color: var(--primary-purple);
+  color: #7e57c2; /* --primary-purple */
 }
 
 .section-paragraph {
   font-size: 1.1rem;
-  color: var(--white-core);
+  color: #ffffff; /* --white-core */
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.5;
@@ -91,7 +64,7 @@ body {
   max-width: 850px;
   width: 100%;
   border-radius: 20px;
-  padding: var(--border-size);
+  padding: 3px; /* --border-size */
   box-sizing: border-box;
   background: transparent;
   overflow: hidden;
@@ -104,8 +77,8 @@ body {
 }
 
 .main-pill-container:hover {
-  transform: translateZ(var(--LIFT-Z)) rotateX(var(--TILT-DEGREE))
-    rotateY(calc(var(--TILT-DEGREE) * -1));
+  transform: translateZ(15px) /* --LIFT-Z */ rotateX(2deg) /* --TILT-DEGREE */
+    rotateY(calc(2deg * -1)); /* --TILT-DEGREE */
   cursor: pointer;
 }
 
@@ -121,14 +94,14 @@ body {
   background: conic-gradient(
     from 0deg,
     transparent 0%,
-    var(--light-blue) 8%,
-    var(--primary-blue) 16%,
-    var(--button-purple) 24%,
-    var(--white-core) 30%,
-    var(--button-purple) 36%,
-    var(--primary-blue) 42%,
-    var(--light-blue) 48%,
-    transparent 60%,
+    #00bfff 8%,
+    /* --light-blue */ #0000ff 16%,
+    /* --primary-blue */ #8b5cf6 24%,
+    /* --button-purple */ #ffffff 30%,
+    /* --white-core */ #8b5cf6 36%,
+    /* --button-purple */ #0000ff 42%,
+    /* --primary-blue */ #00bfff 48%,
+    /* --light-blue */ transparent 60%,
     transparent 100%
   );
   width: calc(100% + 100px);
@@ -154,14 +127,14 @@ body {
   background: conic-gradient(
     from 0deg,
     transparent 0%,
-    var(--pale-rose) 8%,
-    var(--crimson-red) 16%,
-    var(--crimson-semi) 24%,
-    var(--white-core) 30%,
-    var(--crimson-semi) 36%,
-    var(--crimson-red) 42%,
-    var(--pale-rose) 48%,
-    transparent 60%,
+    #ffcccc 8%,
+    /* --pale-rose */ #dc143c 16%,
+    /* --crimson-red */ rgba(220, 20, 60, 0.5) 24%,
+    /* --crimson-semi */ #ffffff 30%,
+    /* --white-core */ rgba(220, 20, 60, 0.5) 36%,
+    /* --crimson-semi */ #dc143c 42%,
+    /* --crimson-red */ #ffcccc 48%,
+    /* --pale-rose */ transparent 60%,
     transparent 100%
   );
   width: calc(100% + 100px);
@@ -203,7 +176,7 @@ body {
 
 /* Background for First Card (Blue) */
 .instructor-card.blue-theme {
-  background: var(--dark-base);
+  background: rgba(0, 0, 10, 0.85); /* --dark-base */
 }
 
 .instructor-card.blue-theme::before {
@@ -235,8 +208,8 @@ body {
   background: radial-gradient(
     circle at 18% 12%,
     #ffffff 0%,
-    #0000ff 35%,
-    rgba(0, 0, 255, 0.5) 60%,
+    /* --white-core */ #0000ff 35%,
+    /* --primary-blue */ rgba(0, 0, 255, 0.5) 60%,
     #000000 65%,
     transparent 85%
   );
@@ -245,7 +218,7 @@ body {
 
 /* Background for Second Card (Crimson) */
 .instructor-card.crimson-theme {
-  background: var(--dark-red-base);
+  background: rgba(15, 0, 0, 0.85); /* --dark-red-base */
 }
 
 .instructor-card.crimson-theme::before {
@@ -276,10 +249,10 @@ body {
   opacity: 1;
   background: radial-gradient(
     circle at 18% 12%,
-    var(--pale-rose) 0%,
-    var(--crimson-red) 35%,
-    var(--crimson-semi) 60%,
-    #000000 65%,
+    #ffcccc 0%,
+    /* --pale-rose */ #dc143c 35%,
+    /* --crimson-red */ rgba(220, 20, 60, 0.5) 60%,
+    /* --crimson-semi */ #000000 65%,
     transparent 85%
   );
   filter: blur(180px);
@@ -294,7 +267,7 @@ body {
 
 .instructor-info h3 {
   font-size: 2.5em;
-  color: var(--background-white);
+  color: #ffffff; /* --background-white */
   margin-top: 0;
   margin-bottom: 5px;
   display: flex;
@@ -306,7 +279,7 @@ body {
 .instructor-info h3 .trophy-icon {
   margin-left: 12px;
   font-size: 0.75em;
-  color: var(--primary-purple);
+  color: #7e57c2; /* --primary-purple */
 }
 
 .instructor-info .badges {
@@ -334,14 +307,14 @@ body {
 }
 
 .badge.primary-style {
-  background-color: var(--primary-purple);
-  color: var(--background-white);
+  background-color: #7e57c2; /* --primary-purple */
+  color: #ffffff; /* --background-white */
 }
 
 .badge.secondary-style {
-  background-color: var(--badge-bg-light);
-  color: var(--primary-purple);
-  border-color: var(--primary-purple);
+  background-color: #ede7f6; /* --badge-bg-light */
+  color: #7e57c2; /* --primary-purple */
+  border-color: #7e57c2; /* --primary-purple */
 }
 
 .main-pill-container:nth-child(3) .badge.primary-style {
@@ -380,9 +353,9 @@ body {
 }
 
 .instructor-actions button {
-  border: 4px solid var(--button-purple);
+  border: 4px solid #8b5cf6; /* --button-purple */
   background: transparent;
-  color: var(--white-core);
+  color: #ffffff; /* --white-core */
   font-size: 0.95em;
   cursor: pointer;
   padding: 10px 20px;
@@ -402,10 +375,10 @@ body {
 
 .instructor-actions .primary-button:hover,
 .instructor-actions .secondary-button:hover {
-  background: var(--white-core);
-  color: var(--button-purple);
+  background: #ffffff; /* --white-core */
+  color: #8b5cf6; /* --button-purple */
   transform: translateY(-5px);
-  box-shadow: 0 0 20px var(--button-shadow);
+  box-shadow: 0 0 20px #8a5cf6a9; /* --button-shadow */
 }
 
 /* Image Styles */
@@ -419,7 +392,7 @@ body {
   align-items: center;
   overflow: hidden;
   border-radius: 50%;
-  padding: var(--border-size);
+  padding: 3px; /* --border-size */
   background: transparent;
   box-sizing: border-box;
   transition: transform 0.3s ease;
@@ -436,7 +409,7 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: var(--dark-base);
+  background: rgba(0, 0, 10, 0.85); /* --dark-base */
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -447,7 +420,7 @@ body {
 }
 
 .instructor-image.crimson-theme .image-wrapper {
-  background: var(--dark-red-base);
+  background: rgba(15, 0, 0, 0.85); /* --dark-red-base */
 }
 
 .image-wrapper::before {
@@ -461,9 +434,9 @@ body {
   background: conic-gradient(
     from 0deg,
     transparent 0%,
-    var(--light-blue) 10%,
-    var(--primary-blue) 20%,
-    transparent 30%,
+    #00bfff 10%,
+    /* --light-blue */ #0000ff 20%,
+    /* --primary-blue */ transparent 30%,
     transparent 90%,
     transparent 100%
   );
