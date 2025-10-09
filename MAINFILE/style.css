@@ -1685,9 +1685,9 @@ main {
   }
 }
 @media (max-width: 900px) {
-  .section6 {
-    padding: 70px 0px 280px 0;
-  }
+  /* .section6 {
+    padding: 7;
+  } */
 }
 @media (max-width: 500px) {
   .section6 {
@@ -3179,8 +3179,6 @@ html {
 }
 .section15 {
   width: 100%;
-  height: 120vh;
-
   background: #080818;
   /* background: red; */
 }
@@ -3203,7 +3201,7 @@ html {
     margin: 30px auto;
   }
   .section15 .form-column {
-    background: blueviolet;
+    /* background: blueviolet; */
     width: 94%;
     margin: 0 auto;
   }
@@ -3305,6 +3303,7 @@ html {
   .contact-title {
     font-size: 3rem;
     line-height: 1;
+    z-index: 1000;
   }
 }
 
@@ -3313,6 +3312,7 @@ html {
   color: #9ca3af;
   max-width: 36rem;
   margin-bottom: 2rem;
+  /* background: red; */
 }
 
 .contact-form {
@@ -3564,8 +3564,9 @@ html {
 .section13 {
   width: 100%;
   height: 120vh;
-  /* background: orange; */
+  background: orange;
   font-family: "Poppins", sans-serif;
+  background: #080818;
 }
 .main-wrapper {
   /* margin: auto; */
@@ -3857,27 +3858,28 @@ html {
   color: #7e57c2;
   border-color: #7e57c2;
 }
-
-.main-pill-container:nth-child(3) .badge.primary-style {
+.tandon.primary-style {
   background: #dc143c;
 }
-.main-pill-container:nth-child(3) .badge.secondary-style {
+
+.tandon.secondary-style {
   background: #440011;
   color: #dc143c;
   border-color: #dc143c;
 }
-.main-pill-container:nth-child(3) .instructor-actions .primary-button {
+.tandon.primary-button {
   border: 4px solid #dc143c;
 }
-.main-pill-container:nth-child(3) .instructor-actions .primary-button:hover {
-  color: #dc143c;
-}
-.main-pill-container:nth-child(3) .instructor-actions .secondary-button:hover {
-  color: #dc143c;
-}
-.main-pill-container:nth-child(3) .instructor-actions .secondary-button {
+.tandon.secondary-button {
   border: 4px solid #dc143c;
 }
+.instructor-actions .tandon.secondary-button:hover {
+  color: #dc143c;
+}
+.instructor-actions .tandon.primary-button:hover {
+  color: #dc143c;
+}
+
 .instructor-info p {
   font-size: 0.95em;
   line-height: 1.5;
@@ -4181,5 +4183,12 @@ html {
   }
   .section-paragraph {
     font-size: 0.8rem;
+  }
+}
+@media (max-width: 1000px) {
+  .section15 {
+    /* background: orangered; */
+    height: 160vh;
+    padding-top: 200px;
   }
 }
