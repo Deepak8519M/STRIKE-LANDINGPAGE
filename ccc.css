@@ -344,6 +344,14 @@ body {
   border-color: var(--primary-purple);
 }
 
+.main-pill-container:nth-child(3) .badge.primary-style {
+  background: #dc143c;
+}
+.main-pill-container:nth-child(3) .badge.secondary-style {
+  background: #440011;
+  color: #dc143c;
+  border-color: #dc143c;
+}
 .instructor-info p {
   font-size: 0.95em;
   line-height: 1.5;
