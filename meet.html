@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instructor Profile - Rohit Negi (Fully Responsive)</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Bebas+Neue&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -17,6 +17,8 @@
         --white-core: #ffffff;
         --dark-base: rgba(0, 0, 10, 0.85);
         --border-size: 3px;
+        --button-purple: #8b5cf6; /* New purple for buttons */
+        --button-shadow: #8a5cf6a9; /* Shadow color for hover */
 
         /* Updated Instructor Profile Colors for better contrast */
         --primary-purple: #7e57c2;
@@ -82,7 +84,7 @@
         cursor: pointer;
       }
 
-      /* Refined Rotating Border Effect for Main Card */
+      /* Rotating Border Effect for Main Card */
       .main-pill-container::before {
         content: "";
         position: absolute;
@@ -107,8 +109,8 @@
         top: -40px;
         left: -40px;
         border-radius: 25px;
-        animation: borderRotate 2.5s linear infinite; /* Faster for smooth, complete rotation */
-        filter: blur(5px); /* Adjusted for vibrant, continuous glow */
+        animation: borderRotate 2.5s linear infinite;
+        filter: blur(5px);
         opacity: 0.9;
         will-change: transform;
       }
@@ -186,7 +188,7 @@
       }
 
       .instructor-info h3 {
-        font-size: 2.2em;
+        font-size: 2.5em;
         color: var(--background-white);
         margin-top: 0;
         margin-bottom: 5px;
@@ -253,14 +255,19 @@
       }
 
       .instructor-actions button {
-        padding: 12px 25px;
-        border: none;
-        border-radius: 25px;
-        font-size: 0.95em;
+        border: 4px solid var(--button-purple);
+        background: transparent;
+        color: var(--white-core);
+        font-size: 0.95em; /* Adjusted for consistency, avoiding vw for responsiveness */
         cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease,
-          transform 0.2s ease;
-        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-family: "Bebas Neue", sans-serif;
+        transition: all 0.3s ease;
+        font-weight: 400; /* Bebas Neue is bold by default */
+        text-transform: uppercase; /* Matches Bebas Neue style */
+        position: relative;
+        overflow: hidden;
       }
 
       .instructor-actions button:focus {
@@ -268,26 +275,12 @@
         outline-offset: 2px;
       }
 
-      .instructor-actions .primary-button {
-        background-color: var(--primary-purple);
-        color: var(--background-white);
-      }
-
-      .instructor-actions .primary-button:hover {
-        background-color: #6a4ca8;
-        transform: translateY(-2px);
-      }
-
-      .instructor-actions .secondary-button {
-        background-color: transparent;
-        color: var(--primary-purple);
-        border: 2px solid var(--primary-purple);
-      }
-
+      .instructor-actions .primary-button:hover,
       .instructor-actions .secondary-button:hover {
-        background-color: var(--primary-purple);
-        color: var(--background-white);
-        transform: translateY(-2px);
+        background: var(--white-core);
+        color: var(--button-purple);
+        transform: translateY(-5px);
+        box-shadow: 0 0 20px var(--button-shadow);
       }
 
       /* --- Image Wrapper with Rotating Border --- */
@@ -328,7 +321,7 @@
         align-items: center;
       }
 
-      /* Rotating Border for Image */
+      /* Subtle Rotating Border for Image - Barely Noticeable */
       .image-wrapper::before {
         content: "";
         position: absolute;
@@ -339,21 +332,21 @@
         z-index: -1;
         background: conic-gradient(
           from 0deg,
-          var(--white-core) 0%,
-          var(--light-blue) 5%,
-          var(--primary-blue) 15%,
+          transparent 0%,
+          var(--light-blue) 10%,
+          var(--primary-blue) 20%,
           transparent 30%,
           transparent 90%,
-          var(--white-core) 100%
+          transparent 100%
         );
-        width: calc(100% + 0px);
-        height: calc(100% + 0px);
-        top: -10px;
-        left: -10px;
+        width: calc(100% + 10px);
+        height: calc(100% + 10px);
+        top: -5px;
+        left: -5px;
         border-radius: 50%;
-        /* animation: borderRotate 2.5s linear infinite; */
-        filter: blur(4px);
-        opacity: 0.85;
+        animation: borderRotate 3s linear infinite;
+        filter: blur(1px);
+        opacity: 0.3;
         will-change: transform;
       }
 
@@ -384,7 +377,7 @@
         }
         .instructor-info h3 {
           justify-content: center;
-          font-size: 2em;
+          font-size: 2.2em;
         }
         .instructor-info .badges {
           align-items: center;
@@ -410,7 +403,7 @@
           padding: 25px;
         }
         .instructor-info h3 {
-          font-size: 1.8em;
+          font-size: 2em;
         }
         .instructor-info p {
           font-size: 0.9em;
@@ -433,6 +426,14 @@
           width: 200px;
           height: 200px;
         }
+        .image-wrapper::before {
+          width: calc(100% + 8px);
+          height: calc(100% + 8px);
+          top: -4px;
+          left: -4px;
+          filter: blur(0.8px);
+          opacity: 0.25;
+        }
       }
 
       @media (max-width: 576px) {
@@ -445,7 +446,7 @@
           border-radius: 17px;
         }
         .instructor-info h3 {
-          font-size: 1.6em;
+          font-size: 1.8em;
         }
         .instructor-info p {
           font-size: 0.85em;
@@ -466,6 +467,14 @@
           width: 90%;
           height: 90%;
         }
+        .image-wrapper::before {
+          width: calc(100% + 6px);
+          height: calc(100% + 6px);
+          top: -3px;
+          left: -3px;
+          filter: blur(0.6px);
+          opacity: 0.2;
+        }
       }
 
       @media (max-width: 400px) {
@@ -476,7 +485,7 @@
           padding: 10px;
         }
         .instructor-info h3 {
-          font-size: 1.4em;
+          font-size: 1.6em;
         }
         .instructor-info p {
           font-size: 0.8em;
@@ -500,6 +509,14 @@
         .instructor-image {
           width: 140px;
           height: 140px;
+        }
+        .image-wrapper::before {
+          width: calc(100% + 5px);
+          height: calc(100% + 5px);
+          top: -2.5px;
+          left: -2.5px;
+          filter: blur(0.5px);
+          opacity: 0.15;
         }
       }
     </style>
