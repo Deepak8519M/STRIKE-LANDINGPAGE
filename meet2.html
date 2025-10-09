@@ -3,251 +3,714 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Premium Mentor Profile - Rohit Negi</title>
+    <title>Section 14 - Instructor Profiles</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* Variables for a cleaner, more consistent theme */
+      /* --- Root Variables for Blue Theme --- */
       :root {
-        --dark-background: #0d0517; /* Deeper, richer background */
-        --card-surface: #1b0c2b; /* Subtle lighter surface for contrast */
-        --light-text: #eaeaea;
-        --primary-purple: #9b5de5; /* Brighter, more vibrant purple */
-        --secondary-purple: #f15bb5; /* Accent color, not used extensively */
-        --gray-badge-bg: #291b3a;
-        --font-family: "Inter", sans-serif;
-        --shadow-color: rgba(155, 93, 229, 0.3); /* Purple shadow for depth */
+        /* Feature Card Colors */
+        --primary-blue: #0000ff;
+        --light-blue: #00bfff;
+        --white-core: #ffffff;
+        --dark-base: rgba(0, 0, 10, 0.85);
+        --border-size: 3px;
+
+        /* Updated Instructor Profile Colors for better contrast */
+        --primary-purple: #7e57c2; /* Lighter purple for better visibility */
+        --background-white: #ffffff;
+        --text-dark: #1a1a1a;
+        --text-medium: #4a4a4a;
+        --badge-bg-light: #ede7f6; /* Adjusted to match new purple */
+        --light-border: #d0d0d0;
+
+        /* 3D Dynamic Effect Variables */
+        --TILT-DEGREE: 2deg;
+        --LIFT-Z: 15px;
       }
 
-      /* Basic setup and font smoothing */
+      /* --- Root Variables for Crimson Theme --- */
+      :root {
+        /* Feature Card Colors (Crimson/Red Theme) */
+        --primary-crimson: #dc143c; /* Deep Crimson */
+        --light-red: #ffcccc; /* Pale Rose/Light Red */
+        --white-core: #ffffff;
+        --dark-base-crimson: rgba(
+          15,
+          0,
+          0,
+          0.85
+        ); /* Dark base with a slight red tint */
+        --border-size: 3px;
+
+        /* Updated Instructor Profile Colors for better contrast */
+        --primary-purple-crimson: var(--primary-crimson); /* Crimson */
+        --background-white: #ffffff;
+        --text-dark: #1a1a1a;
+        --text-medium: #4a4a4a;
+        --badge-bg-light-crimson: #440011; /* Very dark red/black for contrast on dark background */
+        --light-border: #d0d0d0;
+
+        /* 3D Dynamic Effect Variables */
+        --TILT-DEGREE: 2deg;
+        --LIFT-Z: 15px;
+      }
+
+      /* --- Keyframe for Rotating Border --- */
+      @keyframes borderRotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* --- Global Styles --- */
       body {
-        background-color: var(--dark-background);
-        color: var(--light-text);
-        font-family: var(--font-family);
-        margin: 0;
+        font-family: "Poppins", sans-serif;
+        margin: auto;
+        padding: 40px 20px;
+        background: #000000;
+        color: var(--text-dark);
+        box-sizing: border-box;
+        min-height: 100vh;
+      }
+
+      /* --- Section 14 Container --- */
+      #section-14 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* --- Pill Container with Rotating Border Effect --- */
+      .main-pill-container {
+        position: relative;
+        max-width: 1200px;
+        width: 100%;
+        border-radius: 20px;
+        padding: var(--border-size);
+        box-sizing: border-box;
+        background: transparent;
+        overflow: hidden;
+        z-index: 10;
+        box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
+        transform-style: preserve-3d;
+        transition: transform 0.4s ease-out;
+        will-change: transform;
+      }
+
+      .main-pill-container:hover {
+        transform: translateZ(var(--LIFT-Z)) rotateX(var(--TILT-DEGREE))
+          rotateY(calc(var(--TILT-DEGREE) * -1));
+        cursor: pointer;
+      }
+
+      /* Rotating Border Effect for Blue Card */
+      .main-pill-container.blue-theme::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-blue) 4%,
+          var(--primary-blue) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        width: calc(100% + 150px);
+        height: calc(100% + 150px);
+        top: -75px;
+        left: -75px;
+        border-radius: 25px;
+        animation: borderRotate 5s linear infinite;
+        filter: blur(6px);
+        opacity: 0.9;
+        will-change: transform;
+      }
+
+      /* Rotating Border Effect for Crimson Card */
+      .main-pill-container.crimson-theme::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-red) 4%,
+          var(--primary-crimson) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        width: calc(100% + 150px);
+        height: calc(100% + 150px);
+        top: -75px;
+        left: -75px;
+        border-radius: 25px;
+        animation: borderRotate 5s linear infinite;
+        filter: blur(6px);
+        opacity: 0.9;
+        will-change: transform;
+      }
+
+      /* Card Content with Glassmorphic Background */
+      .instructor-card {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 17px;
+        overflow: hidden;
+        padding: 60px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s;
+        z-index: 1;
+      }
+
+      .instructor-card.blue-theme {
+        background: var(--dark-base);
+      }
+
+      .instructor-card.crimson-theme {
+        background: var(--dark-base-crimson);
+      }
+
+      .instructor-card:hover {
+        transform: scale(1.01);
+      }
+
+      /* Radial Gradient Background Layers for Blue Theme */
+      .instructor-card.blue-theme::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        z-index: -3;
+        background: radial-gradient(
+          circle at 10% 10%,
+          rgba(0, 50, 255, 0.1),
+          transparent 60%
+        );
+        filter: blur(200px);
+        opacity: 1;
+      }
+
+      .instructor-card.blue-theme::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffffff 0%,
+          #0000ff 35%,
+          rgba(0, 0, 255, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+        filter: blur(150px);
+      }
+
+      /* Radial Gradient Background Layers for Crimson Theme */
+      .instructor-card.crimson-theme::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        z-index: -3;
+        background: radial-gradient(
+          circle at 10% 10%,
+          rgba(220, 20, 60, 0.1),
+          transparent 60%
+        );
+        filter: blur(200px);
+        opacity: 1;
+      }
+
+      .instructor-card.crimson-theme::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffcccc 0%,
+          #dc143c 35%,
+          rgba(220, 20, 60, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+        filter: blur(150px);
+      }
+
+      /* --- Instructor Info Styles --- */
+      .instructor-info {
+        flex: 1;
+        min-width: 350px;
+        order: 2;
+      }
+
+      .instructor-info h3 {
+        font-size: 2.5em;
+        color: var(--background-white);
+        margin-top: 0;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        justify-content: flex-start;
+      }
+
+      .instructor-info h3 .trophy-icon {
+        margin-left: 15px;
+        font-size: 0.8em;
+      }
+
+      .instructor-info h3 .trophy-icon.blue-theme {
+        color: var(--primary-purple);
+      }
+
+      .instructor-info h3 .trophy-icon.crimson-theme {
+        color: var(--primary-crimson);
+      }
+
+      .instructor-info .badges {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+        margin-bottom: 25px;
+        align-items: flex-start;
+      }
+
+      .badge-line {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .instructor-info .badge {
+        padding: 8px 18px;
+        border-radius: 25px;
+        font-size: 0.9em;
+        font-weight: 500;
+        white-space: nowrap;
+        border: 1px solid transparent;
+      }
+
+      .instructor-info .badge.blue-theme.primary-style {
+        background-color: var(--primary-purple);
+        color: var(--background-white);
+      }
+
+      .instructor-info .badge.blue-theme.secondary-style {
+        background-color: var(--badge-bg-light);
+        color: var(--primary-purple);
+        border-color: var(--primary-purple);
+      }
+
+      .instructor-info .badge.crimson-theme.primary-style {
+        background-color: var(--primary-crimson);
+        color: var(--background-white);
+      }
+
+      .instructor-info .badge.crimson-theme.secondary-style {
+        background-color: var(--badge-bg-light-crimson);
+        color: var(--primary-crimson);
+        border-color: var(--primary-crimson);
+      }
+
+      .instructor-info p {
+        font-size: 1.05em;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 30px;
+        max-width: 550px;
+        font-weight: 500;
+      }
+
+      .instructor-actions {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-start;
+      }
+
+      .instructor-actions button {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.05em;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease,
+          transform 0.2s ease;
+        font-weight: 600;
+      }
+
+      .instructor-actions button.blue-theme:focus {
+        outline: 2px solid var(--light-blue);
+        outline-offset: 2px;
+      }
+
+      .instructor-actions button.crimson-theme:focus {
+        outline: 2px solid var(--light-red);
+        outline-offset: 2px;
+      }
+
+      .instructor-actions .primary-button.blue-theme {
+        background-color: var(--primary-purple);
+        color: var(--background-white);
+      }
+
+      .instructor-actions .primary-button.blue-theme:hover {
+        background-color: #6a4ca8;
+        transform: translateY(-2px);
+      }
+
+      .instructor-actions .secondary-button.blue-theme {
+        background-color: transparent;
+        color: var(--primary-purple);
+        border: 2px solid var(--primary-purple);
+      }
+
+      .instructor-actions .secondary-button.blue-theme:hover {
+        background-color: var(--primary-purple);
+        color: var(--background-white);
+        transform: translateY(-2px);
+      }
+
+      .instructor-actions .primary-button.crimson-theme {
+        background-color: var(--primary-crimson);
+        color: var(--background-white);
+      }
+
+      .instructor-actions .primary-button.crimson-theme:hover {
+        background-color: #a81033;
+        transform: translateY(-2px);
+      }
+
+      .instructor-actions .secondary-button.crimson-theme {
+        background-color: transparent;
+        color: var(--primary-crimson);
+        border: 2px solid var(--primary-crimson);
+      }
+
+      .instructor-actions .secondary-button.crimson-theme:hover {
+        background-color: var(--primary-crimson);
+        color: var(--background-white);
+        transform: translateY(-2px);
+      }
+
+      /* --- Image Wrapper with Rotating Border --- */
+      .instructor-image {
+        width: 390px;
+        height: 390px;
+        position: relative;
+        flex-shrink: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 100vh;
-        padding: 40px;
-        -webkit-font-smoothing: antialiased; /* Improves font appearance */
-      }
-
-      /* --- Main Profile Card Container --- */
-      .mentor-profile {
-        display: flex;
-        align-items: center;
-        gap: 50px;
-        max-width: 1100px;
-        background: var(--card-surface);
-        padding: 50px;
-        border-radius: 20px; /* Softer, premium corners */
-        box-shadow: 0 15px 40px var(--shadow-color); /* Deep, glowing shadow */
-        border: 1px solid #3a2350; /* Subtle border for definition */
-        transition: transform 0.3s ease;
-      }
-
-      .mentor-profile:hover {
-        transform: translateY(-5px); /* Lift effect on hover */
-      }
-
-      /* --- Image Container Styling (Circular) --- */
-      .mentor-profile__image-container {
-        width: 320px;
-        height: 320px;
-        border-radius: 50%;
         overflow: hidden;
-        position: relative;
-        /* Gradient ring effect around the circle */
-        border: 5px solid transparent;
-        background-image: linear-gradient(
-            var(--card-surface),
-            var(--card-surface)
-          ),
-          linear-gradient(
-            135deg,
-            var(--primary-purple),
-            var(--secondary-purple)
-          );
-        background-origin: border-box;
-        background-clip: padding-box, border-box;
+        border-radius: 50%;
+        padding: var(--border-size);
+        background: transparent;
+        box-sizing: border-box;
+        transition: transform 0.3s ease;
+        order: 1;
       }
 
-      .mentor-profile__image {
+      .instructor-image.blue-theme:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+      }
+
+      .instructor-image.crimson-theme:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(220, 20, 60, 0.3);
+      }
+
+      .image-wrapper {
+        position: relative;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        border-radius: 50%; /* Image is also round */
-      }
-
-      /* --- Details and Text Styling --- */
-      .mentor-profile__details {
+        border-radius: 50%;
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        z-index: 1;
         display: flex;
-        flex-direction: column;
-        gap: 18px;
-        max-width: 550px;
+        justify-content: center;
+        align-items: center;
       }
 
-      .mentor-profile__name {
-        font-size: 3.2em;
-        font-weight: 800; /* Extra bold for impact */
-        margin: 0;
-        letter-spacing: -1px; /* Tighter letter spacing for premium look */
-        color: var(--light-text);
+      .image-wrapper.blue-theme {
+        background: var(--dark-base);
       }
 
-      .mentor-profile__trophy-icon {
-        font-size: 1.2em;
+      .image-wrapper.crimson-theme {
+        background: var(--dark-base-crimson);
       }
 
-      .mentor-profile__bio {
-        font-size: 1.05em;
-        line-height: 1.6;
-        margin: 0;
-        color: #cfcfcf; /* Soft gray for readability */
-        padding-top: 5px;
-      }
-
-      /* --- Badge Styling --- */
-      .mentor-profile__badges-top,
-      .mentor-profile__badges-bottom {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px; /* Slightly more space between badges */
-      }
-
-      .badge {
-        padding: 6px 14px;
-        border-radius: 6px;
-        font-size: 0.85em;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .badge--dark {
-        background-color: var(--gray-badge-bg);
-        color: var(--light-text);
-      }
-
-      .badge--purple {
-        /* Using a subtle linear gradient for the primary badges */
-        background-image: linear-gradient(
-          45deg,
-          var(--primary-purple) 0%,
-          #b885e8 100%
+      /* Rotating Border for Blue Image */
+      .image-wrapper.blue-theme::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-blue) 4%,
+          var(--primary-blue) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
         );
-        color: var(
-          --dark-background
-        ); /* Darker text for high contrast on bright badge */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        width: calc(100% + 150px);
+        height: calc(100% + 150px);
+        top: -75px;
+        left: -75px;
+        border-radius: 50%;
+        animation: borderRotate 5s linear infinite;
+        filter: blur(6px);
+        opacity: 0.9;
+        will-change: transform;
       }
 
-      /* --- Action Buttons Styling --- */
-      .mentor-profile__actions {
-        display: flex;
-        gap: 20px;
-        margin-top: 15px;
+      /* Rotating Border for Crimson Image */
+      .image-wrapper.crimson-theme::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-red) 4%,
+          var(--primary-crimson) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        width: calc(100% + 150px);
+        height: calc(100% + 150px);
+        top: -75px;
+        left: -75px;
+        border-radius: 50%;
+        animation: borderRotate 5s linear infinite;
+        filter: blur(6px);
+        opacity: 0.9;
+        will-change: transform;
       }
 
-      .btn {
-        padding: 14px 30px;
-        border-radius: 10px;
-        font-size: 1.05em;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        display: inline-block;
-        text-align: center;
+      .instructor-image img {
+        position: relative;
+        z-index: 2;
+        width: 98%;
+        height: 98%;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
       }
 
-      .btn--primary {
-        background-color: var(--primary-purple);
-        color: var(--dark-background);
-        border: none;
-        box-shadow: 0 4px 15px rgba(155, 93, 229, 0.5); /* Glowing effect */
-      }
-
-      .btn--primary:hover {
-        background-color: #a96dee;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(155, 93, 229, 0.7);
-      }
-
-      .btn--secondary {
-        background-color: transparent;
-        color: var(--light-text);
-        border: 2px solid var(--gray-badge-bg);
-      }
-
-      .btn--secondary:hover {
-        border-color: var(--primary-purple);
-        color: var(--primary-purple);
-        background-color: var(--gray-badge-bg);
-      }
-
-      /* --- Responsiveness for smaller screens (Optional but good practice) --- */
-      @media (max-width: 900px) {
-        .mentor-profile {
+      /* Responsive adjustments */
+      @media (max-width: 992px) {
+        .instructor-card {
+          padding: 40px;
           flex-direction: column;
-          text-align: center;
+          align-items: center;
           gap: 30px;
-          padding: 30px;
         }
-        .mentor-profile__image-container {
-          width: 200px;
-          height: 200px;
+        .instructor-info {
+          order: 2;
+          text-align: center;
         }
-        .mentor-profile__actions {
+        .instructor-info h3 {
           justify-content: center;
         }
-        .mentor-profile__badges-top,
-        .mentor-profile__badges-bottom {
+        .instructor-info .badges {
+          align-items: center;
+        }
+        .badge-line {
           justify-content: center;
         }
-        .mentor-profile__name {
-          font-size: 2.5em;
+        .instructor-actions {
+          justify-content: center;
+        }
+        .instructor-image {
+          order: 1;
+          width: 300px;
+          height: 300px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .main-pill-container {
+          padding: 2px;
+        }
+        .instructor-card {
+          padding: 20px;
+          border-radius: 17px;
+        }
+        .instructor-info h3 {
+          font-size: 1.8em;
+        }
+        .instructor-info p {
+          font-size: 0.95em;
+        }
+        .instructor-actions {
+          flex-direction: column;
+          gap: 12px;
+        }
+        .instructor-actions button {
+          width: 100%;
+          padding: 12px 25px;
+        }
+        .instructor-image {
+          width: 220px;
+          height: 220px;
+        }
+        .instructor-image img {
+          width: 90%;
+          height: 90%;
         }
       }
     </style>
   </head>
   <body>
-    <section class="mentor-profile">
-      <div class="mentor-profile__image-container">
-        <img
-          src="mentors.png"
-          alt="Rohit Negi giving a presentation"
-          class="mentor-profile__image"
-        />
+    <section id="section-14">
+      <!-- Blue Theme Card -->
+      <div class="main-pill-container blue-theme">
+        <div class="instructor-card blue-theme">
+          <div class="instructor-image blue-theme">
+            <div class="image-wrapper blue-theme">
+              <img src="./MAINFILE/assets/negi1.png" alt="Rohit Negi" />
+            </div>
+          </div>
+
+          <div class="instructor-info">
+            <h3>Rohit Negi <span class="trophy-icon blue-theme">🏆</span></h3>
+
+            <div class="badges">
+              <div class="badge-line">
+                <span class="badge blue-theme primary-style"
+                  >Founder & Lead Instructor</span
+                >
+                <span class="badge blue-theme primary-style">Ex-@Uber</span>
+              </div>
+              <div class="badge-line">
+                <span class="badge blue-theme secondary-style"
+                  >IIT Graduate</span
+                >
+                <span class="badge blue-theme secondary-style"
+                  >2 Cr+ Package</span
+                >
+                <span class="badge blue-theme secondary-style"
+                  >Industry Expert</span
+                >
+              </div>
+            </div>
+
+            <p>
+              Heartfelt Problem Solver, Instructor, and Visionary Leader. Got
+              Highest Placement in India of 2 Cr+. Post Graduate from IIT G,
+              GATE-CSE'20 AIR – 202
+            </p>
+
+            <div class="instructor-actions">
+              <button class="primary-button blue-theme">Start Learning</button>
+              <button class="secondary-button blue-theme">Know More</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mentor-profile__details">
-        <h2 class="mentor-profile__name">
-          Rohit Negi <span class="mentor-profile__trophy-icon">🏆</span>
-        </h2>
 
-        <div class="mentor-profile__badges-top">
-          <span class="badge badge--dark">Founder & Lead Instructor</span>
-          <span class="badge badge--dark">Ex-@Uber</span>
-        </div>
+      <!-- Crimson Theme Card -->
+      <div class="main-pill-container crimson-theme">
+        <div class="instructor-card crimson-theme">
+          <div class="instructor-image crimson-theme">
+            <div class="image-wrapper crimson-theme">
+              <img src="https://i.imgur.com/eB3R0H6.png" alt="Rohit Negi" />
+            </div>
+          </div>
 
-        <div class="mentor-profile__badges-bottom">
-          <span class="badge badge--purple">IIT Graduate</span>
-          <span class="badge badge--purple">2 Cr+ Package</span>
-          <span class="badge badge--purple">Industry Expert</span>
-        </div>
+          <div class="instructor-info">
+            <h3>
+              Rohit Negi <span class="trophy-icon crimson-theme">🏆</span>
+            </h3>
 
-        <p class="mentor-profile__bio">
-          Heartfelt Problem Solver, Instructor, and Visionary Leader. Got
-          Highest Placement in India of 2 Cr +. Post Graduate from IIT G,
-          GATE-CSE'20 AIR – 202
-        </p>
+            <div class="badges">
+              <div class="badge-line">
+                <span class="badge crimson-theme primary-style"
+                  >Founder & Lead Instructor</span
+                >
+                <span class="badge crimson-theme primary-style">Ex-@Uber</span>
+              </div>
+              <div class="badge-line">
+                <span class="badge crimson-theme secondary-style"
+                  >IIT Graduate</span
+                >
+                <span class="badge crimson-theme secondary-style"
+                  >2 Cr+ Package</span
+                >
+                <span class="badge crimson-theme secondary-style"
+                  >Industry Expert</span
+                >
+              </div>
+            </div>
 
-        <div class="mentor-profile__actions">
-          <a href="#" class="btn btn--primary">Start Learning</a>
-          <a href="#" class="btn btn--secondary">Know More</a>
+            <p>
+              Heartfelt Problem Solver, Instructor, and Visionary Leader. Got
+              Highest Placement in India of 2 Cr+. Post Graduate from IIT G,
+              GATE-CSE'20 AIR – 202
+            </p>
+
+            <div class="instructor-actions">
+              <button class="primary-button crimson-theme">
+                Start Learning
+              </button>
+              <button class="secondary-button crimson-theme">Know More</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
