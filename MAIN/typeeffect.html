@@ -16,7 +16,6 @@
         --editor-bg-start: #1a1a2e;
         --editor-bg-end: #0f101f;
         --live-green: #00ff7f;
-        --total-duration: 35s; /* Total loop duration */
 
         /* Syntax Highlighting (C++ Style) */
         --keyword-color: #c792ea; /* Light Purple */
@@ -48,9 +47,6 @@
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7),
           0 0 0 1px rgba(255, 255, 255, 0.08) inset,
           0 0 20px rgba(0, 255, 127, 0.1);
-
-        /* Loop Control: Prevents the editor from fading out */
-        animation: loop-fade var(--total-duration) infinite step-end;
       }
 
       /* --- Header Bar --- */
@@ -159,45 +155,26 @@
         }
       }
 
-      /* Animation Reset Keyframes for Infinite Loop without Editor Flicker */
-      @keyframes instant-reset-opacity {
+      /* Cursor off keyframes */
+      @keyframes cursor-off {
         to {
           opacity: 0;
         }
       }
-      @keyframes instant-reset-width {
-        to {
-          width: 0;
-        }
-      }
-
-      /* MASTER LOOP FIX: Keep the editor visible (opacity: 1) permanently. */
-      @keyframes loop-fade {
-        0% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
 
       /* --- TYPING SEQUENCE DEFINITIONS (Cursor timing now linked to line start time) --- */
-      /* N=Char Count, D=Duration, S=Start Time, O=Cursor Off Time */
+      /* Updated timings for more realistic feel: varied speeds, longer pauses */
 
-      /* LINE 07 -> 01: N:19, D:0.95s, S:0s, O:1.40s */
+      /* LINE 01: N:19, D:0.95s (0.05s/char), S:0s, O:1.95s */
       .line-7 {
-        animation: show-line 0.001s forwards 0s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 0s;
       }
       .line-7 .typewriter {
-        animation: typing-19 0.95s steps(19) 0s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-19 0.95s steps(19) 0s forwards;
       }
       .line-7 .cursor {
         animation: cursor-move-19 0.95s steps(19) 0s forwards,
-          blink 0.8s infinite steps(2) 0s,
-          instant-reset-opacity 0.001s forwards 1.4s,
-          /* Turn cursor off */ instant-reset-opacity 0.001s linear 34s forwards; /* Reset for next loop */
+          blink 0.8s infinite steps(2) 0s, cursor-off 0.001s forwards 1.95s;
       }
       @keyframes typing-19 {
         from {
@@ -216,31 +193,25 @@
         }
       }
 
-      /* LINE 08 -> 02: N:0, D:0.0s, S:1.45s, O:1.90s */
+      /* LINE 02: N:0, D:0.0s, S:2.05s, O:2.55s */
       .line-8 {
-        animation: show-line 0.001s forwards 1.45s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 2.05s;
       }
       .line-8 .cursor {
-        animation: blink 0.8s infinite steps(2) 1.45s,
-          instant-reset-opacity 0.001s forwards 1.9s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: blink 0.8s infinite steps(2) 2.05s,
+          cursor-off 0.001s forwards 2.55s;
       }
 
-      /* LINE 09 -> 03: N:23, D:1.15s, S:1.95s, O:3.55s */
+      /* LINE 03: N:23, D:1.38s (0.06s/char), S:2.65s, O:5.03s */
       .line-9 {
-        animation: show-line 0.001s forwards 1.95s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 2.65s;
       }
       .line-9 .typewriter {
-        animation: typing-23 1.15s steps(23) 1.95s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-23 1.38s steps(23) 2.65s forwards;
       }
       .line-9 .cursor {
-        animation: cursor-move-23 1.15s steps(23) 1.95s forwards,
-          blink 0.8s infinite steps(2) 1.95s,
-          instant-reset-opacity 0.001s forwards 3.55s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-23 1.38s steps(23) 2.65s forwards,
+          blink 0.8s infinite steps(2) 2.65s, cursor-off 0.001s forwards 5.03s;
       }
       @keyframes typing-23 {
         from {
@@ -259,31 +230,25 @@
         }
       }
 
-      /* LINE 10 -> 04: N:0, D:0.0s, S:3.60s, O:4.05s */
+      /* LINE 04: N:0, D:0.0s, S:5.13s, O:5.63s */
       .line-10 {
-        animation: show-line 0.001s forwards 3.6s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 5.13s;
       }
       .line-10 .cursor {
-        animation: blink 0.8s infinite steps(2) 3.6s,
-          instant-reset-opacity 0.001s forwards 4.05s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: blink 0.8s infinite steps(2) 5.13s,
+          cursor-off 0.001s forwards 5.63s;
       }
 
-      /* LINE 11 -> 05: N:18, D:0.9s, S:4.10s, O:5.45s */
+      /* LINE 05: N:18, D:0.9s (0.05s/char), S:5.73s, O:7.63s */
       .line-11 {
-        animation: show-line 0.001s forwards 4.1s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 5.73s;
       }
       .line-11 .typewriter {
-        animation: typing-18 0.9s steps(18) 4.1s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-18 0.9s steps(18) 5.73s forwards;
       }
       .line-11 .cursor {
-        animation: cursor-move-18 0.9s steps(18) 4.1s forwards,
-          blink 0.8s infinite steps(2) 4.1s,
-          instant-reset-opacity 0.001s forwards 5.45s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-18 0.9s steps(18) 5.73s forwards,
+          blink 0.8s infinite steps(2) 5.73s, cursor-off 0.001s forwards 7.63s;
       }
       @keyframes typing-18 {
         from {
@@ -302,20 +267,16 @@
         }
       }
 
-      /* LINE 12 -> 06: N:8, D:0.4s, S:5.50s, O:6.35s */
+      /* LINE 06: N:8, D:0.32s (0.04s/char), S:7.73s, O:9.05s */
       .line-12 {
-        animation: show-line 0.001s forwards 5.5s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 7.73s;
       }
       .line-12 .typewriter {
-        animation: typing-8 0.4s steps(8) 5.5s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-8 0.32s steps(8) 7.73s forwards;
       }
       .line-12 .cursor {
-        animation: cursor-move-8 0.4s steps(8) 5.5s forwards,
-          blink 0.8s infinite steps(2) 5.5s,
-          instant-reset-opacity 0.001s forwards 6.35s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-8 0.32s steps(8) 7.73s forwards,
+          blink 0.8s infinite steps(2) 7.73s, cursor-off 0.001s forwards 9.05s;
       }
       @keyframes typing-8 {
         from {
@@ -334,20 +295,16 @@
         }
       }
 
-      /* LINE 13 -> 07: N:27, D:1.35s, S:6.40s, O:8.20s */
+      /* LINE 07: N:27, D:1.35s (0.05s/char), S:9.15s, O:11.5s */
       .line-13 {
-        animation: show-line 0.001s forwards 6.4s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 9.15s;
       }
       .line-13 .typewriter {
-        animation: typing-27 1.35s steps(27) 6.4s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-27 1.35s steps(27) 9.15s forwards;
       }
       .line-13 .cursor {
-        animation: cursor-move-27 1.35s steps(27) 6.4s forwards,
-          blink 0.8s infinite steps(2) 6.4s,
-          instant-reset-opacity 0.001s forwards 8.2s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-27 1.35s steps(27) 9.15s forwards,
+          blink 0.8s infinite steps(2) 9.15s, cursor-off 0.001s forwards 11.5s;
       }
       @keyframes typing-27 {
         from {
@@ -366,20 +323,16 @@
         }
       }
 
-      /* LINE 14 -> 08: N:32, D:1.6s, S:8.25s, O:10.30s */
+      /* LINE 08: N:32, D:1.92s (0.06s/char), S:11.6s, O:14.52s */
       .line-14 {
-        animation: show-line 0.001s forwards 8.25s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 11.6s;
       }
       .line-14 .typewriter {
-        animation: typing-32 1.6s steps(32) 8.25s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-32 1.92s steps(32) 11.6s forwards;
       }
       .line-14 .cursor {
-        animation: cursor-move-32 1.6s steps(32) 8.25s forwards,
-          blink 0.8s infinite steps(2) 8.25s,
-          instant-reset-opacity 0.001s forwards 10.3s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-32 1.92s steps(32) 11.6s forwards,
+          blink 0.8s infinite steps(2) 11.6s, cursor-off 0.001s forwards 14.52s;
       }
       @keyframes typing-32 {
         from {
@@ -398,20 +351,16 @@
         }
       }
 
-      /* LINE 15 -> 09: N:18, D:0.9s, S:10.35s, O:11.70s */
+      /* LINE 09: N:18, D:0.9s (0.05s/char), S:14.62s, O:16.52s */
       .line-15 {
-        animation: show-line 0.001s forwards 10.35s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 14.62s;
       }
       .line-15 .typewriter {
-        animation: typing-18-b 0.9s steps(18) 10.35s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-18-b 0.9s steps(18) 14.62s forwards;
       }
       .line-15 .cursor {
-        animation: cursor-move-18-b 0.9s steps(18) 10.35s forwards,
-          blink 0.8s infinite steps(2) 10.35s,
-          instant-reset-opacity 0.001s forwards 11.7s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-18-b 0.9s steps(18) 14.62s forwards,
+          blink 0.8s infinite steps(2) 14.62s, cursor-off 0.001s forwards 16.52s;
       }
       @keyframes typing-18-b {
         from {
@@ -430,20 +379,16 @@
         }
       }
 
-      /* LINE 16 -> 10: N:51, D:2.55s, S:11.75s, O:14.75s */
+      /* LINE 10: N:51, D:3.57s (0.07s/char), S:16.62s, O:21.19s */
       .line-16 {
-        animation: show-line 0.001s forwards 11.75s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 16.62s;
       }
       .line-16 .typewriter {
-        animation: typing-51 2.55s steps(51) 11.75s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-51 3.57s steps(51) 16.62s forwards;
       }
       .line-16 .cursor {
-        animation: cursor-move-51 2.55s steps(51) 11.75s forwards,
-          blink 0.8s infinite steps(2) 11.75s,
-          instant-reset-opacity 0.001s forwards 14.75s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-51 3.57s steps(51) 16.62s forwards,
+          blink 0.8s infinite steps(2) 16.62s, cursor-off 0.001s forwards 21.19s;
       }
       @keyframes typing-51 {
         from {
@@ -462,31 +407,25 @@
         }
       }
 
-      /* LINE 17 -> 11: N:0, D:0.0s, S:14.80s, O:15.25s */
+      /* LINE 11: N:0, D:0.0s, S:21.29s, O:21.79s */
       .line-17 {
-        animation: show-line 0.001s forwards 14.8s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 21.29s;
       }
       .line-17 .cursor {
-        animation: blink 0.8s infinite steps(2) 14.8s,
-          instant-reset-opacity 0.001s forwards 15.25s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: blink 0.8s infinite steps(2) 21.29s,
+          cursor-off 0.001s forwards 21.79s;
       }
 
-      /* LINE 18 -> 12: N:7, D:0.35s, S:15.30s, O:16.10s */
+      /* LINE 12: N:7, D:0.35s (0.05s/char), S:21.89s, O:23.24s */
       .line-18 {
-        animation: show-line 0.001s forwards 15.3s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 21.89s;
       }
       .line-18 .typewriter {
-        animation: typing-7 0.35s steps(7) 15.3s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-7 0.35s steps(7) 21.89s forwards;
       }
       .line-18 .cursor {
-        animation: cursor-move-7 0.35s steps(7) 15.3s forwards,
-          blink 0.8s infinite steps(2) 15.3s,
-          instant-reset-opacity 0.001s forwards 16.1s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-7 0.35s steps(7) 21.89s forwards,
+          blink 0.8s infinite steps(2) 21.89s, cursor-off 0.001s forwards 23.24s;
       }
       @keyframes typing-7 {
         from {
@@ -505,20 +444,16 @@
         }
       }
 
-      /* LINE 19 -> 13: N:15, D:0.75s, S:16.15s, O:17.35s */
+      /* LINE 13: N:15, D:0.9s (0.06s/char), S:23.34s, O:25.24s */
       .line-19 {
-        animation: show-line 0.001s forwards 16.15s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 23.34s;
       }
       .line-19 .typewriter {
-        animation: typing-15 0.75s steps(15) 16.15s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-15 0.9s steps(15) 23.34s forwards;
       }
       .line-19 .cursor {
-        animation: cursor-move-15 0.75s steps(15) 16.15s forwards,
-          blink 0.8s infinite steps(2) 16.15s,
-          instant-reset-opacity 0.001s forwards 17.35s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-15 0.9s steps(15) 23.34s forwards,
+          blink 0.8s infinite steps(2) 23.34s, cursor-off 0.001s forwards 25.24s;
       }
       @keyframes typing-15 {
         from {
@@ -537,20 +472,16 @@
         }
       }
 
-      /* LINE 20 -> 14: N:31, D:1.55s, S:17.40s, O:19.40s */
+      /* LINE 14: N:31, D:1.55s (0.05s/char), S:25.34s, O:27.89s */
       .line-20 {
-        animation: show-line 0.001s forwards 17.4s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 25.34s;
       }
       .line-20 .typewriter {
-        animation: typing-31 1.55s steps(31) 17.4s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-31 1.55s steps(31) 25.34s forwards;
       }
       .line-20 .cursor {
-        animation: cursor-move-31 1.55s steps(31) 17.4s forwards,
-          blink 0.8s infinite steps(2) 17.4s,
-          instant-reset-opacity 0.001s forwards 19.4s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-31 1.55s steps(31) 25.34s forwards,
+          blink 0.8s infinite steps(2) 25.34s, cursor-off 0.001s forwards 27.89s;
       }
       @keyframes typing-31 {
         from {
@@ -569,31 +500,25 @@
         }
       }
 
-      /* LINE 21 -> 15: N:0, D:0.0s, S:19.45s, O:19.90s */
+      /* LINE 15: N:0, D:0.0s, S:27.99s, O:28.49s */
       .line-21 {
-        animation: show-line 0.001s forwards 19.45s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 27.99s;
       }
       .line-21 .cursor {
-        animation: blink 0.8s infinite steps(2) 19.45s,
-          instant-reset-opacity 0.001s forwards 19.9s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: blink 0.8s infinite steps(2) 27.99s,
+          cursor-off 0.001s forwards 28.49s;
       }
 
-      /* LINE 22 -> 16: N:34, D:1.7s, S:19.95s, O:22.10s */
+      /* LINE 16: N:34, D:1.7s (0.05s/char), S:28.59s, O:31.29s */
       .line-22 {
-        animation: show-line 0.001s forwards 19.95s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 28.59s;
       }
       .line-22 .typewriter {
-        animation: typing-34 1.7s steps(34) 19.95s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-34 1.7s steps(34) 28.59s forwards;
       }
       .line-22 .cursor {
-        animation: cursor-move-34 1.7s steps(34) 19.95s forwards,
-          blink 0.8s infinite steps(2) 19.95s,
-          instant-reset-opacity 0.001s forwards 22.1s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-34 1.7s steps(34) 28.59s forwards,
+          blink 0.8s infinite steps(2) 28.59s, cursor-off 0.001s forwards 31.29s;
       }
       @keyframes typing-34 {
         from {
@@ -612,20 +537,16 @@
         }
       }
 
-      /* LINE 23 -> 17: N:27, D:1.35s, S:22.15s, O:23.95s */
+      /* LINE 17: N:27, D:1.89s (0.07s/char for comment), S:31.39s, O:34.78s */
       .line-23 {
-        animation: show-line 0.001s forwards 22.15s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 31.39s;
       }
       .line-23 .typewriter {
-        animation: typing-27-b 1.35s steps(27) 22.15s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-27-b 1.89s steps(27) 31.39s forwards;
       }
       .line-23 .cursor {
-        animation: cursor-move-27-b 1.35s steps(27) 22.15s forwards,
-          blink 0.8s infinite steps(2) 22.15s,
-          instant-reset-opacity 0.001s forwards 23.95s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-27-b 1.89s steps(27) 31.39s forwards,
+          blink 0.8s infinite steps(2) 31.39s, cursor-off 0.001s forwards 34.78s;
       }
       @keyframes typing-27-b {
         from {
@@ -644,20 +565,16 @@
         }
       }
 
-      /* LINE 24 -> 18: N:5, D:0.25s, S:24.00s, O:24.70s */
+      /* LINE 18: N:5, D:0.2s (0.04s/char), S:34.88s, O:36.08s */
       .line-24 {
-        animation: show-line 0.001s forwards 24s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 34.88s;
       }
       .line-24 .typewriter {
-        animation: typing-5 0.25s steps(5) 24s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-5 0.2s steps(5) 34.88s forwards;
       }
       .line-24 .cursor {
-        animation: cursor-move-5 0.25s steps(5) 24s forwards,
-          blink 0.8s infinite steps(2) 24s,
-          instant-reset-opacity 0.001s forwards 24.7s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-5 0.2s steps(5) 34.88s forwards,
+          blink 0.8s infinite steps(2) 34.88s, cursor-off 0.001s forwards 36.08s;
       }
       @keyframes typing-5 {
         from {
@@ -676,20 +593,16 @@
         }
       }
 
-      /* LINE 25 -> 19: N:25, D:1.25s, S:24.75s, O:26.45s */
+      /* LINE 19: N:25, D:1.75s (0.07s/char for comment), S:36.18s, O:39.43s */
       .line-25 {
-        animation: show-line 0.001s forwards 24.75s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 36.18s;
       }
       .line-25 .typewriter {
-        animation: typing-25 1.25s steps(25) 24.75s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-25 1.75s steps(25) 36.18s forwards;
       }
       .line-25 .cursor {
-        animation: cursor-move-25 1.25s steps(25) 24.75s forwards,
-          blink 0.8s infinite steps(2) 24.75s,
-          instant-reset-opacity 0.001s forwards 26.45s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-25 1.75s steps(25) 36.18s forwards,
+          blink 0.8s infinite steps(2) 36.18s, cursor-off 0.001s forwards 39.43s;
       }
       @keyframes typing-25 {
         from {
@@ -708,20 +621,16 @@
         }
       }
 
-      /* LINE 26 -> 20: N:2, D:0.1s, S:26.50s, O:27.10s (Final Line Pause) */
+      /* LINE 20: N:2, D:0.1s (0.05s/char), S:39.53s, O:40.63s */
       .line-26 {
-        animation: show-line 0.001s forwards 26.5s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: show-line 0.001s forwards 39.53s;
       }
       .line-26 .typewriter {
-        animation: typing-2 0.1s steps(2) 26.5s forwards,
-          instant-reset-width 0.001s linear 34s forwards;
+        animation: typing-2 0.1s steps(2) 39.53s forwards;
       }
       .line-26 .cursor {
-        animation: cursor-move-2 0.1s steps(2) 26.5s forwards,
-          blink 0.8s infinite steps(2) 26.5s,
-          instant-reset-opacity 0.001s forwards 27.1s,
-          instant-reset-opacity 0.001s linear 34s forwards;
+        animation: cursor-move-2 0.1s steps(2) 39.53s forwards,
+          blink 0.8s infinite steps(2) 39.53s, cursor-off 0.001s forwards 40.63s;
       }
       @keyframes typing-2 {
         from {
@@ -1036,17 +945,8 @@
         </div>
         <div class="text-gray-400 text-xs">
           Launch:
-          <span class="text-red-400 font-bold">Target Date October 18th</span>
+          <span class="text-red-400 font-bold">Target Date October 18</span>
         </div>
-      </div>
-
-      <!-- Status Bar -->
-      <div
-        id="status-bar"
-        class="bg-gray-800 text-gray-400 text-xs p-1 text-right border-t border-gray-700 font-mono rounded-b-xl opacity-80"
-      >
-        C++ / 20 Lines /
-        <span style="color: var(--live-green)">GenAI/DSA Strike Course</span>
       </div>
     </div>
   </body>
