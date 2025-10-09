@@ -67,6 +67,12 @@
   --border-size: 3px;
   --TILT-DEGREE: 8deg;
   --LIFT-Z: 25px;
+
+  --primary-purple: #5b21b6; /* Color for typed word */
+  --char-factor: 1.2ch; /* Character width factor */
+  --color-cursor: var(--primary-purple);
+  --animation-duration: 12s; /* Total cycle duration */
+  --total-animation-steps: 40; /* Steps for smooth animation */
 }
 
 * {
@@ -4778,5 +4784,188 @@ html {
   .section15 {
     /* background: blue; */
     height: 127vh;
+  }
+}
+.section-code {
+  width: 100%;
+  height: 120vh;
+  background: black;
+  display: flex;
+}
+.section-code .left {
+  background: slateblue;
+  width: 40%;
+  height: 100%;
+  padding: 20px 20px;
+}
+.section-code .left h1 {
+  font-size: 6vw;
+}
+.section-code p {
+  font-size: 3vw;
+  margin-top: 10px;
+}
+
+.section-code .right {
+  background: orangered;
+  width: 60%;
+  height: 100%;
+}
+
+.section-code {
+  width: 100%;
+  height: 100vh;
+  background: black;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.section-code .left {
+  background: slateblue;
+  width: 45%;
+  height: 100%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-code .left h1 {
+  font-size: 5vw;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.section-code .left p {
+  font-size: 2vw;
+  margin-top: 20px;
+  opacity: 0.9;
+}
+
+.section-code .right {
+  background: orangered;
+  width: 60%;
+  height: 100%;
+}
+
+/* Typewriter Effect Styles */
+#typewriter-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 900;
+  color: var(--primary-purple);
+  position: relative;
+  animation: typing-animation var(--animation-duration) infinite
+    steps(var(--total-animation-steps));
+}
+
+/* Cursor Styling */
+#typewriter-text::after {
+  content: "";
+  display: inline-block;
+  vertical-align: bottom; /* Aligns cursor with text baseline */
+  width: 0.15em;
+  height: 1.2em; /* Slightly taller for visibility */
+  background: var(--color-cursor);
+  margin-left: 0.1em; /* Small gap for natural look */
+  animation: blink 0.7s step-end infinite;
+}
+
+/* Content Animation for Text Swap */
+#typewriter-text::before {
+  content: "Army!";
+  animation: text-swap var(--animation-duration) infinite;
+}
+
+/* Keyframes for Blinking Cursor */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Keyframes for Text Swap */
+@keyframes text-swap {
+  0%,
+  25% {
+    content: "Army!";
+  }
+  25.1%,
+  50% {
+    content: "Family!";
+  }
+  50.1%,
+  75% {
+    content: "Future!";
+  }
+  75.1%,
+  100% {
+    content: "Success!";
+  }
+}
+
+/* Keyframes for Typing Animation */
+@keyframes typing-animation {
+  /* Army! (5 chars) */
+  0% {
+    width: 0;
+  }
+  6% {
+    width: calc(5 * var(--char-factor));
+  }
+  21% {
+    width: calc(5 * var(--char-factor));
+  }
+  25% {
+    width: 0;
+  }
+
+  /* Family! (6 chars) */
+  25.1% {
+    width: 0;
+  }
+  31% {
+    width: calc(6 * var(--char-factor));
+  }
+  46% {
+    width: calc(6 * var(--char-factor));
+  }
+  50% {
+    width: 0;
+  }
+
+  /* Future! (6 chars) */
+  50.1% {
+    width: 0;
+  }
+  56% {
+    width: calc(6 * var(--char-factor));
+  }
+  71% {
+    width: calc(6 * var(--char-factor));
+  }
+  75% {
+    width: 0;
+  }
+
+  /* Success! (8 chars) */
+  75.1% {
+    width: 0;
+  }
+  81% {
+    width: calc(8 * var(--char-factor));
+  }
+  96% {
+    width: calc(8 * var(--char-factor));
+  }
+  100% {
+    width: 0;
   }
 }
