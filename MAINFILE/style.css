@@ -1071,11 +1071,11 @@ main {
     font-size: 0.8rem;
   }
   .section3 {
-    height: 30vh;
+    height: 35vh;
   }
-  .section3 .glow {
+  /* .section3 .glow {
     background: transparent;
-  }
+  } */
   .section3 p {
     line-height: 20vw;
     font-size: 12vw;
@@ -2670,10 +2670,11 @@ main {
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 5rem;
   font-weight: 800;
   text-align: center; /* Centered the title */
   margin-bottom: 1rem;
+  font-family: "Bebas Neue";
 }
 
 .premium-color {
@@ -3184,6 +3185,7 @@ html {
   width: 100%;
   background: #080818;
   /* background: red; */
+  padding-top: 130px;
 }
 
 @media (max-width: 380px) {
@@ -3292,14 +3294,10 @@ html {
   line-height: 2.5rem;
   font-weight: 800;
   margin-bottom: 0.75rem;
+  font-family: "Bebas Neue", sans-serif;
 }
-
-.gradient-text {
-  background-image: linear-gradient(90deg, #c084fc, #e9d5ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+.contact-title span {
+  color: #8b5cf6;
 }
 
 @media (min-width: 768px) {
@@ -3419,11 +3417,12 @@ html {
   justify-content: center;
   gap: 0.5rem;
   color: white;
-  font-weight: 600;
-  padding: 0.5rem 1.5rem;
+  font-weight: 300;
+  padding: 1rem 1.5rem;
   border-radius: 0.75rem;
   border: none;
   cursor: pointer;
+  font-family: "Bebas Neue";
 }
 
 @media (min-width: 768px) {
@@ -3457,6 +3456,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* background: red; */
 }
 
 @media (min-width: 768px) {
@@ -3479,6 +3479,10 @@ html {
   color: #d8b4fe;
   font-size: 1.125rem;
   font-weight: 500;
+}
+.illustration-content img {
+  width: 100%;
+  height: 100%;
 }
 
 .badge {
@@ -3558,12 +3562,7 @@ html {
 .illustration-box {
   width: 100%;
 }
-@media (max-width: 400px) {
-  .section15 {
-    /* background: blue; */
-    height: 127vh;
-  }
-}
+
 .section13 {
   width: 100%;
   height: 120vh;
@@ -3591,9 +3590,10 @@ html {
 }
 
 .section-heading {
-  font-size: 2.5rem;
+  font-size: 5rem;
   font-weight: 700;
   margin: 0 0 10px;
+  font-family: "Bebas Neue";
 }
 
 .section-heading .white-text {
@@ -4213,9 +4213,10 @@ html {
   /* background: white; */
 }
 #section12 .section-title {
-  font-size: 2.5rem;
+  font-size: 5rem;
   font-weight: 800;
   margin-bottom: 10px;
+  font-family: "Bebas Neue";
 }
 #section12 .section-paragraph {
   font-size: 1.1rem;
@@ -4749,4 +4750,10 @@ html {
   );
   filter: blur(180px);
   animation: moveGradient 30s ease-in-out infinite alternate;
+}
+@media (max-width: 700px) {
+  .section15 {
+    /* background: blue; */
+    height: 127vh;
+  }
 }
