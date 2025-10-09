@@ -299,32 +299,32 @@ body {
 /* ================================== */
 /* --- CARD 1 (Web Dev) - BLUE Theme (.card-blue) --- */
 /* ================================== */
-#section12 .card-blue .flip-card-front,
+#section12 .card-bluee .flip-card-front,
 #section12 .card-blue .flip-card-back {
   background: rgba(0, 0, 10, 0.75);
   backdrop-filter: blur(30px);
 }
-#section12 .card-blue .tag.category {
+#section12 .card-bluee .tag.category {
   background-color: rgba(0, 128, 255, 0.5);
   border: 1px solid rgba(179, 230, 255, 0.8);
   color: #fff;
 }
-#section12 .card-blue .details-list li .ri {
+#section12 .card-bluee .details-list li .ri {
   color: #00bfff;
 }
-#section12 .card-blue .action-button {
+#section12 .card-bluee .action-button {
   background: #007bff;
   border: 1px solid #e0f7fa;
   color: #fff;
   box-shadow: 0 4px 15px rgba(0, 123, 255, 0.8),
     inset 0 0 10px rgba(255, 255, 255, 0.3);
 }
-#section12 .card-blue .action-button:hover {
+#section12 .card-bluee .action-button:hover {
   background: #3399ff;
   box-shadow: 0 8px 25px rgba(0, 123, 255, 1), 0 0 40px rgba(0, 123, 255, 0.5);
 }
-#section12 .card-blue .flip-card-front::before,
-#section12 .card-blue .flip-card-back::before {
+#section12 .card-bluee .flip-card-front::before,
+#section12 .card-bluee .flip-card-back::before {
   content: "";
   position: absolute;
   top: -20%;
@@ -344,38 +344,38 @@ body {
 }
 
 /* ================================== */
-/* --- CARD 2 (GenAI) - GOLD Theme (.card-gold) --- */
+/* --- CARD 2 (GenAI) - GOLD Theme (.card-goldd) --- */
 /* ================================== */
-#section12 .card-gold .flip-card-front,
-#section12 .card-gold .flip-card-back {
+#section12 .card-goldd .flip-card-front,
+#section12 .card-goldd .flip-card-back {
   background: rgba(10, 5, 0, 0.85);
   backdrop-filter: blur(35px);
 }
-#section12 .card-gold .tag.category {
+#section12 .card-goldd .tag.category {
   background-color: rgba(255, 215, 0, 0.5);
   border: 1px solid rgba(255, 238, 204, 0.8);
   color: #fff;
 }
-#section12 .card-gold .details-list li .ri {
+#section12 .card-goldd .details-list li .ri {
   color: #ffd700;
 }
-#section12 .card-gold .action-button {
+#section12 .card-goldd .action-button {
   background: #ffd700;
   border: 1px solid #ffeecc;
   color: #000;
   box-shadow: 0 4px 15px rgba(255, 215, 0, 0.8),
     inset 0 0 10px rgba(255, 255, 255, 0.3);
 }
-#section12 .card-gold .action-button:hover {
+#section12 .card-goldd .action-button:hover {
   background: #ffeb3b;
   box-shadow: 0 8px 25px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 215, 0, 0.5);
 }
-#section12 .card-gold .action-button::after {
+#section12 .card-goldd .action-button::after {
   color: #000;
 }
 /* Gold Background Layers - Using :before and :after for the two layers */
-#section12 .card-gold .flip-card-front::before,
-#section12 .card-gold .flip-card-back::before {
+#section12 .card-goldd .flip-card-front::before,
+#section12 .card-goldd .flip-card-back::before {
   content: "";
   position: absolute;
   top: -50%;
@@ -391,8 +391,8 @@ body {
   filter: blur(250px);
   opacity: 1;
 }
-#section12 .card-gold .flip-card-front::after,
-#section12 .card-gold .flip-card-back::after {
+#section12 .card-goldd .flip-card-front::after,
+#section12 .card-goldd .flip-card-back::after {
   content: "";
   position: absolute;
   top: -25%;
@@ -414,34 +414,34 @@ body {
 }
 
 /* ==================================== */
-/* --- CARD 3 (System Design) - MINT Theme (.card-mint) --- */
+/* --- CARD 3 (System Design) - MINT Theme (.card-mintt) --- */
 /* ==================================== */
-#section12 .card-mint .flip-card-front,
-#section12 .card-mint .flip-card-back {
+#section12 .card-mintt .flip-card-front,
+#section12 .card-mintt .flip-card-back {
   background: rgba(0, 10, 8, 0.85);
   backdrop-filter: blur(35px);
 }
-#section12 .card-mint .tag.category {
+#section12 .card-mintt .tag.category {
   background-color: rgba(0, 184, 148, 0.5);
   border: 1px solid rgba(224, 255, 255, 0.8);
   color: #fff;
 }
-#section12 .card-mint .details-list li .ri {
+#section12 .card-mintt .details-list li .ri {
   color: #00b894;
 }
-#section12 .card-mint .action-button {
+#section12 .card-mintt .action-button {
   background: #00b894;
   border: 1px solid #e0ffff;
   box-shadow: 0 4px 15px rgba(0, 184, 148, 0.8),
     inset 0 0 10px rgba(255, 255, 255, 0.3);
 }
-#section12 .card-mint .action-button:hover {
+#section12 .card-mintt .action-button:hover {
   background: #33ccb3;
   box-shadow: 0 8px 25px rgba(0, 184, 148, 1), 0 0 40px rgba(0, 184, 148, 0.5);
 }
 /* Mint Background Layers - Using :before and :after for the two layers */
-#section12 .card-mint .flip-card-front::before,
-#section12 .card-mint .flip-card-back::before {
+#section12 .card-mintt .flip-card-front::before,
+#section12 .card-mintt .flip-card-back::before {
   content: "";
   position: absolute;
   top: -50%;
@@ -457,8 +457,8 @@ body {
   filter: blur(250px);
   opacity: 1;
 }
-#section12 .card-mint .flip-card-front::after,
-#section12 .card-mint .flip-card-back::after {
+#section12 .card-mintt .flip-card-front::after,
+#section12 .card-mintt .flip-card-back::after {
   content: "";
   position: absolute;
   top: -25%;
@@ -480,34 +480,34 @@ body {
 }
 
 /* ==================================== */
-/* --- CARD 4 (DSA C++) - CRIMSON Theme (.card-crimson) --- */
+/* --- CARD 4 (DSA C++) - CRIMSON Theme (.card-crimsonn) --- */
 /* ==================================== */
-#section12 .card-crimson .flip-card-front,
-#section12 .card-crimson .flip-card-back {
+#section12 .card-crimsonn .flip-card-front,
+#section12 .card-crimsonn .flip-card-back {
   background: rgba(15, 0, 0, 0.85);
   backdrop-filter: blur(35px);
 }
-#section12 .card-crimson .tag.category {
+#section12 .card-crimsonn .tag.category {
   background-color: rgba(220, 20, 60, 0.5);
   border: 1px solid rgba(255, 204, 204, 0.8);
   color: #fff;
 }
-#section12 .card-crimson .details-list li .ri {
+#section12 .card-crimsonn .details-list li .ri {
   color: #ffcccc;
 }
-#section12 .card-crimson .action-button {
+#section12 .card-crimsonn .action-button {
   background: #dc143c;
   border: 1px solid #ffcccc;
   box-shadow: 0 4px 15px rgba(220, 20, 60, 0.8),
     inset 0 0 10px rgba(255, 255, 255, 0.3);
 }
-#section12 .card-crimson .action-button:hover {
+#section12 .card-crimsonn .action-button:hover {
   background: #ff4d6b;
   box-shadow: 0 8px 25px rgba(220, 20, 60, 1), 0 0 40px rgba(220, 20, 60, 0.5);
 }
 /* Crimson Background Layers - Using :before and :after for the two layers */
-#section12 .card-crimson .flip-card-front::before,
-#section12 .card-crimson .flip-card-back::before {
+#section12 .card-crimsonn .flip-card-front::before,
+#section12 .card-crimsonn .flip-card-back::before {
   content: "";
   position: absolute;
   top: -50%;
@@ -523,8 +523,8 @@ body {
   filter: blur(250px);
   opacity: 1;
 }
-#section12 .card-crimson .flip-card-front::after,
-#section12 .card-crimson .flip-card-back::after {
+#section12 .card-crimsonn .flip-card-front::after,
+#section12 .card-crimsonn .flip-card-back::after {
   content: "";
   position: absolute;
   top: -25%;
