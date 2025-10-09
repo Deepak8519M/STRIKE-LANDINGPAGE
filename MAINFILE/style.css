@@ -2688,13 +2688,15 @@ main {
   margin: 0 auto 4rem; /* Centered the paragraph block and set bottom margin */
 }
 
-.course-grid-container {
+#section10 .course-grid-container {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center; /* Ensures the cards themselves are centered */
-  gap: 32px; /* Spacing between cards */
-  max-width: 1280px;
+  /* align-items: center; */
+  justify-content: space-between;
+  gap: 32px;
+  max-width: 1200px;
+  /* background: red; */
+  margin: 0 auto;
   margin-top: 30px;
 }
 
@@ -4228,11 +4230,20 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+@media (max-width: 1150px) {
+  #section12 .course-grid-container {
+    justify-content: center;
+  }
+  #section10 .course-grid-container {
+    justify-content: center;
+  }
+}
 /* --- CARD COMMON STYLES (SCOPED TO #section12) --- */
 #section12 .free-rot {
   width: 340px;
