@@ -3561,36 +3561,26 @@ html {
     height: 127vh;
   }
 }
-
-/* --- Keyframe for Rotating Border --- */
-@keyframes borderRotate13 {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.section13 {
+  width: 100%;
+  height: 120vh;
+  /* background: orange; */
+  font-family: "Poppins", sans-serif;
 }
-
-/* --- Global Styles --- */
-
-/* New wrapper class to inherit the old body layout properties */
 .main-wrapper {
-  margin: auto;
+  /* margin: auto; */
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   min-height: 100vh;
   box-sizing: border-box;
   perspective: 1000px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  height: fit-content;
   gap: 40px;
+  /* background: blue; */
 }
-
-/* --- Section 14 Styles --- */
 .section-131 {
   text-align: center;
   margin-bottom: 20px;
@@ -3617,8 +3607,6 @@ html {
   margin: 0 auto;
   line-height: 1.5;
 }
-
-/* --- Pill Container for Both Cards --- */
 .main-pill-container {
   position: relative;
   max-width: 850px;
@@ -3634,14 +3622,12 @@ html {
   transition: transform 0.4s ease-out;
   will-change: transform;
   min-height: 380px;
+  /* background: orange; */
 }
-
 .main-pill-container:hover {
   transform: translateZ(15px) rotateX(2deg) rotateY(calc(2deg * -1));
   cursor: pointer;
 }
-
-/* Rotating Border Effect for First Card (Blue) */
 .main-pill-container.blue-theme::before {
   content: "";
   position: absolute;
@@ -3663,12 +3649,12 @@ html {
     transparent 60%,
     transparent 100%
   );
-  width: calc(100% + 100px);
-  height: calc(100% + 100px);
-  top: -50px;
-  left: -50px;
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  top: -60px;
+  left: -60px;
   border-radius: 25px;
-  animation: borderRotate13 2s linear infinite;
+  animation: borderRotate 2s linear infinite;
   filter: blur(6px);
   opacity: 1;
   will-change: transform;
@@ -3701,13 +3687,12 @@ html {
   top: -50px;
   left: -50px;
   border-radius: 25px;
-  animation: borderRotate13 2s linear infinite;
+  animation: borderRotate 2s linear infinite;
   filter: blur(6px);
   opacity: 1;
   will-change: transform;
 }
 
-/* Card Content for Both Cards */
 .instructor-card {
   position: relative;
   width: 100%;
@@ -3727,13 +3712,12 @@ html {
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
   transition: transform 0.3s;
   z-index: 1;
+  /* background: blue; */
 }
 
 .instructor-card:hover {
   transform: scale(1.01);
 }
-
-/* Background for First Card (Blue) */
 .instructor-card.blue-theme {
   background: rgba(0, 0, 10, 0.85);
 }
@@ -3775,7 +3759,6 @@ html {
   filter: blur(180px);
 }
 
-/* Background for Second Card (Crimson) */
 .instructor-card.crimson-theme {
   background: rgba(15, 0, 0, 0.85);
 }
@@ -3817,7 +3800,6 @@ html {
   filter: blur(180px);
 }
 
-/* Instructor Info Styles */
 .instructor-info {
   flex: 1;
   min-width: 300px;
@@ -3856,7 +3838,7 @@ html {
   gap: 8px;
 }
 
-.instructor-info .badge {
+.instructor-info .badgee {
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 0.85em;
@@ -3865,12 +3847,12 @@ html {
   border: 1px solid transparent;
 }
 
-.badge.primary-style {
+.badgee.primary-style {
   background-color: #7e57c2;
   color: #ffffff;
 }
 
-.badge.secondary-style {
+.badgee.secondary-style {
   background-color: #ede7f6;
   color: #7e57c2;
   border-color: #7e57c2;
@@ -4003,7 +3985,7 @@ html {
   top: -5px;
   left: -5px;
   border-radius: 50%;
-  animation: borderRotate13 3s linear infinite;
+  animation: borderRotate 3s linear infinite;
   filter: blur(1px);
   opacity: 0.3;
   will-change: transform;
@@ -4019,7 +4001,6 @@ html {
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive adjustments */
 @media (max-width: 992px) {
   .main-pill-container {
     min-height: initial;
@@ -4083,7 +4064,7 @@ html {
     padding: 10px 20px;
     font-size: 0.9em;
   }
-  .instructor-info .badge {
+  .instructor-info .badgee {
     padding: 5px 14px;
     font-size: 0.8em;
   }
@@ -4126,7 +4107,7 @@ html {
     padding: 8px 18px;
     font-size: 0.85em;
   }
-  .instructor-info .badge {
+  .instructor-info .badgee {
     padding: 4px 12px;
     font-size: 0.75em;
   }
@@ -4179,7 +4160,7 @@ html {
     flex-grow: 1;
     min-width: 130px;
   }
-  .instructor-info .badge {
+  .instructor-info .badgee {
     padding: 4px 10px;
     font-size: 0.7em;
   }

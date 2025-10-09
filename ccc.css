@@ -528,7 +528,7 @@ body {
     padding: 10px 20px;
     font-size: 0.9em;
   }
-  .instructor-info .badge {
+  .instructor-info .badgee {
     padding: 5px 14px;
     font-size: 0.8em;
   }
@@ -571,7 +571,7 @@ body {
     padding: 8px 18px;
     font-size: 0.85em;
   }
-  .instructor-info .badge {
+  .instructor-info .badgee {
     padding: 4px 12px;
     font-size: 0.75em;
   }
@@ -624,7 +624,7 @@ body {
     flex-grow: 1;
     min-width: 130px;
   }
-  .instructor-info .badge {
+  .instructor-info .badgee {
     padding: 4px 10px;
     font-size: 0.7em;
   }
