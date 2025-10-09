@@ -3561,3 +3561,644 @@ html {
     height: 127vh;
   }
 }
+
+/* --- Keyframe for Rotating Border --- */
+@keyframes borderRotate13 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Global Styles --- */
+
+/* New wrapper class to inherit the old body layout properties */
+.main-wrapper {
+  margin: auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+  perspective: 1000px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  gap: 40px;
+}
+
+/* --- Section 14 Styles --- */
+.section-131 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.section-heading .white-text {
+  color: #ffffff;
+}
+
+.section-heading .purple-text {
+  color: #7e57c2;
+}
+
+.section-paragraph {
+  font-size: 1.1rem;
+  color: #ffffff;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* --- Pill Container for Both Cards --- */
+.main-pill-container {
+  position: relative;
+  max-width: 850px;
+  width: 100%;
+  border-radius: 20px;
+  padding: 3px;
+  box-sizing: border-box;
+  background: transparent;
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease-out;
+  will-change: transform;
+  min-height: 380px;
+}
+
+.main-pill-container:hover {
+  transform: translateZ(15px) rotateX(2deg) rotateY(calc(2deg * -1));
+  cursor: pointer;
+}
+
+/* Rotating Border Effect for First Card (Blue) */
+.main-pill-container.blue-theme::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    #00bfff 8%,
+    #0000ff 16%,
+    #8b5cf6 24%,
+    #ffffff 30%,
+    #8b5cf6 36%,
+    #0000ff 42%,
+    #00bfff 48%,
+    transparent 60%,
+    transparent 100%
+  );
+  width: calc(100% + 100px);
+  height: calc(100% + 100px);
+  top: -50px;
+  left: -50px;
+  border-radius: 25px;
+  animation: borderRotate13 2s linear infinite;
+  filter: blur(6px);
+  opacity: 1;
+  will-change: transform;
+}
+
+/* Rotating Border Effect for Second Card (Crimson) */
+.main-pill-container.crimson-theme::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    #ffcccc 8%,
+    #dc143c 16%,
+    rgba(220, 20, 60, 0.5) 24%,
+    #ffffff 30%,
+    rgba(220, 20, 60, 0.5) 36%,
+    #dc143c 42%,
+    #ffcccc 48%,
+    transparent 60%,
+    transparent 100%
+  );
+  width: calc(100% + 100px);
+  height: calc(100% + 100px);
+  top: -50px;
+  left: -50px;
+  border-radius: 25px;
+  animation: borderRotate13 2s linear infinite;
+  filter: blur(6px);
+  opacity: 1;
+  will-change: transform;
+}
+
+/* Card Content for Both Cards */
+.instructor-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 17px;
+  overflow: hidden;
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s;
+  z-index: 1;
+}
+
+.instructor-card:hover {
+  transform: scale(1.01);
+}
+
+/* Background for First Card (Blue) */
+.instructor-card.blue-theme {
+  background: rgba(0, 0, 10, 0.85);
+}
+
+.instructor-card.blue-theme::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(0, 50, 255, 0.1),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+
+.instructor-card.blue-theme::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #ffffff 0%,
+    #0000ff 35%,
+    rgba(0, 0, 255, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+}
+
+/* Background for Second Card (Crimson) */
+.instructor-card.crimson-theme {
+  background: rgba(15, 0, 0, 0.85);
+}
+
+.instructor-card.crimson-theme::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -3;
+  background: radial-gradient(
+    circle at 10% 10%,
+    rgba(255, 0, 0, 0.08),
+    transparent 60%
+  );
+  filter: blur(250px);
+  opacity: 1;
+}
+
+.instructor-card.crimson-theme::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  z-index: -2;
+  opacity: 1;
+  background: radial-gradient(
+    circle at 18% 12%,
+    #ffcccc 0%,
+    #dc143c 35%,
+    rgba(220, 20, 60, 0.5) 60%,
+    #000000 65%,
+    transparent 85%
+  );
+  filter: blur(180px);
+}
+
+/* Instructor Info Styles */
+.instructor-info {
+  flex: 1;
+  min-width: 300px;
+  order: 2;
+}
+
+.instructor-info h3 {
+  font-size: 2.5em;
+  color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  justify-content: flex-start;
+}
+
+.instructor-info h3 .trophy-icon {
+  margin-left: 12px;
+  font-size: 0.75em;
+  color: #7e57c2;
+}
+
+.instructor-info .badges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+
+.badge-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.instructor-info .badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.badge.primary-style {
+  background-color: #7e57c2;
+  color: #ffffff;
+}
+
+.badge.secondary-style {
+  background-color: #ede7f6;
+  color: #7e57c2;
+  border-color: #7e57c2;
+}
+
+.main-pill-container:nth-child(3) .badge.primary-style {
+  background: #dc143c;
+}
+.main-pill-container:nth-child(3) .badge.secondary-style {
+  background: #440011;
+  color: #dc143c;
+  border-color: #dc143c;
+}
+.main-pill-container:nth-child(3) .instructor-actions .primary-button {
+  border: 4px solid #dc143c;
+}
+.main-pill-container:nth-child(3) .instructor-actions .primary-button:hover {
+  color: #dc143c;
+}
+.main-pill-container:nth-child(3) .instructor-actions .secondary-button:hover {
+  color: #dc143c;
+}
+.main-pill-container:nth-child(3) .instructor-actions .secondary-button {
+  border: 4px solid #dc143c;
+}
+.instructor-info p {
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 25px;
+  max-width: 500px;
+  font-weight: 500;
+}
+
+.instructor-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start;
+}
+
+.instructor-actions button {
+  border: 4px solid #8b5cf6;
+  background: transparent;
+  color: #ffffff;
+  font-size: 0.95em;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: "Bebas Neue", sans-serif;
+  transition: all 0.3s ease;
+  font-weight: 400;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.instructor-actions button:focus {
+  outline-offset: 2px;
+}
+
+.instructor-actions .primary-button:hover,
+.instructor-actions .secondary-button:hover {
+  background: #ffffff;
+  color: #8b5cf6;
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #8a5cf6a9;
+}
+
+/* Image Styles */
+.instructor-image {
+  width: 280px;
+  height: 280px;
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  padding: 3px;
+  background: transparent;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+  order: 1;
+}
+
+.instructor-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 0, 10, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.instructor-image.crimson-theme .image-wrapper {
+  background: rgba(15, 0, 0, 0.85);
+}
+
+.image-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    #00bfff 10%,
+    #0000ff 20%,
+    transparent 30%,
+    transparent 90%,
+    transparent 100%
+  );
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  top: -5px;
+  left: -5px;
+  border-radius: 50%;
+  animation: borderRotate13 3s linear infinite;
+  filter: blur(1px);
+  opacity: 0.3;
+  will-change: transform;
+}
+
+.instructor-image img {
+  position: relative;
+  z-index: 2;
+  width: 98%;
+  height: 98%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .main-pill-container {
+    min-height: initial;
+  }
+  .instructor-card {
+    padding: 30px;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  .instructor-info {
+    order: 2;
+    text-align: center;
+  }
+  .instructor-info h3 {
+    justify-content: center;
+    font-size: 2.2em;
+  }
+  .instructor-info .badges {
+    align-items: center;
+  }
+  .badge-line {
+    justify-content: center;
+  }
+  .instructor-actions {
+    justify-content: center;
+  }
+  .instructor-image {
+    order: 1;
+    width: 230px;
+    height: 230px;
+  }
+  .section-heading {
+    font-size: 2rem;
+  }
+  .section-paragraph {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-pill-container {
+    max-width: 90%;
+  }
+  .instructor-card {
+    padding: 25px;
+  }
+  .instructor-info h3 {
+    font-size: 2em;
+  }
+  .instructor-info p {
+    font-size: 0.9em;
+    max-width: 100%;
+  }
+  .instructor-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .instructor-actions button {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+  .instructor-info .badge {
+    padding: 5px 14px;
+    font-size: 0.8em;
+  }
+  .instructor-image {
+    width: 200px;
+    height: 200px;
+  }
+  .image-wrapper::before {
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    top: -4px;
+    left: -4px;
+    filter: blur(0.8px);
+    opacity: 0.25;
+  }
+  .section-heading {
+    font-size: 1.8rem;
+  }
+  .section-paragraph {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .main-pill-container {
+    padding: 2px;
+    max-width: 95%;
+  }
+  .instructor-card {
+    padding: 15px;
+    border-radius: 17px;
+  }
+  .instructor-info h3 {
+    font-size: 1.8em;
+  }
+  .instructor-info p {
+    font-size: 0.85em;
+  }
+  .instructor-actions button {
+    padding: 8px 18px;
+    font-size: 0.85em;
+  }
+  .instructor-info .badge {
+    padding: 4px 12px;
+    font-size: 0.75em;
+  }
+  .instructor-image {
+    width: 160px;
+    height: 160px;
+  }
+  .instructor-image img {
+    width: 90%;
+    height: 90%;
+  }
+  .image-wrapper::before {
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+    top: -3px;
+    left: -3px;
+    filter: blur(0.6px);
+    opacity: 0.2;
+  }
+  .section-heading {
+    font-size: 1.6rem;
+  }
+  .section-paragraph {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .main-pill-container {
+    max-width: 98%;
+  }
+  .instructor-card {
+    padding: 10px;
+  }
+  .instructor-info h3 {
+    font-size: 1.6em;
+  }
+  .instructor-info p {
+    font-size: 0.8em;
+  }
+  .instructor-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .instructor-actions button {
+    padding: 8px 15px;
+    font-size: 0.8em;
+    flex-grow: 1;
+    min-width: 130px;
+  }
+  .instructor-info .badge {
+    padding: 4px 10px;
+    font-size: 0.7em;
+  }
+  .instructor-image {
+    width: 140px;
+    height: 140px;
+  }
+  .image-wrapper::before {
+    width: calc(100% + 5px);
+    height: calc(100% + 5px);
+    top: -2.5px;
+    left: -2.5px;
+    filter: blur(0.5px);
+    opacity: 0.15;
+  }
+  .section-heading {
+    font-size: 1.4rem;
+  }
+  .section-paragraph {
+    font-size: 0.8rem;
+  }
+}
