@@ -3,261 +3,480 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coder Army Mission</title>
+    <title>Professional Footer Design</title>
+    <!-- We will use a link to the Inter font for a professional look -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+    />
+    <!-- Link for Remix Icons (needed for ri-linkedin-box-fill, ri-youtube-fill, etc.) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    />
+
     <style>
-      /* Ensure HTML takes up the full page height */
-      html {
-        height: 100%;
-      }
-
-      /* Reset body styles to avoid conflicts */
+      /* Global Reset and Typography */
       body {
+        font-family: "Inter", sans-serif;
+        background-color: #222;
+        min-height: 150vh;
         margin: 0;
-        padding: 0;
-        height: 100%;
       }
 
-      /* Apply styles to section94 with exact 100vh and no horizontal overflow */
-      #section94 {
-        font-family: Arial, sans-serif;
-        background-color: white;
-        color: #1f2937;
-        height: 100vh;
-        width: 100%;
-        overflow-x: hidden; /* Prevent horizontal overflow */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-      }
-
-      /* Card Container Styles with slide-in animation */
-      .s94-motto-container {
-        position: relative;
-        width: 100%;
-        max-width: 100%; /* Strictly limit to viewport width */
-        height: 100%;
-        margin: 0;
-        padding: 1.5vh 0.75rem;
-        text-align: center;
-        border-radius: 0;
-        border: none;
-        box-shadow: none;
-        box-sizing: border-box; /* Include padding in width */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        animation: s94-slide-in 0.8s ease-out forwards; /* Slide-in animation */
-      }
-
-      /* Slide-in animation */
-      @keyframes s94-slide-in {
-        from {
-          transform: translateX(-100%); /* Start off-screen left */
-        }
-        to {
-          transform: translateX(0); /* End at normal position */
-        }
-      }
-
-      /* Responsive Padding adjustment */
-      @media (min-width: 640px) {
-        .s94-motto-container {
-          padding: 3vh 1rem;
-        }
-      }
-
-      /* Hover Effect removed */
-      .s94-motto-container:hover {
-        box-shadow: none;
-      }
-
-      /* Motto Text Styles */
-      .s94-text-motto {
-        font-size: clamp(1.5rem, 5vw, 3rem);
-        line-height: 1.1;
-        font-weight: 900;
-        display: block;
-      }
-      .s94-text-motto-primary {
-        color: #4338ca;
-      }
-
-      /* Rotating Square Animation */
-      @keyframes s94-rotate-better {
-        from {
-          transform: rotate(0deg) translate(-50%, -50%);
-        }
-        to {
-          transform: rotate(360deg) translate(-50%, -50%);
-        }
-      }
-      .s94-rotating-square {
-        position: absolute;
-        background-color: #4338ca;
-        border-radius: 0.5rem;
-        animation: s94-rotate-better 40s linear infinite;
-        z-index: 0;
-      }
-      .s94-rotating-square.s94-tl {
-        top: 0;
-        left: 0;
-        width: 120px; /* Further reduced for mobile */
-        height: 120px;
-        opacity: 0.3;
-      }
-      .s94-rotating-square.s94-br {
-        bottom: 0;
-        right: 0;
-        width: 100px; /* Further reduced for mobile */
-        height: 100px;
-        opacity: 0.2;
-      }
-      @media (min-width: 640px) {
-        .s94-rotating-square.s94-tl {
-          width: 150px;
-          height: 150px;
-        }
-        .s94-rotating-square.s94-br {
-          width: 120px;
-          height: 120px;
-        }
-      }
-
-      /* Content and Tag Styles */
-      .s94-content-wrap {
-        position: relative;
-        z-index: 10;
-        max-width: 800px;
-        width: 100%;
-        margin: 0 auto;
-        box-sizing: border-box;
-      }
-      .s94-top-tag {
-        display: inline-block;
-        border: 2px solid #1f2937;
-        background-color: #4338ca;
+      /* --- Footer Structure --- */
+      .footer-main {
+        background-color: #101010;
         color: white;
-        border-radius: 9999px;
-        padding: 0.25rem 0.75rem;
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        margin-bottom: 1.5rem;
-      }
-
-      .s94-mission-text {
-        max-width: 600px;
-        margin: 0 auto;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: #4b5563;
-        line-height: 1.5;
-      }
-      @media (min-width: 640px) {
-        .s94-mission-text {
-          font-size: 1.125rem;
-        }
-      }
-
-      /* Start Button Styles */
-      .s94-start-button {
-        display: inline-flex;
-        align-items: center;
-        background-color: #4338ca;
-        color: white;
-        font-weight: 700;
-        padding: 0.5rem 0.75rem 0.5rem 1rem;
-        border-radius: 0.75rem;
-        border-bottom: 4px solid #1f2937;
-        transition: all 150ms ease-in-out;
-        cursor: pointer;
+        padding-top: 4rem;
+        position: relative;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
           0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        text-decoration: none;
-        margin-top: 1.5rem;
-      }
-      @media (min-width: 640px) {
-        .s94-start-button {
-          padding: 0.75rem 1rem 0.75rem 1.5rem;
-        }
-      }
-      .s94-start-button:hover {
-        background-color: #4338ca;
-      }
-      .s94-start-button:active {
-        background-color: #3730a3;
-        transform: translateY(1px);
-        border-bottom-width: 2px;
-      }
-      .s94-start-button svg {
-        height: 1.25rem;
-        width: 1.25rem;
-        margin-left: 0.5rem;
       }
 
-      /* Motto wrapper margin */
-      .s94-motto-wrapper {
-        margin-bottom: 1.5rem;
+      .footer-content-wrapper {
+        max-width: 80rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      /* --- Navigation Columns (Top Section) --- */
+      .footer-nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+        padding-bottom: 4rem;
+        border-bottom: 1px solid #374151;
+        text-align: left;
+      }
+
+      /* Tablet/Desktop Breakpoint (md: equivalent) */
+      @media (min-width: 768px) {
+        .footer-nav {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .footer-strike-text {
+          /* Dramatically increased size for tablets and up */
+          font-size: 14rem !important;
+        }
+      }
+      /* Larger Breakpoint (lg/xl equivalent) */
+      @media (min-width: 1024px) {
+        .footer-strike-text {
+          font-size: 18rem !important;
+        }
+      }
+      @media (min-width: 1280px) {
+        .footer-strike-text {
+          font-size: 24rem !important;
+        }
+      }
+
+      /* Column Headers */
+      .footer-col-header {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #beaee2; /* Refined lighter purple for headers */
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1rem;
+      }
+
+      /* New Sub-Header Style for sections inside a column */
+      .footer-col-subheader {
+        font-size: 0.875rem; /* Same size as links */
+        font-weight: 600; /* Bold */
+        color: white; /* White for emphasis */
+        text-transform: uppercase;
+        margin-top: 1.5rem; /* Space from previous list/block */
+        margin-bottom: 0.5rem;
+      }
+
+      /* Column Content */
+      .footer-col-content-block {
+        margin-bottom: 1rem;
+      }
+      .footer-col-item-text {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.875rem;
+        line-height: 1.625;
+      }
+      .footer-col-link-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .footer-col-link-list li {
+        margin-bottom: 0.5rem;
+      }
+      .footer-col-link-list a {
+        color: rgba(255, 255, 255, 0.75);
+        text-decoration: none;
+        transition: color 0.2s;
+        font-size: 0.875rem;
+        display: inline-block;
+      }
+      .footer-col-link-list a:hover {
+        color: #8b5cf6; /* Hover color is the main purple */
+      }
+
+      /* --- STRIKE Logo Section --- */
+      .footer-logo-section {
+        /* Increased padding to give the huge text more vertical space */
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+        text-align: center;
+      }
+      .footer-strike-text {
+        letter-spacing: -0.05em;
+        font-weight: 800;
+        line-height: 1;
+        display: block;
+        font-size: 6rem;
+        color: #cfcfcf;
+        -webkit-text-stroke: initial;
+        text-stroke: initial;
+        text-shadow: none;
+      }
+
+      /* --- Scroll Button (Non-functional without JS) --- */
+      .footer-scroll-to-top {
+        position: absolute;
+        top: 0;
+        right: 2rem;
+        transform: translateY(-50%);
+        background-color: #8b5cf6;
+        color: white;
+        padding: 0.75rem;
+        border-radius: 9999px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        transition: transform 0.3s;
+        border: none;
+        cursor: pointer;
+      }
+      .footer-scroll-to-top:hover {
+        transform: translateY(-50%) scale(1.05);
+      }
+
+      /* --- Bottom Copyright Bar --- */
+      .footer-bottom-bar-wrapper {
+        background-color: #161616; /* Using the enhanced darker shade */
+      }
+      .footer-bottom-bar {
+        max-width: 80rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1.25rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.75rem;
+      }
+
+      .footer-bottom-bar p,
+      .footer-legal-links a {
+        color: rgba(255, 255, 255, 0.75);
+        text-decoration: none;
+      }
+
+      .footer-legal-links {
+        display: flex;
+        gap: 1.5rem;
+        order: 1;
+      }
+
+      .footer-copyright {
+        order: 2;
+        margin-top: 0.75rem;
+      }
+
+      .footer-legal-links a:hover {
+        color: #8b5cf6; /* Hover color is the main purple */
+      }
+
+      /* Tablet/Desktop adjustments for bottom bar */
+      @media (min-width: 640px) {
+        .footer-bottom-bar {
+          flex-direction: row;
+        }
+        .footer-copyright {
+          margin-top: 0;
+          order: 1;
+        }
+        .footer-legal-links {
+          order: 2;
+        }
+      }
+
+      /* --- Social Buttons --- */
+      .footer-btns {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-join-btn {
+        border: 4px solid #8b5cf6;
+        background: transparent;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .footer-join-btn:hover {
+        background: white;
+        color: #8b5cf6;
+        transform: translateY(-5px);
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.66);
+      }
+
+      /* --- New Animated Circular Element Styles (Desktop) --- */
+      .footer-stay-connected-col {
+        position: relative;
+        /* Add space below the text for the absolute circle */
+        padding-bottom: 200px;
+      }
+
+      .footer-visit {
+        position: absolute;
+        bottom: 0px;
+        right: 50px; /* Moved further left from 1rem to 50px to ensure containment */
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #8b5cf6;
+        animation: spin 6s linear infinite;
+        border: none;
+        z-index: 10;
+      }
+
+      .footer-visit::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        padding: 3px;
+        background: repeating-conic-gradient(
+          from 0deg,
+          white 0deg 10deg,
+          transparent 10deg 20deg
+        );
+        -webkit-mask: radial-gradient(
+          farthest-side,
+          transparent calc(100% - 3px),
+          black 0
+        );
+        mask: radial-gradient(
+          farthest-side,
+          transparent calc(100% - 3px),
+          black 0
+        );
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .footer-visit .footer-visit-arr {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: #f8c900; /* Yellow color from user's CSS */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* --- Mobile Adjustments for Circular Element (Below 800px) --- */
+      @media (max-width: 799px) {
+        .footer-stay-connected-col {
+          padding-bottom: 0;
+          position: static;
+        }
+        .footer-visit {
+          display: none; /* Hide the circular element on screens less than 800px */
+        }
       }
     </style>
   </head>
   <body>
-    <section id="section94">
-      <!-- CODER ARMY MOTTO SECTION - High-Impact, Minimalist Design -->
-      <div class="s94-motto-container">
-        <!-- Subtle Animated Background Element (Blue Square) -->
-        <div class="s94-rotating-square s94-tl"></div>
-        <div class="s94-rotating-square s94-br"></div>
+    <!-- Main Content Placeholder -->
+    <section-footer
+      class="text-white p-8"
+      style="max-width: 80rem; margin: auto"
+    >
+      <div
+        style="
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <!-- Long content to enable scrolling -->
+      </div>
+    </section-footer>
 
-        <!-- Content Container -->
-        <div class="s94-content-wrap">
-          <!-- Top Tag -->
-          <div class="s94-top-tag">Coder Army's Vision</div>
+    <!-- Footer Start -->
+    <footer class="footer-main">
+      <div class="footer-content-wrapper">
+        <!-- Scroll To Top Button (Non-functional without JavaScript) -->
+        <button class="footer-scroll-to-top" aria-label="Scroll to top">
+          <!-- Inline SVG for up arrow -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="width: 1.5rem; height: 1.5rem"
+          >
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </button>
 
-          <!-- The Motto: Highlighting key actions -->
-          <div class="s94-motto-wrapper">
-            <span class="s94-text-motto" style="color: #1f2937">
-              FOUNDATION.
-            </span>
-            <span class="s94-text-motto" style="color: #1f2937">
-              MASTERY.
-            </span>
-            <span class="s94-text-motto s94-text-motto-primary"> IMPACT. </span>
+        <!-- Top Section: Navigation Columns and Content -->
+        <div class="footer-nav">
+          <!-- Column 1: CoderArmy (Updated with Social Icons) -->
+          <div class="footer-col-content-block">
+            <h3 class="footer-col-header">CoderArmy</h3>
+            <p class="footer-col-item-text">
+              A community of coders, making the world a better place through
+              technology and education.
+            </p>
+            <div class="footer-btns">
+              <button class="footer-join-btn" aria-label="LinkedIn">
+                <i class="ri-linkedin-box-fill"></i>
+              </button>
+              <button class="footer-join-btn" aria-label="YouTube">
+                <i class="ri-youtube-fill"></i>
+              </button>
+              <button class="footer-join-btn" aria-label="Instagram">
+                <i class="ri-instagram-fill"></i>
+              </button>
+              <button class="footer-join-btn" aria-label="GitHub">
+                <i class="ri-github-fill"></i>
+              </button>
+            </div>
           </div>
 
-          <!-- Descriptive Text: New Mission Statement -->
-          <p class="s94-mission-text">
-            <strong>Coder Army</strong>'s mission is to
-            <strong>Empower India</strong> by developing
-            <strong>quality coders strong in foundation</strong>. We launch this
-            vision with our flagship <strong>Strike</strong> course, supported
-            by an array of powerful <strong>free courses</strong>, ensuring that
-            cutting-edge expertise is accessible to all aspiring developers
-            across the nation.
-          </p>
+          <!-- Column 2: Quick Links (Updated with new sections) -->
+          <div class="footer-col-content-block">
+            <h3 class="footer-col-header">Quick Links</h3>
 
-          <!-- Action Link / Learn More -->
-          <a href="#" class="s94-start-button">
-            <span>Explore the Strike Course</span>
-            <!-- Arrow Icon -->
-            <svg
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="3"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              ></path>
-            </svg>
-          </a>
+            <!-- General Links -->
+            <ul class="footer-col-link-list">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Tutorials</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+
+            <!-- New Section 1: Course Section -->
+            <h4 class="footer-col-subheader">Course Section</h4>
+            <ul class="footer-col-link-list">
+              <li><a href="#">Free</a></li>
+              <li><a href="#">Premium</a></li>
+            </ul>
+
+            <!-- New Section 2: Feature Section -->
+            <h4 class="footer-col-subheader">Feature Section</h4>
+            <ul class="footer-col-link-list">
+              <li><a href="#">Why Us?</a></li>
+              <li><a href="#">Our Services</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Company -->
+          <div class="footer-col-content-block">
+            <h3 class="footer-col-header">Company</h3>
+            <ul class="footer-col-link-list">
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Stay Connected (Now relative container) -->
+          <div class="footer-col-content-block footer-stay-connected-col">
+            <h3 class="footer-col-header">Stay Connected</h3>
+            <p class="footer-col-item-text">
+              Don't let your dreams stay dreams. Build your skills with us and
+              turn them into reality.
+            </p>
+
+            <!-- Animated Circular Element -->
+            <div class="footer-visit">
+              <div class="footer-visit-arr">
+                <a href="#" aria-label="Visit Link">
+                  <!-- Inline SVG arrow pointing diagonally right (instead of missing image) -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style="color: black"
+                  >
+                    <path d="M7 17l9-9M7 17h10V7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Large Logo Text Section - STRIKE -->
+        <div class="footer-logo-section">
+          <span class="footer-strike-text">STRIKE</span>
         </div>
       </div>
-    </section>
+
+      <!-- Bottom Bar: Copyright and Legal Links -->
+      <div class="footer-bottom-bar-wrapper">
+        <div class="footer-bottom-bar">
+          <!-- Copyright -->
+          <p class="footer-copyright">Copyright ©2023 Coursea</p>
+          <!-- Legal Links -->
+          <div class="footer-legal-links">
+            <a href="#">Term Of Use</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Licencing</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End -->
   </body>
 </html>
