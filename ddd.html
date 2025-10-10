@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Support Section with 3D Cube</title>
+    <title>Support Section 92 - Corrected Cube</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,56 +12,55 @@
     />
     <style>
       /* --- Color Definitions (Directly Applied) --- */
-      /* Based on the second code block's variables and the first image's palette */
-
-      /* Colors derived from the image (Motto.png) */
-      .accent-green {
-        background-color: #a3e635;
-      } /* Light green/lime accent */
-      .accent-border {
-        border-color: #a3e635;
-      }
-
-      /* Colors derived from the theme (second code block) */
       .text-dark {
         color: #1f2937;
       }
       .text-body {
         color: #4b5563;
       }
-      .background-color {
-        background-color: #e5e5e5;
-      } /* Body/Container Background */
-      .button-border-color {
-        border-color: #1f2937;
-      } /* Dark text color for button border */
+      .accent-blue {
+        color: #4f46e5;
+      }
+      .accent-purple {
+        background-color: #4f46e5;
+      }
+      .accent-dark {
+        border-color: #3730a3;
+      }
+      .hover-color {
+        background-color: #4338ca;
+      }
 
-      /* --- Global Styles & Layout Setup (From Theme Code) --- */
-      body {
+      /* --- Section 92 Wrapper Styles (New Requirement) --- */
+      .section92 {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #e5e5e5;
         font-family: "Inter", sans-serif;
-        background-color: #e5e5e5; /* var(--background-color) */
-        color: #1f2937; /* var(--text-dark) */
+        color: #1f2937;
+      }
+
+      /* --- Global Styles & Layout Setup --- */
+      body {
+        margin: 0;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        margin: 0;
       }
 
-      /* Container: max-w-7xl mx-auto py-16 px-6 sm:px-10 lg:py-24 */
       .container {
         max-width: 1280px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+        margin: 0 auto;
+        padding: 4rem 1.5rem;
+        width: 100%;
       }
 
-      /* Main Flex Container: flex flex-col lg:flex-row */
       .main-content {
         display: flex;
         flex-direction: column;
-        align-items: center; /* Center items on small screens */
+        align-items: center;
         justify-content: space-between;
       }
 
@@ -73,20 +72,14 @@
       }
 
       @media (min-width: 1024px) {
-        /* lg */
-        .container {
-          padding-top: 6rem;
-          padding-bottom: 6rem;
-        }
         .main-content {
           flex-direction: row;
-          align-items: flex-start; /* Align content to the top */
+          /* Reverted to center for optimal vertical positioning */
+          align-items: center;
         }
       }
 
       /* --- LEFT SECTION: 3D ROTATING CUBE --- */
-
-      /* Left Column: Adjusted for 3D cube placement */
       .left-column {
         width: 100%;
         display: flex;
@@ -98,17 +91,19 @@
 
       @media (min-width: 1024px) {
         .left-column {
-          width: 50%; /* Adjusted from theme to 50% for equal distribution */
+          width: 50%;
           padding-right: 5rem;
           margin-bottom: 0;
+          /* Removed translateY(-20px) to rely on align-items: center */
         }
       }
 
-      /* --- 3D SCENE STYLES (From first code block) --- */
+      /* Cube Responsiveness and Sizing (Mobile/Default) */
       .scene {
-        width: 300px;
-        height: 300px;
+        width: 250px; /* Base size */
+        height: 250px;
         perspective: 1000px;
+        margin: 0 auto;
       }
 
       .cube {
@@ -116,61 +111,82 @@
         height: 100%;
         position: relative;
         transform-style: preserve-3d;
+        /* CRITICAL FIX: Ensure animation is applied */
         animation: cube-rotation 15s infinite linear;
       }
 
       .face {
         position: absolute;
-        width: 300px;
-        height: 300px;
-        border: 4px solid #1f2937; /* Dark border to match the image style */
+        width: 250px; /* Base size */
+        height: 250px;
+        border: 4px solid #1f2937;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         opacity: 1;
-        border-radius: 20px; /* More rounded corners to match the image box */
-        background-color: #ffffff; /* White background for the cube faces */
+        border-radius: 16px;
+        background-color: #ffffff;
       }
 
-      /* Custom content for cube faces, mimicking the line-art style */
+      /* CRITICAL FIX: Base Translation (250px / 2 = 125px) */
+      .face-front {
+        transform: rotateY(0deg) translateZ(125px);
+      }
+      .face-back {
+        transform: rotateY(180deg) translateZ(125px);
+      }
+      .face-right {
+        transform: rotateY(90deg) translateZ(125px);
+      }
+      .face-left {
+        transform: rotateY(-90deg) translateZ(125px);
+      }
+      .face-top {
+        transform: rotateX(90deg) translateZ(125px);
+      }
+      .face-bottom {
+        transform: rotateX(-90deg) translateZ(125px);
+      }
+
+      /* Cube content adjustments */
       .face-content {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 100%;
         font-family: "Poppins", sans-serif;
-        font-size: 2rem;
-        font-weight: 800;
         color: #1f2937;
         background-image: repeating-linear-gradient(
           45deg,
-          #f3f4f6 0,
-          #f3f4f6 10px,
+          #4f46e5 0,
+          #4f46e5 10px,
           #ffffff 10px,
           #ffffff 20px
         );
-        border-radius: 16px;
+        background-blend-mode: multiply;
+        border-radius: 12px;
       }
 
-      /* Half-side length calculation (300px / 2 = 150px) */
-      .face-front {
-        transform: rotateY(0deg) translateZ(150px);
-      }
-      .face-back {
-        transform: rotateY(180deg) translateZ(150px);
-      }
-      .face-right {
-        transform: rotateY(90deg) translateZ(150px);
-      }
-      .face-left {
-        transform: rotateY(-90deg) translateZ(150px);
-      }
-      .face-top {
-        transform: rotateX(90deg) translateZ(150px);
-      }
-      .face-bottom {
-        transform: rotateX(-90deg) translateZ(150px);
+      .face-content h3 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin: 0;
+        padding: 0;
       }
 
+      .face-content p {
+        font-family: "Inter", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin: 0.5rem 0 0 0;
+        padding: 0.2rem 0.5rem;
+        border: 1px solid #1f2937;
+        border-radius: 5px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+      /* Animation */
       @keyframes cube-rotation {
         from {
           transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
@@ -180,27 +196,46 @@
         }
       }
 
-      /* Unique styles for faces to show different content */
-      .face-front .face-content::before {
-        content: "SUPPORT";
-      }
-      .face-back .face-content::before {
-        content: "GUIDE";
-      }
-      .face-right .face-content::before {
-        content: "MENTOR";
-      }
-      .face-left .face-content::before {
-        content: "LEARN";
-      }
-      .face-top .face-content::before {
-        content: "GROW";
-      }
-      .face-bottom .face-content::before {
-        content: "CODE";
+      @media (min-width: 640px) {
+        /* Larger Desktop Size */
+        .scene {
+          width: 300px;
+          height: 300px;
+        }
+        .face {
+          width: 300px;
+          height: 300px;
+        }
+
+        /* CRITICAL FIX: Translation for larger size (300px / 2 = 150px) */
+        .face-front {
+          transform: rotateY(0deg) translateZ(150px);
+        }
+        .face-back {
+          transform: rotateY(180deg) translateZ(150px);
+        }
+        .face-right {
+          transform: rotateY(90deg) translateZ(150px);
+        }
+        .face-left {
+          transform: rotateY(-90deg) translateZ(150px);
+        }
+        .face-top {
+          transform: rotateX(90deg) translateZ(150px);
+        }
+        .face-bottom {
+          transform: rotateX(-90deg) translateZ(150px);
+        }
+
+        .face-content h3 {
+          font-size: 2.2rem;
+        }
+        .face-content p {
+          font-size: 0.8rem;
+        }
       }
 
-      /* --- RIGHT SECTION: TEXT CONTENT (From Motto.png) --- */
+      /* --- RIGHT SECTION: TEXT CONTENT --- */
 
       .right-column {
         width: 100%;
@@ -208,34 +243,34 @@
 
       @media (min-width: 1024px) {
         .right-column {
-          width: 50%; /* Adjusted from theme to 50% */
+          width: 50%;
         }
       }
 
       /* GET SUPPORT Button (Top) */
       .get-support-button {
         display: inline-block;
-        border: 2px solid #1f2937;
-        border-radius: 50px; /* Very rounded, like the image */
+        border: 2px solid #4f46e5;
+        border-radius: 50px;
         padding: 0.5rem 1.25rem;
         font-size: 0.875rem;
         font-weight: 600;
         margin-bottom: 1.5rem;
-        color: #1f2937;
+        color: #4f46e5;
         text-decoration: none;
-        transition: background-color 0.15s;
+        transition: all 0.15s;
+        background-color: transparent;
       }
-
       .get-support-button:hover {
-        background-color: #f3f4f6;
+        background-color: rgba(79, 70, 229, 0.1);
       }
 
-      /* Main Title: You Won't Have To Do It Alone */
+      /* Main Title: Responsive Font Size */
       .main-title-motto {
         color: #1f2937;
-        font-family: "Poppins", sans-serif; /* Using Poppins for the bold, blocky header look */
+        font-family: "Poppins", sans-serif;
         font-weight: 800;
-        font-size: 3rem; /* Adjusted for impact */
+        font-size: 2.5rem;
         line-height: 1.1;
         margin-top: 0;
         margin-bottom: 1.5rem;
@@ -243,7 +278,7 @@
 
       @media (min-width: 768px) {
         .main-title-motto {
-          font-size: 4rem; /* Larger on md screens */
+          font-size: 4rem;
         }
       }
 
@@ -252,89 +287,163 @@
         color: #4b5563;
         font-size: 1rem;
         line-height: 1.6;
-        margin-bottom: 2rem;
-        max-width: 500px; /* Constraint text width like in the image */
+        margin-bottom: 1.5rem;
+        max-width: 500px;
       }
 
-      /* Learn More Button (Bottom) */
-      .learn-more-button {
+      /* Feature List */
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 2.5rem;
+      }
+
+      .feature-list li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: #4b5563;
+        font-size: 1rem;
+      }
+
+      .feature-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #4f46e5;
+        font-weight: 800;
+        font-size: 1.25rem;
+        line-height: 1;
+      }
+
+      /* --- START BUTTON STYLE --- */
+      .start-button {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        border: 2px solid #1f2937;
-        border-radius: 50px;
-        padding: 0.5rem 1.5rem;
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: #1f2937;
+        background-color: #4f46e5;
+        color: white;
+        font-weight: 700;
+        padding: 0.75rem 1rem 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        border-bottom: 4px solid #3730a3;
+        transition: all 150ms ease-in-out;
+        cursor: pointer;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
         text-decoration: none;
-        transition: background-color 0.15s;
       }
 
-      .learn-more-button:hover {
-        background-color: #f3f4f6;
+      .start-button:hover {
+        background-color: #4338ca;
+      }
+      .start-button:active {
+        background-color: #3730a3;
+        transform: translateY(1px);
+        border-bottom-width: 2px;
       }
 
-      /* Right arrow icon style (simplified SVG for pure CSS) */
-      .learn-more-button::after {
-        content: "→"; /* Unicode arrow */
+      .start-button svg {
+        height: 1.25rem;
+        width: 1.25rem;
         margin-left: 0.5rem;
-        font-size: 1.2rem;
-        line-height: 1;
-        font-weight: 400;
+        fill: currentColor;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="main-content">
-        <div class="left-column">
-          <div class="scene">
-            <div class="cube">
-              <div class="face face-front">
-                <div class="face-content"></div>
-              </div>
+    <section class="section92">
+      <div class="container">
+        <div class="main-content">
+          <div class="left-column">
+            <div class="scene">
+              <div class="cube">
+                <div class="face face-front">
+                  <div class="face-content">
+                    <h3>MENTORSHIP</h3>
+                    <p>1:1 SESSION</p>
+                  </div>
+                </div>
 
-              <div class="face face-back">
-                <div class="face-content"></div>
-              </div>
+                <div class="face face-back">
+                  <div class="face-content">
+                    <h3>GUIDE</h3>
+                    <p>CAREER PATH</p>
+                  </div>
+                </div>
 
-              <div class="face face-right">
-                <div class="face-content"></div>
-              </div>
+                <div class="face face-right">
+                  <div class="face-content">
+                    <h3>INDUSTRY</h3>
+                    <p>READY STATUS</p>
+                  </div>
+                </div>
 
-              <div class="face face-left">
-                <div class="face-content"></div>
-              </div>
+                <div class="face face-left">
+                  <div class="face-content">
+                    <h3>SKILLS</h3>
+                    <p>HANDS-ON LEARNING</p>
+                  </div>
+                </div>
 
-              <div class="face face-top">
-                <div class="face-content"></div>
-              </div>
+                <div class="face face-top">
+                  <div class="face-content">
+                    <h3>NETWORK</h3>
+                    <p>GLOBAL ALUMNI</p>
+                  </div>
+                </div>
 
-              <div class="face face-bottom">
-                <div class="face-content"></div>
+                <div class="face face-bottom">
+                  <div class="face-content">
+                    <h3>SUPPORT</h3>
+                    <p>RESOURCE LIBRARY</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="right-column">
-          <a href="#" class="get-support-button">GET SUPPORT</a>
+          <div class="right-column">
+            <a href="#" class="get-support-button">GET SUPPORT</a>
 
-          <h1 class="main-title-motto text-dark">
-            You Won't Have To Do It Alone
-          </h1>
+            <h1 class="main-title-motto text-dark">
+              You Won't Have To Do It Alone
+            </h1>
 
-          <p class="body-text-motto">
-            Our Instructor Support Team is here to answer your questions and
-            review your test video, while our Teaching Center gives you plenty
-            of resources to help you through the process. Plus, get the support
-            of experienced instructors in our online community.
-          </p>
+            <p class="body-text-motto">
+              We help you get industry-ready with resources and guidance
+              tailored to your career goals.
+            </p>
 
-          <a href="#" class="learn-more-button"> Learn More </a>
+            <ul class="feature-list">
+              <li>Personalized Mentorship to Guide Your Career Path</li>
+              <li>Career Resources & Industry Insights</li>
+              <li>Hands-On Learning and Skill Enhancement</li>
+              <li>Connect with a Strong Global Alumni Network</li>
+            </ul>
+
+            <a href="#" class="start-button">
+              <span>Get Industry Ready</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   </body>
 </html>
