@@ -12,6 +12,11 @@
       rel="stylesheet"
     />
     <style>
+      /* Global Reset: Apply border-box for predictable layout calculation */
+      * {
+        box-sizing: border-box;
+      }
+
       /* --- Core Colors from Original Theme --- */
       /* Accent Blue/Purple: #4f46e5 (Indigo) */
       /* Dark Text: #1f2937 */
@@ -20,16 +25,23 @@
       body {
         margin: 0;
         padding: 0;
+        /* SCROLL FIX: Removed overflow: hidden to allow vertical scrolling when content is too long. */
+        /* Body now only contains global settings like font smoothing */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* --- NEW SECTION WRAPPER: .section95 (Layout, Background, and Font Styles Moved Here) --- */
+      .section95 {
+        width: 100%;
+        min-height: 100vh; /* Ensure it takes full viewport height */
         background-color: #e5e5e5; /* Light grey background */
         font-family: "Inter", sans-serif;
         color: #1f2937;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        min-height: 100vh;
-        padding: 4rem 1.5rem;
+        justify-content: center; /* Center horizontally */
+        align-items: flex-start; /* Start content at the top */
+        padding: 4rem 1.5rem; /* Add outer padding */
       }
 
       /* --- NEW FAQ SECTION STYLES (PURE HTML/CSS) --- */
@@ -53,6 +65,20 @@
         color: #1f2937;
         margin: 0;
         line-height: 1.1;
+      }
+
+      /* Highlight style for the word "Questions" */
+      .faq-highlight {
+        color: #4f46e5; /* Accent Purple/Blue */
+      }
+
+      /* Style for the new descriptive text */
+      .faq-description {
+        color: #4b5563;
+        font-size: 1rem;
+        max-width: 600px;
+        margin: 1rem auto 0;
+        line-height: 1.6;
       }
 
       .faq-subtitle {
@@ -117,18 +143,22 @@
         display: none;
       }
 
-      /* Custom + / - icon using SVG Data URLs for the accent color */
+      /* Custom Chevron Icon (for animated rotation) */
       .faq-question::after {
-        content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%234f46e5" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>'); /* Plus icon (Accent color) */
+        /* Using a simple Chevron Down SVG (d="M19 9l-7 7-7-7") */
+        content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%234f46e5" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>');
         float: right;
         width: 24px;
         height: 24px;
-        transition: transform 0.2s;
+        /* ADD ICON ROTATION TRANSITION */
+        transition: transform 0.3s ease-in-out;
       }
 
-      /* Change icon when the details element is open */
+      /* Rotate icon 180 degrees when the details element is open to point up */
       .faq-item[open] > .faq-question::after {
-        content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%234f46e5" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" /></svg>'); /* Minus icon (Accent color) */
+        /* Re-use the same SVG content */
+        content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%234f46e5" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>');
+        transform: rotate(180deg);
       }
 
       /* Answer Content Style (FIXED FOR SMOOTH TRANSITION) */
@@ -146,7 +176,7 @@
         padding: 0 1.5rem 0 1.5rem; /* Base padding with zero bottom padding */
         padding-top: 1.5rem;
 
-        /* UPDATED: Smoother transition duration and timing function */
+        /* Smoother transition duration and timing function */
         transition: max-height 0.6s cubic-bezier(0.23, 1, 0.32, 1),
           opacity 0.4s ease-in;
       }
@@ -207,88 +237,102 @@
     </style>
   </head>
   <body>
-    <!-- NEW FAQ SECTION CONTENT -->
-    <div class="faq-section">
-      <header class="faq-header">
-        <p class="faq-subtitle">ANSWERS TO YOUR QUESTIONS</p>
-        <h2 class="faq-title">Frequently Asked Questions</h2>
-      </header>
-
-      <div class="faq-list">
-        <!-- FAQ Item 1 -->
-        <details class="faq-item">
-          <summary class="faq-question">
-            How do I get started with the mentorship program?
-          </summary>
-          <p class="faq-answer">
-            To start, simply register on our platform. You will be prompted to
-            select your career track, and we will pair you with a suitable
-            industry mentor within 48 hours. The process is designed to be
-            seamless and fast so you can start learning immediately.
+    <!-- START NEW SECTION WRAPPER -->
+    <section class="section95">
+      <!-- NEW FAQ SECTION CONTENT -->
+      <div class="faq-section">
+        <header class="faq-header">
+          <p class="faq-subtitle">ANSWERS TO YOUR QUESTIONS</p>
+          <!-- HIGHLIGHTED "Questions" -->
+          <h2 class="faq-title">
+            Frequently Asked <span class="faq-highlight">Questions</span>
+          </h2>
+          <!-- NEW DESCRIPTIVE TEXT ADDED HERE -->
+          <p class="faq-description">
+            Everything you need to know about the STRIKE premium course
+            platform, its content, launch, and support structure.
           </p>
-        </details>
+        </header>
 
-        <!-- FAQ Item 2 -->
-        <details class="faq-item">
-          <summary class="faq-question">
-            What kind of resources are included in the Resource Library?
-          </summary>
-          <p class="faq-answer">
-            Our comprehensive Resource Library includes exclusive case studies,
-            industry reports, resume templates optimized for 2024 hiring trends,
-            mock interview scripts, and deep-dive video tutorials covering
-            essential career skills. It's updated weekly based on industry
-            feedback.
-          </p>
-        </details>
+        <div class="faq-list">
+          <!-- FAQ Item 1: Launch Date -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              When will the **STRIKE** premium course platform be available?
+            </summary>
+            <p class="faq-answer">
+              The **STRIKE** platform is officially launching on **October
+              18th**. You can pre-register now to receive early access and
+              special launch bonuses. Be ready to start your advanced career
+              training!
+            </p>
+          </details>
 
-        <!-- FAQ Item 3 -->
-        <details class="faq-item">
-          <summary class="faq-question">
-            Is there a community or network I can connect with?
-          </summary>
-          <p class="faq-answer">
-            Yes! You gain immediate access to our Global Alumni Network. This
-            network hosts regular virtual meetups, peer-to-peer review sessions,
-            and an exclusive forum where you can connect with thousands of
-            current and former members for support and job leads.
-          </p>
-        </details>
+          <!-- FAQ Item 2: Curriculum Focus -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              What core subjects are included in the STRIKE curriculum?
+            </summary>
+            <p class="faq-answer">
+              STRIKE features comprehensive programs focused on **Data
+              Structures and Algorithms (DSA)**, cutting-edge **Generative AI
+              Projects & Labs**, and intensive, interview-focused preparation to
+              get you industry-ready for roles related to coding and
+              development.
+            </p>
+          </details>
 
-        <!-- FAQ Item 4 -->
-        <details class="faq-item">
-          <summary class="faq-question">
-            Are the sessions 1:1, or are they group classes?
-          </summary>
-          <p class="faq-answer">
-            All core mentorship and guidance sessions are strictly 1:1, ensuring
-            personalized attention tailored specifically to your goals and pace.
-            We also offer optional group workshops and webinars for general
-            skill enhancement, but your primary path is always individualized.
-          </p>
-        </details>
+          <!-- FAQ Item 3: Learning Style -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              Is the learning project-based or lecture-based?
+            </summary>
+            <p class="faq-answer">
+              STRIKE emphasizes **project-based learning**. We believe in
+              hands-on application, where you immediately apply DSA and
+              Generative AI concepts to build real-world projects. This
+              practical approach is key to mastering technical skills.
+            </p>
+          </details>
 
-        <!-- FAQ Item 5 -->
-        <details class="faq-item">
-          <summary class="faq-question">
-            What is the typical time commitment required?
-          </summary>
-          <p class="faq-answer">
-            The minimum suggested commitment is 3-5 hours per week, which
-            includes one 1-hour mentorship session and time dedicated to guided
-            assignments and self-paced learning from the resource library. You
-            can scale up or down based on your personal schedule.
+          <!-- FAQ Item 4: Mentor Support -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              What kind of support is available from mentors?
+            </summary>
+            <p class="faq-answer">
+              You will receive dedicated mentor support, including detailed
+              **Code Feedback** on all project submissions, **Mock Interviews**
+              simulating real-world scenarios, and personalized career guidance
+              to sharpen your skills and secure your placement.
+            </p>
+          </details>
+
+          <!-- FAQ Item 5: Placement & Certification -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              Does STRIKE provide placement assistance and certification?
+            </summary>
+            <p class="faq-answer">
+              Yes, successful completion of the program earns you a recognized
+              **Certificate**, and you gain access to our **Placement
+              Assistance** program, which includes resume building, interview
+              preparation, and direct job referrals with our hiring partners.
+            </p>
+          </details>
+        </div>
+
+        <!-- NEW CTA SECTION -->
+        <div class="faq-cta">
+          <p class="cta-text">
+            Still have questions about STRIKE? We're here to help.
           </p>
-        </details>
+          <a href="#" class="cta-button">Contact Our Team</a>
+        </div>
+        <!-- END CTA SECTION -->
       </div>
-
-      <!-- NEW CTA SECTION -->
-      <div class="faq-cta">
-        <p class="cta-text">Still have questions? We're here to help.</p>
-        <a href="#" class="cta-button">Contact Our Team</a>
-      </div>
-      <!-- END CTA SECTION -->
-    </div>
-    <!-- END NEW FAQ SECTION CONTENT -->
+      <!-- END NEW FAQ SECTION CONTENT -->
+    </section>
+    <!-- END NEW SECTION WRAPPER -->
   </body>
 </html>

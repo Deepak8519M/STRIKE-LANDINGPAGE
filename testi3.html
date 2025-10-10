@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STRIKE Platform Success Stories - Scrolling</title>
+    <!-- Use Inter and Poppins fonts from your original theme -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Global Reset */
+      * {
+        box-sizing: border-box;
+      }
+
+      /* --- Core Colors from Original Theme --- */
+      /* Accent Blue/Purple: #4f46e5 (Indigo) */
+      /* Dark Text: #1f2937 */
+      /* Body Text: #4b5563 */
+
+      body {
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* --- NEW SECTION WRAPPER: .section96 --- */
+      .section96 {
+        width: 100%;
+        min-height: 100vh;
+        background-color: #e5e5e5; /* Light grey background */
+        font-family: "Inter", sans-serif;
+        color: #1f2937;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 4rem 0; /* Adjusted padding for full-width scroll rows */
+      }
+
+      /* --- Testimonials Container and Header --- */
+
+      .testimonials-container {
+        width: 100%;
+        max-width: 1400px; /* INCREASED max-width for more space */
+        margin: 0 auto;
+        padding: 0 1.5rem; /* Horizontal padding for header/footer content */
+      }
+
+      .testimonials-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-top: 1rem;
+      }
+
+      .testimonials-title {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-size: 2.5rem;
+        color: #1f2937;
+        margin: 0;
+        line-height: 1.1;
+      }
+
+      .testimonials-highlight {
+        color: #4f46e5; /* Accent Purple/Blue */
+      }
+
+      .testimonials-subtitle {
+        color: #4f46e5;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .testimonials-description {
+        color: #4b5563;
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 1rem auto 0;
+        line-height: 1.6;
+      }
+
+      /* Responsive adjustment for title on larger screens */
+      @media (min-width: 768px) {
+        .testimonials-title {
+          font-size: 3.5rem;
+        }
+      }
+
+      /* ------------------------------------------- */
+      /* --- NEW: SCROLLING CARDS IMPLEMENTATION --- */
+      /* ------------------------------------------- */
+
+      /* Container for all scrolling rows, removing previous flex grid */
+      .scrolling-rows-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem; /* Spacing between rows */
+        margin-bottom: 3rem;
+        overflow: hidden; /* Hide horizontal scrollbar */
+        padding: 0 0.5rem; /* Small buffer */
+      }
+
+      /* Style for each individual row wrapper */
+      .scroll-row-wrapper {
+        display: flex;
+        overflow: hidden;
+        /* --- ADDED FADE EFFECT WITH GRADIENT MASK --- */
+        /* Creates a mask image that fades from transparent (at 0% and 100%) to black (at 5% and 95%) */
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 5%,
+          black 95%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 5%,
+          black 95%,
+          transparent 100%
+        );
+      }
+
+      /* Content container that holds the duplicated cards for seamless loop */
+      .scroll-content {
+        display: flex;
+        /* Prevent line breaks, essential for horizontal scroll */
+        white-space: nowrap;
+        /* Ensure the content is wide enough for translation */
+        width: max-content;
+      }
+
+      /* Testimonial Card Styling (Further Compacted) */
+      .testimonial-card {
+        /* Prevents shrinking and forces fixed width */
+        flex-shrink: 0;
+        width: 320px; /* Increased width */
+        min-width: 320px;
+        background-color: #ffffff;
+        border: 2px solid #1f2937;
+        border-radius: 12px;
+        padding: 1.25rem; /* Further reduced vertical padding */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        /* Use margin for spacing between cards, not gap */
+        margin-right: 1.5rem;
+        transition: box-shadow 0.2s ease-out;
+      }
+
+      /* Hover effect on card (Modified to avoid conflict with animation) */
+      .testimonial-card:hover {
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Quote Content (Reduced Font Size and Margin) */
+      .testimonial-quote {
+        font-style: italic;
+        color: #1f2937;
+        font-size: 0.9rem; /* Further reduced font size */
+        line-height: 1.6;
+        margin-bottom: 0.75rem; /* Reduced margin */
+        position: relative;
+        flex-grow: 1;
+        white-space: normal;
+        word-break: break-word;
+      }
+
+      /* Accent Quote Mark (Reduced Size) */
+      .testimonial-quote::before {
+        content: "“";
+        color: #4f46e5; /* Accent color */
+        font-size: 3rem;
+        line-height: 0;
+        position: absolute;
+        top: 20px;
+        left: -15px;
+        opacity: 0.5;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* Footer for Name and Role (Reduced Spacing/Font) */
+      .testimonial-footer {
+        margin-top: auto;
+        padding-top: 0.6rem; /* Slightly reduced padding */
+        border-top: 2px solid #f3f4f6; /* Subtle separator */
+      }
+
+      .testimonial-name {
+        font-weight: 700;
+        color: #1f2937;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .testimonial-role {
+        font-size: 0.8rem; /* Further reduced font size */
+        color: #4b5563;
+        font-weight: 400;
+      }
+
+      /* --- Keyframes for Scrolling Animation --- */
+
+      /* Card width (320px) + Margin (1.5rem = 24px) = 344px */
+      /* Total width of one set of 4 unique cards = 344px * 4 = 1376px. */
+
+      /* Move content to the left (Rightward scroll) */
+      @keyframes scroll-right {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(calc(-1 * (344px * 4)));
+        }
+      }
+
+      /* Move content to the right (Leftward scroll) */
+      @keyframes scroll-left {
+        from {
+          /* Start far to the left (negative translation) */
+          transform: translateX(calc(-1 * (344px * 4)));
+        }
+        to {
+          /* Move back to starting position (0 translation) */
+          transform: translateX(0);
+        }
+      }
+
+      /* Apply animations to the rows */
+
+      /* Row 1 (Rightward Scroll) & Row 3 (Rightward Scroll) */
+      .scroll-row-1 .scroll-content,
+      .scroll-row-3 .scroll-content {
+        animation: scroll-right 40s linear infinite;
+        /* Pause on hover for interaction */
+      }
+
+      /* Row 2 (Leftward Scroll) */
+      .scroll-row-2 .scroll-content {
+        animation: scroll-left 40s linear infinite;
+      }
+
+      /* Pause animation on hover */
+      .scroll-row-wrapper:hover .scroll-content {
+        animation-play-state: paused;
+      }
+
+      /* --- CTA Section Style (Kept Original) --- */
+      .cta-section {
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+        background-color: #ffffff;
+        border: 2px solid #1f2937;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .cta-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        background-color: #4f46e5; /* Accent color */
+        color: white;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        border: none;
+        border-bottom: 4px solid #3730a3; /* Darker accent for 3D effect */
+        transition: all 150ms ease-in-out;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 1rem;
+      }
+
+      .cta-button:hover {
+        background-color: #4338ca; /* Slightly darker indigo on hover */
+      }
+
+      .cta-button:active {
+        background-color: #3730a3;
+        transform: translateY(2px);
+        border-bottom-width: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- START SECTION WRAPPER -->
+    <section class="section96">
+      <div class="testimonials-container">
+        <header class="testimonials-header">
+          <p class="testimonials-subtitle">SUCCESS STORIES</p>
+          <h2 class="testimonials-title">
+            What Our Previous Course Students Are
+            <span class="testimonials-highlight">Saying</span>
+          </h2>
+          <p class="testimonials-description">
+            The **STRIKE** platform is launching on **October 18th**! Read
+            testimonials from members of the CoderArmy community who leveraged
+            our previous web dev, DSA, and AI training to secure top-tier
+            placements. Hover over any card to pause the scroll!
+          </p>
+        </header>
+
+        <!-- New Scrolling Rows Container -->
+        <div class="scrolling-rows-container">
+          <!-- === ROW 1: RIGHTWARD SCROLL === -->
+          <div class="scroll-row-wrapper scroll-row-1">
+            <div class="scroll-content">
+              <!-- Card 1: DSA/Mentorship Success (Priya Singh) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "The rigorous DSA preparation was a game-changer. My mentor's
+                  code reviews were ruthless, in the best way! They forced me to
+                  write clean, production-ready logic, which is why I cracked my
+                  first dream company interview."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Priya Singh</p>
+                  <p class="testimonial-role">Software Engineer, InnovaTech</p>
+                </div>
+              </div>
+
+              <!-- Card 2: Web Dev/Career Switch Success (Rohan Varma) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "After the web development course, I was ready to switch. The
+                  hands-on projects and fantastic teaching style made complex
+                  concepts simple. I went from non-tech to a Full Stack role in
+                  6 months!"
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Rohan Varma</p>
+                  <p class="testimonial-role">
+                    Full Stack Developer, Zenith Systems
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 3: Gen AI Hackathon/Portfolio Success (Anjali Menon) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "Participating in the Generative AI hackathon was phenomenal.
+                  The project I built there became the centerpiece of my
+                  portfolio, directly leading to my placement. The platform
+                  teaches you to build, not just code."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Anjali Menon</p>
+                  <p class="testimonial-role">Data Scientist, AlgoRhythm</p>
+                </div>
+              </div>
+
+              <!-- Card 4: Systems Design/Interview Success (Kabir Dhawan) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "I was struggling with the high-level Systems Design rounds.
+                  The intensive preparation focused on architectural deep dives
+                  and mock interviews completely transformed my confidence. I
+                  feel ready for STRIKE!"
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Kabir Dhawan</p>
+                  <p class="testimonial-role">DevOps Specialist, NetOps</p>
+                </div>
+              </div>
+
+              <!-- Duplicated Set 2 for seamless loop -->
+              <!-- Card 5: DSA/Mentorship Success (Priya Singh) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "The rigorous DSA preparation was a game-changer. My mentor's
+                  code reviews were ruthless, in the best way! They forced me to
+                  write clean, production-ready logic, which is why I cracked my
+                  first dream company interview."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Priya Singh</p>
+                  <p class="testimonial-role">Software Engineer, InnovaTech</p>
+                </div>
+              </div>
+
+              <!-- Card 6: Web Dev/Career Switch Success (Rohan Varma) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "After the web development course, I was ready to switch. The
+                  hands-on projects and fantastic teaching style made complex
+                  concepts simple. I went from non-tech to a Full Stack role in
+                  6 months!"
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Rohan Varma</p>
+                  <p class="testimonial-role">
+                    Full Stack Developer, Zenith Systems
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 7: Gen AI Hackathon/Portfolio Success (Anjali Menon) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "Participating in the Generative AI hackathon was phenomenal.
+                  The project I built there became the centerpiece of my
+                  portfolio, directly leading to my placement. The platform
+                  teaches you to build, not just code."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Anjali Menon</p>
+                  <p class="testimonial-role">Data Scientist, AlgoRhythm</p>
+                </div>
+              </div>
+
+              <!-- Card 8: Systems Design/Interview Success (Kabir Dhawan) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "I was struggling with the high-level Systems Design rounds.
+                  The intensive preparation focused on architectural deep dives
+                  and mock interviews completely transformed my confidence. I
+                  feel ready for STRIKE!"
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Kabir Dhawan</p>
+                  <p class="testimonial-role">DevOps Specialist, NetOps</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- === ROW 2: LEFTWARD SCROLL === -->
+          <div class="scroll-row-wrapper scroll-row-2">
+            <div class="scroll-content">
+              <!-- Card 1: Web Dev/Career Switch Success (Rohan Varma) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "After the web development course, I was ready to switch. The
+                  hands-on projects and fantastic teaching style made complex
+                  concepts simple. I went from non-tech to a Full Stack role in
+                  6 months!"
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Rohan Varma</p>
+                  <p class="testimonial-role">
+                    Full Stack Developer, Zenith Systems
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 2: DSA/Mentorship Success (Priya Singh) - Alternate view -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "The quality of the DSA teaching was top-notch. It wasn't just
+                  about memorizing algorithms; it was about understanding core
+                  computer science principles. I've recommended CoderArmy to all
+                  my university batchmates."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Suresh Kumar</p>
+                  <p class="testimonial-role">SDE I, MegaCorp Solutions</p>
+                </div>
+              </div>
+
+              <!-- Card 3: Systems Design/Interview Success (Kabir Dhawan) - Alternate view -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "The technical interview practice felt exactly like the final
+                  round at the top companies. The mock sessions were intense and
+                  revealed my blind spots in systems thinking. Now, I interview
+                  with genuine confidence."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Nidhi Patel</p>
+                  <p class="testimonial-role">Senior Analyst, FinServe</p>
+                </div>
+              </div>
+
+              <!-- Card 4: Gen AI Hackathon/Portfolio Success (Anjali Menon) - Alternate view -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "Building a complete, end-to-end Gen AI project during the
+                  hackathon was a huge boost. It was a tangible output that I
+                  could showcase, which is what helped me negotiate a better
+                  package."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Vijay Sharma</p>
+                  <p class="testimonial-role">AI/ML Engineer, DataStream</p>
+                </div>
+              </div>
+
+              <!-- Duplicated Set 2 for seamless loop -->
+              <!-- Card 5: Web Dev/Career Switch Success (Rohan Varma) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "After the web development course, I was ready to switch. The
+                  hands-on projects and fantastic teaching style made complex
+                  concepts simple. I went from non-tech to a Full Stack role in
+                  6 months!"
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Rohan Varma</p>
+                  <p class="testimonial-role">
+                    Full Stack Developer, Zenith Systems
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 6: DSA/Mentorship Success (Priya Singh) - Alternate view -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "The quality of the DSA teaching was top-notch. It wasn't just
+                  about memorizing algorithms; it was about understanding core
+                  computer science principles. I've recommended CoderArmy to all
+                  my university batchmates."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Suresh Kumar</p>
+                  <p class="testimonial-role">SDE I, MegaCorp Solutions</p>
+                </div>
+              </div>
+
+              <!-- Card 7: Systems Design/Interview Success (Kabir Dhawan) - Alternate view -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "The technical interview practice felt exactly like the final
+                  round at the top companies. The mock sessions were intense and
+                  revealed my blind spots in systems thinking. Now, I interview
+                  with genuine confidence."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Nidhi Patel</p>
+                  <p class="testimonial-role">Senior Analyst, FinServe</p>
+                </div>
+              </div>
+
+              <!-- Card 8: Gen AI Hackathon/Portfolio Success (Anjali Menon) - Alternate view -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "Building a complete, end-to-end Gen AI project during the
+                  hackathon was a huge boost. It was a tangible output that I
+                  could showcase, which is what helped me negotiate a better
+                  package."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Vijay Sharma</p>
+                  <p class="testimonial-role">AI/ML Engineer, DataStream</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- === ROW 3: RIGHTWARD SCROLL === -->
+          <div class="scroll-row-wrapper scroll-row-3">
+            <div class="scroll-content">
+              <!-- Card 1: Gen AI Hackathon/Portfolio Success (Anjali Menon) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "Participating in the Generative AI hackathon was phenomenal.
+                  The project I built there became the centerpiece of my
+                  portfolio, directly leading to my placement. The platform
+                  teaches you to build, not just code."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Anjali Menon</p>
+                  <p class="testimonial-role">Data Scientist, AlgoRhythm</p>
+                </div>
+              </div>
+
+              <!-- Card 2: Systems Design/Interview Success (Kabir Dhawan) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "I was struggling with the high-level Systems Design rounds.
+                  The intensive preparation focused on architectural deep dives
+                  and mock interviews completely transformed my confidence. I
+                  feel ready for STRIKE!"
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Kabir Dhawan</p>
+                  <p class="testimonial-role">DevOps Specialist, NetOps</p>
+                </div>
+              </div>
+
+              <!-- Card 3: DSA/Mentorship Success (Priya Singh) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "The rigorous DSA preparation was a game-changer. My mentor's
+                  code reviews were ruthless, in the best way! They forced me to
+                  write clean, production-ready logic, which is why I cracked my
+                  first dream company interview."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Priya Singh</p>
+                  <p class="testimonial-role">Software Engineer, InnovaTech</p>
+                </div>
+              </div>
+
+              <!-- Card 4: Web Dev/Career Switch Success (Rohan Varma) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "After the web development course, I was ready to switch. The
+                  hands-on projects and fantastic teaching style made complex
+                  concepts simple. I went from non-tech to a Full Stack role in
+                  6 months!"
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Rohan Varma</p>
+                  <p class="testimonial-role">
+                    Full Stack Developer, Zenith Systems
+                  </p>
+                </div>
+              </div>
+
+              <!-- Duplicated Set 2 for seamless loop -->
+              <!-- Card 5: Gen AI Hackathon/Portfolio Success (Anjali Menon) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "Participating in the Generative AI hackathon was phenomenal.
+                  The project I built there became the centerpiece of my
+                  portfolio, directly leading to my placement. The platform
+                  teaches you to build, not just code."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Anjali Menon</p>
+                  <p class="testimonial-role">Data Scientist, AlgoRhythm</p>
+                </div>
+              </div>
+
+              <!-- Card 6: Systems Design/Interview Success (Kabir Dhawan) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "I was struggling with the high-level Systems Design rounds.
+                  The intensive preparation focused on architectural deep dives
+                  and mock interviews completely transformed my confidence. I
+                  feel ready for STRIKE!"
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Kabir Dhawan</p>
+                  <p class="testimonial-role">DevOps Specialist, NetOps</p>
+                </div>
+              </div>
+
+              <!-- Card 7: DSA/Mentorship Success (Priya Singh) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "The rigorous DSA preparation was a game-changer. My mentor's
+                  code reviews were ruthless, in the best way! They forced me to
+                  write clean, production-ready logic, which is why I cracked my
+                  first dream company interview."
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Priya Singh</p>
+                  <p class="testimonial-role">Software Engineer, InnovaTech</p>
+                </div>
+              </div>
+
+              <!-- Card 8: Web Dev/Career Switch Success (Rohan Varma) -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "After the web development course, I was ready to switch. The
+                  hands-on projects and fantastic teaching style made complex
+                  concepts simple. I went from non-tech to a Full Stack role in
+                  6 months!"
+                </p>
+                <div class="testimonial-footer">
+                  <p class="testimonial-name">Rohan Varma</p>
+                  <p class="testimonial-role">
+                    Full Stack Developer, Zenith Systems
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Scrolling Rows Container -->
+
+        <!-- Final CTA Section -->
+        <div class="cta-section">
+          <p class="cta-text">
+            Ready to launch your career with advanced training?
+          </p>
+          <a href="#" class="cta-button">Pre-Register for STRIKE</a>
+        </div>
+        <!-- End Final CTA Section -->
+      </div>
+    </section>
+    <!-- END SECTION WRAPPER -->
+  </body>
+</html>

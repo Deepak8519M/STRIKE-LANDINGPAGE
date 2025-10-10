@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STRIKE Platform Infinite Testimonials</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Global Reset */
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Core Colors */
+      /* Accent Blue/Purple: #4f46e5 (Indigo) */
+      /* Dark Text: #1f2937 */
+      /* Body Text: #4b5563 */
+
+      body {
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+
+      /* Section Wrapper */
+      .section96 {
+        width: 100%;
+        min-height: 100vh;
+        background-color: #e5e5e5;
+        font-family: "Inter", sans-serif;
+        color: #1f2937;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 4rem 0;
+      }
+
+      /* Testimonials Header */
+      .testimonials-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 0 1.5rem;
+        max-width: 1100px;
+        width: 100%;
+      }
+
+      .testimonials-title {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-size: 2.5rem;
+        color: #1f2937;
+        margin: 0;
+        line-height: 1.1;
+      }
+
+      .testimonials-highlight {
+        color: #4f46e5;
+      }
+
+      .testimonials-subtitle {
+        color: #4f46e5;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .testimonials-description {
+        color: #4b5563;
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 1rem auto 0;
+        line-height: 1.6;
+      }
+
+      @media (min-width: 768px) {
+        .testimonials-title {
+          font-size: 3.5rem;
+        }
+      }
+
+      /* Infinite Scroller Layout */
+      .scroller {
+        width: 100%;
+        margin: 2rem 0;
+      }
+
+      .scroll-row {
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 1.5rem 0;
+        padding: 0 0.5rem;
+      }
+
+      .track {
+        display: inline-flex;
+        animation: scroll-left 40s linear infinite;
+      }
+
+      .scroll-row:nth-child(2) .track {
+        animation: scroll-right 40s linear infinite;
+      }
+
+      /* Testimonial Card Styling */
+      .testimonial-card {
+        display: inline-flex;
+        flex-direction: column;
+        width: 300px;
+        height: 100%;
+        margin-right: 1.5rem;
+        background-color: #ffffff;
+        border: 2px solid #1f2937;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        overflow: hidden; /* Prevent content from escaping */
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Animations */
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      @keyframes scroll-right {
+        0% {
+          transform: translateX(-50%);
+        }
+        100% {
+          transform: translateX(0%);
+        }
+      }
+
+      /* Quote Content */
+      .testimonial-quote {
+        font-style: italic;
+        color: #1f2937;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-left: 20px;
+        overflow-wrap: break-word; /* Ensure text wraps */
+        word-wrap: break-word; /* Fallback for older browsers */
+        max-height: 200px; /* Optional: Limit height */
+        overflow: hidden; /* Hide overflow text */
+        text-overflow: ellipsis; /* Add ellipsis for overflow */
+      }
+
+      .testimonial-quote::before {
+        content: "“";
+        color: #4f46e5;
+        font-size: 3rem;
+        line-height: 0;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        opacity: 0.5;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* Footer for Name and Role */
+      .testimonial-footer {
+        margin-top: auto;
+        padding-top: 1rem;
+        border-top: 2px solid #f3f4f6;
+      }
+
+      .testimonial-name {
+        font-weight: 700;
+        color: #1f2937;
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .testimonial-role {
+        font-size: 0.9rem;
+        color: #4b5563;
+        font-weight: 400;
+      }
+
+      /* CTA Section Style */
+      .cta-section {
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+        background-color: #ffffff;
+        border: 2px solid #1f2937;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        margin-top: 3rem;
+        max-width: 900px;
+        width: 100%;
+      }
+
+      .cta-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        background-color: #4f46e5;
+        color: white;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        border: none;
+        border-bottom: 4px solid #3730a3;
+        transition: all 150ms ease-in-out;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 1rem;
+      }
+
+      .cta-button:hover {
+        background-color: #4338ca;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .cta-button:active {
+        background-color: #3730a3;
+        transform: translateY(2px);
+        border-bottom-width: 2px;
+      }
+
+      /* Responsive adjustment for card width */
+      @media (min-width: 768px) {
+        .testimonial-card {
+          width: 320px; /* Slightly wider for better text fit */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="section96">
+      <div class="testimonials-header">
+        <p class="testimonials-subtitle">SUCCESS STORIES</p>
+        <h2 class="testimonials-title">
+          What Our Users Are <span class="testimonials-highlight">Saying</span>
+        </h2>
+        <p class="testimonials-description">
+          Hear from early access users who are already accelerating their
+          careers with STRIKE's DSA, AI projects, and mentorship.
+        </p>
+      </div>
+
+      <div class="scroller">
+        <!-- ROW 1: Scroll Left -->
+        <div class="scroll-row">
+          <div class="track">
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The structured DSA modules completely changed my approach to
+                coding interviews. The material is rigorous, and the mentor code
+                reviews were essential."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Anya Sharma</p>
+                <p class="testimonial-role">Software Engineer, TechStart</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "STRIKE's Generative AI Labs are cutting-edge. Building a
+                working RAG system from scratch was invaluable. It gave me a
+                portfolio project that impressed managers."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Ben Carter</p>
+                <p class="testimonial-role">
+                  AI/ML Developer, Global Innovations
+                </p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The mock interviews were brutal, in the best way possible. They
+                exposed my weaknesses and helped me practice articulating
+                complex technical concepts under pressure."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Chloe Lee</p>
+                <p class="testimonial-role">Data Scientist, FinTech Corp</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "As a career switcher, I needed structure. STRIKE provided a
+                clear roadmap, from basic algorithms to advanced Generative AI
+                projects. Highly recommend for serious learners."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">David Rodriguez</p>
+                <p class="testimonial-role">
+                  Full Stack Engineer, Digital Agency
+                </p>
+              </div>
+            </div>
+            <!-- Duplicate for Infinite Loop -->
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The structured DSA modules completely changed my approach to
+                coding interviews. The material is rigorous, and the mentor code
+                reviews were essential."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Anya Sharma</p>
+                <p class="testimonial-role">Software Engineer, TechStart</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "STRIKE's Generative AI Labs are cutting-edge. Building a
+                working RAG system from scratch was invaluable. It gave me a
+                portfolio project that impressed managers."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Ben Carter</p>
+                <p class="testimonial-role">
+                  AI/ML Developer, Global Innovations
+                </p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The mock interviews were brutal, in the best way possible. They
+                exposed my weaknesses and helped me practice articulating
+                complex technical concepts under pressure."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Chloe Lee</p>
+                <p class="testimonial-role">Data Scientist, FinTech Corp</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "As a career switcher, I needed structure. STRIKE provided a
+                clear roadmap, from basic algorithms to advanced Generative AI
+                projects. Highly recommend for serious learners."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">David Rodriguez</p>
+                <p class="testimonial-role">
+                  Full Stack Engineer, Digital Agency
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 2: Scroll Right -->
+        <div class="scroll-row">
+          <div class="track">
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The quality of code feedback I received was exceptional. It
+                wasn't just 'fix this bug,' it was 'here's a better design
+                pattern and why.' That depth of learning accelerated my growth."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Emily Wilson</p>
+                <p class="testimonial-role">Backend Developer, E-commerce</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The DSA course is tailored specifically for placements—it cuts
+                out the noise and focuses on high-frequency interview problems.
+                I scored an internship at my dream company."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Farid Khan</p>
+                <p class="testimonial-role">
+                  Undergraduate Intern, Big Four Tech
+                </p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "I found the Gen AI labs surprisingly practical. The projects
+                felt like real-world tasks, giving me confidence to talk about
+                my experience in my final interviews."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Grace H. (Alumni)</p>
+                <p class="testimonial-role">Data Analyst, Marketing Tech</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The one-on-one mentor sessions were the best part. Getting
+                personalized guidance on my career trajectory and skill gaps
+                made all the difference in my job search."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Henry O. (Alumni)</p>
+                <p class="testimonial-role">
+                  DevOps Specialist, Cloud Services
+                </p>
+              </div>
+            </div>
+            <!-- Duplicate for Infinite Loop -->
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The quality of code feedback I received was exceptional. It
+                wasn't just 'fix this bug,' it was 'here's a better design
+                pattern and why.' That depth of learning accelerated my growth."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Emily Wilson</p>
+                <p class="testimonial-role">Backend Developer, E-commerce</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The DSA course is tailored specifically for placements—it cuts
+                out the noise and focuses on high-frequency interview problems.
+                I scored an internship at my dream company."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Farid Khan</p>
+                <p class="testimonial-role">
+                  Undergraduate Intern, Big Four Tech
+                </p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "I found the Gen AI labs surprisingly practical. The projects
+                felt like real-world tasks, giving me confidence to talk about
+                my experience in my final interviews."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Grace H. (Alumni)</p>
+                <p class="testimonial-role">Data Analyst, Marketing Tech</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The one-on-one mentor sessions were the best part. Getting
+                personalized guidance on my career trajectory and skill gaps
+                made all the difference in my job search."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Henry O. (Alumni)</p>
+                <p class="testimonial-role">
+                  DevOps Specialist, Cloud Services
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 3: Scroll Left -->
+        <div class="scroll-row">
+          <div class="track">
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The Certificate & Placement Assistance was a huge motivator. It
+                wasn't just coding—it was career preparation. STRIKE delivered
+                on its promise of industry-ready training."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Ivy K.</p>
+                <p class="testimonial-role">
+                  Associate Consultant, Strategy Firm
+                </p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The speed of my learning curve here was incredible. Moving from
+                basic Python to building scalable DSA solutions was seamless,
+                thanks to the structured learning path."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Jake P.</p>
+                <p class="testimonial-role">Junior Developer, Startup</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "I especially appreciated the strong emphasis on practical
+                application. The Gen AI projects weren't theoretical; they were
+                hands-on, high-value additions to my resume."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Kayla L.</p>
+                <p class="testimonial-role">Cloud Engineer, F100</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "STRIKE's platform is the perfect blend of technical depth and
+                career focus. If you're serious about landing a top tech job,
+                this program is non-negotiable."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Liam M.</p>
+                <p class="testimonial-role">Lead Engineer, Health Tech</p>
+              </div>
+            </div>
+            <!-- Duplicate for Infinite Loop -->
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The Certificate & Placement Assistance was a huge motivator. It
+                wasn't just coding—it was career preparation. STRIKE delivered
+                on its promise of industry-ready training."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Ivy K.</p>
+                <p class="testimonial-role">
+                  Associate Consultant, Strategy Firm
+                </p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "The speed of my learning curve here was incredible. Moving from
+                basic Python to building scalable DSA solutions was seamless,
+                thanks to the structured learning path."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Jake P.</p>
+                <p class="testimonial-role">Junior Developer, Startup</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "I especially appreciated the strong emphasis on practical
+                application. The Gen AI projects weren't theoretical; they were
+                hands-on, high-value additions to my resume."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Kayla L.</p>
+                <p class="testimonial-role">Cloud Engineer, F100</p>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-quote">
+                "STRIKE's platform is the perfect blend of technical depth and
+                career focus. If you're serious about landing a top tech job,
+                this program is non-negotiable."
+              </p>
+              <div class="testimonial-footer">
+                <p class="testimonial-name">Liam M.</p>
+                <p class="testimonial-role">Lead Engineer, Health Tech</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonials-header">
+        <div class="cta-section">
+          <p class="cta-text">
+            Ready to launch your career with advanced training?
+          </p>
+          <a href="#" class="cta-button">Explore STRIKE Courses</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
