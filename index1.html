@@ -3,147 +3,230 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CSS 3D Rotating Cube</title>
+    <title>Coder Army Mission</title>
     <style>
-      /* Global Styles */
+      /* Ensure HTML takes up the full page height for reliable vh calculation */
+      html {
+        height: 100%;
+      }
+
+      /* Reset body styles to avoid conflicts with other work */
       body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-color: #1a1a2e;
         margin: 0;
-        overflow: hidden; /* Hide potential scrollbars */
-        font-family: "Inter", sans-serif;
-      }
-
-      /* --- 3D Scene Setup --- */
-      .scene {
-        /* Defines the area where 3D transformations happen */
-        width: 300px; /* Same as cube face size */
-        height: 300px;
-        perspective: 1000px; /* The perspective depth for the 3D effect */
-      }
-
-      .cube {
-        width: 100%;
+        padding: 0;
         height: 100%;
+      }
+
+      /* Apply styles to section94 instead of body */
+      #section94 {
+        font-family: Arial, sans-serif;
+        background-color: white;
+        color: #1f2937;
+        overflow-x: hidden;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Card Container Styles (reduced padding for smaller feel) */
+      .s94-motto-container {
         position: relative;
-        /* CRITICAL: Retains the 3D space for child elements */
-        transform-style: preserve-3d;
-
-        /* Apply the infinite rotation animation */
-        animation: cube-rotation 15s infinite linear;
-      }
-
-      /* --- Cube Face Styling --- */
-      .face {
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        background-size: cover;
-        background-position: center;
-        opacity: 0.95;
-        transition: transform 0.3s ease-in-out;
-        border-radius: 10px; /* Rounded corners for modern look */
-      }
-
-      /* Ensure images fill the face without distortion */
-      .face img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        max-width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        padding: 2vh 1rem; /* Reduced from 3vh */
+        text-align: center;
+        overflow: hidden;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        transition: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* Responsive Padding adjustment (slightly reduced) */
+      @media (min-width: 640px) {
+        .s94-motto-container {
+          padding: 4vh 1.5rem; /* Reduced from 5vh */
+        }
+      }
+
+      /* Hover Effect removed */
+      .s94-motto-container:hover {
+        box-shadow: none;
+      }
+
+      /* Motto Text Styles (reduced clamp sizes for better proportion) */
+      .s94-text-motto {
+        font-size: clamp(2rem, 6vw, 3.5rem); /* Reduced min/max from 3-5rem */
+        line-height: 1; /* Slightly increased for better readability */
+        font-weight: 900;
         display: block;
-        border-radius: 10px;
+      }
+      .s94-text-motto-primary {
+        color: #4338ca;
       }
 
-      /* Define the half-side length for translation (300px / 2 = 150px) */
-      :root {
-        --half-size: 150px;
-      }
-
-      /* --- Positioning the Six Faces --- */
-
-      /* Front Face: Rotated 0 degrees, moved 150px forward */
-      .face-front {
-        transform: rotateY(0deg) translateZ(var(--half-size));
-      }
-
-      /* Back Face: Rotated 180 degrees, moved 150px forward */
-      .face-back {
-        transform: rotateY(180deg) translateZ(var(--half-size));
-      }
-
-      /* Right Face: Rotated 90 degrees, moved 150px forward */
-      .face-right {
-        transform: rotateY(90deg) translateZ(var(--half-size));
-      }
-
-      /* Left Face: Rotated -90 degrees, moved 150px forward */
-      .face-left {
-        transform: rotateY(-90deg) translateZ(var(--half-size));
-      }
-
-      /* Top Face: Rotated 90 degrees on X, moved 150px forward */
-      .face-top {
-        transform: rotateX(90deg) translateZ(var(--half-size));
-      }
-
-      /* Bottom Face: Rotated -90 degrees on X, moved 150px forward */
-      .face-bottom {
-        transform: rotateX(-90deg) translateZ(var(--half-size));
-      }
-
-      /* --- Rotation Keyframes --- */
-      @keyframes cube-rotation {
+      /* Rotating Square Animation (smaller sizes) */
+      @keyframes s94-rotate-better {
         from {
-          transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+          transform: rotate(0deg) translate(-50%, -50%);
         }
         to {
-          /* Continuous rotation around all axes for dynamic feel */
-          transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+          transform: rotate(360deg) translate(-50%, -50%);
         }
+      }
+      .s94-rotating-square {
+        position: absolute;
+        background-color: #4338ca;
+        border-radius: 0.5rem;
+        animation: s94-rotate-better 40s linear infinite;
+        z-index: 0;
+      }
+      .s94-rotating-square.s94-tl {
+        top: 0;
+        left: 0;
+        width: 200px; /* Reduced from 320px */
+        height: 200px;
+        opacity: 0.3;
+      }
+      .s94-rotating-square.s94-br {
+        bottom: 0;
+        right: 0;
+        width: 150px; /* Reduced from 240px */
+        height: 150px;
+        opacity: 0.2;
+      }
+
+      /* Content and Tag Styles (reduced top tag size) */
+      .s94-content-wrap {
+        position: relative;
+        z-index: 10;
+        max-width: 1000px; /* Slightly reduced from 1200px for tighter content */
+        margin: 0 auto;
+        width: 100%;
+      }
+      .s94-top-tag {
+        display: inline-block;
+        border: 2px solid #1f2937;
+        background-color: #4338ca;
+        color: white;
+        border-radius: 9999px;
+        padding: 0.375rem 1rem; /* Reduced padding */
+        font-size: 0.875rem; /* Reduced from 1rem */
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 2rem; /* Reduced from 3rem */
+      }
+
+      .s94-mission-text {
+        max-width: 700px; /* Reduced from 900px for more compact feel */
+        margin: 0 auto;
+        font-size: 1rem; /* Reduced base from 1.25rem */
+        font-weight: 500;
+        color: #4b5563;
+        line-height: 1.6; /* Slightly adjusted for readability */
+      }
+      @media (min-width: 640px) {
+        .s94-mission-text {
+          font-size: 1.25rem; /* Reduced from 1.5rem */
+        }
+      }
+
+      /* Action Link Styles (reduced font and margins) */
+      .s94-action-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 2rem; /* Reduced from 3rem */
+        font-size: 1rem; /* Reduced from 1.25rem */
+        font-weight: 800;
+        color: #4338ca;
+        transition: color 0.3s, border-color 0.3s;
+        border-bottom: 4px solid #4338ca;
+        padding-bottom: 0.25rem;
+        text-decoration: none;
+      }
+      @media (min-width: 640px) {
+        .s94-action-link {
+          margin-top: 2rem;
+        }
+      }
+      .s94-action-link:hover {
+        color: #1f2937;
+        border-bottom-color: #1f2937;
+      }
+      .s94-action-link svg {
+        width: 1.25rem; /* Slightly reduced icon */
+        height: 1.25rem;
+      }
+
+      /* Motto wrapper margin reduced */
+      .s94-motto-wrapper {
+        margin-bottom: 2rem; /* Reduced from 3rem; added class for control */
       }
     </style>
   </head>
   <body>
-    <div class="scene">
-      <div class="cube">
-        <!-- Front Face -->
-        <div class="face face-front">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png"
-            alt="Front Face"
-          />
-        </div>
+    <section id="section94">
+      <!-- CODER ARMY MOTTO SECTION - High-Impact, Minimalist Design -->
+      <div class="s94-motto-container">
+        <!-- Subtle Animated Background Element (Blue Square) -->
+        <div class="s94-rotating-square s94-tl"></div>
+        <div class="s94-rotating-square s94-br"></div>
 
-        <!-- Back Face -->
-        <div class="face face-back">
-          <img src="./MAINFILE/assets/negi4.png" alt="Back Face" />
-        </div>
+        <!-- Content Container -->
+        <div class="s94-content-wrap">
+          <!-- Top Tag -->
+          <div class="s94-top-tag">Coder Army's Vision</div>
 
-        <!-- Right Face -->
-        <div class="face face-right">
-          <img src="./MAINFILE/assets/negi3.png" alt="Right Face" />
-        </div>
+          <!-- The Motto: Highlighting key actions -->
+          <div class="s94-motto-wrapper">
+            <span class="s94-text-motto" style="color: #1f2937">
+              FOUNDATION.
+            </span>
+            <span class="s94-text-motto" style="color: #1f2937">
+              MASTERY.
+            </span>
+            <span class="s94-text-motto s94-text-motto-primary"> IMPACT. </span>
+          </div>
 
-        <!-- Left Face -->
-        <div class="face face-left">
-          <img src="./MAINFILE/assets/negi2.png" alt="Left Face" />
-        </div>
+          <!-- Descriptive Text: New Mission Statement -->
+          <p class="s94-mission-text">
+            <strong>Coder Army</strong>'s mission is to
+            <strong>Empower India</strong> by developing
+            <strong>quality coders strong in foundation</strong>. We launch this
+            vision with our flagship <strong>Strike</strong> course, supported
+            by an array of powerful <strong>free courses</strong>, ensuring that
+            cutting-edge expertise is accessible to all aspiring developers
+            across the nation.
+          </p>
 
-        <!-- Top Face -->
-        <div class="face face-top">
-          <img src="./MAINFILE/assets/negi1.png" alt="Top Face" />
-        </div>
-
-        <!-- Bottom Face -->
-        <div class="face face-bottom">
-          <img src="./MAINFILE/assets/logo3.png" alt="Bottom Face" />
+          <!-- Action Link / Learn More -->
+          <a href="#" class="s94-action-link">
+            <span>Explore the Strike Course</span>
+            <!-- Arrow Icon -->
+            <svg
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="3"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              ></path>
+            </svg>
+          </a>
         </div>
       </div>
-    </div>
+    </section>
   </body>
 </html>

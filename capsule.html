@@ -1,0 +1,162 @@
+<!--
+This single-file HTML uses Tailwind CSS to recreate the provided "Join Now" hero section image.
+It has been meticulously refined for pinpoint accuracy of the capsule shape, colors, and overlapping image.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Become an Mentor Today</title>
+    <!-- Load Inter font (best practice for Tailwind/modern design) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Custom Tailwind configuration to match the bright lime color and apply the Inter font.
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "neon-lime": "#A3FF1B", // Exact color match for the lime background
+              "dark-text": "#4d4d4d", // Dark gray for the description text, matching the original
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom CSS to define the main layout shape and ensure the layout is visually striking */
+      body {
+        /* Simulates the white background and the black arc effect with a gradient on the body itself */
+        /* Adjusted the stop point to match the height of the black arc accurately */
+        background: linear-gradient(
+          to bottom,
+          #ffffff 0%,
+          #ffffff 85%,
+          #1a1a1a 85%,
+          #1a1a1a 100%
+        );
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      .main-card {
+        /* Create the perfect capsule shape using a huge border radius relative to its height */
+        border-radius: 1000px; /* Ensures a perfect capsule shape */
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+      }
+
+      /* The woman's image is positioned absolutely to overlap the lime section on the left */
+      .woman-image-container {
+        position: absolute;
+        left: -8%; /* Pulled further out to match the image crop and card overlap */
+        top: 50%;
+        transform: translateY(-50%);
+        height: 120%; /* Taller than the main card to look cropped top and bottom */
+      }
+
+      /* Ensure the image itself has rounded corners only on the right side to blend with the card curve */
+      .woman-image {
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
+      }
+
+      /* Responsive adjustments for the card and image */
+      @media (min-width: 1024px) {
+        .main-card {
+          /* Fixed height for the desktop view, the radius ensures the capsule look */
+          height: 550px;
+          /* Max width adjusted slightly to match horizontal proportion */
+          max-width: 1200px;
+        }
+      }
+
+      @media (max-width: 1023px) {
+        .main-card {
+          /* Fixed height for mobile/tablet */
+          height: 450px;
+        }
+        .woman-image-container {
+          /* Hide the detailed overlap for small screens */
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen flex items-center justify-center p-4 lg:p-12 font-sans"
+  >
+    <!-- Outer Container for Centering and Max Width -->
+    <div
+      class="relative w-full max-w-6xl mx-auto flex justify-center items-center"
+    >
+      <!-- The main Neon Lime Card Container (Simulating the Capsule Shape) -->
+      <div
+        class="main-card bg-neon-lime w-full h-[450px] lg:w-[90%] lg:max-w-[1200px] relative overflow-hidden flex flex-col lg:flex-row items-center p-0"
+      >
+        <!--
+                1. MOCK WOMAN IMAGE SECTION (Desktop Only)
+                This container is positioned absolutely to overlap the left rounded edge of the main card.
+            -->
+        <div class="woman-image-container hidden lg:block w-[400px] z-20">
+          <!-- Placeholder Image URL - used to match the look of the original, with a fallback -->
+          <img
+            src="./MAINFILE/assets/model.png"
+            alt="A smiling woman raising her fists in excitement, ready to teach."
+            class="woman-image h-full w-full object-cover lg:h-[650px] lg:w-[450px] shadow-xl"
+            onerror="this.onerror=null;this.src='https://placehold.co/400x600/1C1D1C/ffffff?text=Happy+Mentor';"
+          />
+        </div>
+
+        <!--
+                2. TEXT CONTENT SECTION
+                Positioned on the right side of the main card, responsible for the text and button.
+            -->
+        <div
+          class="w-full lg:w-3/5 lg:absolute lg:right-0 h-full flex flex-col justify-center text-center lg:text-left p-12 lg:p-16 text-black z-10"
+        >
+          <!-- Main Title - Adjusted size and weight to match the original closely -->
+          <h1
+            class="text-3xl sm:text-4xl lg:text-6xl font-extrabold leading-tight mb-4 text-black"
+          >
+            Become an <span class="block">Mentor Today</span>
+          </h1>
+
+          <!-- Subtitle/Description - Using the custom dark-text color -->
+          <p
+            class="text-sm sm:text-base lg:text-lg mb-8 max-w-md mx-auto lg:mx-0 text-dark-text font-medium"
+          >
+            Join one of the world's largest online learning marketplaces.
+          </p>
+
+          <!-- Get Started Button - Adjusted size and padding for exact look -->
+          <button
+            class="flex items-center justify-center w-40 sm:w-48 mx-auto lg:mx-0 px-8 py-3 bg-white text-black font-semibold rounded-full shadow-lg transition duration-300 ease-in-out hover:shadow-xl hover:bg-gray-50 transform hover:-translate-y-0.5"
+          >
+            Get Started
+            <!-- Right Arrow SVG Icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="ml-2 h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
