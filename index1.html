@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS 3D Rotating Cube</title>
+    <style>
+      /* Global Styles */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #1a1a2e;
+        margin: 0;
+        overflow: hidden; /* Hide potential scrollbars */
+        font-family: "Inter", sans-serif;
+      }
+
+      /* --- 3D Scene Setup --- */
+      .scene {
+        /* Defines the area where 3D transformations happen */
+        width: 300px; /* Same as cube face size */
+        height: 300px;
+        perspective: 1000px; /* The perspective depth for the 3D effect */
+      }
+
+      .cube {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        /* CRITICAL: Retains the 3D space for child elements */
+        transform-style: preserve-3d;
+
+        /* Apply the infinite rotation animation */
+        animation: cube-rotation 15s infinite linear;
+      }
+
+      /* --- Cube Face Styling --- */
+      .face {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.95;
+        transition: transform 0.3s ease-in-out;
+        border-radius: 10px; /* Rounded corners for modern look */
+      }
+
+      /* Ensure images fill the face without distortion */
+      .face img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 10px;
+      }
+
+      /* Define the half-side length for translation (300px / 2 = 150px) */
+      :root {
+        --half-size: 150px;
+      }
+
+      /* --- Positioning the Six Faces --- */
+
+      /* Front Face: Rotated 0 degrees, moved 150px forward */
+      .face-front {
+        transform: rotateY(0deg) translateZ(var(--half-size));
+      }
+
+      /* Back Face: Rotated 180 degrees, moved 150px forward */
+      .face-back {
+        transform: rotateY(180deg) translateZ(var(--half-size));
+      }
+
+      /* Right Face: Rotated 90 degrees, moved 150px forward */
+      .face-right {
+        transform: rotateY(90deg) translateZ(var(--half-size));
+      }
+
+      /* Left Face: Rotated -90 degrees, moved 150px forward */
+      .face-left {
+        transform: rotateY(-90deg) translateZ(var(--half-size));
+      }
+
+      /* Top Face: Rotated 90 degrees on X, moved 150px forward */
+      .face-top {
+        transform: rotateX(90deg) translateZ(var(--half-size));
+      }
+
+      /* Bottom Face: Rotated -90 degrees on X, moved 150px forward */
+      .face-bottom {
+        transform: rotateX(-90deg) translateZ(var(--half-size));
+      }
+
+      /* --- Rotation Keyframes --- */
+      @keyframes cube-rotation {
+        from {
+          transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+        }
+        to {
+          /* Continuous rotation around all axes for dynamic feel */
+          transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scene">
+      <div class="cube">
+        <!-- Front Face -->
+        <div class="face face-front">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png"
+            alt="Front Face"
+          />
+        </div>
+
+        <!-- Back Face -->
+        <div class="face face-back">
+          <img src="./MAINFILE/assets/negi4.png" alt="Back Face" />
+        </div>
+
+        <!-- Right Face -->
+        <div class="face face-right">
+          <img src="./MAINFILE/assets/negi3.png" alt="Right Face" />
+        </div>
+
+        <!-- Left Face -->
+        <div class="face face-left">
+          <img src="./MAINFILE/assets/negi2.png" alt="Left Face" />
+        </div>
+
+        <!-- Top Face -->
+        <div class="face face-top">
+          <img src="./MAINFILE/assets/negi1.png" alt="Top Face" />
+        </div>
+
+        <!-- Bottom Face -->
+        <div class="face face-bottom">
+          <img src="./MAINFILE/assets/logo3.png" alt="Bottom Face" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
