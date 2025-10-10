@@ -5685,8 +5685,14 @@ footer {
   width: 100%;
   height: 100vh;
   background: beige;
+  /* background: red; */
 }
-
+@media (max-width: 390px) {
+  .section91 {
+    /* background: blue; */
+    height: fit-content;
+  }
+}
 .container {
   max-width: 1280px; /* Equivalent of max-w-7xl */
   margin-left: auto;
