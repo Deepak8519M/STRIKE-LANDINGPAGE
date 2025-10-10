@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Support Section 92 - Corrected Cube</title>
+    <title>Support Section 92 - Prefixed</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,26 +12,26 @@
     />
     <style>
       /* --- Color Definitions (Directly Applied) --- */
-      .text-dark {
+      .section92-text-dark {
         color: #1f2937;
       }
-      .text-body {
+      .section92-text-body {
         color: #4b5563;
       }
-      .accent-blue {
+      .section92-accent-blue {
         color: #4f46e5;
       }
-      .accent-purple {
+      .section92-accent-purple {
         background-color: #4f46e5;
       }
-      .accent-dark {
+      .section92-accent-dark {
         border-color: #3730a3;
       }
-      .hover-color {
+      .section92-hover-color {
         background-color: #4338ca;
       }
 
-      /* --- Section 92 Wrapper Styles (New Requirement) --- */
+      /* --- Section 92 Wrapper Styles --- */
       .section92 {
         width: 100%;
         min-height: 100vh;
@@ -50,14 +50,14 @@
         -moz-osx-font-smoothing: grayscale;
       }
 
-      .container {
+      .section92-container {
         max-width: 1280px;
         margin: 0 auto;
         padding: 4rem 1.5rem;
         width: 100%;
       }
 
-      .main-content {
+      .section92-main-content {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -65,22 +65,21 @@
       }
 
       @media (min-width: 640px) {
-        .container {
+        .section92-container {
           padding-left: 2.5rem;
           padding-right: 2.5rem;
         }
       }
 
       @media (min-width: 1024px) {
-        .main-content {
+        .section92-main-content {
           flex-direction: row;
-          /* Reverted to center for optimal vertical positioning */
           align-items: center;
         }
       }
 
       /* --- LEFT SECTION: 3D ROTATING CUBE --- */
-      .left-column {
+      .section92-left-column {
         width: 100%;
         display: flex;
         justify-content: center;
@@ -90,17 +89,16 @@
       }
 
       @media (min-width: 1024px) {
-        .left-column {
+        .section92-left-column {
           width: 50%;
           padding-right: 5rem;
           margin-bottom: 0;
-          /* Removed translateY(-20px) to rely on align-items: center */
         }
       }
 
       /* Cube Responsiveness and Sizing (Mobile/Default) */
       .scene {
-        width: 250px; /* Base size */
+        width: 250px;
         height: 250px;
         perspective: 1000px;
         margin: 0 auto;
@@ -111,13 +109,12 @@
         height: 100%;
         position: relative;
         transform-style: preserve-3d;
-        /* CRITICAL FIX: Ensure animation is applied */
         animation: cube-rotation 15s infinite linear;
       }
 
       .face {
         position: absolute;
-        width: 250px; /* Base size */
+        width: 250px;
         height: 250px;
         border: 4px solid #1f2937;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -126,7 +123,7 @@
         background-color: #ffffff;
       }
 
-      /* CRITICAL FIX: Base Translation (250px / 2 = 125px) */
+      /* Translation (250px / 2 = 125px) */
       .face-front {
         transform: rotateY(0deg) translateZ(125px);
       }
@@ -207,7 +204,7 @@
           height: 300px;
         }
 
-        /* CRITICAL FIX: Translation for larger size (300px / 2 = 150px) */
+        /* Translation (300px / 2 = 150px) */
         .face-front {
           transform: rotateY(0deg) translateZ(150px);
         }
@@ -237,18 +234,18 @@
 
       /* --- RIGHT SECTION: TEXT CONTENT --- */
 
-      .right-column {
+      .section92-right-column {
         width: 100%;
       }
 
       @media (min-width: 1024px) {
-        .right-column {
+        .section92-right-column {
           width: 50%;
         }
       }
 
       /* GET SUPPORT Button (Top) */
-      .get-support-button {
+      .section92-get-support-button {
         display: inline-block;
         border: 2px solid #4f46e5;
         border-radius: 50px;
@@ -261,12 +258,12 @@
         transition: all 0.15s;
         background-color: transparent;
       }
-      .get-support-button:hover {
+      .section92-get-support-button:hover {
         background-color: rgba(79, 70, 229, 0.1);
       }
 
       /* Main Title: Responsive Font Size */
-      .main-title-motto {
+      .section92-main-title-motto {
         color: #1f2937;
         font-family: "Poppins", sans-serif;
         font-weight: 800;
@@ -277,13 +274,13 @@
       }
 
       @media (min-width: 768px) {
-        .main-title-motto {
+        .section92-main-title-motto {
           font-size: 4rem;
         }
       }
 
       /* Body Text */
-      .body-text-motto {
+      .section92-body-text-motto {
         color: #4b5563;
         font-size: 1rem;
         line-height: 1.6;
@@ -292,14 +289,14 @@
       }
 
       /* Feature List */
-      .feature-list {
+      .section92-feature-list {
         list-style: none;
         padding: 0;
         margin-top: 0;
         margin-bottom: 2.5rem;
       }
 
-      .feature-list li {
+      .section92-feature-list li {
         position: relative;
         padding-left: 1.5rem;
         margin-bottom: 0.75rem;
@@ -307,7 +304,7 @@
         font-size: 1rem;
       }
 
-      .feature-list li::before {
+      .section92-feature-list li::before {
         content: "•";
         position: absolute;
         left: 0;
@@ -318,7 +315,7 @@
       }
 
       /* --- START BUTTON STYLE --- */
-      .start-button {
+      .section92-start-button {
         display: inline-flex;
         align-items: center;
         background-color: #4f46e5;
@@ -334,16 +331,16 @@
         text-decoration: none;
       }
 
-      .start-button:hover {
+      .section92-start-button:hover {
         background-color: #4338ca;
       }
-      .start-button:active {
+      .section92-start-button:active {
         background-color: #3730a3;
         transform: translateY(1px);
         border-bottom-width: 2px;
       }
 
-      .start-button svg {
+      .section92-start-button svg {
         height: 1.25rem;
         width: 1.25rem;
         margin-left: 0.5rem;
@@ -353,9 +350,9 @@
   </head>
   <body>
     <section class="section92">
-      <div class="container">
-        <div class="main-content">
-          <div class="left-column">
+      <div class="section92-container">
+        <div class="section92-main-content">
+          <div class="section92-left-column">
             <div class="scene">
               <div class="cube">
                 <div class="face face-front">
@@ -403,26 +400,26 @@
             </div>
           </div>
 
-          <div class="right-column">
-            <a href="#" class="get-support-button">GET SUPPORT</a>
+          <div class="section92-right-column">
+            <a href="#" class="section92-get-support-button">GET SUPPORT</a>
 
-            <h1 class="main-title-motto text-dark">
+            <h1 class="section92-main-title-motto section92-text-dark">
               You Won't Have To Do It Alone
             </h1>
 
-            <p class="body-text-motto">
+            <p class="section92-body-text-motto">
               We help you get industry-ready with resources and guidance
               tailored to your career goals.
             </p>
 
-            <ul class="feature-list">
+            <ul class="section92-feature-list">
               <li>Personalized Mentorship to Guide Your Career Path</li>
               <li>Career Resources & Industry Insights</li>
               <li>Hands-On Learning and Skill Enhancement</li>
               <li>Connect with a Strong Global Alumni Network</li>
             </ul>
 
-            <a href="#" class="start-button">
+            <a href="#" class="section92-start-button">
               <span>Get Industry Ready</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
