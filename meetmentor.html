@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazing Standalone FAQ Section</title>
+    <!-- Use Inter and Poppins fonts from your original theme -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* --- Core Colors from Original Theme --- */
+      /* Accent Blue/Purple: #4f46e5 (Indigo) */
+      /* Dark Text: #1f2937 */
+      /* Body Text: #4b5563 */
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #e5e5e5; /* Light grey background */
+        font-family: "Inter", sans-serif;
+        color: #1f2937;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        padding: 4rem 1.5rem;
+      }
+
+      /* --- NEW FAQ SECTION STYLES (PURE HTML/CSS) --- */
+
+      .faq-section {
+        width: 100%;
+        max-width: 900px; /* Max width for readability */
+        margin: 0 auto;
+      }
+
+      .faq-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-top: 1rem;
+      }
+
+      .faq-title {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-size: 2.5rem;
+        color: #1f2937;
+        margin: 0;
+        line-height: 1.1;
+      }
+
+      .faq-subtitle {
+        color: #4f46e5;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* Responsive adjustment for title on larger screens */
+      @media (min-width: 768px) {
+        .faq-title {
+          font-size: 3.5rem;
+        }
+      }
+
+      /* --- FAQ Item Styling (The core accordion style) --- */
+
+      .faq-item {
+        margin-bottom: 1.5rem;
+        background-color: #ffffff;
+        border: 2px solid #1f2937; /* Dark border from the original theme */
+        border-radius: 12px;
+        overflow: hidden;
+        /* Ensure all border/shadow changes are smooth */
+        transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .faq-item:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        border-color: #4f46e5; /* Accent border on hover */
+      }
+
+      /* Question (Summary) Style */
+      .faq-question {
+        font-family: "Inter", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1f2937;
+        padding: 1.25rem 1.5rem;
+        cursor: pointer;
+        display: block;
+        /* Added transform to transition for smoother hover effect */
+        transition: background-color 0.2s, transform 0.15s ease-out;
+        list-style: none; /* Hide default marker */
+      }
+
+      /* Subtle lift on question hover */
+      .faq-question:hover {
+        background-color: #fafafa;
+        transform: translateY(-1px);
+      }
+
+      /* Remove default marker (triangle) in all browsers */
+      .faq-item > .faq-question::-webkit-details-marker {
+        display: none;
+      }
+      .faq-item > .faq-question::marker {
+        display: none;
+      }
+
+      /* Custom + / - icon using SVG Data URLs for the accent color */
+      .faq-question::after {
+        content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%234f46e5" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>'); /* Plus icon (Accent color) */
+        float: right;
+        width: 24px;
+        height: 24px;
+        transition: transform 0.2s;
+      }
+
+      /* Change icon when the details element is open */
+      .faq-item[open] > .faq-question::after {
+        content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%234f46e5" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" /></svg>'); /* Minus icon (Accent color) */
+      }
+
+      /* Answer Content Style (FIXED FOR SMOOTH TRANSITION) */
+      .faq-answer {
+        font-size: 1rem;
+        color: #4b5563;
+        line-height: 1.7;
+        margin: 0;
+        border-top: 1px solid #f3f4f6; /* Subtle separator line */
+
+        /* Core Transition Properties */
+        max-height: 0; /* Hidden state */
+        opacity: 0;
+        overflow: hidden; /* Hide overflow during collapse */
+        padding: 0 1.5rem 0 1.5rem; /* Base padding with zero bottom padding */
+        padding-top: 1.5rem;
+
+        /* UPDATED: Smoother transition duration and timing function */
+        transition: max-height 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+          opacity 0.4s ease-in;
+      }
+
+      .faq-item[open] .faq-answer {
+        /* This max-height must be set higher than the tallest possible answer content */
+        max-height: 500px;
+        opacity: 1;
+        /* Restore the necessary bottom padding for the open state */
+        padding-bottom: 1.5rem;
+      }
+
+      /* --- NEW CTA SECTION STYLES --- */
+      .faq-cta {
+        text-align: center;
+        margin-top: 3rem;
+        padding: 2.5rem 1.5rem;
+        background-color: #ffffff;
+        border: 2px solid #1f2937;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .cta-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        background-color: #4f46e5; /* Accent color */
+        color: white;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        border: none;
+        border-bottom: 4px solid #3730a3; /* Darker accent for 3D effect */
+        transition: all 150ms ease-in-out;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 1rem;
+      }
+
+      .cta-button:hover {
+        background-color: #4338ca; /* Slightly darker indigo on hover */
+      }
+
+      .cta-button:active {
+        background-color: #3730a3;
+        transform: translateY(2px);
+        border-bottom-width: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NEW FAQ SECTION CONTENT -->
+    <div class="faq-section">
+      <header class="faq-header">
+        <p class="faq-subtitle">ANSWERS TO YOUR QUESTIONS</p>
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+      </header>
+
+      <div class="faq-list">
+        <!-- FAQ Item 1 -->
+        <details class="faq-item">
+          <summary class="faq-question">
+            How do I get started with the mentorship program?
+          </summary>
+          <p class="faq-answer">
+            To start, simply register on our platform. You will be prompted to
+            select your career track, and we will pair you with a suitable
+            industry mentor within 48 hours. The process is designed to be
+            seamless and fast so you can start learning immediately.
+          </p>
+        </details>
+
+        <!-- FAQ Item 2 -->
+        <details class="faq-item">
+          <summary class="faq-question">
+            What kind of resources are included in the Resource Library?
+          </summary>
+          <p class="faq-answer">
+            Our comprehensive Resource Library includes exclusive case studies,
+            industry reports, resume templates optimized for 2024 hiring trends,
+            mock interview scripts, and deep-dive video tutorials covering
+            essential career skills. It's updated weekly based on industry
+            feedback.
+          </p>
+        </details>
+
+        <!-- FAQ Item 3 -->
+        <details class="faq-item">
+          <summary class="faq-question">
+            Is there a community or network I can connect with?
+          </summary>
+          <p class="faq-answer">
+            Yes! You gain immediate access to our Global Alumni Network. This
+            network hosts regular virtual meetups, peer-to-peer review sessions,
+            and an exclusive forum where you can connect with thousands of
+            current and former members for support and job leads.
+          </p>
+        </details>
+
+        <!-- FAQ Item 4 -->
+        <details class="faq-item">
+          <summary class="faq-question">
+            Are the sessions 1:1, or are they group classes?
+          </summary>
+          <p class="faq-answer">
+            All core mentorship and guidance sessions are strictly 1:1, ensuring
+            personalized attention tailored specifically to your goals and pace.
+            We also offer optional group workshops and webinars for general
+            skill enhancement, but your primary path is always individualized.
+          </p>
+        </details>
+
+        <!-- FAQ Item 5 -->
+        <details class="faq-item">
+          <summary class="faq-question">
+            What is the typical time commitment required?
+          </summary>
+          <p class="faq-answer">
+            The minimum suggested commitment is 3-5 hours per week, which
+            includes one 1-hour mentorship session and time dedicated to guided
+            assignments and self-paced learning from the resource library. You
+            can scale up or down based on your personal schedule.
+          </p>
+        </details>
+      </div>
+
+      <!-- NEW CTA SECTION -->
+      <div class="faq-cta">
+        <p class="cta-text">Still have questions? We're here to help.</p>
+        <a href="#" class="cta-button">Contact Our Team</a>
+      </div>
+      <!-- END CTA SECTION -->
+    </div>
+    <!-- END NEW FAQ SECTION CONTENT -->
+  </body>
+</html>
