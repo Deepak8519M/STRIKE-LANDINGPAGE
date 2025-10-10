@@ -3,24 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Purple Dream Timeline - Light Theme</title>
+    <title>Professional Guide Timeline - Indigo Theme (Cards Animated)</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* Custom properties for light theme with purple accents */
-      :root {
-        --accent-color: #5b21b6; /* Deep purple for accents */
-        --text-color: #333; /* Dark text for readability */
-        --light-text: #fff;
-        --base-color: #f5f5f5; /* Light gray background */
-        --dark-shadow: rgba(0, 0, 0, 0.15); /* Subtle shadow for light theme */
-        --light-shadow: rgba(255, 255, 255, 0.9); /* Light highlight */
-        --glass-bg: rgba(255, 255, 255, 0.9); /* Glassmorphic card background */
-      }
-
-      /* General Reset and Body Styling */
+      /* --- Global Reset and Body Styling --- */
       * {
         box-sizing: border-box;
         margin: 0;
@@ -29,21 +18,34 @@
 
       body {
         font-family: "Inter", sans-serif;
-        background-color: var(--base-color);
-        color: var(--text-color);
+        background-color: #e5e5e5; /* --base-color */
+        color: #1f2937; /* --text-color */
         line-height: 1.6;
         padding: 15px;
+      }
+
+      /* Section Wrapper Styling (Applied to section93) */
+      .section93 {
+        padding: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
       }
 
       /* Title Styling */
       .timeline-title {
         text-align: center;
-        color: var(--text-color);
+        /* REVERTED: Title color set back to the normal dark gray */
+        color: #1f2937;
         font-weight: 600;
         margin-bottom: 40px;
         font-size: 1.8em;
         position: relative;
         text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* NEW STYLE: Apply the blue color only to the span inside the title */
+      .timeline-title .blue-accent {
+        color: #4f46e5; /* Matching indigo color */
       }
 
       .timeline-title::after {
@@ -54,7 +56,7 @@
         transform: translateX(-50%);
         width: 8px;
         height: 8px;
-        background-color: var(--accent-color);
+        background-color: #4f46e5; /* --accent-color */
         border-radius: 50%;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
       }
@@ -77,7 +79,7 @@
         top: 0;
         bottom: 0;
         width: 2px;
-        background-color: var(--accent-color);
+        background-color: #4f46e5; /* --accent-color */
         left: 50%;
         transform: translateX(-50%);
       }
@@ -91,7 +93,9 @@
         position: relative;
       }
 
-      /* Glassmorphic Content Card Styling */
+      /* ---------------------------------------------------- */
+      /* Glassmorphic Content Card Styling with Button Effect */
+      /* ---------------------------------------------------- */
       .timeline-content {
         position: relative;
         width: 45%;
@@ -99,14 +103,32 @@
         border-radius: 20px;
         overflow: hidden;
         z-index: 10;
-        background: var(--glass-bg);
+        background: rgba(255, 255, 255, 0.9); /* --glass-bg */
         backdrop-filter: blur(35px);
         -webkit-backdrop-filter: blur(35px);
         border: 1px solid rgba(0, 0, 0, 0.1);
+
+        /* Base Shadow for Depth */
         box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05),
-          0 8px 25px var(--dark-shadow), 0 30px 100px rgba(0, 0, 0, 0.2);
+          0 8px 25px rgba(0, 0, 0, 0.15), 0 30px 100px rgba(0, 0, 0, 0.2);
+
+        transition: all 0.2s ease-out; /* Added transition for hover/active */
       }
 
+      /* Subtle Hover/Active Effect for Content Card */
+      .timeline-content:hover {
+        transform: translateY(-2px); /* Lift slightly on hover */
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.08),
+          0 10px 30px rgba(0, 0, 0, 0.2), 0 40px 120px rgba(0, 0, 0, 0.3);
+      }
+
+      .timeline-content:active {
+        transform: translateY(1px); /* Press-down effect */
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1),
+          0 5px 15px rgba(0, 0, 0, 0.1); /* Reduced shadow when pressed */
+      }
+
+      /* BACKGROUND BLUR GRADIENT */
       .timeline-content::before {
         content: "";
         position: absolute;
@@ -117,13 +139,14 @@
         z-index: -3;
         background: radial-gradient(
           circle at 10% 10%,
-          rgba(91, 33, 182, 0.15),
-          /* Soft purple */ transparent 60%
+          rgba(79, 70, 229, 0.15),
+          transparent 60%
         );
         filter: blur(250px);
         opacity: 1;
       }
 
+      /* INNER GLOW GRADIENT */
       .timeline-content::after {
         content: "";
         position: absolute;
@@ -135,11 +158,11 @@
         opacity: 1;
         background: radial-gradient(
           circle at 18% 12%,
-          #f0e6ff 0%,
-          /* Very pale purple */ #5b21b6 35%,
-          /* Deep purple */ rgba(91, 33, 182, 0.4) 60%,
-          /* Semi-transparent purple */ var(--base-color) 65%,
-          transparent 85%
+          #e0e6ff 0%,
+          #4f46e5 35%,
+          /* --accent-color */ rgba(79, 70, 229, 0.4) 60%,
+          #e5e5e5 65%,
+          /* --base-color */ transparent 85%
         );
         filter: blur(180px);
       }
@@ -198,7 +221,7 @@
       }
 
       .timeline-content h2 {
-        color: var(--accent-color);
+        color: #4f46e5; /* --accent-color */
         font-size: 1.1em;
         font-weight: 600;
         margin-bottom: 8px;
@@ -209,7 +232,7 @@
 
       .timeline-content .location {
         font-weight: 400;
-        color: #555;
+        color: #4b5563; /* --text-body */
         font-size: 0.9em;
         z-index: 3;
         position: relative;
@@ -217,12 +240,13 @@
 
       .timeline-content p {
         font-size: 0.85em;
-        color: #555;
+        color: #4b5563; /* --text-body */
         margin-bottom: 12px;
         z-index: 3;
         position: relative;
       }
 
+      /* Visit Link/Button */
       .visit-link {
         display: inline-flex;
         align-items: center;
@@ -230,17 +254,17 @@
         border-radius: 12px;
         text-decoration: none;
         font-size: 0.85em;
-        background: rgba(91, 33, 182, 0.15); /* Light purple background */
-        border: 1px solid rgba(91, 33, 182, 0.3);
-        color: var(--accent-color);
+        background: rgba(79, 70, 229, 0.15);
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        color: #4f46e5; /* --accent-color */
         transition: all 0.3s ease;
         z-index: 3;
         position: relative;
       }
 
       .visit-link:hover {
-        background: rgba(91, 33, 182, 0.25);
-        border-color: rgba(91, 33, 182, 0.5);
+        background: rgba(79, 70, 229, 0.25);
+        border-color: rgba(79, 70, 229, 0.5);
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       }
@@ -255,21 +279,40 @@
         margin-left: 12px;
       }
 
-      /* Date Bubble Styling */
+      /* ------------------------------------------------ */
+      /* Date Bubble Styling with Button Press Effect */
+      /* ------------------------------------------------ */
       .timeline-date-bubble {
         position: absolute;
         padding: 4px 12px;
-        background: rgba(91, 33, 182, 0.9); /* Purple with glass effect */
+        background: rgba(79, 70, 229, 0.9);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        color: var(--light-text);
+        color: #fff; /* White text */
         border-radius: 18px;
         font-size: 0.85em;
         font-weight: 600;
         top: 0;
         z-index: 20;
-        cursor: default;
+        cursor: pointer;
+
+        /* --- BUTTON EFFECT STYLES --- */
+        border-bottom: 3px solid #3730a3; /* Add depth with darker indigo */
+        transition: all 150ms ease-in-out;
         box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Date Bubble Hover State */
+      .timeline-date-bubble:hover {
+        background: #4338ca;
+        transform: translateY(-1px);
+      }
+
+      /* Date Bubble Active/Pressed State */
+      .timeline-date-bubble:active {
+        background: #3730a3;
+        transform: translateY(1px);
+        border-bottom-width: 1px;
       }
 
       .timeline-date-bubble::after {
@@ -277,9 +320,9 @@
         position: absolute;
         width: 10px;
         height: 10px;
-        background-color: var(--accent-color);
+        background-color: #4f46e5; /* --accent-color */
         border-radius: 50%;
-        border: 2px solid var(--base-color);
+        border: 2px solid #e5e5e5; /* --base-color */
         top: 50%;
         transform: translateY(-50%);
         z-index: -1;
@@ -321,7 +364,7 @@
         z-index: 5;
         border-radius: 5px;
         background-color: transparent;
-        border: 2px solid var(--accent-color);
+        border: 2px solid #4f46e5; /* --accent-color */
       }
 
       .timeline-item.left .timeline-illustration-placeholder {
@@ -364,6 +407,22 @@
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
+        /* Ensure content width/margin applies to both left and right items on mobile */
+        .timeline-item.right .timeline-content {
+          margin-left: 30px;
+          width: calc(100% - 30px);
+        }
+
+        /* Prevent button effect from pushing content away on smaller screens */
+        .timeline-content:hover {
+          transform: none;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        .timeline-content:active {
+          transform: none;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
         .timeline-content h2 {
           font-size: 1em;
         }
@@ -372,6 +431,7 @@
           font-size: 0.8em;
         }
 
+        /* Date Bubble Positioning on Mobile */
         .timeline-date-bubble {
           position: relative;
           left: 0 !important;
@@ -380,13 +440,19 @@
           margin-bottom: 8px;
           padding: 3px 10px;
           font-size: 0.8em;
+          top: 0;
         }
 
+        /* Date Bubble Marker on Mobile */
         .timeline-date-bubble::after {
           left: -13px !important;
           right: auto !important;
           width: 8px;
           height: 8px;
+        }
+
+        .timeline-date-bubble:active {
+          transform: translateY(1px);
         }
 
         .timeline-illustration-placeholder {
@@ -426,6 +492,11 @@
           box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
 
+        .timeline-item.right .timeline-content {
+          margin-left: 20px;
+          width: calc(100% - 20px);
+        }
+
         .timeline-content h2 {
           font-size: 0.9em;
         }
@@ -463,69 +534,69 @@
     </style>
   </head>
   <body>
-    <h1 class="timeline-title">Upcoming Developer Events</h1>
-    <div class="timeline-container">
-      <!-- ITEM 1: CSS Hackathon - Left -->
-      <div class="timeline-item left">
-        <div class="timeline-date-bubble">Oct 12, 2025</div>
-        <div class="timeline-content">
-          <div class="texture-overlay"></div>
-          <h2>CSS Hackathon <span class="location">(Online)</span></h2>
-          <p>
-            Build a striking landing page using advanced CSS techniques.
-            Challenge your styling skills and create visually stunning designs
-            in a competitive environment.
-          </p>
-          <a href="#" class="visit-link">Register Now</a>
+    <section class="section93">
+      <h1 class="timeline-title">
+        Upcoming <span class="blue-accent">Developer Events</span>
+      </h1>
+      <div class="timeline-container">
+        <div class="timeline-item left">
+          <div class="timeline-date-bubble">Oct 12, 2025</div>
+          <div class="timeline-content">
+            <div class="texture-overlay"></div>
+            <h2>CSS Hackathon <span class="location">(Online)</span></h2>
+            <p>
+              Build a striking landing page using advanced CSS techniques.
+              Challenge your styling skills and create visually stunning designs
+              in a competitive environment.
+            </p>
+            <a href="#" class="visit-link">Register Now</a>
+          </div>
+          <div class="timeline-illustration-placeholder"></div>
         </div>
-        <div class="timeline-illustration-placeholder"></div>
-      </div>
 
-      <!-- ITEM 2: Strike Course Launch - Right -->
-      <div class="timeline-item right">
-        <div class="timeline-date-bubble">Oct 18, 2025</div>
-        <div class="timeline-content">
-          <div class="texture-overlay"></div>
-          <h2>Strike Course Launch <span class="location">(Online)</span></h2>
-          <p>
-            Exciting launch of the Strike Course! Dive into cutting-edge topics
-            with hands-on modules designed to elevate your skills.
-          </p>
-          <a href="#" class="visit-link">Enroll Today</a>
+        <div class="timeline-item right">
+          <div class="timeline-date-bubble">Oct 18, 2025</div>
+          <div class="timeline-content">
+            <div class="texture-overlay"></div>
+            <h2>Strike Course Launch <span class="location">(Online)</span></h2>
+            <p>
+              Exciting launch of the Strike Course! Dive into cutting-edge
+              topics with hands-on modules designed to elevate your skills.
+            </p>
+            <a href="#" class="visit-link">Enroll Today</a>
+          </div>
+          <div class="timeline-illustration-placeholder"></div>
         </div>
-        <div class="timeline-illustration-placeholder"></div>
-      </div>
 
-      <!-- ITEM 3: JavaScript Hackathon - Left -->
-      <div class="timeline-item left">
-        <div class="timeline-date-bubble">Nov 8, 2025</div>
-        <div class="timeline-content">
-          <div class="texture-overlay"></div>
-          <h2>JavaScript Hackathon <span class="location">(Online)</span></h2>
-          <p>
-            Join the JavaScript Hackathon to build innovative web applications.
-            Collaborate, code, and showcase your JS expertise.
-          </p>
-          <a href="#" class="visit-link">Register Now</a>
+        <div class="timeline-item left">
+          <div class="timeline-date-bubble">Nov 8, 2025</div>
+          <div class="timeline-content">
+            <div class="texture-overlay"></div>
+            <h2>JavaScript Hackathon <span class="location">(Online)</span></h2>
+            <p>
+              Join the JavaScript Hackathon to build innovative web
+              applications. Collaborate, code, and showcase your JS expertise.
+            </p>
+            <a href="#" class="visit-link">Register Now</a>
+          </div>
+          <div class="timeline-illustration-placeholder"></div>
         </div>
-        <div class="timeline-illustration-placeholder"></div>
-      </div>
 
-      <!-- ITEM 4: Live DSA Workshop - Right -->
-      <div class="timeline-item right">
-        <div class="timeline-date-bubble">Oct 18, 2025</div>
-        <div class="timeline-content">
-          <div class="texture-overlay"></div>
-          <h2>Live DSA Workshop <span class="location">(Online)</span></h2>
-          <p>
-            Master Data Structures and Algorithms with our interactive workshop.
-            Solve real interview problems and gain confidence for tech
-            interviews.
-          </p>
-          <a href="#" class="visit-link">Join Workshop</a>
+        <div class="timeline-item right">
+          <div class="timeline-date-bubble">Oct 18, 2025</div>
+          <div class="timeline-content">
+            <div class="texture-overlay"></div>
+            <h2>Live DSA Workshop <span class="location">(Online)</span></h2>
+            <p>
+              Master Data Structures and Algorithms with our interactive
+              workshop. Solve real interview problems and gain confidence for
+              tech interviews.
+            </p>
+            <a href="#" class="visit-link">Join Workshop</a>
+          </div>
+          <div class="timeline-illustration-placeholder"></div>
         </div>
-        <div class="timeline-illustration-placeholder"></div>
       </div>
-    </div>
+    </section>
   </body>
 </html>
