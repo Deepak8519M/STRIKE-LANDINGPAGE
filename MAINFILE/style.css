@@ -5871,7 +5871,7 @@ footer {
 
 @media (max-width: 1000px) {
   .section91 {
-    background: blue;
+    /* background: blue; */
     height: fit-content;
   }
 }
@@ -6225,6 +6225,6 @@ footer {
 @media (max-width: 500px) {
   .section92 {
     height: fit-content;
-    background: red;
+    /* background: red; */
   }
 }
