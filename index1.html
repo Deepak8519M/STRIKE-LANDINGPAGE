@@ -5,53 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coder Army Mission</title>
     <style>
-      /* Ensure HTML takes up the full page height for reliable vh calculation */
+      /* Ensure HTML takes up the full page height */
       html {
         height: 100%;
       }
 
-      /* Reset body styles to avoid conflicts with other work */
+      /* Reset body styles to avoid conflicts */
       body {
         margin: 0;
         padding: 0;
         height: 100%;
       }
 
-      /* Apply styles to section94 instead of body */
+      /* Apply styles to section94 with exact 100vh and no horizontal overflow */
       #section94 {
         font-family: Arial, sans-serif;
         background-color: white;
         color: #1f2937;
-        overflow-x: hidden;
-        height: 100%;
+        height: 100vh;
+        width: 100%;
+        overflow-x: hidden; /* Prevent horizontal overflow */
         display: flex;
         align-items: center;
         justify-content: center;
+        box-sizing: border-box;
       }
 
-      /* Card Container Styles (reduced padding for smaller feel) */
+      /* Card Container Styles with slide-in animation */
       .s94-motto-container {
         position: relative;
         width: 100%;
-        max-width: 100%;
-        min-height: 100vh;
+        max-width: 100%; /* Strictly limit to viewport width */
+        height: 100%;
         margin: 0;
-        padding: 2vh 1rem; /* Reduced from 3vh */
+        padding: 1.5vh 0.75rem;
         text-align: center;
-        overflow: hidden;
         border-radius: 0;
         border: none;
         box-shadow: none;
-        transition: none;
+        box-sizing: border-box; /* Include padding in width */
         display: flex;
         flex-direction: column;
         justify-content: center;
+        animation: s94-slide-in 0.8s ease-out forwards; /* Slide-in animation */
       }
 
-      /* Responsive Padding adjustment (slightly reduced) */
+      /* Slide-in animation */
+      @keyframes s94-slide-in {
+        from {
+          transform: translateX(-100%); /* Start off-screen left */
+        }
+        to {
+          transform: translateX(0); /* End at normal position */
+        }
+      }
+
+      /* Responsive Padding adjustment */
       @media (min-width: 640px) {
         .s94-motto-container {
-          padding: 4vh 1.5rem; /* Reduced from 5vh */
+          padding: 3vh 1rem;
         }
       }
 
@@ -60,10 +72,10 @@
         box-shadow: none;
       }
 
-      /* Motto Text Styles (reduced clamp sizes for better proportion) */
+      /* Motto Text Styles */
       .s94-text-motto {
-        font-size: clamp(2rem, 6vw, 3.5rem); /* Reduced min/max from 3-5rem */
-        line-height: 1; /* Slightly increased for better readability */
+        font-size: clamp(1.5rem, 5vw, 3rem);
+        line-height: 1.1;
         font-weight: 900;
         display: block;
       }
@@ -71,7 +83,7 @@
         color: #4338ca;
       }
 
-      /* Rotating Square Animation (smaller sizes) */
+      /* Rotating Square Animation */
       @keyframes s94-rotate-better {
         from {
           transform: rotate(0deg) translate(-50%, -50%);
@@ -90,25 +102,36 @@
       .s94-rotating-square.s94-tl {
         top: 0;
         left: 0;
-        width: 200px; /* Reduced from 320px */
-        height: 200px;
+        width: 120px; /* Further reduced for mobile */
+        height: 120px;
         opacity: 0.3;
       }
       .s94-rotating-square.s94-br {
         bottom: 0;
         right: 0;
-        width: 150px; /* Reduced from 240px */
-        height: 150px;
+        width: 100px; /* Further reduced for mobile */
+        height: 100px;
         opacity: 0.2;
       }
+      @media (min-width: 640px) {
+        .s94-rotating-square.s94-tl {
+          width: 150px;
+          height: 150px;
+        }
+        .s94-rotating-square.s94-br {
+          width: 120px;
+          height: 120px;
+        }
+      }
 
-      /* Content and Tag Styles (reduced top tag size) */
+      /* Content and Tag Styles */
       .s94-content-wrap {
         position: relative;
         z-index: 10;
-        max-width: 1000px; /* Slightly reduced from 1200px for tighter content */
-        margin: 0 auto;
+        max-width: 800px;
         width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
       }
       .s94-top-tag {
         display: inline-block;
@@ -116,59 +139,67 @@
         background-color: #4338ca;
         color: white;
         border-radius: 9999px;
-        padding: 0.375rem 1rem; /* Reduced padding */
-        font-size: 0.875rem; /* Reduced from 1rem */
+        padding: 0.25rem 0.75rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        margin-bottom: 2rem; /* Reduced from 3rem */
+        margin-bottom: 1.5rem;
       }
 
       .s94-mission-text {
-        max-width: 700px; /* Reduced from 900px for more compact feel */
+        max-width: 600px;
         margin: 0 auto;
-        font-size: 1rem; /* Reduced base from 1.25rem */
+        font-size: 0.875rem;
         font-weight: 500;
         color: #4b5563;
-        line-height: 1.6; /* Slightly adjusted for readability */
+        line-height: 1.5;
       }
       @media (min-width: 640px) {
         .s94-mission-text {
-          font-size: 1.25rem; /* Reduced from 1.5rem */
+          font-size: 1.125rem;
         }
       }
 
-      /* Action Link Styles (reduced font and margins) */
-      .s94-action-link {
+      /* Start Button Styles */
+      .s94-start-button {
         display: inline-flex;
         align-items: center;
-        gap: 0.75rem;
-        margin-top: 2rem; /* Reduced from 3rem */
-        font-size: 1rem; /* Reduced from 1.25rem */
-        font-weight: 800;
-        color: #4338ca;
-        transition: color 0.3s, border-color 0.3s;
-        border-bottom: 4px solid #4338ca;
-        padding-bottom: 0.25rem;
+        background-color: #4338ca;
+        color: white;
+        font-weight: 700;
+        padding: 0.5rem 0.75rem 0.5rem 1rem;
+        border-radius: 0.75rem;
+        border-bottom: 4px solid #1f2937;
+        transition: all 150ms ease-in-out;
+        cursor: pointer;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
         text-decoration: none;
+        margin-top: 1.5rem;
       }
       @media (min-width: 640px) {
-        .s94-action-link {
-          margin-top: 2rem;
+        .s94-start-button {
+          padding: 0.75rem 1rem 0.75rem 1.5rem;
         }
       }
-      .s94-action-link:hover {
-        color: #1f2937;
-        border-bottom-color: #1f2937;
+      .s94-start-button:hover {
+        background-color: #4338ca;
       }
-      .s94-action-link svg {
-        width: 1.25rem; /* Slightly reduced icon */
+      .s94-start-button:active {
+        background-color: #3730a3;
+        transform: translateY(1px);
+        border-bottom-width: 2px;
+      }
+      .s94-start-button svg {
         height: 1.25rem;
+        width: 1.25rem;
+        margin-left: 0.5rem;
       }
 
-      /* Motto wrapper margin reduced */
+      /* Motto wrapper margin */
       .s94-motto-wrapper {
-        margin-bottom: 2rem; /* Reduced from 3rem; added class for control */
+        margin-bottom: 1.5rem;
       }
     </style>
   </head>
@@ -208,7 +239,7 @@
           </p>
 
           <!-- Action Link / Learn More -->
-          <a href="#" class="s94-action-link">
+          <a href="#" class="s94-start-button">
             <span>Explore the Strike Course</span>
             <!-- Arrow Icon -->
             <svg

@@ -114,7 +114,6 @@ body {
   background: #000;
   color: #fff;
   font-family: "Bebas Neue", sans-serif;
-  overflow-x: hidden;
 }
 
 /* NAVBAR */
@@ -6680,10 +6679,6 @@ footer {
 
 /* Small mobile devices (max-width: 480px) */
 @media (max-width: 480px) {
-  body {
-    padding: 10px;
-  }
-
   .timeline-container {
     padding: 0 10px;
   }

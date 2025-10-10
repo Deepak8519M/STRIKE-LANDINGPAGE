@@ -4,30 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Professional Footer Design</title>
-    <!-- We will use a link to the Inter font for a professional look -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
     />
-    <!-- Link for Remix Icons (needed for ri-linkedin-box-fill, ri-youtube-fill, etc.) -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
     />
 
     <style>
-      /* CSS Variables for colors and properties */
-      :root {
-        --dark-bg: #101010;
-        --dark-secondary: #181818; /* Enhanced dark for bottom bar */
-        --purple-btn: #8b5cf6; /* Main brand purple */
-        --header-purple: #a083f8; /* Lighter purple shade for headers */
-        --text-primary: white;
-        --text-secondary: rgba(255, 255, 255, 0.75);
-        --max-width: 80rem;
-      }
-
-      /* Global Reset and Typography */
       body {
         font-family: "Inter", sans-serif;
         background-color: #222;
@@ -35,10 +21,9 @@
         margin: 0;
       }
 
-      /* --- Footer Structure --- */
       .footer-main {
-        background-color: var(--dark-bg);
-        color: var(--text-primary);
+        background-color: #101010;
+        color: white;
         padding-top: 4rem;
         position: relative;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
@@ -46,14 +31,13 @@
       }
 
       .footer-content-wrapper {
-        max-width: var(--max-width);
+        max-width: 80rem;
         margin-left: auto;
         margin-right: auto;
         padding-left: 1rem;
         padding-right: 1rem;
       }
 
-      /* --- Navigation Columns (Top Section) --- */
       .footer-nav {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -63,17 +47,14 @@
         text-align: left;
       }
 
-      /* Tablet/Desktop Breakpoint (md: equivalent) */
       @media (min-width: 768px) {
         .footer-nav {
           grid-template-columns: repeat(4, 1fr);
         }
         .strike-text {
-          /* Dramatically increased size for tablets and up */
           font-size: 14rem !important;
         }
       }
-      /* Larger Breakpoint (lg/xl equivalent) */
       @media (min-width: 1024px) {
         .strike-text {
           font-size: 18rem !important;
@@ -85,32 +66,29 @@
         }
       }
 
-      /* Column Headers */
       .col-header {
         font-size: 1.125rem;
         font-weight: 600;
-        color: var(--header-purple); /* Using the lighter purple */
+        color: #beaee2;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 1rem;
       }
 
-      /* New Sub-Header Style for sections inside a column */
       .col-subheader {
-        font-size: 0.875rem; /* Same size as links */
-        font-weight: 600; /* Bold */
-        color: var(--text-primary); /* White for emphasis */
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: white;
         text-transform: uppercase;
-        margin-top: 1.5rem; /* Space from previous list/block */
+        margin-top: 1.5rem;
         margin-bottom: 0.5rem;
       }
 
-      /* Column Content */
       .col-content-block {
         margin-bottom: 1rem;
       }
       .col-item-text {
-        color: var(--text-secondary);
+        color: rgba(255, 255, 255, 0.75);
         font-size: 0.875rem;
         line-height: 1.625;
       }
@@ -123,19 +101,17 @@
         margin-bottom: 0.5rem;
       }
       .col-link-list a {
-        color: var(--text-secondary);
+        color: rgba(255, 255, 255, 0.75);
         text-decoration: none;
         transition: color 0.2s;
         font-size: 0.875rem;
         display: inline-block;
       }
       .col-link-list a:hover {
-        color: var(--purple-btn); /* Hover color is the main purple */
+        color: #8b5cf6;
       }
 
-      /* --- STRIKE Logo Section --- */
       .logo-section {
-        /* Increased padding to give the huge text more vertical space */
         padding-top: 6rem;
         padding-bottom: 6rem;
         text-align: center;
@@ -146,21 +122,18 @@
         line-height: 1;
         display: block;
         font-size: 6rem;
-
-        /* Reset to normal white text */
-        color: var(--text-primary);
+        color: #cfcfcf;
         -webkit-text-stroke: initial;
         text-stroke: initial;
         text-shadow: none;
       }
 
-      /* --- Scroll Button (Non-functional without JS) --- */
       .scroll-to-top {
         position: absolute;
         top: 0;
         right: 2rem;
         transform: translateY(-50%);
-        background-color: var(--purple-btn);
+        background-color: #8b5cf6;
         color: white;
         padding: 0.75rem;
         border-radius: 9999px;
@@ -174,14 +147,11 @@
         transform: translateY(-50%) scale(1.05);
       }
 
-      /* --- Bottom Copyright Bar --- */
       .footer-bottom-bar-wrapper {
-        background-color: var(
-          --dark-secondary
-        ); /* Using the enhanced darker shade */
+        background-color: #161616;
       }
       .footer-bottom-bar {
-        max-width: var(--max-width);
+        max-width: 80rem;
         margin-left: auto;
         margin-right: auto;
         padding: 1.25rem 1rem;
@@ -194,7 +164,7 @@
 
       .footer-bottom-bar p,
       .legal-links a {
-        color: var(--text-secondary);
+        color: rgba(255, 255, 255, 0.75);
         text-decoration: none;
       }
 
@@ -210,10 +180,9 @@
       }
 
       .legal-links a:hover {
-        color: var(--purple-btn); /* Hover color is the main purple */
+        color: #8b5cf6;
       }
 
-      /* Tablet/Desktop adjustments for bottom bar */
       @media (min-width: 640px) {
         .footer-bottom-bar {
           flex-direction: row;
@@ -227,7 +196,6 @@
         }
       }
 
-      /* --- Social Buttons --- */
       .btns {
         display: flex;
         gap: 0.75rem;
@@ -238,7 +206,7 @@
       }
 
       .join-btn {
-        border: 4px solid var(--purple-btn);
+        border: 4px solid #8b5cf6;
         background: transparent;
         color: white;
         font-size: 1.5rem;
@@ -256,36 +224,28 @@
 
       .join-btn:hover {
         background: white;
-        color: var(--purple-btn);
+        color: #8b5cf6;
         transform: translateY(-5px);
         box-shadow: 0 0 20px rgba(139, 92, 246, 0.66);
       }
-      /* End Social Buttons */
 
-      /* --- New Animated Circular Element Styles (Desktop) --- */
       .stay-connected-col {
         position: relative;
-        /* Add space below the text for the absolute circle */
         padding-bottom: 200px;
       }
 
       .visit {
         position: absolute;
-        /* FIX: Adjusted position to pull it inside the container */
         bottom: 0px;
-        right: 1rem;
-
+        right: 50px;
         width: 180px;
         height: 180px;
         border-radius: 50%;
-
         display: flex;
         justify-content: center;
         align-items: center;
-
-        background: var(--purple-btn);
+        background: #8b5cf6;
         animation: spin 6s linear infinite;
-
         border: none;
         z-index: 10;
       }
@@ -326,56 +286,25 @@
         width: 120px;
         height: 120px;
         border-radius: 50%;
-        background: #f8c900; /* Yellow color from user's CSS */
+        background: #f8c900;
         display: flex;
         justify-content: center;
         align-items: center;
       }
 
-      /* --- Mobile Adjustments for Circular Element (Below 768px) --- */
-      @media (max-width: 767px) {
+      @media (max-width: 799px) {
         .stay-connected-col {
           padding-bottom: 0;
-          position: static; /* Remove relative positioning on mobile */
+          position: static;
         }
         .visit {
-          position: static; /* Stack normally */
-          width: 100px;
-          height: 100px;
-          margin-top: 1.5rem;
-          margin-left: auto; /* Center it */
-          margin-right: auto;
-          animation: none;
-        }
-        .visit::before {
-          display: none; /* Hide complex animated border on mobile */
-        }
-        .visit .visit-arr {
-          width: 70px;
-          height: 70px;
+          display: none;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Main Content Placeholder -->
-    <main
-      class="text-white p-8"
-      style="max-width: var(--max-width); margin: auto"
-    >
-      <h1
-        style="
-          font-size: 2.25rem;
-          font-weight: 700;
-          margin-bottom: 1rem;
-          color: white;
-        "
-      >
-        Website Content Placeholder
-      </h1>
-      <p style="font-size: 1.125rem; color: white">
-        Scroll down to view the responsive footer below.
-      </p>
+    <main class="text-white p-8" style="max-width: 80rem; margin: auto">
       <div
         style="
           height: 100vh;
@@ -383,21 +312,12 @@
           align-items: center;
           justify-content: center;
         "
-      >
-        <!-- Long content to enable scrolling -->
-      </div>
+      ></div>
     </main>
 
-    <!-- Footer Start -->
     <footer class="footer-main">
       <div class="footer-content-wrapper">
-        <!-- Scroll To Top Button (Non-functional without JavaScript) -->
-        <button
-          id="scrollToTopBtn"
-          class="scroll-to-top"
-          aria-label="Scroll to top"
-        >
-          <!-- Inline SVG for up arrow -->
+        <button class="scroll-to-top" aria-label="Scroll to top">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -414,9 +334,7 @@
           </svg>
         </button>
 
-        <!-- Top Section: Navigation Columns and Content -->
         <div class="footer-nav">
-          <!-- Column 1: CoderArmy (Updated with Social Icons) -->
           <div class="col-content-block">
             <h3 class="col-header">CoderArmy</h3>
             <p class="col-item-text">
@@ -439,11 +357,9 @@
             </div>
           </div>
 
-          <!-- Column 2: Quick Links (Updated with new sections) -->
           <div class="col-content-block">
             <h3 class="col-header">Quick Links</h3>
 
-            <!-- General Links -->
             <ul class="col-link-list">
               <li><a href="#">Home</a></li>
               <li><a href="#">About Us</a></li>
@@ -451,14 +367,12 @@
               <li><a href="#">Contact Us</a></li>
             </ul>
 
-            <!-- New Section 1: Courese Section -->
             <h4 class="col-subheader">Courese Section</h4>
             <ul class="col-link-list">
               <li><a href="#">Free</a></li>
               <li><a href="#">Premium</a></li>
             </ul>
 
-            <!-- New Section 2: Feature Section -->
             <h4 class="col-subheader">Feature Section</h4>
             <ul class="col-link-list">
               <li><a href="#">Why Us?</a></li>
@@ -466,7 +380,6 @@
             </ul>
           </div>
 
-          <!-- Column 3: Company -->
           <div class="col-content-block">
             <h3 class="col-header">Company</h3>
             <ul class="col-link-list">
@@ -475,7 +388,6 @@
             </ul>
           </div>
 
-          <!-- Column 4: Stay Connected (Now relative container) -->
           <div class="col-content-block stay-connected-col">
             <h3 class="col-header">Stay Connected</h3>
             <p class="col-item-text">
@@ -483,11 +395,9 @@
               turn them into reality.
             </p>
 
-            <!-- Animated Circular Element -->
             <div class="visit">
               <div class="visit-arr">
                 <a href="#" aria-label="Visit Link">
-                  <!-- Inline SVG arrow pointing diagonally right (instead of missing image) -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"
@@ -508,18 +418,14 @@
           </div>
         </div>
 
-        <!-- Large Logo Text Section - STRIKE -->
         <div class="logo-section">
           <span class="strike-text">STRIKE</span>
         </div>
       </div>
 
-      <!-- Bottom Bar: Copyright and Legal Links -->
       <div class="footer-bottom-bar-wrapper">
         <div class="footer-bottom-bar">
-          <!-- Copyright -->
           <p class="copyright">Copyright ©2023 Coursea</p>
-          <!-- Legal Links -->
           <div class="legal-links">
             <a href="#">Term Of Use</a>
             <a href="#">Privacy Policy</a>
@@ -528,6 +434,5 @@
         </div>
       </div>
     </footer>
-    <!-- Footer End -->
   </body>
 </html>
