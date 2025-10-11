@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Geometric CSS Grid (Wireframe)</title>
 
-    <!-- NEW: Remix Icon link for the card logo -->
+    <!-- Remix Icon link for the card logo -->
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
       rel="stylesheet"
@@ -16,17 +16,16 @@
     />
 
     <style>
-      /* NEW: Global Body Style (from 3D Card) */
+      /* Global Body Style */
       body {
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
         margin: 0;
-        /* Dark background for the 3D card effect */
-        background: #000000;
+        background: var(--bg-charcoal-dark);
         font-family: "Urbanist", sans-serif;
-        color: white; /* Default text color for the dark theme */
+        color: white;
         overflow: hidden;
         padding: 2rem;
         box-sizing: border-box;
@@ -36,90 +35,89 @@
       /* --- 3D CARD STYLES START --- */
 
       :root {
-        /* BLUE THEME (Default for 1A and 6) */
+        /* Theme Background */
+        --bg-charcoal-dark: #12121e;
+
+        /* Blue Theme (Default for 1A and 6) */
         --primary-blue: #0000ff;
         --light-blue: #00bfff;
         --dark-base-blue: rgba(0, 0, 10, 0.85);
         --icon-light-blue: #e0f7fa;
 
-        /* CRIMSON THEME (For Block 1B / ID 18) */
-        --primary-crimson: #dc143c; /* Crimson Red */
-        --light-crimson: #ff6347; /* Tomato Red */
-        --dark-base-crimson: rgba(15, 0, 0, 0.85); /* Dark base with red tint */
-        --icon-light-crimson: #ffdada; /* Pale pink for icon highlight */
+        /* Crimson Theme (For Block 1B / ID 18) */
+        --primary-crimson: #dc143c;
+        --light-crimson: #ff6347;
+        --dark-base-crimson: rgba(15, 0, 0, 0.85);
+        --icon-light-crimson: #ffdada;
 
-        /* NEON GREEN THEME (For Block 14) */
-        --primary-neon: #39ff14; /* Electric Neon Green */
-        --light-mint: #ccffcc; /* Light Mint/Pale Green */
-        --dark-base-neon: rgba(5, 5, 0, 0.85); /* Dark base with green tint */
-        --icon-light-neon: #e6ffe6; /* Extra pale green for icon highlight */
+        /* Neon Green Theme (For Block 14/16) */
+        --primary-neon: #39ff14;
+        --light-mint: #ccffcc;
+        --dark-base-neon: rgba(5, 5, 0, 0.85);
+        --icon-light-neon: #e6ffe6;
 
-        /* GOLD RUSH THEME (For Block 8) */
-        --primary-gold: #ffd700; /* Pure Gold */
-        --light-amber: #ffebb5; /* Pale Gold/Cream */
-        --dark-base-gold: rgba(
-          10,
-          5,
-          0,
-          0.85
-        ); /* Dark base with a subtle gold/brown tint */
-        --icon-light-gold: #fff8e1; /* Extra light gold for icon highlight */
-        --icon-dark-gold: #663e00; /* Dark brown/gold for icon depth */
+        /* Gold Rush Theme (For Block 8/15) */
+        --primary-gold: #ffd700;
+        --light-amber: #ffebb5;
+        --dark-base-gold: rgba(10, 5, 0, 0.85);
+        --icon-light-gold: #fff8e1;
+        --icon-dark-gold: #663e00;
 
-        /* ETHEREAL MINT THEME (For Block 9) */
-        --primary-mint-teal: #00b894; /* Medium Aquamarine */
-        --light-cyan: #e0ffff; /* Light Cyan */
-        --dark-base-mint: rgba(
-          0,
-          10,
-          8,
-          0.85
-        ); /* Dark base with a subtle mint tint */
-        --icon-light-mint: #f0ffff; /* Extra light for icon highlight */
-        --icon-dark-mint: #004d40; /* Dark teal for icon depth */
+        /* Ethereal Mint Theme (For Block 9) */
+        --primary-mint-teal: #00b894;
+        --light-cyan: #e0ffff;
+        --dark-base-mint: rgba(0, 10, 8, 0.85);
+        --icon-light-mint: #f0ffff;
+        --icon-dark-mint: #004d40;
 
-        /* BLAZING SUNSET THEME (For Block 10) */
-        --primary-orange: #ff7b00; /* Bright Orange */
-        --light-peach: #ffebb5; /* Light Peach/Cream */
-        --dark-base-sunset: rgba(
-          20,
-          5,
-          0,
-          0.85
-        ); /* Dark base with a subtle red/brown tint */
-        --icon-light-sunset: #fffae8; /* Extra light for icon highlight */
-        --icon-dark-sunset: #602500; /* Dark brown/red for icon depth */
+        /* Blazing Sunset Theme (For Block 10) */
+        --primary-orange: #ff7b00;
+        --light-peach: #ffebb5;
+        --dark-base-sunset: rgba(20, 5, 0, 0.85);
+        --icon-light-sunset: #fffae8;
+        --icon-dark-sunset: #602500;
 
-        /* DEEP CRIMSON THEME (For Block 11 and 13) - New Alias for clarity */
-        --primary-deep-crimson: #a00030; /* Deeper red than primary-crimson */
+        /* Deep Crimson Theme (For Block 11 and 13) */
+        --primary-deep-crimson: #a00030;
         --light-deep-crimson: #ff6347;
         --dark-base-deep-crimson: rgba(15, 0, 5, 0.9);
         --icon-light-deep-crimson: #ffd0d0;
 
+        /* Deep Sapphire Theme (For Block 12/17) */
+        --primary-sapphire: #4a00e0;
+        --light-sapphire: #a77dff;
+        --dark-base-sapphire: rgba(10, 0, 30, 0.85);
+        --icon-light-sapphire: #e0e0ff;
+        --icon-dark-sapphire: #220066;
+
+        /* Light Citrus Theme (For Block 12 Background) */
+        --bg-light-glass: rgba(255, 255, 255, 0.6);
+        --citrus-yellow: #ffeb3b;
+        --citrus-orange: #ff6f00;
+        --text-dark: #1a1a1a;
+
         --white-core: #ffffff;
         --border-size: 3px;
-
         --TILT-DEGREE: 5deg;
         --LIFT-Z: 15px;
       }
 
-      /* 1. CARD WRAPPER: Handles the 3D Tilt and holds the rotating gradient */
+      /* 1. Card Wrapper */
       .card-wrapper {
         position: relative;
         width: 100%;
         height: 100%;
-        border-radius: 1rem; /* FIXED: Using 1rem as requested */
+        border-radius: 1rem;
         padding: var(--border-size);
         box-sizing: border-box;
         background: transparent;
         overflow: hidden;
         z-index: 10;
         box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
-
-        transition: transform 0.4s ease-out;
+        cursor: default;
       }
 
-      /* 2. CONIC GRADIENT PSEUDO-ELEMENT (BLUE DEFAULT) */
+      /* 2. Conic Gradient Pseudo-Element (Blue Default) */
       .card-wrapper::before {
         content: "";
         position: absolute;
@@ -128,8 +126,6 @@
         right: 0;
         bottom: 0;
         z-index: -1;
-
-        /* BLUE CONIC GRADIENT */
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -139,19 +135,17 @@
           rgba(0, 0, 0, 0) 95%,
           var(--white-core) 100%
         );
-
         width: calc(100% + 150px);
         height: calc(100% + 150px);
         top: -75px;
         left: -75px;
-
         border-radius: 25px;
         animation: borderRotate 2s linear infinite;
         filter: blur(8px);
         opacity: 0.9;
       }
 
-      /* 3. CARD CONTENT (BLUE DEFAULT) */
+      /* 3. Card Content (Blue Default) */
       .card-content {
         position: relative;
         width: 100%;
@@ -163,19 +157,15 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-
-        /* Glassmorphism Background: Dark Blue Base */
         background: var(--dark-base-blue);
         backdrop-filter: blur(35px);
         -webkit-backdrop-filter: blur(35px);
         border: 1px solid rgba(255, 255, 255, 0.15);
-
         transition: transform 0.3s;
       }
 
-      /* --- CRIMSON THEME OVERRIDES (Applied via .crimson-card) --- */
+      /* Crimson Theme Overrides */
       .crimson-card.card-wrapper::before {
-        /* CRIMSON CONIC GRADIENT */
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -186,14 +176,10 @@
           var(--white-core) 100%
         );
       }
-
       .crimson-card .card-content {
-        /* Glassmorphism Background: Dark Crimson Base */
         background: var(--dark-base-crimson);
       }
-
       .crimson-card .card-logo .ri {
-        /* CRIMSON ICON GLOW AND GRADIENT */
         background: linear-gradient(
           135deg,
           var(--icon-light-crimson),
@@ -201,9 +187,8 @@
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 15px rgba(220, 20, 60, 1); /* Crimson glow */
+        text-shadow: 0 0 15px rgba(220, 20, 60, 1);
       }
-      /* Override content::after glow for crimson */
       .crimson-card .card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
@@ -215,9 +200,8 @@
         );
       }
 
-      /* --- DEEP CRIMSON THEME OVERRIDES (Applied via .deep-crimson-card) --- */
+      /* Deep Crimson Theme Overrides */
       .deep-crimson-card.card-wrapper::before {
-        /* DEEP CRIMSON CONIC GRADIENT */
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -229,14 +213,10 @@
         );
         animation: borderRotate 4s linear infinite;
       }
-
       .deep-crimson-card .card-content {
-        /* Glassmorphism Background: Dark Deep Crimson Base */
         background: var(--dark-base-deep-crimson);
       }
-
       .deep-crimson-card .card-logo .ri {
-        /* DEEP CRIMSON ICON GLOW AND GRADIENT */
         font-size: 2rem;
         background: linear-gradient(
           135deg,
@@ -245,10 +225,8 @@
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 15px rgba(160, 0, 48, 1); /* Deep Crimson glow */
+        text-shadow: 0 0 15px rgba(160, 0, 48, 1);
       }
-
-      /* Override content::after glow for deep crimson */
       .deep-crimson-card .card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
@@ -260,9 +238,8 @@
         );
       }
 
-      /* --- NEON GREEN THEME OVERRIDES (Applied via .neon-card) --- */
+      /* Neon Green Theme Overrides */
       .neon-card.card-wrapper::before {
-        /* NEON CONIC GRADIENT */
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -272,16 +249,12 @@
           rgba(0, 0, 0, 0) 95%,
           var(--white-core) 100%
         );
-        animation: borderRotate 4s linear infinite; /* Slightly slower rotation */
+        animation: borderRotate 4s linear infinite;
       }
-
       .neon-card .card-content {
-        /* Glassmorphism Background: Dark Neon Base */
         background: var(--dark-base-neon);
       }
-
       .neon-card .card-logo .ri {
-        /* NEON ICON GLOW AND GRADIENT */
         background: linear-gradient(
           135deg,
           var(--icon-light-neon),
@@ -289,10 +262,8 @@
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 15px rgba(57, 255, 20, 1); /* Neon glow */
+        text-shadow: 0 0 15px rgba(57, 255, 20, 1);
       }
-
-      /* Override content::after glow for neon */
       .neon-card .card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
@@ -304,9 +275,8 @@
         );
       }
 
-      /* --- GOLD RUSH THEME OVERRIDES (Applied via .gold-card) --- */
+      /* Gold Rush Theme Overrides */
       .gold-card.card-wrapper::before {
-        /* GOLD CONIC GRADIENT */
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -318,14 +288,10 @@
         );
         animation: borderRotate 4s linear infinite;
       }
-
       .gold-card .card-content {
-        /* Glassmorphism Background: Dark Gold Base */
         background: var(--dark-base-gold);
       }
-
       .gold-card .card-logo .ri {
-        /* GOLD ICON GLOW AND GRADIENT */
         font-size: 2rem;
         background: linear-gradient(
           135deg,
@@ -334,10 +300,8 @@
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 15px rgba(255, 215, 0, 1); /* Gold glow */
+        text-shadow: 0 0 15px rgba(255, 215, 0, 1);
       }
-
-      /* Override content::after glow for gold */
       .gold-card .card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
@@ -349,9 +313,8 @@
         );
       }
 
-      /* --- MINT THEME OVERRIDES (Applied via .mint-card) --- */
+      /* Mint Theme Overrides */
       .mint-card.card-wrapper::before {
-        /* MINT CONIC GRADIENT */
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -363,14 +326,10 @@
         );
         animation: borderRotate 4s linear infinite;
       }
-
       .mint-card .card-content {
-        /* Glassmorphism Background: Dark Mint Base */
         background: var(--dark-base-mint);
       }
-
       .mint-card .card-logo .ri {
-        /* MINT ICON GLOW AND GRADIENT */
         font-size: 2rem;
         background: linear-gradient(
           135deg,
@@ -379,10 +338,8 @@
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 15px rgba(0, 184, 148, 1); /* Mint glow */
+        text-shadow: 0 0 15px rgba(0, 184, 148, 1);
       }
-
-      /* Override content::after glow for mint */
       .mint-card .card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
@@ -394,9 +351,8 @@
         );
       }
 
-      /* --- BLAZING SUNSET THEME OVERRIDES (Applied via .sunset-card) --- */
+      /* Blazing Sunset Theme Overrides */
       .sunset-card.card-wrapper::before {
-        /* ORANGE CONIC GRADIENT */
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -408,14 +364,10 @@
         );
         animation: borderRotate 4s linear infinite;
       }
-
       .sunset-card .card-content {
-        /* Glassmorphism Background: Dark Sunset Base */
         background: var(--dark-base-sunset);
       }
-
       .sunset-card .card-logo .ri {
-        /* ORANGE ICON GLOW AND GRADIENT */
         font-size: 2rem;
         background: linear-gradient(
           135deg,
@@ -424,10 +376,8 @@
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 15px rgba(255, 123, 0, 1); /* Orange glow */
+        text-shadow: 0 0 15px rgba(255, 123, 0, 1);
       }
-
-      /* Override content::after glow for sunset */
       .sunset-card .card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
@@ -439,7 +389,144 @@
         );
       }
 
-      /* --- LOGO/ICON STYLES (Applies to all cards) --- */
+      /* Deep Sapphire Theme Overrides */
+      .sapphire-card.card-wrapper::before {
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-sapphire) 4%,
+          var(--primary-sapphire) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        animation: borderRotate 4s linear infinite;
+      }
+      .sapphire-card .card-content {
+        background: var(--dark-base-sapphire);
+      }
+      .sapphire-card .card-logo .ri {
+        font-size: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--icon-light-sapphire),
+          var(--primary-sapphire)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 15px rgba(74, 0, 224, 1);
+      }
+      .sapphire-card .card-content::after {
+        background: radial-gradient(
+          circle at 18% 12%,
+          #e0e0ff 0%,
+          var(--primary-sapphire) 35%,
+          rgba(74, 0, 224, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+      }
+
+      /* Light Citrus Theme Overrides */
+      .citrus-card.card-wrapper::before {
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--citrus-yellow) 4%,
+          var(--citrus-orange) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        animation: borderRotate 4s linear infinite;
+      }
+      .citrus-card .card-content {
+        background: var(--bg-light-glass);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        color: var(--text-dark);
+      }
+      .citrus-card .card-content::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 0.9;
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffffff 0%,
+          var(--citrus-yellow) 35%,
+          rgba(255, 165, 0, 0.6) 60%,
+          transparent 85%
+        );
+        filter: blur(150px);
+      }
+      .citrus-card .card-content::before {
+        content: none;
+      }
+
+      /* Stat Styles */
+      .stat-detail {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        color: var(--primary-gold);
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      }
+
+      .stat-massive {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 4.5rem;
+        font-weight: 700;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+      }
+
+      .gold-card .stat-massive {
+        color: var(--primary-gold);
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+      }
+      .neon-card .stat-massive {
+        color: var(--primary-neon);
+        text-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
+      }
+      .sapphire-card .stat-massive {
+        color: var(--primary-sapphire);
+        text-shadow: 0 0 20px rgba(74, 0, 224, 0.8);
+      }
+      .citrus-card .stat-massive {
+        color: var(--text-dark);
+      }
+      .sapphire-card .stat-detail {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--white-core);
+        text-shadow: 0 0 10px var(--primary-sapphire),
+          0 0 15px rgba(74, 0, 224, 0.5);
+        line-height: 1.2;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        opacity: 0.9;
+      }
+      .citrus-card .stat-detail {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--text-dark);
+        line-height: 1.2;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        opacity: 0.9;
+      }
+
+      /* Logo/Icon Styles */
       .card-logo {
         width: 60px;
         height: 60px;
@@ -451,12 +538,16 @@
         position: relative;
         overflow: hidden;
         align-self: flex-start;
-
-        /* 3D Base */
         background: linear-gradient(145deg, #1c1c1c, #0a0a0a);
         border: 1px solid rgba(255, 255, 255, 0.2);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7),
           inset 0 0 15px rgba(255, 255, 255, 0.05);
+      }
+      .citrus-card .card-logo {
+        background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
+          inset 0 0 15px rgba(0, 0, 0, 0.05);
       }
       .card-logo::before {
         content: "";
@@ -469,8 +560,6 @@
           transparent 50%
         );
       }
-
-      /* Icon coloring (BLUE DEFAULT) */
       .card-logo .ri {
         font-size: 2rem;
         background: linear-gradient(
@@ -483,7 +572,7 @@
         text-shadow: 0 0 15px rgba(0, 0, 255, 1);
       }
 
-      /* --- Typography and Content --- */
+      /* Typography and Content */
       .card-heading {
         font-size: 1.1rem;
         font-weight: 700;
@@ -491,9 +580,8 @@
         margin-bottom: 10px;
         text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
         text-align: left;
-        color: white; /* Ensure heading is white */
+        color: white;
       }
-
       .card-description {
         font-size: 0.8rem;
         color: rgba(255, 255, 255, 0.9);
@@ -502,10 +590,10 @@
         text-align: left;
         flex-grow: 1;
         margin-top: 0;
-        color: white; /* Ensure description is white */
+        color: white;
       }
 
-      /* --- KEYFRAME for the ROTATING BORDER --- */
+      /* Keyframe for Rotating Border */
       @keyframes borderRotate {
         0% {
           transform: rotate(0deg) scale(1);
@@ -521,7 +609,7 @@
         }
       }
 
-      /* --- ORIGINAL BACKGROUND LAYERS (Internal card glow - BLUE DEFAULT) --- */
+      /* Original Background Layers */
       .card-content::before {
         content: "";
         position: absolute;
@@ -558,7 +646,7 @@
         filter: blur(180px);
       }
 
-      /* --- GRID STYLES START (Wireframe blocks) --- */
+      /* --- GRID STYLES START --- */
 
       #geometric-grid {
         display: grid;
@@ -573,7 +661,6 @@
         box-shadow: none;
       }
 
-      /* Base styles for all remaining wireframe blocks */
       .grid-block {
         border-radius: 0.5rem;
         transition: opacity 0.3s ease;
@@ -582,20 +669,15 @@
         height: 100%;
         display: flex;
         padding: 0;
-        /* Default background for non-card blocks */
-        /* background-color: #ffffff; */
-        /* border: 1px solid #ccc; */
       }
-      #block-1.grid-block, /* Block 1 must be transparent to show inner cards */
+      #block-1.grid-block,
       #block-6.grid-block,
       #block-8.grid-block,
       #block-9.grid-block {
-        /* Added #block-9 to be transparent */
         background-color: transparent;
         border: none;
       }
 
-      /* Style for the main block number (1-9) - placed subtly */
       .block-number {
         position: absolute;
         top: 0.5rem;
@@ -607,7 +689,6 @@
         color: #343a40;
       }
 
-      /* Centered text style for single-content blocks */
       .centered-content {
         display: flex;
         align-items: center;
@@ -619,14 +700,32 @@
         height: 100%;
       }
 
-      /* --- STYLES FOR NESTED SECTIONS (Blocks 2, 3) --- */
+      .generic-content-area {
+        width: 100%;
+        height: 100%;
+        background-color: #212529;
+        border: 1px solid #495057;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.2rem;
+        position: relative;
+        padding: 1rem;
+        box-sizing: border-box;
+      }
+      .generic-content-area .block-number {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* Nested Sections (Blocks 2, 3) */
       .nested-flex-h {
         flex-direction: row;
       }
       .nested-flex-v {
         flex-direction: column;
       }
-
       .nested-section {
         flex: 1;
         display: flex;
@@ -635,13 +734,10 @@
         font-size: 1.5rem;
         font-weight: 600;
         color: #343a40;
-        background-color: #ffffff;
-        border: 1px solid #ccc;
         box-sizing: border-box;
         border-radius: 0.5rem;
         margin: 0.2rem;
       }
-
       #block-2 .nested-section {
         font-size: 1.4rem;
         display: flex;
@@ -649,7 +745,6 @@
         margin: 0.2rem 0.2rem;
         border-radius: 0.5rem;
       }
-
       .sub-section {
         flex: 1;
         display: flex;
@@ -658,17 +753,12 @@
         font-size: 1.2rem;
         font-weight: 500;
         height: 100%;
-        background-color: #ffffff;
-        border: 1px solid #ccc;
         border-radius: 0.5rem;
         margin: 0 0.2rem;
       }
-
-      /* Style overrides for sub-sections that contain a card to make their wrapper transparent */
       .card-container-sub {
         background-color: transparent !important;
         border: none !important;
-        /* Remove sub-section margin so card can fill completely */
         margin: 0 !important;
         padding: 0 !important;
       }
@@ -676,10 +766,23 @@
         width: 100%;
         height: 100%;
       }
-
-      /* Block 14 specific container styling (Same as .card-container-sub for consistency) */
+      #block-3 .nested-section {
+        margin: 0.2rem;
+        padding: 0;
+      }
+      #block-3 .nested-section:not(.card-container-sub) {
+        background-color: #212529;
+        border: 1px solid #495057;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.2rem;
+      }
+      #block-3 .card-container-sub .card-wrapper .card-content {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        padding-left: 25px;
+        padding-right: 25px;
+      }
       .neon-card-container {
-        /* This overrides the .nested-section white background and border */
         flex: 2;
         padding: 0.5rem 0.2rem;
         margin: 0.2rem 0.2rem 0.5rem;
@@ -687,7 +790,6 @@
         border: none !important;
         box-shadow: none !important;
       }
-      /* Ensure the card wrapper inside block 14 fills its container */
       .neon-card-container .card-wrapper {
         width: 100%;
         height: 100%;
@@ -695,11 +797,9 @@
         box-sizing: border-box;
       }
 
-      /* --- BLOCK PLACEMENT (12x5 Grid) --- */
-
-      /* 1. Top Left (3x5) - COMBINED 1 & 4, DIVIDED VERTICALLY */
+      /* Block Placement */
       #block-1 {
-        grid-column: 1 / span 3;
+        grid-column: 1 / span 2;
         grid-row: 1 / span 5;
         display: flex;
         flex-direction: column;
@@ -707,71 +807,231 @@
         border: none;
         background-color: transparent;
       }
-
-      /* 2. HUGE UNIFIED BLOCK (5x5) - DIVIDED INTO 3 ROWS */
       #block-2 {
-        grid-column: 4 / span 5;
+        grid-column: 3 / span 6;
         grid-row: 1 / span 5;
       }
-
-      /* 3. Top Right (4x1) - SHIFTED RIGHT & DIVIDED */
       #block-3 {
         grid-column: 9 / span 4;
         grid-row: 1 / span 1;
       }
-
-      /* 4. Block 4 removed */
-
-      /* 6. NEW UNIFIED BLOCK (4x2) - COMBINED 6A & 9A - NOW TALLER */
       #block-6 {
         grid-column: 9 / span 4;
         grid-row: 2 / span 2;
       }
-
-      /* 8. NEW BLOCK (2x2) - Fills the space of old 6B */
       #block-8 {
         grid-column: 9 / span 2;
         grid-row: 4 / span 2;
+        padding: 0;
+        box-sizing: border-box;
       }
-
-      /* 9. NEW BLOCK (2x2) - Fills the space of old 9B */
       #block-9 {
         grid-column: 11 / span 2;
         grid-row: 4 / span 2;
+        padding: 0;
+        box-sizing: border-box;
       }
 
-      /* * Responsive Adjustments for Small Screens */
+      /* Responsive Adjustments */
       @media (max-width: 600px) {
+        body {
+          padding: 1rem;
+        }
         #geometric-grid {
           display: flex;
           flex-direction: column;
           height: auto;
-          min-height: 100px;
-          width: 95%;
+          min-height: 100vh;
+          width: 100%;
+          gap: 0.5rem;
           box-shadow: none;
         }
-        .grid-block,
-        .card-wrapper {
-          min-height: 100px;
+        .grid-block {
+          min-height: 150px;
           margin-bottom: 0.5rem;
+          width: 100%;
         }
-        /* Reset 3D transforms on small screens */
-        .card-wrapper:hover {
-          transform: none;
+        .card-wrapper {
+          min-height: 150px;
+          width: 100%;
+          border-radius: 0.75rem;
+        }
+        .card-content {
+          padding: 15px;
+          font-size: 0.9rem;
+        }
+        .card-heading {
+          font-size: 1rem;
+        }
+        .card-description {
+          font-size: 0.75rem;
+        }
+        .card-logo {
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+        }
+        .card-logo .ri {
+          font-size: 1.5rem;
+        }
+        .stat-massive {
+          font-size: 3rem;
+        }
+        .stat-detail {
+          font-size: 1rem;
+          margin-top: -5px;
+          margin-bottom: 10px;
+        }
+        #block-1 {
+          flex-direction: column;
+        }
+        #block-1 > div {
+          height: auto;
+          min-height: 150px;
+          width: 100%;
+        }
+        #block-2 {
+          flex-direction: column;
+        }
+        #block-2 .nested-section {
+          flex-direction: column;
+          margin: 0.2rem 0;
+        }
+        #block-2 .sub-section,
+        #block-2 .neon-card-container {
+          margin: 0.2rem 0;
+          padding: 0;
+          min-height: 150px;
+        }
+        #block-3 {
+          flex-direction: column;
+        }
+        #block-3 .nested-section {
+          margin: 0.2rem 0;
+          min-height: 150px;
+        }
+        #block-6,
+        #block-8,
+        #block-9 {
+          min-height: 150px;
+        }
+        .block-number {
+          font-size: 1.2rem;
+          top: 0.3rem;
+          left: 0.5rem;
+        }
+        #block-3 .card-content img {
+          max-height: 100px;
+          object-fit: contain;
+        }
+      }
+
+      @media (min-width: 601px) and (max-width: 900px) {
+        body {
+          padding: 1.5rem;
+        }
+        #geometric-grid {
+          grid-template-columns: repeat(6, 1fr);
+          grid-template-rows: auto;
+          height: auto;
+          min-height: 100vh;
+          gap: 0.5rem;
+        }
+        .grid-block {
+          min-height: 200px;
+        }
+        .card-wrapper {
+          min-height: 200px;
+          border-radius: 0.75rem;
+        }
+        .card-content {
+          padding: 20px;
+        }
+        .card-heading {
+          font-size: 1.1rem;
+        }
+        .card-description {
+          font-size: 0.8rem;
+        }
+        .card-logo {
+          width: 50px;
+          height: 50px;
+        }
+        .card-logo .ri {
+          font-size: 1.8rem;
+        }
+        .stat-massive {
+          font-size: 3.5rem;
+        }
+        .stat-detail {
+          font-size: 1.2rem;
+        }
+        #block-1 {
+          grid-column: 1 / span 6;
+          grid-row: 1 / span 2;
+          flex-direction: column;
+        }
+        #block-1 > div {
+          height: auto;
+          min-height: 200px;
+          width: 100%;
+        }
+        #block-2 {
+          grid-column: 1 / span 6;
+          grid-row: 3 / span 3;
+          flex-direction: column;
+        }
+        #block-2 .nested-section {
+          flex-direction: row;
+          margin: 0.3rem 0;
+        }
+        #block-2 .sub-section,
+        #block-2 .neon-card-container {
+          margin: 0 0.3rem;
+          min-height: 200px;
+        }
+        #block-3 {
+          grid-column: 1 / span 6;
+          grid-row: 6 / span 1;
+          flex-direction: row;
+        }
+        #block-3 .nested-section {
+          flex: 1;
+          min-height: 150px;
+        }
+        #block-6 {
+          grid-column: 1 / span 6;
+          grid-row: 7 / span 2;
+        }
+        #block-8 {
+          grid-column: 1 / span 3;
+          grid-row: 9 / span 2;
+        }
+        #block-9 {
+          grid-column: 4 / span 3;
+          grid-row: 9 / span 2;
+        }
+      }
+
+      @media (min-width: 901px) {
+        #geometric-grid {
+          grid-template-columns: repeat(12, 1fr);
+          grid-template-rows: repeat(5, 1fr);
+          max-width: 1300px;
+          height: 90vh;
         }
       }
     </style>
   </head>
   <body>
     <div id="geometric-grid">
-      <!-- 1. Block 1 (3x5) - COMBINED 1 & 4, DIVIDED VERTICALLY (50%/50%) -->
+      <!-- Block 1 (2x5) -->
       <div id="block-1" class="grid-block">
-        <!-- 1A (Top 50%) - The Blue 3D Animated Card -->
         <div style="height: 50%; width: 100%">
           <div class="card-wrapper">
             <div class="card-content">
               <div class="card-logo">
-                <!-- Icon: Certificate/Award --><i class="ri-award-line ri"></i>
+                <i class="ri-award-line ri"></i>
               </div>
               <h1 class="card-heading">Verifiable Certs</h1>
               <p class="card-description">
@@ -780,13 +1040,11 @@
             </div>
           </div>
         </div>
-
-        <!-- 1B (Bottom 50%) - Crimson Animated Card (ID 18) -->
         <div style="height: 50%; width: 100%">
           <div class="card-wrapper crimson-card">
             <div class="card-content">
               <div class="card-logo">
-                <!-- Icon: Rocket --><i class="ri-rocket-line ri"></i>
+                <i class="ri-rocket-line ri"></i>
               </div>
               <h1 class="card-heading">Career Launchpad</h1>
               <p class="card-description">
@@ -809,13 +1067,10 @@
         </div>
       </div>
 
-      <!-- 2. Block 2 (5x5) - DIVIDED INTO 3 ROWS, NESTED SECTIONS -->
+      <!-- Block 2 (6x5) -->
       <div id="block-2" class="grid-block nested-flex-v">
         <span class="block-number">2</span>
-
-        <!-- 2A - Split Horizontally -->
         <div class="nested-section nested-flex-h">
-          <!-- Block 10: Converted to Sunset Animated Card (Integrated Quizzes) -->
           <div class="sub-section card-container-sub">
             <div class="card-wrapper sunset-card">
               <div class="card-content">
@@ -837,8 +1092,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Block 11: Converted to Deep Crimson Animated Card (Structured DSA) -->
           <div class="sub-section card-container-sub">
             <div class="card-wrapper deep-crimson-card">
               <div class="card-content">
@@ -862,11 +1115,36 @@
             </div>
           </div>
         </div>
-
-        <!-- 2B - Split Horizontally -->
         <div class="nested-section nested-flex-h">
-          <div class="sub-section">12</div>
-          <!-- Block 13: Converted to Deep Crimson Animated Card (Live Mentorship) -->
+          <div class="sub-section card-container-sub">
+            <div class="card-wrapper citrus-card">
+              <div
+                class="card-content"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  text-align: center;
+                  padding: 10px 25px;
+                "
+              >
+                <p class="stat-massive">2+</p>
+                <p class="stat-detail">INSTRUCTORS</p>
+                <span
+                  style="
+                    font-size: 0.6rem;
+                    opacity: 0.5;
+                    position: absolute;
+                    bottom: 10px;
+                    right: 10px;
+                    color: var(--primary-sapphire);
+                  "
+                  >ID: 12</span
+                >
+              </div>
+            </div>
+          </div>
           <div class="sub-section card-container-sub">
             <div class="card-wrapper mint-card">
               <div class="card-content">
@@ -881,7 +1159,7 @@
                       position: absolute;
                       bottom: 10px;
                       right: 10px;
-                      color: var(--primary-deep-crimson);
+                      color: var(--primary-mint-teal);
                     "
                     >ID: 13</span
                   >
@@ -890,8 +1168,6 @@
             </div>
           </div>
         </div>
-
-        <!-- 2C (Block 14) - Converted to Neon Animated Card -->
         <div class="nested-section neon-card-container">
           <div class="card-wrapper neon-card">
             <div class="card-content">
@@ -916,19 +1192,102 @@
         </div>
       </div>
 
-      <!-- 3. Block 3 (4x1) - DIVIDED INTO 3 COLUMNS -->
+      <!-- Block 3 (4x1) -->
       <div id="block-3" class="grid-block nested-flex-h">
         <span class="block-number">3</span>
-        <div class="nested-section">15</div>
-        <div class="nested-section">16</div>
-        <div class="nested-section">17</div>
+        <div class="nested-section card-container-sub">
+          <div class="card-wrapper gold-card">
+            <div
+              class="card-content"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+              "
+            >
+              <p class="stat-massive">202K+</p>
+              <p
+                style="
+                  font-size: 1.1rem;
+                  opacity: 0.7;
+                  color: var(--primary-gold);
+                  line-height: 1.2;
+                  margin-top: -10px;
+                "
+              >
+                STUDENTS
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="nested-section card-container-sub">
+          <div class="card-wrapper neon-card">
+            <div
+              class="card-content"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+              "
+            >
+              <p class="stat-massive">4+</p>
+              <p
+                style="
+                  font-size: 1.1rem;
+                  opacity: 0.7;
+                  color: var(--primary-neon);
+                  line-height: 1.2;
+                  margin-top: -10px;
+                "
+              >
+                COURSES
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="nested-section card-container-sub">
+          <div class="card-wrapper sapphire-card">
+            <div
+              class="card-content"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+              "
+            >
+              <img
+                width="100%"
+                height="100%"
+                style="object-fit: cover"
+                src="./MAINFILE/assets/logo3.png"
+                alt=""
+              />
+              <span
+                style="
+                  font-size: 0.6rem;
+                  opacity: 0.5;
+                  position: absolute;
+                  bottom: 10px;
+                  right: 10px;
+                  color: var(--primary-sapphire);
+                "
+                >ID: 17</span
+              >
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- 6. Block 6 (4x2) - Blue Animated Card (No Icon) -->
+      <!-- Block 6 (4x2) -->
       <div id="block-6" class="grid-block">
         <div class="card-wrapper">
           <div class="card-content">
-            <!-- No logo/icon for this block -->
             <h1 class="card-heading">Gemini-Powered AI Tutor</h1>
             <p class="card-description">
               Instant, lecture-contextual answers. Just paste your free API key
@@ -938,13 +1297,10 @@
         </div>
       </div>
 
-      <!-- 8. Block 8 (2x2) - Converted to Gold Animated Card -->
+      <!-- Block 8 (2x2) -->
       <div id="block-8" class="grid-block">
         <div class="card-wrapper gold-card">
           <div class="card-content">
-            <div class="card-logo">
-              <!-- Icon: Eye Off --><i class="ri-eye-off-line ri"></i>
-            </div>
             <h1 class="card-heading">Ad-Free Learning</h1>
             <p class="card-description">
               One pre-roll ad. That's it. Pure focus mode. Lectures have minimal
@@ -966,15 +1322,10 @@
         </div>
       </div>
 
-      <!-- 9. Block 9 (2x2) - Converted to Mint Animated Card -->
+      <!-- Block 9 (2x2) -->
       <div id="block-9" class="grid-block">
         <div class="card-wrapper mint-card">
           <div class="card-content">
-            <div class="card-logo">
-              <!-- Icon: Line Chart/Progress --><i
-                class="ri-line-chart-line ri"
-              ></i>
-            </div>
             <h1 class="card-heading">Full Progress Tracking</h1>
             <p class="card-description">
               Every video, every quiz, tracked automatically. Never lose your
