@@ -24,7 +24,9 @@
         min-height: 100vh;
         margin: 0;
         /* Dark background for the 3D card effect */
-        background: #000000;
+        background: var(
+          --bg-charcoal-dark
+        ); /* Using the new atmospheric background color */
         font-family: "Urbanist", sans-serif;
         color: white; /* Default text color for the dark theme */
         overflow: hidden;
@@ -36,6 +38,9 @@
       /* --- 3D CARD STYLES START --- */
 
       :root {
+        /* NEW THEME BACKGROUND */
+        --bg-charcoal-dark: #12121e; /* Deep Space Charcoal */
+
         /* BLUE THEME (Default for 1A and 6) */
         --primary-blue: #0000ff;
         --light-blue: #00bfff;
@@ -48,13 +53,13 @@
         --dark-base-crimson: rgba(15, 0, 0, 0.85); /* Dark base with red tint */
         --icon-light-crimson: #ffdada; /* Pale pink for icon highlight */
 
-        /* NEON GREEN THEME (For Block 14) */
+        /* NEON GREEN THEME (For Block 14/16) */
         --primary-neon: #39ff14; /* Electric Neon Green */
         --light-mint: #ccffcc; /* Light Mint/Pale Green */
         --dark-base-neon: rgba(5, 5, 0, 0.85); /* Dark base with green tint */
         --icon-light-neon: #e6ffe6; /* Extra pale green for icon highlight */
 
-        /* GOLD RUSH THEME (For Block 8) */
+        /* GOLD RUSH THEME (For Block 8/15) */
         --primary-gold: #ffd700; /* Pure Gold */
         --light-amber: #ffebb5; /* Pale Gold/Cream */
         --dark-base-gold: rgba(
@@ -90,28 +95,24 @@
         --icon-light-sunset: #fffae8; /* Extra light for icon highlight */
         --icon-dark-sunset: #602500; /* Dark brown/red for icon depth */
 
-        /* FIRE RED THEME (For Block 13) */
-        --primary-fire: #ff0000; /* Pure Red */
-        --light-fire: #ff8080; /* Lighter Red */
-        --dark-base-fire: rgba(20, 0, 0, 0.9); /* Dark base with red hint */
-        --icon-light-fire: #ffefef;
+        /* DEEP CRIMSON THEME (For Block 11 and 13) - New Alias for clarity */
+        --primary-deep-crimson: #a00030; /* Deeper red than primary-crimson */
+        --light-deep-crimson: #ff6347;
+        --dark-base-deep-crimson: rgba(15, 0, 5, 0.9);
+        --icon-light-deep-crimson: #ffd0d0;
 
-        /* VIOLET THEME (For Block 11) */
-        --primary-violet: #8a2be2; /* Blue Violet */
-        --light-violet: #d8bfff;
-        --dark-base-violet: rgba(10, 0, 20, 0.9);
-        --icon-light-violet: #f0e6ff;
+        /* NEW: DEEP SAPPHIRE THEME (For Block 12/17) - Deep Purple/Blue */
+        --primary-sapphire: #4a00e0;
+        --light-sapphire: #a77dff;
+        --dark-base-sapphire: rgba(10, 0, 30, 0.85);
+        --icon-light-sapphire: #e0e0ff;
+        --icon-dark-sapphire: #220066;
 
-        /* DEEP MENTORSHIP THEME (For Block 12) */
-        --primary-deep: #4a00e0; /* Deep Purple/Blue */
-        --light-accent: #a77dff; /* Lighter Lavender/Blue */
-        --dark-base-mentorship: rgba(
-          10,
-          0,
-          30,
-          0.85
-        ); /* Very dark blue/purple base */
-        --icon-light-mentorship: #e0e0ff;
+        /* NEW: LIGHT CITRUS THEME (For Block 12 Background) */
+        --bg-light-glass: rgba(255, 255, 255, 0.6);
+        --citrus-yellow: #ffeb3b;
+        --citrus-orange: #ff6f00;
+        --text-dark: #1a1a1a;
 
         --white-core: #ffffff;
         --border-size: 3px;
@@ -133,7 +134,9 @@
         z-index: 10;
         box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
 
-        transition: transform 0.4s ease-out;
+        /* Removed: transform-style: preserve-3d; */
+        /* Removed: transition: transform 0.4s ease-out; */
+        cursor: default; /* Explicitly set cursor to default */
       }
 
       /* 2. CONIC GRADIENT PSEUDO-ELEMENT (BLUE DEFAULT) */
@@ -232,14 +235,14 @@
         );
       }
 
-      /* --- FIRE RED THEME OVERRIDES (Applied via .fire-red-card) --- */
-      .fire-red-card.card-wrapper::before {
-        /* FIRE RED CONIC GRADIENT */
+      /* --- DEEP CRIMSON THEME OVERRIDES (Applied via .deep-crimson-card) --- */
+      .deep-crimson-card.card-wrapper::before {
+        /* DEEP CRIMSON CONIC GRADIENT */
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
-          var(--light-fire) 4%,
-          var(--primary-fire) 12%,
+          var(--light-deep-crimson) 4%,
+          var(--primary-deep-crimson) 12%,
           rgba(0, 0, 0, 0) 35%,
           rgba(0, 0, 0, 0) 95%,
           var(--white-core) 100%
@@ -247,121 +250,31 @@
         animation: borderRotate 4s linear infinite;
       }
 
-      .fire-red-card .card-content {
-        /* Glassmorphism Background: Dark Fire Red Base */
-        background: var(--dark-base-fire);
+      .deep-crimson-card .card-content {
+        /* Glassmorphism Background: Dark Deep Crimson Base */
+        background: var(--dark-base-deep-crimson);
       }
 
-      .fire-red-card .card-logo .ri {
-        /* FIRE RED ICON GLOW AND GRADIENT */
+      .deep-crimson-card .card-logo .ri {
+        /* DEEP CRIMSON ICON GLOW AND GRADIENT */
         font-size: 2rem;
         background: linear-gradient(
           135deg,
-          var(--icon-light-fire),
-          var(--primary-fire)
+          var(--icon-light-deep-crimson),
+          var(--primary-deep-crimson)
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 15px rgba(255, 0, 0, 1); /* Fire Red glow */
+        text-shadow: 0 0 15px rgba(160, 0, 48, 1); /* Deep Crimson glow */
       }
 
-      /* Override content::after glow for fire red */
-      .fire-red-card .card-content::after {
+      /* Override content::after glow for deep crimson */
+      .deep-crimson-card .card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
-          #ffefef 0%,
-          var(--primary-fire) 35%,
-          rgba(255, 0, 0, 0.5) 60%,
-          #000000 65%,
-          transparent 85%
-        );
-      }
-
-      /* --- VIOLET THEME OVERRIDES (Applied via .violet-card) --- */
-      .violet-card.card-wrapper::before {
-        /* VIOLET CONIC GRADIENT */
-        background: conic-gradient(
-          from 0deg,
-          var(--white-core) 0%,
-          var(--light-violet) 4%,
-          var(--primary-violet) 12%,
-          rgba(0, 0, 0, 0) 35%,
-          rgba(0, 0, 0, 0) 95%,
-          var(--white-core) 100%
-        );
-        animation: borderRotate 4s linear infinite;
-      }
-
-      .violet-card .card-content {
-        /* Glassmorphism Background: Dark Violet Base */
-        background: var(--dark-base-violet);
-      }
-
-      .violet-card .card-logo .ri {
-        /* VIOLET ICON GLOW AND GRADIENT */
-        font-size: 2rem;
-        background: linear-gradient(
-          135deg,
-          var(--icon-light-violet),
-          var(--primary-violet)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 15px rgba(138, 43, 226, 1); /* Violet glow */
-      }
-
-      /* Override content::after glow for violet */
-      .violet-card .card-content::after {
-        background: radial-gradient(
-          circle at 18% 12%,
-          #f0e6ff 0%,
-          var(--primary-violet) 35%,
-          rgba(138, 43, 226, 0.5) 60%,
-          #000000 65%,
-          transparent 85%
-        );
-      }
-
-      /* --- DEEP MENTORSHIP THEME OVERRIDES (Applied via .mentorship-card) --- */
-      .mentorship-card.card-wrapper::before {
-        /* DEEP MENTORSHIP CONIC GRADIENT */
-        background: conic-gradient(
-          from 0deg,
-          var(--white-core) 0%,
-          var(--light-accent) 4%,
-          var(--primary-deep) 12%,
-          rgba(0, 0, 0, 0) 35%,
-          rgba(0, 0, 0, 0) 95%,
-          var(--white-core) 100%
-        );
-        animation: borderRotate 4s linear infinite;
-      }
-
-      .mentorship-card .card-content {
-        /* Glassmorphism Background: Dark Mentorship Base */
-        background: var(--dark-base-mentorship);
-      }
-
-      .mentorship-card .card-logo .ri {
-        /* DEEP MENTORSHIP ICON GLOW AND GRADIENT */
-        font-size: 2rem;
-        background: linear-gradient(
-          135deg,
-          var(--icon-light-mentorship),
-          var(--primary-deep)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 15px rgba(74, 0, 224, 1); /* Deep Blue/Purple glow */
-      }
-
-      /* Override content::after glow for mentorship */
-      .mentorship-card .card-content::after {
-        background: radial-gradient(
-          circle at 18% 12%,
-          #e0e0ff 0%,
-          var(--primary-deep) 35%,
-          rgba(74, 0, 224, 0.5) 60%,
+          #ffd0d0 0%,
+          var(--primary-deep-crimson) 35%,
+          rgba(160, 0, 48, 0.5) 60%,
           #000000 65%,
           transparent 85%
         );
@@ -546,6 +459,166 @@
         );
       }
 
+      /* --- NEW: DEEP SAPPHIRE THEME OVERRIDES (Applied via .sapphire-card) --- */
+      .sapphire-card.card-wrapper::before {
+        /* SAPPHIRE CONIC GRADIENT */
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-sapphire) 4%,
+          var(--primary-sapphire) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        animation: borderRotate 4s linear infinite;
+      }
+
+      .sapphire-card .card-content {
+        /* Glassmorphism Background: Dark Sapphire Base */
+        background: var(--dark-base-sapphire);
+      }
+
+      .sapphire-card .card-logo .ri {
+        /* SAPPHIRE ICON GLOW AND GRADIENT */
+        font-size: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--icon-light-sapphire),
+          var(--primary-sapphire)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 15px rgba(74, 0, 224, 1); /* Sapphire glow */
+      }
+
+      /* Override content::after glow for sapphire */
+      .sapphire-card .card-content::after {
+        background: radial-gradient(
+          circle at 18% 12%,
+          #e0e0ff 0%,
+          var(--primary-sapphire) 35%,
+          rgba(74, 0, 224, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+      }
+
+      /* --- NEW: LIGHT CITRUS THEME OVERRIDES (Applied via .citrus-card) --- */
+      .citrus-card.card-wrapper::before {
+        /* CITRUS CONIC GRADIENT (Rotating Border) */
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--citrus-yellow) 4%,
+          var(--citrus-orange) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        animation: borderRotate 4s linear infinite;
+      }
+      .citrus-card .card-content {
+        /* Light Glassmorphism Background */
+        background: var(--bg-light-glass);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        color: var(--text-dark); /* Ensure text is dark on light background */
+      }
+      .citrus-card .card-content::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 0.9;
+        /* Warm Citrus Radial Glow */
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffffff 0%,
+          var(--citrus-yellow) 35%,
+          rgba(255, 165, 0, 0.6) 60%,
+          transparent 85%
+        );
+        filter: blur(150px);
+      }
+      /* Remove the default ::before glow for light theme */
+      .citrus-card .card-content::before {
+        content: none;
+      }
+
+      /* Base Custom style for the smaller data point used in dual-content cards */
+      .stat-detail {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem; /* Reverting to smaller size */
+        font-weight: 800;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        /* Default colors, overridden by theme-specific styles below */
+        color: var(--primary-gold);
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      }
+
+      /* NEW: Massive stat for stand-alone visual cards (15, 16, 12) */
+      .stat-massive {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 4.5rem; /* HUGE size for stand-alone numbers */
+        font-weight: 700;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Stat Color Overrides for Massive Stats (used in 15, 16, 12) */
+      .gold-card .stat-massive {
+        color: var(--primary-gold);
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+      }
+      .neon-card .stat-massive {
+        color: var(--primary-neon);
+        text-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
+      }
+      .sapphire-card .stat-massive {
+        /* ID 17 */
+        color: var(--primary-sapphire);
+        text-shadow: 0 0 20px rgba(74, 0, 224, 0.8);
+      }
+
+      .citrus-card .stat-massive {
+        /* ID 12 - Dark text on light background */
+        color: var(--text-dark); /* Dark color for contrast */
+        /* text-shadow: removed */
+      }
+
+      /* Stat Color Overrides for Detail Stats (used in 12) */
+      .sapphire-card .stat-detail {
+        /* ID 17 */
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--white-core);
+        text-shadow: 0 0 10px var(--primary-sapphire),
+          0 0 15px rgba(74, 0, 224, 0.5);
+        line-height: 1.2;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        opacity: 0.9;
+      }
+      .citrus-card .stat-detail {
+        /* ID 12 - Dark text on light background */
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--text-dark); /* Dark color for contrast */
+        /* text-shadow: removed */
+        line-height: 1.2;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        opacity: 0.9;
+      }
+
       /* --- LOGO/ICON STYLES (Applies to all cards) --- */
       .card-logo {
         width: 60px;
@@ -564,6 +637,13 @@
         border: 1px solid rgba(255, 255, 255, 0.2);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7),
           inset 0 0 15px rgba(255, 255, 255, 0.05);
+      }
+      .citrus-card .card-logo {
+        /* Dark icon background for light card */
+        background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
+          inset 0 0 15px rgba(0, 0, 0, 0.05);
       }
       .card-logo::before {
         content: "";
@@ -689,13 +769,10 @@
         height: 100%;
         display: flex;
         padding: 0;
-        /* Default background for non-card blocks */
-        background-color: #ffffff;
-        border: 1px solid #ccc;
       }
       #block-1.grid-block, /* Block 1 must be transparent to show inner cards */
       #block-6.grid-block,
-      #block-8.grid-block,
+      #block-8.grid-block, /* Block 8 is a card, needs to be transparent */
       #block-9.grid-block {
         /* Added #block-9 to be transparent */
         background-color: transparent;
@@ -724,6 +801,26 @@
         color: #343a40;
         width: 100%;
         height: 100%;
+      }
+
+      /* New generic style for non-card blocks like Block 16, 17 */
+      .generic-content-area {
+        width: 100%;
+        height: 100%;
+        background-color: #212529; /* Dark background */
+        border: 1px solid #495057;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.2rem;
+        position: relative;
+        padding: 1rem;
+        box-sizing: border-box;
+      }
+      .generic-content-area .block-number {
+        color: rgba(255, 255, 255, 0.4);
       }
 
       /* --- STYLES FOR NESTED SECTIONS (Blocks 2, 3) --- */
@@ -784,6 +881,29 @@
         height: 100%;
       }
 
+      /* Specific styling for generic sections inside Block 3 */
+      #block-3 .nested-section {
+        /* Generic content inside block 3 should use the dark generic style */
+        margin: 0.2rem;
+        padding: 0;
+      }
+      #block-3 .nested-section:not(.card-container-sub) {
+        /* Apply dark style to generic numbered sections 16 and 17 */
+        background-color: #212529;
+        border: 1px solid #495057;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.2rem;
+      }
+
+      /* NEW FIX: Reduce the height of stat cards 15, 16, 17 by reducing internal padding */
+      #block-3 .card-container-sub .card-wrapper .card-content {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        /* Restore horizontal padding to keep content centered */
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+
       /* Block 14 specific container styling (Same as .card-container-sub for consistency) */
       .neon-card-container {
         /* This overrides the .nested-section white background and border */
@@ -804,9 +924,9 @@
 
       /* --- BLOCK PLACEMENT (12x5 Grid) --- */
 
-      /* 1. Top Left (3x5) - COMBINED 1 & 4, DIVIDED VERTICALLY */
+      /* 1. Top Left (2x5) - COMBINED 1 & 4, DIVIDED VERTICALLY */
       #block-1 {
-        grid-column: 1 / span 3;
+        grid-column: 1 / span 2; /* REDUCED WIDTH: From span 3 to span 2 */
         grid-row: 1 / span 5;
         display: flex;
         flex-direction: column;
@@ -815,9 +935,9 @@
         background-color: transparent;
       }
 
-      /* 2. HUGE UNIFIED BLOCK (5x5) - DIVIDED INTO 3 ROWS */
+      /* 2. HUGE UNIFIED BLOCK (6x5) - DIVIDED INTO 3 ROWS, NESTED SECTIONS */
       #block-2 {
-        grid-column: 4 / span 5;
+        grid-column: 3 / span 6; /* INCREASED WIDTH & MOVED START: From 4 / span 5 to 3 / span 6 */
         grid-row: 1 / span 5;
       }
 
@@ -835,16 +955,20 @@
         grid-row: 2 / span 2;
       }
 
-      /* 8. NEW BLOCK (2x2) - Fills the space of old 6B */
+      /* 8. NEW BLOCK (2x2) - Restored to Ad-Free Learning Card (No Stat) */
       #block-8 {
         grid-column: 9 / span 2;
         grid-row: 4 / span 2;
+        padding: 0; /* Card handles padding */
+        box-sizing: border-box;
       }
 
       /* 9. NEW BLOCK (2x2) - Fills the space of old 9B */
       #block-9 {
         grid-column: 11 / span 2;
         grid-row: 4 / span 2;
+        padding: 0; /* Card handles padding */
+        box-sizing: border-box;
       }
 
       /* * Responsive Adjustments for Small Screens */
@@ -862,16 +986,13 @@
           min-height: 100px;
           margin-bottom: 0.5rem;
         }
-        /* Reset 3D transforms on small screens */
-        .card-wrapper:hover {
-          transform: none;
-        }
+        /* Removed: Reset 3D transforms on small screens */
       }
     </style>
   </head>
   <body>
     <div id="geometric-grid">
-      <!-- 1. Block 1 (3x5) - COMBINED 1 & 4, DIVIDED VERTICALLY (50%/50%) -->
+      <!-- 1. Block 1 (2x5) - COMBINED 1 & 4, DIVIDED VERTICALLY (50%/50%) -->
       <div id="block-1" class="grid-block">
         <!-- 1A (Top 50%) - The Blue 3D Animated Card -->
         <div style="height: 50%; width: 100%">
@@ -916,7 +1037,7 @@
         </div>
       </div>
 
-      <!-- 2. Block 2 (5x5) - DIVIDED INTO 3 ROWS, NESTED SECTIONS -->
+      <!-- 2. Block 2 (6x5) - DIVIDED INTO 3 ROWS, NESTED SECTIONS -->
       <div id="block-2" class="grid-block nested-flex-v">
         <span class="block-number">2</span>
 
@@ -926,11 +1047,6 @@
           <div class="sub-section card-container-sub">
             <div class="card-wrapper sunset-card">
               <div class="card-content">
-                <div class="card-logo">
-                  <!-- Icon: Quiz/Test/Checklist --><i
-                    class="ri-file-list-3-line ri"
-                  ></i>
-                </div>
                 <h1 class="card-heading">Integrated Quizzes</h1>
                 <p class="card-description">
                   Test knowledge after every module.
@@ -950,13 +1066,10 @@
             </div>
           </div>
 
-          <!-- Block 11: Converted to Violet Animated Card (Structured DSA) -->
+          <!-- Block 11: Converted to Deep Crimson Animated Card (Structured DSA) -->
           <div class="sub-section card-container-sub">
-            <div class="card-wrapper violet-card">
+            <div class="card-wrapper deep-crimson-card">
               <div class="card-content">
-                <div class="card-logo">
-                  <!-- Icon: Brain/Logic --><i class="ri-brain-line ri"></i>
-                </div>
                 <h1 class="card-heading">Structured DSA & Interview Prep</h1>
                 <p class="card-description">
                   Master Data Structures and Algorithms with a curriculum built
@@ -968,7 +1081,7 @@
                       position: absolute;
                       bottom: 10px;
                       right: 10px;
-                      color: var(--primary-violet);
+                      color: var(--primary-deep-crimson);
                     "
                     >ID: 11</span
                   >
@@ -980,44 +1093,42 @@
 
         <!-- 2B - Split Horizontally -->
         <div class="nested-section nested-flex-h">
-          <!-- Block 12: Converted to Mentorship Animated Card (Deep Blue/Purple) -->
+          <!-- NEW: Block 12: Converted to CITRUS Animated Card (2+ Experienced Instructors ONLY) -->
           <div class="sub-section card-container-sub">
-            <div class="card-wrapper mentorship-card">
-              <div class="card-content">
-                <div class="card-logo">
-                  <!-- Icon: Lightbulb for Insight/Mentoring --><i
-                    class="ri-lightbulb-line ri"
-                  ></i>
-                </div>
-                <h1 class="card-heading">Personalized Mentorship</h1>
-                <p class="card-description">
-                  Receive one-on-one guidance from industry experts. Tailor your
-                  learning and career path with personalized feedback and
-                  strategic advice.
-                  <span
-                    style="
-                      font-size: 0.6rem;
-                      opacity: 0.5;
-                      position: absolute;
-                      bottom: 10px;
-                      right: 10px;
-                      color: var(--primary-deep);
-                    "
-                    >ID: 12</span
-                  >
-                </p>
+            <div class="card-wrapper citrus-card">
+              <div
+                class="card-content"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  text-align: center;
+                  padding: 10px 25px; /* Custom padding set inline */
+                "
+              >
+                <!-- Stat Detail: 2+ Experienced Instructors (Now massive font and centered) -->
+                <p class="stat-massive">2+</p>
+                <p class="stat-detail">INSTRUCTORS</p>
+                <span
+                  style="
+                    font-size: 0.6rem;
+                    opacity: 0.5;
+                    position: absolute;
+                    bottom: 10px;
+                    right: 10px;
+                    color: var(--primary-sapphire);
+                  "
+                  >ID: 12</span
+                >
               </div>
             </div>
           </div>
-          <!-- Block 13: Converted to Fire Red Animated Card (Live Mentorship) -->
+
+          <!-- Block 13: Mint Animated Card (Live Mentorship Sessions) -->
           <div class="sub-section card-container-sub">
-            <div class="card-wrapper fire-red-card">
+            <div class="card-wrapper mint-card">
               <div class="card-content">
-                <div class="card-logo">
-                  <!-- Icon: Expert/Star User --><i
-                    class="ri-user-star-line ri"
-                  ></i>
-                </div>
                 <h1 class="card-heading">Live Mentorship Sessions</h1>
                 <p class="card-description">
                   Get personalized, 1:1 guidance from industry experts to review
@@ -1029,7 +1140,7 @@
                       position: absolute;
                       bottom: 10px;
                       right: 10px;
-                      color: var(--primary-fire);
+                      color: var(--primary-mint-teal);
                     "
                     >ID: 13</span
                   >
@@ -1043,11 +1154,6 @@
         <div class="nested-section neon-card-container">
           <div class="card-wrapper neon-card">
             <div class="card-content">
-              <div class="card-logo">
-                <!-- Icon: Community/Group --><i
-                  class="ri-community-line ri"
-                ></i>
-              </div>
               <h1 class="card-heading">Community & Hackathons</h1>
               <p class="card-description">
                 Engage with instructors and peers. Participate in challenges
@@ -1072,14 +1178,101 @@
       <!-- 3. Block 3 (4x1) - DIVIDED INTO 3 COLUMNS -->
       <div id="block-3" class="grid-block nested-flex-h">
         <span class="block-number">3</span>
-        <div class="nested-section">15</div>
-        <div class="nested-section">16</div>
-        <div class="nested-section">17</div>
+
+        <!-- BLOCK 15: Student Count Card (Gold Rush Theme) - STAT ONLY -->
+        <div class="nested-section card-container-sub">
+          <div class="card-wrapper gold-card">
+            <div
+              class="card-content"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+              "
+            >
+              <!-- Stat Detail: 202K+ Students (Massive Font) -->
+              <p class="stat-massive">202K+</p>
+              <p
+                style="
+                  font-size: 1.1rem;
+                  opacity: 0.7;
+                  color: var(--primary-gold);
+                  line-height: 1.2;
+                  margin-top: -10px;
+                "
+              >
+                STUDENTS
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOCK 16: Courses Card (Neon Green Theme) - STAT ONLY -->
+        <div class="nested-section card-container-sub">
+          <div class="card-wrapper neon-card">
+            <div
+              class="card-content"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+              "
+            >
+              <!-- Stat Detail: 4+ Courses (Massive Font) -->
+              <p class="stat-massive">4+</p>
+              <p
+                style="
+                  font-size: 1.1rem;
+                  opacity: 0.7;
+                  color: var(--primary-neon);
+                  line-height: 1.2;
+                  margin-top: -10px;
+                "
+              >
+                COURSES
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEW BLOCK 17: Visual Element Card (Sapphire Theme) -->
+        <div class="nested-section card-container-sub">
+          <div class="card-wrapper sapphire-card">
+            <div
+              class="card-content"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+              "
+            >
+              <img width="100%" src="./MAINFILE/assets/logo3.png" alt="" />
+              <span
+                style="
+                  font-size: 0.6rem;
+                  opacity: 0.5;
+                  position: absolute;
+                  bottom: 10px;
+                  right: 10px;
+                  color: var(--primary-sapphire);
+                "
+                >ID: 17</span
+              >
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- 6. Block 6 (4x2) - Blue Animated Card (No Icon) -->
       <div id="block-6" class="grid-block">
         <div class="card-wrapper">
+          <!-- The default display:flex and justify-content:space-between now maximizes height usage -->
           <div class="card-content">
             <!-- No logo/icon for this block -->
             <h1 class="card-heading">Gemini-Powered AI Tutor</h1>
@@ -1091,7 +1284,7 @@
         </div>
       </div>
 
-      <!-- 8. Block 8 (2x2) - Converted to Gold Animated Card -->
+      <!-- 8. Block 8 (2x2) - Ad-Free Learning Card (Gold Rush Theme, NO STAT) -->
       <div id="block-8" class="grid-block">
         <div class="card-wrapper gold-card">
           <div class="card-content">

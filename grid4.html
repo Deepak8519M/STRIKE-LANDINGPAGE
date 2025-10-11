@@ -90,7 +90,7 @@
         --icon-light-sunset: #fffae8; /* Extra light for icon highlight */
         --icon-dark-sunset: #602500; /* Dark brown/red for icon depth */
 
-        /* DEEP CRIMSON THEME (For Block 11) - New Alias for clarity */
+        /* DEEP CRIMSON THEME (For Block 11 and 13) - New Alias for clarity */
         --primary-deep-crimson: #a00030; /* Deeper red than primary-crimson */
         --light-deep-crimson: #ff6347;
         --dark-base-deep-crimson: rgba(15, 0, 5, 0.9);
@@ -583,8 +583,8 @@
         display: flex;
         padding: 0;
         /* Default background for non-card blocks */
-        background-color: #ffffff;
-        border: 1px solid #ccc;
+        /* background-color: #ffffff; */
+        /* border: 1px solid #ccc; */
       }
       #block-1.grid-block, /* Block 1 must be transparent to show inner cards */
       #block-6.grid-block,
@@ -819,11 +819,6 @@
           <div class="sub-section card-container-sub">
             <div class="card-wrapper sunset-card">
               <div class="card-content">
-                <div class="card-logo">
-                  <!-- Icon: Quiz/Test/Checklist --><i
-                    class="ri-file-list-3-line ri"
-                  ></i>
-                </div>
                 <h1 class="card-heading">Integrated Quizzes</h1>
                 <p class="card-description">
                   Test knowledge after every module.
@@ -847,9 +842,6 @@
           <div class="sub-section card-container-sub">
             <div class="card-wrapper deep-crimson-card">
               <div class="card-content">
-                <div class="card-logo">
-                  <!-- Icon: Brain/Logic --><i class="ri-brain-line ri"></i>
-                </div>
                 <h1 class="card-heading">Structured DSA & Interview Prep</h1>
                 <p class="card-description">
                   Master Data Structures and Algorithms with a curriculum built
@@ -874,18 +866,35 @@
         <!-- 2B - Split Horizontally -->
         <div class="nested-section nested-flex-h">
           <div class="sub-section">12</div>
-          <div class="sub-section">13</div>
+          <!-- Block 13: Converted to Deep Crimson Animated Card (Live Mentorship) -->
+          <div class="sub-section card-container-sub">
+            <div class="card-wrapper mint-card">
+              <div class="card-content">
+                <h1 class="card-heading">Live Mentorship Sessions</h1>
+                <p class="card-description">
+                  Get personalized, 1:1 guidance from industry experts to review
+                  your projects and navigate career challenges.
+                  <span
+                    style="
+                      font-size: 0.6rem;
+                      opacity: 0.5;
+                      position: absolute;
+                      bottom: 10px;
+                      right: 10px;
+                      color: var(--primary-deep-crimson);
+                    "
+                    >ID: 13</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- 2C (Block 14) - Converted to Neon Animated Card -->
         <div class="nested-section neon-card-container">
           <div class="card-wrapper neon-card">
             <div class="card-content">
-              <div class="card-logo">
-                <!-- Icon: Community/Group --><i
-                  class="ri-community-line ri"
-                ></i>
-              </div>
               <h1 class="card-heading">Community & Hackathons</h1>
               <p class="card-description">
                 Engage with instructors and peers. Participate in challenges
