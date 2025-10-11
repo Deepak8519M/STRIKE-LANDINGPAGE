@@ -78,6 +78,24 @@
         --icon-light-mint: #f0ffff; /* Extra light for icon highlight */
         --icon-dark-mint: #004d40; /* Dark teal for icon depth */
 
+        /* BLAZING SUNSET THEME (For Block 10) */
+        --primary-orange: #ff7b00; /* Bright Orange */
+        --light-peach: #ffebb5; /* Light Peach/Cream */
+        --dark-base-sunset: rgba(
+          20,
+          5,
+          0,
+          0.85
+        ); /* Dark base with a subtle red/brown tint */
+        --icon-light-sunset: #fffae8; /* Extra light for icon highlight */
+        --icon-dark-sunset: #602500; /* Dark brown/red for icon depth */
+
+        /* DEEP CRIMSON THEME (For Block 11) - New Alias for clarity */
+        --primary-deep-crimson: #a00030; /* Deeper red than primary-crimson */
+        --light-deep-crimson: #ff6347;
+        --dark-base-deep-crimson: rgba(15, 0, 5, 0.9);
+        --icon-light-deep-crimson: #ffd0d0;
+
         --white-core: #ffffff;
         --border-size: 3px;
 
@@ -192,6 +210,51 @@
           #ffcccc 0%,
           var(--primary-crimson) 35%,
           rgba(220, 20, 60, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+      }
+
+      /* --- DEEP CRIMSON THEME OVERRIDES (Applied via .deep-crimson-card) --- */
+      .deep-crimson-card.card-wrapper::before {
+        /* DEEP CRIMSON CONIC GRADIENT */
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-deep-crimson) 4%,
+          var(--primary-deep-crimson) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        animation: borderRotate 4s linear infinite;
+      }
+
+      .deep-crimson-card .card-content {
+        /* Glassmorphism Background: Dark Deep Crimson Base */
+        background: var(--dark-base-deep-crimson);
+      }
+
+      .deep-crimson-card .card-logo .ri {
+        /* DEEP CRIMSON ICON GLOW AND GRADIENT */
+        font-size: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--icon-light-deep-crimson),
+          var(--primary-deep-crimson)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 15px rgba(160, 0, 48, 1); /* Deep Crimson glow */
+      }
+
+      /* Override content::after glow for deep crimson */
+      .deep-crimson-card .card-content::after {
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffd0d0 0%,
+          var(--primary-deep-crimson) 35%,
+          rgba(160, 0, 48, 0.5) 60%,
           #000000 65%,
           transparent 85%
         );
@@ -326,6 +389,51 @@
           #e0ffff 0%,
           var(--primary-mint-teal) 35%,
           rgba(0, 184, 148, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+      }
+
+      /* --- BLAZING SUNSET THEME OVERRIDES (Applied via .sunset-card) --- */
+      .sunset-card.card-wrapper::before {
+        /* ORANGE CONIC GRADIENT */
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-peach) 4%,
+          var(--primary-orange) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        animation: borderRotate 4s linear infinite;
+      }
+
+      .sunset-card .card-content {
+        /* Glassmorphism Background: Dark Sunset Base */
+        background: var(--dark-base-sunset);
+      }
+
+      .sunset-card .card-logo .ri {
+        /* ORANGE ICON GLOW AND GRADIENT */
+        font-size: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--icon-light-sunset),
+          var(--primary-orange)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 15px rgba(255, 123, 0, 1); /* Orange glow */
+      }
+
+      /* Override content::after glow for sunset */
+      .sunset-card .card-content::after {
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffebb5 0%,
+          var(--primary-orange) 35%,
+          rgba(255, 123, 0, 0.5) 60%,
           #000000 65%,
           transparent 85%
         );
@@ -556,7 +664,20 @@
         margin: 0 0.2rem;
       }
 
-      /* Block 14 specific container styling */
+      /* Style overrides for sub-sections that contain a card to make their wrapper transparent */
+      .card-container-sub {
+        background-color: transparent !important;
+        border: none !important;
+        /* Remove sub-section margin so card can fill completely */
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .card-container-sub .card-wrapper {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Block 14 specific container styling (Same as .card-container-sub for consistency) */
       .neon-card-container {
         /* This overrides the .nested-section white background and border */
         flex: 2;
@@ -694,8 +815,60 @@
 
         <!-- 2A - Split Horizontally -->
         <div class="nested-section nested-flex-h">
-          <div class="sub-section">10</div>
-          <div class="sub-section">11</div>
+          <!-- Block 10: Converted to Sunset Animated Card (Integrated Quizzes) -->
+          <div class="sub-section card-container-sub">
+            <div class="card-wrapper sunset-card">
+              <div class="card-content">
+                <div class="card-logo">
+                  <!-- Icon: Quiz/Test/Checklist --><i
+                    class="ri-file-list-3-line ri"
+                  ></i>
+                </div>
+                <h1 class="card-heading">Integrated Quizzes</h1>
+                <p class="card-description">
+                  Test knowledge after every module.
+                  <span
+                    style="
+                      font-size: 0.6rem;
+                      opacity: 0.5;
+                      position: absolute;
+                      bottom: 10px;
+                      right: 10px;
+                      color: var(--primary-orange);
+                    "
+                    >ID: 10</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Block 11: Converted to Deep Crimson Animated Card (Structured DSA) -->
+          <div class="sub-section card-container-sub">
+            <div class="card-wrapper deep-crimson-card">
+              <div class="card-content">
+                <div class="card-logo">
+                  <!-- Icon: Brain/Logic --><i class="ri-brain-line ri"></i>
+                </div>
+                <h1 class="card-heading">Structured DSA & Interview Prep</h1>
+                <p class="card-description">
+                  Master Data Structures and Algorithms with a curriculum built
+                  for acing technical interviews at top-tier companies.
+                  <span
+                    style="
+                      font-size: 0.6rem;
+                      opacity: 0.5;
+                      position: absolute;
+                      bottom: 10px;
+                      right: 10px;
+                      color: var(--primary-deep-crimson);
+                    "
+                    >ID: 11</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- 2B - Split Horizontally -->
