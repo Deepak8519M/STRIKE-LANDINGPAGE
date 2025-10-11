@@ -26,7 +26,7 @@
           "Segoe UI Symbol";
         color: white; /* Default text color for the dark theme */
         overflow: hidden;
-        /* REMOVED: perspective: 1000px; */
+        perspective: 1000px; /* CRUCIAL for 3D effect */
         padding: 2rem;
         box-sizing: border-box;
       }
@@ -42,7 +42,9 @@
         --border-size: 3px;
         --icon-light: #e0f7fa;
         --icon-dark: #002244;
-        /* REMOVED: 3D TILT VARIABLES */
+        /* 3D TILT VARIABLES */
+        --TILT-DEGREE: 5deg;
+        --LIFT-Z: 15px;
       }
 
       /* 1. CARD WRAPPER: Handles the 3D Tilt and holds the rotating gradient */
@@ -51,7 +53,7 @@
         /* Must be 100% to fill its new 50% height container */
         width: 100%;
         height: 100%;
-        border-radius: 1rem; /* Matches grid block radius */
+        border-radius: 0.9rem; /* Matches grid block radius */
         padding: var(--border-size);
         box-sizing: border-box;
         background: transparent;
@@ -59,11 +61,18 @@
         z-index: 10;
         box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
 
-        /* REMOVED: transform-style: preserve-3d; */
+        /* KEY CSS for Tilt */
+        transform-style: preserve-3d;
         transition: transform 0.4s ease-out; /* Add transition for smooth movement */
       }
 
-      /* REMOVED: .card-wrapper:hover block to eliminate tilt effect */
+      /* APPLY TILT ON HOVER TO THE WRAPPER */
+      .card-wrapper:hover {
+        /* 3D rotation and a lift off the screen plane */
+        transform: translateZ(var(--LIFT-Z)) rotateX(var(--TILT-DEGREE))
+          rotateY(var(--TILT-DEGREE));
+        cursor: pointer;
+      }
 
       /* 2. CONIC GRADIENT PSEUDO-ELEMENT (SEAMLESS ANIMATED BORDER) */
       .card-wrapper::before {
@@ -90,8 +99,8 @@
         top: -75px;
         left: -75px;
 
-        /* APPLIED USER'S EXPLICIT SETTINGS */
         border-radius: 25px;
+        /* UPDATED: Slower, smoother, and breathing animation */
         animation: borderRotate 2s linear infinite;
         filter: blur(8px);
         opacity: 0.9;
@@ -102,7 +111,7 @@
         position: relative;
         width: 100%;
         height: 100%;
-        border-radius: 17px;
+        border-radius: 15px;
         overflow: hidden;
         padding: 25px;
         box-sizing: border-box;
@@ -121,8 +130,8 @@
 
       /* --- LOGO/ICON STYLES (3D CHIP EFFECT) --- */
       .card-logo {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         border-radius: 15px;
         display: flex;
         align-items: center;
@@ -166,7 +175,7 @@
         text-shadow: 0 0 15px rgba(0, 0, 255, 1);
       }
 
-      /* --- Typography and Content --- */
+      /* --- Typography and Button --- */
       .card-heading {
         /* Now set to 1.1rem for maximum fit */
         font-size: 1.1rem;
@@ -188,7 +197,7 @@
         margin-top: 0;
       }
 
-      /* --- KEYFRAME for the ROTATING BORDER (User's preferred keyframes) --- */
+      /* --- KEYFRAME for the ROTATING BORDER (Updated for smoother rotation and breathing) --- */
       @keyframes borderRotate {
         0% {
           transform: rotate(0deg) scale(1);
@@ -430,32 +439,11 @@
           </div>
         </div>
 
-        <!-- 1B (Bottom 50%) - Converted to Animated Card (18) -->
-        <div style="height: 50%; width: 100%">
-          <div class="card-wrapper">
-            <div class="card-content">
-              <div class="card-logo">
-                <!-- Icon: Rocket -->
-                <i class="ri-rocket-line ri"></i>
-              </div>
-              <h1 class="card-heading">Career Launchpad</h1>
-              <p class="card-description">
-                Dedicated sessions to polish resumes and interview skills for
-                top tech roles.
-                <br />
-                <span
-                  style="
-                    font-size: 0.6rem;
-                    opacity: 0.5;
-                    position: absolute;
-                    bottom: 10px;
-                    right: 10px;
-                  "
-                  >ID: 18</span
-                >
-              </p>
-            </div>
-          </div>
+        <!-- 1B (Bottom 50%) - Static Content (Old Block 4 area) -->
+        <div style="height: 50%; width: 100%" class="grid-block">
+          <!-- 1B needs its own borders to maintain the wireframe look -->
+          <span class="block-number">18</span>
+          <div class="centered-content">18</div>
         </div>
       </div>
 
@@ -489,32 +477,10 @@
 
       <!-- Block 4 removed and combined into Block 1 -->
 
-      <!-- 6. Block 6 (4x2) - Converted to Animated Card (6) -->
+      <!-- 6. Block 6 (4x2) - Unified Header -->
       <div id="block-6" class="grid-block">
-        <div class="card-wrapper">
-          <div class="card-content">
-            <div class="card-logo">
-              <!-- Icon: AI Tutor -->
-              <i class="ri-book-open-line ri"></i>
-            </div>
-            <h1 class="card-heading">Gemini-Powered AI Tutor</h1>
-            <p class="card-description">
-              Instant, lecture-contextual answers and continuous 24/7 support
-              throughout your learning journey.
-              <br />
-              <span
-                style="
-                  font-size: 0.6rem;
-                  opacity: 0.5;
-                  position: absolute;
-                  bottom: 10px;
-                  right: 10px;
-                "
-                >ID: 6</span
-              >
-            </p>
-          </div>
-        </div>
+        <span class="block-number">6</span>
+        <div class="centered-content">6</div>
       </div>
 
       <!-- 8. Block 8 (2x2) -->
