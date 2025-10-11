@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Geometric CSS Grid (Wireframe)</title>
 
-    <!-- Remix Icon link for the card logo -->
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
       rel="stylesheet"
@@ -16,16 +15,21 @@
     />
 
     <style>
-      /* Global Body Style */
+      /* Global Body Style (Kept body for general page setup, but moved the content-specific styles to .section45) */
       body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg-charcoal-dark);
+        font-family: "Urbanist", sans-serif;
+        color: white;
+      }
+
+      /* Section 45: Main Container Styles for Content Area */
+      .section45 {
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        margin: 0;
-        background: var(--bg-charcoal-dark);
-        font-family: "Urbanist", sans-serif;
-        color: white;
         padding: 2rem;
         box-sizing: border-box;
         font-family: "Bebas Neue", sans-serif;
@@ -102,7 +106,7 @@
       }
 
       /* 1. Card Wrapper */
-      .card-wrapper {
+      .section45-card-wrapper {
         position: relative;
         width: 100%;
         height: 100%;
@@ -117,7 +121,7 @@
       }
 
       /* 2. Conic Gradient Pseudo-Element (Blue Default) */
-      .card-wrapper::before {
+      .section45-card-wrapper::before {
         content: "";
         position: absolute;
         top: 0;
@@ -145,7 +149,7 @@
       }
 
       /* 3. Card Content (Blue Default) */
-      .card-content {
+      .section45-card-content {
         position: relative;
         width: 100%;
         height: 100%;
@@ -164,7 +168,7 @@
       }
 
       /* Crimson Theme Overrides */
-      .crimson-card.card-wrapper::before {
+      .section45-crimson-card.section45-card-wrapper::before {
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -175,10 +179,10 @@
           var(--white-core) 100%
         );
       }
-      .crimson-card .card-content {
+      .section45-crimson-card .section45-card-content {
         background: var(--dark-base-crimson);
       }
-      .crimson-card .card-logo .ri {
+      .section45-crimson-card .section45-card-logo .ri {
         background: linear-gradient(
           135deg,
           var(--icon-light-crimson),
@@ -188,7 +192,7 @@
         -webkit-text-fill-color: transparent;
         text-shadow: 0 0 15px rgba(220, 20, 60, 1);
       }
-      .crimson-card .card-content::after {
+      .section45-crimson-card .section45-card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
           #ffcccc 0%,
@@ -200,7 +204,7 @@
       }
 
       /* Deep Crimson Theme Overrides */
-      .deep-crimson-card.card-wrapper::before {
+      .section45-deep-crimson-card.section45-card-wrapper::before {
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -212,10 +216,10 @@
         );
         animation: borderRotate 4s linear infinite;
       }
-      .deep-crimson-card .card-content {
+      .section45-deep-crimson-card .section45-card-content {
         background: var(--dark-base-deep-crimson);
       }
-      .deep-crimson-card .card-logo .ri {
+      .section45-deep-crimson-card .section45-card-logo .ri {
         font-size: 2rem;
         background: linear-gradient(
           135deg,
@@ -226,7 +230,7 @@
         -webkit-text-fill-color: transparent;
         text-shadow: 0 0 15px rgba(160, 0, 48, 1);
       }
-      .deep-crimson-card .card-content::after {
+      .section45-deep-crimson-card .section45-card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
           #ffd0d0 0%,
@@ -238,7 +242,7 @@
       }
 
       /* Neon Green Theme Overrides */
-      .neon-card.card-wrapper::before {
+      .section45-neon-card.section45-card-wrapper::before {
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -250,10 +254,10 @@
         );
         animation: borderRotate 4s linear infinite;
       }
-      .neon-card .card-content {
+      .section45-neon-card .section45-card-content {
         background: var(--dark-base-neon);
       }
-      .neon-card .card-logo .ri {
+      .section45-neon-card .section45-card-logo .ri {
         background: linear-gradient(
           135deg,
           var(--icon-light-neon),
@@ -263,7 +267,7 @@
         -webkit-text-fill-color: transparent;
         text-shadow: 0 0 15px rgba(57, 255, 20, 1);
       }
-      .neon-card .card-content::after {
+      .section45-neon-card .section45-card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
           #ccffcc 0%,
@@ -275,7 +279,7 @@
       }
 
       /* Gold Rush Theme Overrides */
-      .gold-card.card-wrapper::before {
+      .section45-gold-card.section45-card-wrapper::before {
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -287,10 +291,10 @@
         );
         animation: borderRotate 4s linear infinite;
       }
-      .gold-card .card-content {
+      .section45-gold-card .section45-card-content {
         background: var(--dark-base-gold);
       }
-      .gold-card .card-logo .ri {
+      .section45-gold-card .section45-card-logo .ri {
         font-size: 2rem;
         background: linear-gradient(
           135deg,
@@ -301,7 +305,7 @@
         -webkit-text-fill-color: transparent;
         text-shadow: 0 0 15px rgba(255, 215, 0, 1);
       }
-      .gold-card .card-content::after {
+      .section45-gold-card .section45-card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
           #ffeecc 0%,
@@ -313,7 +317,7 @@
       }
 
       /* Mint Theme Overrides */
-      .mint-card.card-wrapper::before {
+      .section45-mint-card.section45-card-wrapper::before {
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -325,10 +329,10 @@
         );
         animation: borderRotate 4s linear infinite;
       }
-      .mint-card .card-content {
+      .section45-mint-card .section45-card-content {
         background: var(--dark-base-mint);
       }
-      .mint-card .card-logo .ri {
+      .section45-mint-card .section45-card-logo .ri {
         font-size: 2rem;
         background: linear-gradient(
           135deg,
@@ -339,7 +343,7 @@
         -webkit-text-fill-color: transparent;
         text-shadow: 0 0 15px rgba(0, 184, 148, 1);
       }
-      .mint-card .card-content::after {
+      .section45-mint-card .section45-card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
           #e0ffff 0%,
@@ -351,7 +355,7 @@
       }
 
       /* Blazing Sunset Theme Overrides */
-      .sunset-card.card-wrapper::before {
+      .section45-sunset-card.section45-card-wrapper::before {
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -363,10 +367,10 @@
         );
         animation: borderRotate 4s linear infinite;
       }
-      .sunset-card .card-content {
+      .section45-sunset-card .section45-card-content {
         background: var(--dark-base-sunset);
       }
-      .sunset-card .card-logo .ri {
+      .section45-sunset-card .section45-card-logo .ri {
         font-size: 2rem;
         background: linear-gradient(
           135deg,
@@ -377,7 +381,7 @@
         -webkit-text-fill-color: transparent;
         text-shadow: 0 0 15px rgba(255, 123, 0, 1);
       }
-      .sunset-card .card-content::after {
+      .section45-sunset-card .section45-card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
           #ffebb5 0%,
@@ -389,7 +393,7 @@
       }
 
       /* Deep Sapphire Theme Overrides */
-      .sapphire-card.card-wrapper::before {
+      .section45-sapphire-card.section45-card-wrapper::before {
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -401,10 +405,10 @@
         );
         animation: borderRotate 4s linear infinite;
       }
-      .sapphire-card .card-content {
+      .section45-sapphire-card .section45-card-content {
         background: var(--dark-base-sapphire);
       }
-      .sapphire-card .card-logo .ri {
+      .section45-sapphire-card .section45-card-logo .ri {
         font-size: 2rem;
         background: linear-gradient(
           135deg,
@@ -415,7 +419,7 @@
         -webkit-text-fill-color: transparent;
         text-shadow: 0 0 15px rgba(74, 0, 224, 1);
       }
-      .sapphire-card .card-content::after {
+      .section45-sapphire-card .section45-card-content::after {
         background: radial-gradient(
           circle at 18% 12%,
           #e0e0ff 0%,
@@ -427,7 +431,7 @@
       }
 
       /* Light Citrus Theme Overrides */
-      .citrus-card.card-wrapper::before {
+      .section45-citrus-card.section45-card-wrapper::before {
         background: conic-gradient(
           from 0deg,
           var(--white-core) 0%,
@@ -439,14 +443,14 @@
         );
         animation: borderRotate 4s linear infinite;
       }
-      .citrus-card .card-content {
+      .section45-citrus-card .section45-card-content {
         background: var(--bg-light-glass);
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
         border: 1px solid rgba(255, 255, 255, 0.7);
         color: var(--text-dark);
       }
-      .citrus-card .card-content::after {
+      .section45-citrus-card .section45-card-content::after {
         content: "";
         position: absolute;
         top: -25%;
@@ -464,12 +468,12 @@
         );
         filter: blur(150px);
       }
-      .citrus-card .card-content::before {
+      .section45-citrus-card .section45-card-content::before {
         content: none;
       }
 
       /* Stat Styles */
-      .stat-detail {
+      .section45-stat-detail {
         font-family: "Poppins", sans-serif;
         font-size: 1.5rem;
         font-weight: 800;
@@ -480,7 +484,7 @@
         text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
       }
 
-      .stat-massive {
+      .section45-stat-massive {
         font-family: "Bebas Neue", sans-serif;
         font-size: 4.5rem;
         font-weight: 700;
@@ -489,22 +493,22 @@
         padding: 0;
       }
 
-      .gold-card .stat-massive {
+      .section45-gold-card .section45-stat-massive {
         color: var(--primary-gold);
         text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
       }
-      .neon-card .stat-massive {
+      .section45-neon-card .section45-stat-massive {
         color: var(--primary-neon);
         text-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
       }
-      .sapphire-card .stat-massive {
+      .section45-sapphire-card .section45-stat-massive {
         color: var(--primary-sapphire);
         text-shadow: 0 0 20px rgba(74, 0, 224, 0.8);
       }
-      .citrus-card .stat-massive {
+      .section45-citrus-card .section45-stat-massive {
         color: var(--text-dark);
       }
-      .sapphire-card .stat-detail {
+      .section45-sapphire-card .section45-stat-detail {
         font-weight: 700;
         font-size: 1.2rem;
         color: var(--white-core);
@@ -515,7 +519,7 @@
         margin-bottom: 20px;
         opacity: 0.9;
       }
-      .citrus-card .stat-detail {
+      .section45-citrus-card .section45-stat-detail {
         font-weight: 700;
         font-size: 1.2rem;
         color: var(--text-dark);
@@ -526,7 +530,7 @@
       }
 
       /* Logo/Icon Styles */
-      .card-logo {
+      .section45-card-logo {
         width: 60px;
         height: 60px;
         border-radius: 15px;
@@ -542,13 +546,13 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7),
           inset 0 0 15px rgba(255, 255, 255, 0.05);
       }
-      .citrus-card .card-logo {
+      .section45-citrus-card .section45-card-logo {
         background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
         border: 1px solid rgba(0, 0, 0, 0.2);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
           inset 0 0 15px rgba(0, 0, 0, 0.05);
       }
-      .card-logo::before {
+      .section45-card-logo::before {
         content: "";
         position: absolute;
         inset: 0;
@@ -559,7 +563,7 @@
           transparent 50%
         );
       }
-      .card-logo .ri {
+      .section45-card-logo .ri {
         font-size: 2rem;
         background: linear-gradient(
           135deg,
@@ -572,7 +576,7 @@
       }
 
       /* Typography and Content */
-      .card-heading {
+      .section45-card-heading {
         font-size: 1.1rem;
         font-weight: 700;
         line-height: 1.2;
@@ -581,7 +585,7 @@
         text-align: left;
         color: white;
       }
-      .card-description {
+      .section45-card-description {
         font-size: 0.8rem;
         color: rgba(255, 255, 255, 0.9);
         line-height: 1.4;
@@ -609,7 +613,7 @@
       }
 
       /* Original Background Layers */
-      .card-content::before {
+      .section45-card-content::before {
         content: "";
         position: absolute;
         top: -50%;
@@ -625,7 +629,7 @@
         filter: blur(250px);
         opacity: 1;
       }
-      .card-content::after {
+      .section45-card-content::after {
         content: "";
         position: absolute;
         top: -25%;
@@ -637,7 +641,7 @@
         background: radial-gradient(
           circle at 18% 12%,
           #ffffff 0%,
-          #0000ff 35%,
+          var(--primary-blue) 35%,
           rgba(0, 0, 255, 0.5) 60%,
           #000000 65%,
           transparent 85%
@@ -660,7 +664,7 @@
         box-shadow: none;
       }
 
-      .grid-block {
+      .section45-grid-block {
         border-radius: 0.5rem;
         transition: opacity 0.3s ease;
         position: relative;
@@ -669,15 +673,15 @@
         display: flex;
         padding: 0;
       }
-      #block-1.grid-block,
-      #block-6.grid-block,
-      #block-8.grid-block,
-      #block-9.grid-block {
+      #block-1.section45-grid-block,
+      #block-6.section45-grid-block,
+      #block-8.section45-grid-block,
+      #block-9.section45-grid-block {
         background-color: transparent;
         border: none;
       }
 
-      .block-number {
+      .section45-block-number {
         position: absolute;
         top: 0.5rem;
         left: 0.75rem;
@@ -688,7 +692,7 @@
         color: #343a40;
       }
 
-      .centered-content {
+      .section45-centered-content {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -699,7 +703,7 @@
         height: 100%;
       }
 
-      .generic-content-area {
+      .section45-generic-content-area {
         width: 100%;
         height: 100%;
         background-color: #212529;
@@ -714,18 +718,18 @@
         padding: 1rem;
         box-sizing: border-box;
       }
-      .generic-content-area .block-number {
+      .section45-generic-content-area .section45-block-number {
         color: rgba(255, 255, 255, 0.4);
       }
 
       /* Nested Sections (Blocks 2, 3) */
-      .nested-flex-h {
+      .section45-nested-flex-h {
         flex-direction: row;
       }
-      .nested-flex-v {
+      .section45-nested-flex-v {
         flex-direction: column;
       }
-      .nested-section {
+      .section45-nested-section {
         flex: 1;
         display: flex;
         align-items: center;
@@ -737,14 +741,14 @@
         border-radius: 0.5rem;
         margin: 0.2rem;
       }
-      #block-2 .nested-section {
+      #block-2 .section45-nested-section {
         font-size: 1.4rem;
         display: flex;
         padding: 0;
         margin: 0.2rem 0.2rem;
         border-radius: 0.5rem;
       }
-      .sub-section {
+      .section45-sub-section {
         flex: 1;
         display: flex;
         align-items: center;
@@ -755,33 +759,36 @@
         border-radius: 0.5rem;
         margin: 0 0.2rem;
       }
-      .card-container-sub {
+      .section45-card-container-sub {
         background-color: transparent !important;
         border: none !important;
         margin: 0 !important;
         padding: 0 !important;
       }
-      .card-container-sub .card-wrapper {
+      .section45-card-container-sub .section45-card-wrapper {
         width: 100%;
         height: 100%;
       }
-      #block-3 .nested-section {
+      #block-3 .section45-nested-section {
         margin: 0.2rem;
         padding: 0;
       }
-      #block-3 .nested-section:not(.card-container-sub) {
+      #block-3 .section45-nested-section:not(.section45-card-container-sub) {
         background-color: #212529;
         border: 1px solid #495057;
         color: rgba(255, 255, 255, 0.7);
         font-size: 1.2rem;
       }
-      #block-3 .card-container-sub .card-wrapper .card-content {
+      #block-3
+        .section45-card-container-sub
+        .section45-card-wrapper
+        .section45-card-content {
         padding-top: 10px !important;
         padding-bottom: 10px !important;
         padding-left: 25px;
         padding-right: 25px;
       }
-      .neon-card-container {
+      .section45-neon-card-container {
         flex: 2;
         padding: 0.5rem 0.2rem;
         margin: 0.2rem 0.2rem 0.5rem;
@@ -789,7 +796,7 @@
         border: none !important;
         box-shadow: none !important;
       }
-      .neon-card-container .card-wrapper {
+      .section45-neon-card-container .section45-card-wrapper {
         width: 100%;
         height: 100%;
         min-height: 100px;
@@ -833,29 +840,37 @@
 
       /* Responsive Adjustments */
       @media (max-width: 600px) {
-        body {
+        /* Section 45 */
+        /* Section 45: Body styles */
+        .section45 {
           padding: 1rem;
         }
+
+        /* Section 45: Grid layout */
         #geometric-grid {
-          display: flex;
-          flex-direction: column;
+          grid-template-columns: repeat(6, 1fr);
+          grid-template-rows: auto;
           height: auto;
           min-height: 100vh;
           width: 100%;
           gap: 0.5rem;
           box-shadow: none;
         }
-        .grid-block {
-          min-height: 150px;
-          margin-bottom: 0.5rem;
-          width: 100%;
+
+        /* Section 45: Grid block styles */
+        .section45-grid-block {
+          min-height: 200px;
         }
-        .card-wrapper {
-          min-height: 150px;
+
+        /* Section 45: Card wrapper styles */
+        .section45-card-wrapper {
+          min-height: 200px;
           width: 100%;
           border-radius: 0.75rem;
         }
-        .card-wrapper::before {
+
+        /* Section 45: Card wrapper gradient */
+        .section45-card-wrapper::before {
           width: calc(100% + 50px);
           height: calc(100% + 50px);
           top: -25px;
@@ -863,78 +878,173 @@
           border-radius: 15px;
           filter: blur(5px);
         }
-        .card-content {
-          padding: 15px;
+
+        /* Section 45: Card content styles */
+        .section45-card-content {
+          padding: 12px;
+          font-size: 0.8rem;
+        }
+
+        /* Section 45: Card heading styles */
+        .section45-card-heading {
           font-size: 0.9rem;
+          margin-bottom: 8px;
         }
-        .card-heading {
-          font-size: 1rem;
-        }
-        .card-description {
-          font-size: 0.75rem;
-        }
-        .card-logo {
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-        }
-        .card-logo .ri {
-          font-size: 1.5rem;
-        }
-        .stat-massive {
-          font-size: 3rem;
-        }
-        .stat-detail {
-          font-size: 1rem;
-          margin-top: -5px;
+
+        /* Section 45: Card description styles */
+        .section45-card-description {
+          font-size: 0.65rem;
+          line-height: 1.3;
           margin-bottom: 10px;
         }
+
+        /* Section 45: Card logo styles */
+        .section45-card-logo {
+          width: 35px;
+          height: 35px;
+          border-radius: 8px;
+          margin-bottom: 10px;
+        }
+
+        /* Section 45: Card logo icon styles */
+        .section45-card-logo .ri {
+          font-size: 1.2rem;
+        }
+
+        /* Section 45: Stat massive styles */
+        .section45-stat-massive {
+          font-size: 2.5rem;
+        }
+
+        /* Section 45: Stat detail styles */
+        .section45-stat-detail {
+          font-size: 0.85rem;
+          margin-top: -5px;
+          margin-bottom: 8px;
+        }
+
+        /* Section 45: Block 1 styles */
         #block-1 {
+          grid-column: 1 / span 6;
+          grid-row: 1 / span 2;
           flex-direction: column;
         }
+
+        /* Section 45: Block 1 child div styles */
         #block-1 > div {
           height: auto;
-          min-height: 150px;
+          min-height: 200px;
           width: 100%;
         }
+
+        /* Section 45: Block 2 styles */
         #block-2 {
+          grid-column: 1 / span 6;
+          grid-row: 3 / span 3;
           flex-direction: column;
         }
-        #block-2 .nested-section {
-          flex-direction: column;
-          margin: 0.2rem 0;
+
+        /* Section 45: Block 2 nested section styles */
+        #block-2 .section45-nested-section {
+          flex-direction: row;
+          margin: 0.3rem 0;
         }
-        #block-2 .sub-section,
-        #block-2 .neon-card-container {
-          margin: 0.2rem 0;
-          padding: 0;
-          min-height: 150px;
+
+        /* Section 45: Block 2 sub-section and neon card container styles */
+        #block-2 .section45-sub-section,
+        #block-2 .section45-neon-card-container {
+          margin: 0 0.3rem;
+          min-height: 200px;
         }
+
+        /* Section 45: Block 3 styles */
         #block-3 {
-          flex-direction: column;
+          grid-column: 1 / span 6;
+          grid-row: 6 / span 1;
+          flex-direction: row;
         }
-        #block-3 .nested-section {
-          margin: 0.2rem 0;
+
+        /* Section 45: Block 3 nested section styles */
+        #block-3 .section45-nested-section {
+          flex: 1;
           min-height: 150px;
         }
-        #block-6,
-        #block-8,
+
+        /* Section 45: Block 6 styles */
+        #block-6 {
+          grid-column: 1 / span 6;
+          grid-row: 7 / span 2;
+        }
+
+        /* Section 45: Block 8 styles */
+        #block-8 {
+          grid-column: 1 / span 3;
+          grid-row: 9 / span 2;
+        }
+
+        /* Section 45: Block 9 styles */
         #block-9 {
-          min-height: 150px;
+          grid-column: 4 / span 3;
+          grid-row: 9 / span 2;
         }
-        .block-number {
-          font-size: 1.2rem;
+
+        /* Section 45: Block number styles */
+        .section45-block-number {
+          font-size: 1rem;
           top: 0.3rem;
           left: 0.5rem;
         }
-        #block-3 .card-content img {
-          max-height: 100px;
+
+        /* Section 45: Block 3 image styles */
+        #block-3 .section45-card-content img {
+          max-height: 80px;
           object-fit: contain;
+        }
+
+        /* Section 45: Crimson card description ID color */
+        .section45-crimson-card .section45-card-description span {
+          color: #dc143c;
+        }
+
+        /* Section 45: Sunset card description ID color */
+        .section45-sunset-card .section45-card-description span {
+          color: #ff7b00;
+        }
+
+        /* Section 45: Deep crimson card description ID color */
+        .section45-deep-crimson-card .section45-card-description span {
+          color: #a00030;
+        }
+
+        /* Section 45: Citrus card description ID color */
+        .section45-citrus-card .section45-card-description span {
+          color: #4a00e0;
+        }
+
+        /* Section 45: Mint card description ID color */
+        .section45-mint-card .section45-card-description span {
+          color: #00b894;
+        }
+
+        /* Section 45: Neon card description ID color */
+        .section45-neon-card .section45-card-description span {
+          color: #39ff14;
+        }
+
+        /* Section 45: Gold card description ID color */
+        .section45-gold-card .section45-card-content span {
+          color: #ffd700;
+        }
+
+        /* Section 45: Sapphire card description ID color */
+        .section45-sapphire-card .section45-card-description span {
+          color: #4a00e0;
         }
       }
 
       @media (min-width: 601px) and (max-width: 900px) {
-        body {
+        /* Section 45 */
+        .section45 {
           padding: 1.5rem;
         }
         #geometric-grid {
@@ -944,33 +1054,33 @@
           min-height: 100vh;
           gap: 0.5rem;
         }
-        .grid-block {
+        .section45-grid-block {
           min-height: 200px;
         }
-        .card-wrapper {
+        .section45-card-wrapper {
           min-height: 200px;
           border-radius: 0.75rem;
         }
-        .card-content {
+        .section45-card-content {
           padding: 20px;
         }
-        .card-heading {
+        .section45-card-heading {
           font-size: 1.1rem;
         }
-        .card-description {
+        .section45-card-description {
           font-size: 0.8rem;
         }
-        .card-logo {
+        .section45-card-logo {
           width: 50px;
           height: 50px;
         }
-        .card-logo .ri {
+        .section45-card-logo .ri {
           font-size: 1.8rem;
         }
-        .stat-massive {
+        .section45-stat-massive {
           font-size: 3.5rem;
         }
-        .stat-detail {
+        .section45-stat-detail {
           font-size: 1.2rem;
         }
         #block-1 {
@@ -988,12 +1098,12 @@
           grid-row: 3 / span 3;
           flex-direction: column;
         }
-        #block-2 .nested-section {
+        #block-2 .section45-nested-section {
           flex-direction: row;
           margin: 0.3rem 0;
         }
-        #block-2 .sub-section,
-        #block-2 .neon-card-container {
+        #block-2 .section45-sub-section,
+        #block-2 .section45-neon-card-container {
           margin: 0 0.3rem;
           min-height: 200px;
         }
@@ -1002,7 +1112,7 @@
           grid-row: 6 / span 1;
           flex-direction: row;
         }
-        #block-3 .nested-section {
+        #block-3 .section45-nested-section {
           flex: 1;
           min-height: 150px;
         }
@@ -1031,324 +1141,236 @@
     </style>
   </head>
   <body>
-    <div id="geometric-grid">
-      <!-- Block 1 (2x5) -->
-      <div id="block-1" class="grid-block">
-        <div style="height: 50%; width: 100%">
-          <div class="card-wrapper">
-            <div class="card-content">
-              <div class="card-logo">
-                <i class="ri-award-line ri"></i>
+    <div class="section45">
+      <div id="geometric-grid">
+        <div id="block-1" class="section45-grid-block">
+          <div style="height: 50%; width: 100%">
+            <div class="section45-card-wrapper">
+              <div class="section45-card-content">
+                <div class="section45-card-logo">
+                  <i class="ri-award-line ri"></i>
+                </div>
+                <h1 class="section45-card-heading">Verifiable Certs</h1>
+                <p class="section45-card-description">
+                  Earn verified certificates upon course completion to showcase
+                  your skills and boost your professional profile.
+                </p>
               </div>
-              <h1 class="card-heading">Verifiable Certs</h1>
-              <p class="card-description">
-                Get official certificates upon course completion.
-              </p>
+            </div>
+          </div>
+          <div style="height: 50%; width: 100%">
+            <div class="section45-card-wrapper section45-crimson-card">
+              <div class="section45-card-content">
+                <div class="section45-card-logo">
+                  <i class="ri-rocket-line ri"></i>
+                </div>
+                <h1 class="section45-card-heading">Career Launchpad</h1>
+                <p class="section45-card-description">
+                  Dedicated sessions to polish resumes and interview skills for
+                  top tech roles.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <div style="height: 50%; width: 100%">
-          <div class="card-wrapper crimson-card">
-            <div class="card-content">
-              <div class="card-logo">
-                <i class="ri-rocket-line ri"></i>
-              </div>
-              <h1 class="card-heading">Career Launchpad</h1>
-              <p class="card-description">
-                Dedicated sessions to polish resumes and interview skills for
-                top tech roles.
-                <span
-                  style="
-                    font-size: 0.6rem;
-                    opacity: 0.5;
-                    position: absolute;
-                    bottom: 10px;
-                    right: 10px;
-                    color: var(--primary-crimson);
-                  "
-                  >ID: 18</span
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Block 2 (6x5) -->
-      <div id="block-2" class="grid-block nested-flex-v">
-        <span class="block-number">2</span>
-        <div class="nested-section nested-flex-h">
-          <div class="sub-section card-container-sub">
-            <div class="card-wrapper sunset-card">
-              <div class="card-content">
-                <h1 class="card-heading">Integrated Quizzes</h1>
-                <p class="card-description">
-                  Test knowledge after every module.
-                  <span
-                    style="
-                      font-size: 0.6rem;
-                      opacity: 0.5;
-                      position: absolute;
-                      bottom: 10px;
-                      right: 10px;
-                      color: var(--primary-orange);
-                    "
-                    >ID: 10</span
-                  >
-                </p>
+        <div id="block-2" class="section45-grid-block section45-nested-flex-v">
+          <span class="section45-block-number">2</span>
+          <div class="section45-nested-section section45-nested-flex-h">
+            <div class="section45-sub-section section45-card-container-sub">
+              <div class="section45-card-wrapper section45-sunset-card">
+                <div class="section45-card-content">
+                  <h1 class="section45-card-heading">Integrated Quizzes</h1>
+                  <p class="section45-card-description">
+                    Test your knowledge after every module with quick, engaging
+                    quizzes. Track your progress, strengthen key concepts, and
+                    build confidence as you learn.ID: 10
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="section45-sub-section section45-card-container-sub">
+              <div class="section45-card-wrapper section45-deep-crimson-card">
+                <div class="section45-card-content">
+                  <h1 class="section45-card-heading">
+                    Structured DSA & Interview Prep
+                  </h1>
+                  <p class="section45-card-description">
+                    Master Data Structures and Algorithms with a curriculum
+                    built for acing technical interviews at top-tier companies.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-          <div class="sub-section card-container-sub">
-            <div class="card-wrapper deep-crimson-card">
-              <div class="card-content">
-                <h1 class="card-heading">Structured DSA & Interview Prep</h1>
-                <p class="card-description">
-                  Master Data Structures and Algorithms with a curriculum built
-                  for acing technical interviews at top-tier companies.
-                  <span
-                    style="
-                      font-size: 0.6rem;
-                      opacity: 0.5;
-                      position: absolute;
-                      bottom: 10px;
-                      right: 10px;
-                      color: var(--primary-deep-crimson);
-                    "
-                    >ID: 11</span
-                  >
+          <div class="section45-nested-section section45-nested-flex-h">
+            <div class="section45-sub-section section45-card-container-sub">
+              <div class="section45-card-wrapper section45-citrus-card">
+                <div
+                  class="section45-card-content"
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    padding: 10px 25px;
+                  "
+                >
+                  <p class="section45-stat-massive">2+</p>
+                  <p class="section45-stat-detail">INSTRUCTORS</p>
+                </div>
+              </div>
+            </div>
+            <div class="section45-sub-section section45-card-container-sub">
+              <div class="section45-card-wrapper section45-mint-card">
+                <div class="section45-card-content">
+                  <h1 class="section45-card-heading">
+                    Live Mentorship Sessions
+                  </h1>
+                  <p class="section45-card-description">
+                    Get personalized, 1:1 guidance from industry experts to
+                    review your projects and navigate career challenges.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="section45-nested-section section45-neon-card-container">
+            <div class="section45-card-wrapper section45-neon-card">
+              <div class="section45-card-content">
+                <h1 class="section45-card-heading">Community & Hackathons</h1>
+                <p class="section45-card-description">
+                  Engage with a vibrant community of instructors and like-minded
+                  learners who share your passion for technology. Collaborate,
+                  exchange ideas, and grow together through discussions and peer
+                  feedback. Participate in exciting challenges like this
+                  HTML/CSS Hackathon to test your skills, build real-world
+                  projects, and showcase your creativity. Win amazing prizes,
+                  earn recognition, and gain valuable experience that sets you
+                  apart in your tech journey!
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div class="nested-section nested-flex-h">
-          <div class="sub-section card-container-sub">
-            <div class="card-wrapper citrus-card">
+
+        <div id="block-3" class="section45-grid-block section45-nested-flex-h">
+          <span class="section45-block-number">3</span>
+          <div class="section45-nested-section section45-card-container-sub">
+            <div class="section45-card-wrapper section45-gold-card">
               <div
-                class="card-content"
+                class="section45-card-content"
                 style="
                   display: flex;
                   flex-direction: column;
                   align-items: center;
                   justify-content: center;
                   text-align: center;
-                  padding: 10px 25px;
                 "
               >
-                <p class="stat-massive">2+</p>
-                <p class="stat-detail">INSTRUCTORS</p>
-                <span
+                <p class="section45-stat-massive">202K+</p>
+                <p
                   style="
-                    font-size: 0.6rem;
-                    opacity: 0.5;
-                    position: absolute;
-                    bottom: 10px;
-                    right: 10px;
-                    color: var(--primary-sapphire);
+                    font-size: 1.1rem;
+                    opacity: 0.7;
+                    line-height: 1.2;
+                    margin-top: -10px;
+                    color: #fdd500;
                   "
-                  >ID: 12</span
                 >
-              </div>
-            </div>
-          </div>
-          <div class="sub-section card-container-sub">
-            <div class="card-wrapper mint-card">
-              <div class="card-content">
-                <h1 class="card-heading">Live Mentorship Sessions</h1>
-                <p class="card-description">
-                  Get personalized, 1:1 guidance from industry experts to review
-                  your projects and navigate career challenges.
-                  <span
-                    style="
-                      font-size: 0.6rem;
-                      opacity: 0.5;
-                      position: absolute;
-                      bottom: 10px;
-                      right: 10px;
-                      color: var(--primary-mint-teal);
-                    "
-                    >ID: 13</span
-                  >
+                  STUDENTS
                 </p>
               </div>
             </div>
           </div>
-        </div>
-        <div class="nested-section neon-card-container">
-          <div class="card-wrapper neon-card">
-            <div class="card-content">
-              <h1 class="card-heading">Community & Hackathons</h1>
-              <p class="card-description">
-                Engage with instructors and peers. Participate in challenges
-                like this HTML/CSS Hackathon to win prizes!
-                <span
+          <div class="section45-nested-section section45-card-container-sub">
+            <div class="section45-card-wrapper section45-neon-card">
+              <div
+                class="section45-card-content"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  text-align: center;
+                "
+              >
+                <p class="section45-stat-massive">4+</p>
+                <p
                   style="
-                    font-size: 0.6rem;
-                    opacity: 0.5;
-                    position: absolute;
-                    bottom: 10px;
-                    right: 10px;
-                    color: var(--primary-neon);
+                    font-size: 1.1rem;
+                    opacity: 0.7;
+                    line-height: 1.2;
+                    margin-top: -10px;
+                    color: #39fd14;
                   "
-                  >ID: 14</span
                 >
+                  COURSES
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="section45-nested-section section45-card-container-sub">
+            <div class="section45-card-wrapper section45-sapphire-card">
+              <div
+                class="section45-card-content"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  text-align: center;
+                "
+              >
+                <img
+                  width="100%"
+                  height="100%"
+                  style="object-fit: cover"
+                  src=""
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="block-6" class="section45-grid-block">
+          <div class="section45-card-wrapper">
+            <div class="section45-card-content">
+              <h1 class="section45-card-heading">Gemini-Powered AI Tutor</h1>
+              <p class="section45-card-description">
+                Our platform is equipped with a powerful AI chatbot that helps
+                you learn smarter. Get instant, lecture-specific answers powered
+                by Gemini AI — just add your free API key to receive contextual
+                guidance and clear your doubts in seconds!
               </p>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Block 3 (4x1) -->
-      <div id="block-3" class="grid-block nested-flex-h">
-        <span class="block-number">3</span>
-        <div class="nested-section card-container-sub">
-          <div class="card-wrapper gold-card">
-            <div
-              class="card-content"
-              style="
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-              "
-            >
-              <p class="stat-massive">202K+</p>
-              <p
-                style="
-                  font-size: 1.1rem;
-                  opacity: 0.7;
-                  color: var(--primary-gold);
-                  line-height: 1.2;
-                  margin-top: -10px;
-                "
-              >
-                STUDENTS
+        <div id="block-8" class="section45-grid-block">
+          <div class="section45-card-wrapper section45-gold-card">
+            <div class="section45-card-content">
+              <h1 class="section45-card-heading">Ad-Free Learning</h1>
+              <p class="section45-card-description">
+                One pre-roll ad. That's it. Pure focus mode. Lectures have
+                minimal ads, ensuring a distraction-free environment unlike
+                general video platforms.
               </p>
             </div>
           </div>
         </div>
-        <div class="nested-section card-container-sub">
-          <div class="card-wrapper neon-card">
-            <div
-              class="card-content"
-              style="
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-              "
-            >
-              <p class="stat-massive">4+</p>
-              <p
-                style="
-                  font-size: 1.1rem;
-                  opacity: 0.7;
-                  color: var(--primary-neon);
-                  line-height: 1.2;
-                  margin-top: -10px;
-                "
-              >
-                COURSES
+
+        <div id="block-9" class="section45-grid-block">
+          <div class="section45-card-wrapper section45-mint-card">
+            <div class="section45-card-content">
+              <h1 class="section45-card-heading">Full Progress Tracking</h1>
+              <p class="section45-card-description">
+                Every video, every quiz, tracked automatically. Never lose your
+                place and easily review areas for improvement.
               </p>
             </div>
-          </div>
-        </div>
-        <div class="nested-section card-container-sub">
-          <div class="card-wrapper sapphire-card">
-            <div
-              class="card-content"
-              style="
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-              "
-            >
-              <img
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-                src="./MAINFILE/assets/logo3.png"
-                alt=""
-              />
-              <span
-                style="
-                  font-size: 0.6rem;
-                  opacity: 0.5;
-                  position: absolute;
-                  bottom: 10px;
-                  right: 10px;
-                  color: var(--primary-sapphire);
-                "
-                >ID: 17</span
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Block 6 (4x2) -->
-      <div id="block-6" class="grid-block">
-        <div class="card-wrapper">
-          <div class="card-content">
-            <h1 class="card-heading">Gemini-Powered AI Tutor</h1>
-            <p class="card-description">
-              Instant, lecture-contextual answers. Just paste your free API key
-              and eliminate learning roadblocks instantly.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Block 8 (2x2) -->
-      <div id="block-8" class="grid-block">
-        <div class="card-wrapper gold-card">
-          <div class="card-content">
-            <h1 class="card-heading">Ad-Free Learning</h1>
-            <p class="card-description">
-              One pre-roll ad. That's it. Pure focus mode. Lectures have minimal
-              ads, ensuring a distraction-free environment unlike general video
-              platforms.
-              <span
-                style="
-                  font-size: 0.6rem;
-                  opacity: 0.5;
-                  position: absolute;
-                  bottom: 10px;
-                  right: 10px;
-                  color: var(--primary-gold);
-                "
-                >ID: 8</span
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Block 9 (2x2) -->
-      <div id="block-9" class="grid-block">
-        <div class="card-wrapper mint-card">
-          <div class="card-content">
-            <h1 class="card-heading">Full Progress Tracking</h1>
-            <p class="card-description">
-              Every video, every quiz, tracked automatically. Never lose your
-              place and easily review areas for improvement.
-              <span
-                style="
-                  font-size: 0.6rem;
-                  opacity: 0.5;
-                  position: absolute;
-                  bottom: 10px;
-                  right: 10px;
-                  color: var(--primary-mint-teal);
-                "
-                >ID: 9</span
-              >
-            </p>
           </div>
         </div>
       </div>
