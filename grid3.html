@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Geometric CSS Grid (Wireframe)</title>
+
+    <!-- NEW: Remix Icon link for the card logo -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Grid+Double+Ink:wght@100..900&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kode+Mono:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* NEW: Global Body Style (from 3D Card) */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        /* Dark background for the 3D card effect */
+        background: #000000;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        color: white; /* Default text color for the dark theme */
+        overflow: hidden;
+        padding: 2rem;
+        box-sizing: border-box;
+        font-family: "Bebas Neue", sans-serif;
+      }
+
+      /* --- 3D CARD STYLES START --- */
+
+      :root {
+        /* BLUE THEME (Default for 1A and 6) */
+        --primary-blue: #0000ff;
+        --light-blue: #00bfff;
+        --dark-base-blue: rgba(0, 0, 10, 0.85);
+        --icon-light-blue: #e0f7fa;
+
+        /* CRIMSON THEME (For Block 18) */
+        --primary-crimson: #dc143c; /* Crimson Red */
+        --light-crimson: #ff6347; /* Tomato Red */
+        --dark-base-crimson: rgba(15, 0, 0, 0.85); /* Dark base with red tint */
+        --icon-light-crimson: #ffdada; /* Pale pink for icon highlight */
+
+        --white-core: #ffffff;
+        --border-size: 3px;
+
+        --TILT-DEGREE: 5deg;
+        --LIFT-Z: 15px;
+      }
+
+      /* 1. CARD WRAPPER: Handles the 3D Tilt and holds the rotating gradient */
+      .card-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem; /* FIXED: Using 1rem as requested */
+        padding: var(--border-size);
+        box-sizing: border-box;
+        background: transparent;
+        overflow: hidden;
+        z-index: 10;
+        box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8);
+
+        transition: transform 0.4s ease-out;
+      }
+
+      /* 2. CONIC GRADIENT PSEUDO-ELEMENT (BLUE DEFAULT) */
+      .card-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+
+        /* BLUE CONIC GRADIENT */
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-blue) 4%,
+          var(--primary-blue) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+
+        width: calc(100% + 150px);
+        height: calc(100% + 150px);
+        top: -75px;
+        left: -75px;
+
+        border-radius: 25px;
+        animation: borderRotate 2s linear infinite;
+        filter: blur(8px);
+        opacity: 0.9;
+      }
+
+      /* 3. CARD CONTENT (BLUE DEFAULT) */
+      .card-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 17px;
+        overflow: hidden;
+        padding: 25px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        /* Glassmorphism Background: Dark Blue Base */
+        background: var(--dark-base-blue);
+        backdrop-filter: blur(35px);
+        -webkit-backdrop-filter: blur(35px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        transition: transform 0.3s;
+      }
+
+      /* --- CRIMSON THEME OVERRIDES (Applied via .crimson-card) --- */
+      .crimson-card.card-wrapper::before {
+        /* CRIMSON CONIC GRADIENT */
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-crimson) 4%,
+          var(--primary-crimson) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+      }
+
+      .crimson-card .card-content {
+        /* Glassmorphism Background: Dark Crimson Base */
+        background: var(--dark-base-crimson);
+      }
+
+      .crimson-card .card-logo .ri {
+        /* CRIMSON ICON GLOW AND GRADIENT */
+        background: linear-gradient(
+          135deg,
+          var(--icon-light-crimson),
+          var(--primary-crimson)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 15px rgba(220, 20, 60, 1); /* Crimson glow */
+      }
+      /* Override content::after glow for crimson */
+      .crimson-card .card-content::after {
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffcccc 0%,
+          var(--primary-crimson) 35%,
+          rgba(220, 20, 60, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+      }
+
+      /* --- LOGO/ICON STYLES (Applies to all cards) --- */
+      .card-logo {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+        align-self: flex-start;
+
+        /* 3D Base */
+        background: linear-gradient(145deg, #1c1c1c, #0a0a0a);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7),
+          inset 0 0 15px rgba(255, 255, 255, 0.05);
+      }
+      .card-logo::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 15px;
+        background: radial-gradient(
+          circle at 20% 20%,
+          rgba(255, 255, 255, 0.2),
+          transparent 50%
+        );
+      }
+
+      /* Icon coloring (BLUE DEFAULT) */
+      .card-logo .ri {
+        font-size: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--icon-light-blue),
+          var(--primary-blue)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 15px rgba(0, 0, 255, 1);
+      }
+      /* Specific logo size for Block 6 */
+
+      /* Block 18 uses its own crimson-card override */
+
+      /* --- Typography and Content --- */
+      .card-heading {
+        font-size: 1.1rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 10px;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+        text-align: left;
+      }
+
+      .card-description {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.4;
+        margin-bottom: 20px;
+        text-align: left;
+        flex-grow: 1;
+        margin-top: 0;
+      }
+
+      /* --- KEYFRAME for the ROTATING BORDER --- */
+      @keyframes borderRotate {
+        0% {
+          transform: rotate(0deg) scale(1);
+          opacity: 0.9;
+        }
+        50% {
+          transform: rotate(180deg) scale(1.03);
+          opacity: 1;
+        }
+        100% {
+          transform: rotate(360deg) scale(1);
+          opacity: 0.9;
+        }
+      }
+
+      /* --- ORIGINAL BACKGROUND LAYERS (Internal card glow - BLUE DEFAULT) --- */
+      .card-content::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        z-index: -3;
+        background: radial-gradient(
+          circle at 10% 10%,
+          rgba(0, 50, 255, 0.1),
+          transparent 60%
+        );
+        filter: blur(250px);
+        opacity: 1;
+      }
+      .card-content::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 1;
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffffff 0%,
+          #0000ff 35%,
+          rgba(0, 0, 255, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+        filter: blur(180px);
+      }
+
+      /* --- GRID STYLES START (Wireframe blocks) --- */
+
+      #geometric-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        gap: 0.5rem;
+        width: 100%;
+        max-width: 1300px;
+        height: 90vh;
+        background-color: transparent;
+        border-radius: 0.75rem;
+        box-shadow: none;
+      }
+
+      /* Base styles for all remaining wireframe blocks */
+      .grid-block {
+        border-radius: 0.5rem;
+        transition: opacity 0.3s ease;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding: 0;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+      }
+      #block-6.grid-block {
+        background-color: transparent;
+        border: none;
+      }
+
+      /* Style for the main block number (1-9) - placed subtly */
+      .block-number {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.75rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        opacity: 0.6;
+        z-index: 10;
+        color: #343a40;
+      }
+
+      /* Centered text style for single-content blocks */
+      .centered-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 600;
+        color: #343a40;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* --- STYLES FOR NESTED SECTIONS (Blocks 2, 3) --- */
+      .nested-flex-h {
+        flex-direction: row;
+      }
+      .nested-flex-v {
+        flex-direction: column;
+      }
+
+      .nested-section {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #343a40;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 0.5rem;
+        margin: 0.2rem;
+      }
+
+      #block-2 .nested-section {
+        font-size: 1.4rem;
+        display: flex;
+        padding: 0;
+        margin: 0.2rem 0.2rem;
+        border-radius: 0.5rem;
+      }
+
+      .sub-section {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        height: 100%;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        margin: 0 0.2rem;
+      }
+
+      /* --- BLOCK PLACEMENT (12x5 Grid) --- */
+
+      /* 1. Top Left (3x5) - COMBINED 1 & 4, DIVIDED VERTICALLY */
+      #block-1 {
+        grid-column: 1 / span 3;
+        grid-row: 1 / span 5;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+      }
+
+      /* 2. HUGE UNIFIED BLOCK (5x5) - DIVIDED INTO 3 ROWS */
+      #block-2 {
+        grid-column: 4 / span 5;
+        grid-row: 1 / span 5;
+      }
+
+      /* 3. Top Right (4x1) - SHIFTED RIGHT & DIVIDED */
+      #block-3 {
+        grid-column: 9 / span 4;
+        grid-row: 1 / span 1;
+      }
+
+      /* 4. Block 4 removed */
+
+      /* 6. NEW UNIFIED BLOCK (4x2) - COMBINED 6A & 9A - NOW TALLER */
+      #block-6 {
+        grid-column: 9 / span 4;
+        grid-row: 2 / span 2;
+      }
+
+      /* 8. NEW BLOCK (2x2) - Fills the space of old 6B */
+      #block-8 {
+        grid-column: 9 / span 2;
+        grid-row: 4 / span 2;
+      }
+
+      /* 9. NEW BLOCK (2x2) - Fills the space of old 9B */
+      #block-9 {
+        grid-column: 11 / span 2;
+        grid-row: 4 / span 2;
+      }
+
+      /* * Responsive Adjustments for Small Screens */
+      @media (max-width: 600px) {
+        #geometric-grid {
+          display: flex;
+          flex-direction: column;
+          height: auto;
+          min-height: 100px;
+          width: 95%;
+          box-shadow: none;
+        }
+        .grid-block,
+        .card-wrapper {
+          min-height: 100px;
+          margin-bottom: 0.5rem;
+        }
+        /* Reset 3D transforms on small screens */
+        .card-wrapper:hover {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="geometric-grid">
+      <!-- 1. Block 1 (3x5) - COMBINED 1 & 4, DIVIDED VERTICALLY (50%/50%) -->
+      <div id="block-1" class="grid-block">
+        <!-- 1A (Top 50%) - The 3D Animated Card -->
+        <div style="height: 50%; width: 100%">
+          <div class="card-wrapper">
+            <div class="card-content">
+              <div class="card-logo">
+                <!-- Icon: Certificate/Award --><i class="ri-award-line ri"></i>
+              </div>
+              <h1 class="card-heading">Verifiable Certs</h1>
+              <p class="card-description">
+                Get official certificates upon course completion.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1B (Bottom 50%) - Converted to Animated Card (18) -->
+        <div style="height: 50%; width: 100%">
+          <div class="card-wrapper crimson-card">
+            <div class="card-content">
+              <div class="card-logo">
+                <!-- Icon: Rocket --><i class="ri-rocket-line ri"></i>
+              </div>
+              <h1 class="card-heading">Career Launchpad</h1>
+              <p class="card-description">
+                Dedicated sessions to polish resumes and interview skills for
+                top tech roles.
+                <br />
+                <span
+                  style="
+                    font-size: 0.6rem;
+                    opacity: 0.5;
+                    position: absolute;
+                    bottom: 10px;
+                    right: 10px;
+                  "
+                  >ID: 18</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Block 2 (5x5) - DIVIDED INTO 3 ROWS, NESTED SECTIONS -->
+      <div id="block-2" class="grid-block nested-flex-v">
+        <span class="block-number">2</span>
+
+        <!-- 2A - Split Horizontally -->
+        <div class="nested-section nested-flex-h">
+          <div class="sub-section">10</div>
+          <div class="sub-section">11</div>
+        </div>
+
+        <!-- 2B - Split Horizontally -->
+        <div class="nested-section nested-flex-h">
+          <div class="sub-section">12</div>
+          <div class="sub-section">13</div>
+        </div>
+
+        <!-- 2C - Single Section -->
+        <div class="nested-section">14</div>
+      </div>
+
+      <!-- 3. Block 3 (4x1) - DIVIDED INTO 3 COLUMNS -->
+      <div id="block-3" class="grid-block nested-flex-h">
+        <span class="block-number">3</span>
+        <div class="nested-section">15</div>
+        <div class="nested-section">16</div>
+        <div class="nested-section">17</div>
+      </div>
+
+      <!-- Block 4 removed and combined into Block 1 --><!-- 6. Block 6 (4x2) - Converted to Animated Card (6) -->
+      <div id="block-6" class="grid-block">
+        <div class="card-wrapper">
+          <div class="card-content">
+            <h1 class="card-heading">Gemini-Powered AI Tutor</h1>
+            <p class="card-description">
+              Instant, lecture-contextual answers. Just paste your free API key
+              and eliminate learning roadblocks instantly.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Block 8 (2x2) -->
+      <div id="block-8" class="grid-block">
+        <span class="block-number">8</span>
+        <div class="centered-content">8</div>
+      </div>
+
+      <!-- 9. Block 9 (2x2) -->
+      <div id="block-9" class="grid-block">
+        <span class="block-number">9</span>
+        <div class="centered-content">9</div>
+      </div>
+    </div>
+  </body>
+</html>
