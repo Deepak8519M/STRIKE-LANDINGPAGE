@@ -26,7 +26,6 @@
         background: var(--bg-charcoal-dark);
         font-family: "Urbanist", sans-serif;
         color: white;
-        overflow: hidden;
         padding: 2rem;
         box-sizing: border-box;
         font-family: "Bebas Neue", sans-serif;
@@ -838,8 +837,8 @@
           padding: 1rem;
         }
         #geometric-grid {
-          display: flex;
-          flex-direction: column;
+          grid-template-columns: repeat(6, 1fr);
+          grid-template-rows: auto;
           height: auto;
           min-height: 100vh;
           width: 100%;
@@ -847,81 +846,103 @@
           box-shadow: none;
         }
         .grid-block {
-          min-height: 150px;
-          margin-bottom: 0.5rem;
-          width: 100%;
+          min-height: 200px;
         }
         .card-wrapper {
-          min-height: 150px;
+          min-height: 200px;
           width: 100%;
           border-radius: 0.75rem;
         }
+        .card-wrapper::before {
+          width: calc(100% + 50px);
+          height: calc(100% + 50px);
+          top: -25px;
+          left: -25px;
+          border-radius: 15px;
+          filter: blur(5px);
+        }
         .card-content {
-          padding: 15px;
-          font-size: 0.9rem;
+          padding: 12px;
+          font-size: 0.8rem;
         }
         .card-heading {
-          font-size: 1rem;
+          font-size: 0.9rem;
+          margin-bottom: 8px;
         }
         .card-description {
-          font-size: 0.75rem;
-        }
-        .card-logo {
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-        }
-        .card-logo .ri {
-          font-size: 1.5rem;
-        }
-        .stat-massive {
-          font-size: 3rem;
-        }
-        .stat-detail {
-          font-size: 1rem;
-          margin-top: -5px;
+          font-size: 0.65rem;
+          line-height: 1.3;
           margin-bottom: 10px;
         }
+        .card-logo {
+          width: 35px;
+          height: 35px;
+          border-radius: 8px;
+          margin-bottom: 10px;
+        }
+        .card-logo .ri {
+          font-size: 1.2rem;
+        }
+        .stat-massive {
+          font-size: 2.5rem;
+        }
+        .stat-detail {
+          font-size: 0.85rem;
+          margin-top: -5px;
+          margin-bottom: 8px;
+        }
         #block-1 {
+          grid-column: 1 / span 6;
+          grid-row: 1 / span 2;
           flex-direction: column;
         }
         #block-1 > div {
           height: auto;
-          min-height: 150px;
+          min-height: 200px;
           width: 100%;
         }
         #block-2 {
+          grid-column: 1 / span 6;
+          grid-row: 3 / span 3;
           flex-direction: column;
         }
         #block-2 .nested-section {
-          flex-direction: column;
-          margin: 0.2rem 0;
+          flex-direction: row;
+          margin: 0.3rem 0;
         }
         #block-2 .sub-section,
         #block-2 .neon-card-container {
-          margin: 0.2rem 0;
-          padding: 0;
-          min-height: 150px;
+          margin: 0 0.3rem;
+          min-height: 200px;
         }
         #block-3 {
-          flex-direction: column;
+          grid-column: 1 / span 6;
+          grid-row: 6 / span 1;
+          flex-direction: row;
         }
         #block-3 .nested-section {
-          margin: 0.2rem 0;
+          flex: 1;
           min-height: 150px;
         }
-        #block-6,
-        #block-8,
+        #block-6 {
+          grid-column: 1 / span 6;
+          grid-row: 7 / span 2;
+        }
+        #block-8 {
+          grid-column: 1 / span 3;
+          grid-row: 9 / span 2;
+        }
         #block-9 {
-          min-height: 150px;
+          grid-column: 4 / span 3;
+          grid-row: 9 / span 2;
         }
         .block-number {
-          font-size: 1.2rem;
+          font-size: 1rem;
           top: 0.3rem;
           left: 0.5rem;
         }
         #block-3 .card-content img {
-          max-height: 100px;
+          max-height: 80px;
           object-fit: contain;
         }
       }
