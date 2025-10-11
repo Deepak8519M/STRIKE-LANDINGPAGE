@@ -114,6 +114,12 @@
         --citrus-orange: #ff6f00;
         --text-dark: #1a1a1a;
 
+        /* NEW: LIGHT ARCTIC THEME (For Block 11) */
+        --primary-arctic: #03a9f4; /* Bright Blue */
+        --light-arctic: #b3e5fc; /* Light Sky Blue */
+        --icon-light-arctic: #e0ffff; /* Very light */
+        --icon-dark-arctic: #01579b; /* Darkest blue for text/icon depth */
+
         --white-core: #ffffff;
         --border-size: 3px;
 
@@ -504,6 +510,72 @@
         );
       }
 
+      /* --- NEW: LIGHT ARCTIC THEME OVERRIDES (Applied via .arctic-card) --- */
+      .arctic-card.card-wrapper::before {
+        /* ARCTIC CONIC GRADIENT (Rotating Border) */
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-arctic) 4%,
+          var(--primary-arctic) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        animation: borderRotate 4s linear infinite;
+      }
+      .arctic-card .card-content {
+        /* Light Glassmorphism Background */
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        color: var(--text-dark); /* Ensure text is dark on light background */
+      }
+      .arctic-card .card-heading,
+      .arctic-card .card-description {
+        color: var(--text-dark);
+        text-shadow: none; /* Remove dark text shadow for light background */
+      }
+      .arctic-card .card-description {
+        color: rgba(26, 26, 26, 0.8); /* Slightly softer dark text */
+      }
+      .arctic-card .card-content::after {
+        content: "";
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        z-index: -2;
+        opacity: 0.9;
+        /* Cool Arctic Radial Glow */
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffffff 0%,
+          var(--light-arctic) 35%,
+          rgba(3, 169, 244, 0.6) 60%,
+          transparent 85%
+        );
+        filter: blur(150px);
+      }
+      /* Remove the default dark ::before glow for light theme */
+      .arctic-card .card-content::before {
+        content: none;
+      }
+      .arctic-card .card-logo .ri {
+        /* ARCTIC ICON GLOW AND GRADIENT */
+        font-size: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--icon-light-arctic),
+          var(--primary-arctic)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 15px rgba(3, 169, 244, 1); /* Bright Blue glow */
+      }
+
       /* --- NEW: LIGHT CITRUS THEME OVERRIDES (Applied via .citrus-card) --- */
       .citrus-card.card-wrapper::before {
         /* CITRUS CONIC GRADIENT (Rotating Border) */
@@ -524,6 +596,7 @@
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
         border: 1px solid rgba(255, 255, 255, 0.7);
+        color: var(--text-dark); /* Ensure text is dark on light background */
       }
       .citrus-card .card-content::after {
         content: "";
@@ -590,7 +663,7 @@
       .citrus-card .stat-massive {
         /* ID 12 - Dark text on light background */
         color: var(--text-dark); /* Dark color for contrast */
-        text-shadow: 0 0 8px rgba(74, 0, 224, 0.8); /* Keeping Sapphire glow punch */
+        /* text-shadow: removed */
       }
 
       /* Stat Color Overrides for Detail Stats (used in 12) */
@@ -611,7 +684,7 @@
         font-weight: 700;
         font-size: 1.2rem;
         color: var(--text-dark); /* Dark color for contrast */
-        text-shadow: 0 0 8px rgba(74, 0, 224, 0.8); /* Keeping Sapphire glow punch */
+        /* text-shadow: removed */
         line-height: 1.2;
         margin-top: -10px;
         margin-bottom: 20px;
@@ -637,7 +710,8 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7),
           inset 0 0 15px rgba(255, 255, 255, 0.05);
       }
-      .citrus-card .card-logo {
+      .citrus-card .card-logo,
+      .arctic-card .card-logo {
         /* Dark icon background for light card */
         background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
         border: 1px solid rgba(0, 0, 0, 0.2);
@@ -846,7 +920,7 @@
       }
 
       #block-2 .nested-section {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         display: flex;
         padding: 0;
         margin: 0.2rem 0.2rem;
@@ -894,12 +968,13 @@
         font-size: 1.2rem;
       }
 
-      /* NEW RULE: Style adjustment to visually reduce the height of stat cards 15, 16, 17 */
-      #block-3 .card-container-sub {
-        /* Overrides default margin/padding to add vertical margin, shrinking the card visually */
-        margin-top: 0.6rem !important;
-        margin-bottom: 0.6rem !important;
-        padding: 0 !important; /* Ensure padding remains 0 */
+      /* NEW FIX: Reduce the height of stat cards 15, 16, 17 by reducing internal padding */
+      #block-3 .card-container-sub .card-wrapper .card-content {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        /* Restore horizontal padding to keep content centered */
+        padding-left: 25px;
+        padding-right: 25px;
       }
 
       /* Block 14 specific container styling (Same as .card-container-sub for consistency) */
@@ -1064,9 +1139,9 @@
             </div>
           </div>
 
-          <!-- Block 11: Converted to Deep Crimson Animated Card (Structured DSA) -->
+          <!-- Block 11: Converted to Light Arctic Animated Card (Structured DSA) -->
           <div class="sub-section card-container-sub">
-            <div class="card-wrapper deep-crimson-card">
+            <div class="card-wrapper arctic-card">
               <div class="card-content">
                 <h1 class="card-heading">Structured DSA & Interview Prep</h1>
                 <p class="card-description">
@@ -1079,7 +1154,7 @@
                       position: absolute;
                       bottom: 10px;
                       right: 10px;
-                      color: var(--primary-deep-crimson);
+                      color: var(--primary-arctic);
                     "
                     >ID: 11</span
                   >
@@ -1102,7 +1177,7 @@
                   align-items: center;
                   justify-content: center;
                   text-align: center;
-                  padding: 10px; /* Reduced padding for more central focus */
+                  padding: 10px 25px; /* Custom padding set inline */
                 "
               >
                 <!-- Stat Detail: 2+ Experienced Instructors (Now massive font and centered) -->
@@ -1277,6 +1352,7 @@
       <!-- 6. Block 6 (4x2) - Blue Animated Card (No Icon) -->
       <div id="block-6" class="grid-block">
         <div class="card-wrapper">
+          <!-- The default display:flex and justify-content:space-between now maximizes height usage -->
           <div class="card-content">
             <!-- No logo/icon for this block -->
             <h1 class="card-heading">Gemini-Powered AI Tutor</h1>
