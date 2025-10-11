@@ -54,6 +54,30 @@
         --dark-base-neon: rgba(5, 5, 0, 0.85); /* Dark base with green tint */
         --icon-light-neon: #e6ffe6; /* Extra pale green for icon highlight */
 
+        /* GOLD RUSH THEME (For Block 8) */
+        --primary-gold: #ffd700; /* Pure Gold */
+        --light-amber: #ffebb5; /* Pale Gold/Cream */
+        --dark-base-gold: rgba(
+          10,
+          5,
+          0,
+          0.85
+        ); /* Dark base with a subtle gold/brown tint */
+        --icon-light-gold: #fff8e1; /* Extra light gold for icon highlight */
+        --icon-dark-gold: #663e00; /* Dark brown/gold for icon depth */
+
+        /* ETHEREAL MINT THEME (For Block 9) */
+        --primary-mint-teal: #00b894; /* Medium Aquamarine */
+        --light-cyan: #e0ffff; /* Light Cyan */
+        --dark-base-mint: rgba(
+          0,
+          10,
+          8,
+          0.85
+        ); /* Dark base with a subtle mint tint */
+        --icon-light-mint: #f0ffff; /* Extra light for icon highlight */
+        --icon-dark-mint: #004d40; /* Dark teal for icon depth */
+
         --white-core: #ffffff;
         --border-size: 3px;
 
@@ -217,6 +241,96 @@
         );
       }
 
+      /* --- GOLD RUSH THEME OVERRIDES (Applied via .gold-card) --- */
+      .gold-card.card-wrapper::before {
+        /* GOLD CONIC GRADIENT */
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-amber) 4%,
+          var(--primary-gold) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        animation: borderRotate 4s linear infinite;
+      }
+
+      .gold-card .card-content {
+        /* Glassmorphism Background: Dark Gold Base */
+        background: var(--dark-base-gold);
+      }
+
+      .gold-card .card-logo .ri {
+        /* GOLD ICON GLOW AND GRADIENT */
+        font-size: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--icon-light-gold),
+          var(--primary-gold)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 1); /* Gold glow */
+      }
+
+      /* Override content::after glow for gold */
+      .gold-card .card-content::after {
+        background: radial-gradient(
+          circle at 18% 12%,
+          #ffeecc 0%,
+          var(--primary-gold) 35%,
+          rgba(255, 215, 0, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+      }
+
+      /* --- MINT THEME OVERRIDES (Applied via .mint-card) --- */
+      .mint-card.card-wrapper::before {
+        /* MINT CONIC GRADIENT */
+        background: conic-gradient(
+          from 0deg,
+          var(--white-core) 0%,
+          var(--light-cyan) 4%,
+          var(--primary-mint-teal) 12%,
+          rgba(0, 0, 0, 0) 35%,
+          rgba(0, 0, 0, 0) 95%,
+          var(--white-core) 100%
+        );
+        animation: borderRotate 4s linear infinite;
+      }
+
+      .mint-card .card-content {
+        /* Glassmorphism Background: Dark Mint Base */
+        background: var(--dark-base-mint);
+      }
+
+      .mint-card .card-logo .ri {
+        /* MINT ICON GLOW AND GRADIENT */
+        font-size: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--icon-light-mint),
+          var(--primary-mint-teal)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 15px rgba(0, 184, 148, 1); /* Mint glow */
+      }
+
+      /* Override content::after glow for mint */
+      .mint-card .card-content::after {
+        background: radial-gradient(
+          circle at 18% 12%,
+          #e0ffff 0%,
+          var(--primary-mint-teal) 35%,
+          rgba(0, 184, 148, 0.5) 60%,
+          #000000 65%,
+          transparent 85%
+        );
+      }
+
       /* --- LOGO/ICON STYLES (Applies to all cards) --- */
       .card-logo {
         width: 60px;
@@ -269,6 +383,7 @@
         margin-bottom: 10px;
         text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
         text-align: left;
+        color: white; /* Ensure heading is white */
       }
 
       .card-description {
@@ -279,6 +394,7 @@
         text-align: left;
         flex-grow: 1;
         margin-top: 0;
+        color: white; /* Ensure description is white */
       }
 
       /* --- KEYFRAME for the ROTATING BORDER --- */
@@ -358,10 +474,15 @@
         height: 100%;
         display: flex;
         padding: 0;
+        /* Default background for non-card blocks */
         background-color: #ffffff;
         border: 1px solid #ccc;
       }
-      #block-6.grid-block {
+      #block-1.grid-block, /* Block 1 must be transparent to show inner cards */
+      #block-6.grid-block,
+      #block-8.grid-block,
+      #block-9.grid-block {
+        /* Added #block-9 to be transparent */
         background-color: transparent;
         border: none;
       }
@@ -437,8 +558,8 @@
 
       /* Block 14 specific container styling */
       .neon-card-container {
-        /* This is the third row inside block 2. Give it more height and remove wireframe styles. */
-        flex: 2; /* Give it more height */
+        /* This overrides the .nested-section white background and border */
+        flex: 2;
         padding: 0.5rem 0.2rem;
         margin: 0.2rem 0.2rem 0.5rem;
         background-color: transparent !important;
@@ -635,16 +756,61 @@
         </div>
       </div>
 
-      <!-- 8. Block 8 (2x2) -->
+      <!-- 8. Block 8 (2x2) - Converted to Gold Animated Card -->
       <div id="block-8" class="grid-block">
-        <span class="block-number">8</span>
-        <div class="centered-content">8</div>
+        <div class="card-wrapper gold-card">
+          <div class="card-content">
+            <div class="card-logo">
+              <!-- Icon: Eye Off --><i class="ri-eye-off-line ri"></i>
+            </div>
+            <h1 class="card-heading">Ad-Free Learning</h1>
+            <p class="card-description">
+              One pre-roll ad. That's it. Pure focus mode. Lectures have minimal
+              ads, ensuring a distraction-free environment unlike general video
+              platforms.
+              <span
+                style="
+                  font-size: 0.6rem;
+                  opacity: 0.5;
+                  position: absolute;
+                  bottom: 10px;
+                  right: 10px;
+                  color: var(--primary-gold);
+                "
+                >ID: 8</span
+              >
+            </p>
+          </div>
+        </div>
       </div>
 
-      <!-- 9. Block 9 (2x2) -->
+      <!-- 9. Block 9 (2x2) - Converted to Mint Animated Card -->
       <div id="block-9" class="grid-block">
-        <span class="block-number">9</span>
-        <div class="centered-content">9</div>
+        <div class="card-wrapper mint-card">
+          <div class="card-content">
+            <div class="card-logo">
+              <!-- Icon: Line Chart/Progress --><i
+                class="ri-line-chart-line ri"
+              ></i>
+            </div>
+            <h1 class="card-heading">Full Progress Tracking</h1>
+            <p class="card-description">
+              Every video, every quiz, tracked automatically. Never lose your
+              place and easily review areas for improvement.
+              <span
+                style="
+                  font-size: 0.6rem;
+                  opacity: 0.5;
+                  position: absolute;
+                  bottom: 10px;
+                  right: 10px;
+                  color: var(--primary-mint-teal);
+                "
+                >ID: 9</span
+              >
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </body>
